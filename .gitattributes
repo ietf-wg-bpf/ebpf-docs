@@ -1,0 +1,5 @@
+# Files identified as text should be checked in with LFs, and checked
+# out with the platform-specific EOL markers.
+#
+# Essentially runs `git config core.autocrlf true` for every clone.
+* text=auto
