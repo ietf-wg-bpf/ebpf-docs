@@ -8,6 +8,11 @@ on:
     paths-ignore:
       - 'pdf/**'
       - 'rfcxml/**'
+  pull_request:
+    branches: [ update ]
+    paths-ignore:
+      - 'pdf/**'
+      - 'rfcxml/**'
 
 permissions:
   contents: write # for Git to git push
@@ -39,15 +44,16 @@ jobs:
 
     - name: Build rfcxml
       run: |
-        wget https://github.com/dthaler/rst2rfcxml/releases/download/v0.1/Ubuntu.Release.rst2rfcxml.zip
+        wget https://github.com/dthaler/rst2rfcxml/releases/download/v0.3/Ubuntu.Release.rst2rfcxml.zip
         unzip Ubuntu.Release.rst2rfcxml.zip
         chmod 755 rst2rfcxml
-        ./rst2rfcxml rst/instruction-set-prologue.rst rst/instruction-set.rst -o pdf/draft-thaler-bpf-isa.xml
+        ./rst2rfcxml rst/instruction-set-skeleton.rst -o pdf/draft-thaler-bpf-isa.xml
         cd pdf
         xml2rfc draft-thaler-bpf-isa.xml
         xml2rfc --html draft-thaler-bpf-isa.xml
 
     - name: Check in PDF
+      if: github.event_name == 'push'
       run: |
         cd pdf
         git add .
