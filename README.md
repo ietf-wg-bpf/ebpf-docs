@@ -2,7 +2,7 @@
 
 This repository is a working draft of standard eBPF documentation
 to be published by the eBPF Foundation in PDF format.  The current
-draft PDF is [here](https://github.com/dthaler/ebpf-docs/blob/pdf/instruction-set.pdf).
+draft PDF is [here](https://github.com/ebpffoundation/ebpf-docs/blob/pdf/instruction-set.pdf).
 
 The authoritative source from which it is built is expected to be
 in the Linux kernel.org repository, but not be Linux specific.
