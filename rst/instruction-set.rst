@@ -299,6 +299,18 @@ caller, and are referenced by offset from the call instruction, similar to
 ``BPF_JA``.  A ``BPF_EXIT`` within the program-local function will return to
 the caller.
 
+Runtime functions
+~~~~~~~~~~~~~~~~~
+Runtime functions are like helper functions except that they are not specific
+to eBPF programs.  They use a different numbering space from helper functions,
+but otherwise the same considerations apply.
+
+eBPF functions
+~~~~~~~~~~~~~~
+eBPF functions are functions exposed by the same eBPF program as the caller,
+and are referenced by offset from the call instruction, similar to ``BPF_JA``.
+A ``BPF_EXIT`` within the eBPF function will return to the caller.
+
 Load and store instructions
 ===========================
 
