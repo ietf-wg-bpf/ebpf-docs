@@ -1385,7 +1385,7 @@ endobj
 endobj
 254 0 obj
 <<
-/Author () /CreationDate (D:20220923131042+00'00') /Creator (\(unspecified\)) /Keywords () /ModDate (D:20220923131042+00'00') /Producer (ReportLab PDF Library - www.reportlab.com) 
+/Author () /CreationDate (D:20220924183007+00'00') /Creator (\(unspecified\)) /Keywords () /ModDate (D:20220924183007+00'00') /Producer (ReportLab PDF Library - www.reportlab.com) 
   /Subject (\(unspecified\)) /Title () /Trapped /False
 >>
 endobj
@@ -3140,7 +3140,7 @@ endstream
 endobj
 280 0 obj
 <<
-/Length 7699
+/Length 7675
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -3565,7 +3565,7 @@ q
 1 0 0 1 57.02362 108.2236 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL 1.519897 Tw (Also note that the modulo operation often varies by language when the dividend or divisor are negative,) Tj T* 0 Tw .289314 Tw (where Python, Ruby, etc. differ from C, Go, Java, etc. This specification requires that modulo use the widely) Tj T* 0 Tw (accepted mathematical definition given by Donald Knuth and implemented in C, Go, etc.:) Tj T* ET
+BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL 1.519897 Tw (Also note that the modulo operation often varies by language when the dividend or divisor are negative,) Tj T* 0 Tw .480522 Tw (where Python, Ruby, etc. differ from C, Go, Java, etc. This specification requires that modulo use truncated) Tj T* 0 Tw (division \(where -13 % 3 == -1\) as implemented in C, Go, etc.:) Tj T* ET
 Q
 Q
 q
@@ -3581,7 +3581,7 @@ q
 1 0 0 1 20 0 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (a % n = a - n * floor\(a / n\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (a % n = a - n * trunc\(a / n\)) Tj T* ET
 Q
 Q
 q
@@ -13678,49 +13678,49 @@ xref
 0000060194 00000 n 
 0000069419 00000 n 
 0000080376 00000 n 
-0000088128 00000 n 
-0000099536 00000 n 
-0000108941 00000 n 
-0000118771 00000 n 
-0000130393 00000 n 
-0000142417 00000 n 
-0000151029 00000 n 
-0000160607 00000 n 
-0000170289 00000 n 
-0000179436 00000 n 
-0000188508 00000 n 
-0000197636 00000 n 
-0000206707 00000 n 
-0000215721 00000 n 
-0000224864 00000 n 
-0000234022 00000 n 
-0000242928 00000 n 
-0000250844 00000 n 
-0000251110 00000 n 
-0000251145 00000 n 
-0000251180 00000 n 
-0000251215 00000 n 
-0000251250 00000 n 
-0000251285 00000 n 
-0000251320 00000 n 
-0000251355 00000 n 
-0000251390 00000 n 
-0000251425 00000 n 
-0000251461 00000 n 
-0000251497 00000 n 
-0000251533 00000 n 
-0000251569 00000 n 
-0000251605 00000 n 
-0000251641 00000 n 
-0000251677 00000 n 
-0000251713 00000 n 
-0000251749 00000 n 
-0000251785 00000 n 
-0000251821 00000 n 
+0000088104 00000 n 
+0000099512 00000 n 
+0000108917 00000 n 
+0000118747 00000 n 
+0000130369 00000 n 
+0000142393 00000 n 
+0000151005 00000 n 
+0000160583 00000 n 
+0000170265 00000 n 
+0000179412 00000 n 
+0000188484 00000 n 
+0000197612 00000 n 
+0000206683 00000 n 
+0000215697 00000 n 
+0000224840 00000 n 
+0000233998 00000 n 
+0000242904 00000 n 
+0000250820 00000 n 
+0000251086 00000 n 
+0000251121 00000 n 
+0000251156 00000 n 
+0000251191 00000 n 
+0000251226 00000 n 
+0000251261 00000 n 
+0000251296 00000 n 
+0000251331 00000 n 
+0000251366 00000 n 
+0000251401 00000 n 
+0000251437 00000 n 
+0000251473 00000 n 
+0000251509 00000 n 
+0000251545 00000 n 
+0000251581 00000 n 
+0000251617 00000 n 
+0000251653 00000 n 
+0000251689 00000 n 
+0000251725 00000 n 
+0000251761 00000 n 
+0000251797 00000 n 
 trailer
 <<
 /ID 
-[<413449dc7a571e7a8b2fa8db6153128d><413449dc7a571e7a8b2fa8db6153128d>]
+[<b8b92f74b185b9df84718c771140c233><b8b92f74b185b9df84718c771140c233>]
 % ReportLab generated PDF document -- digest (http://www.reportlab.com)
 
 /Info 254 0 R
@@ -13728,5 +13728,5 @@ trailer
 /Size 320
 >>
 startxref
-251857
+251833
 %%EOF
