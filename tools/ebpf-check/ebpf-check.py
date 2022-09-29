@@ -11,12 +11,28 @@ from elftools.elf.elffile import ELFFile
 
 OPS_JON = os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])),
                        'instructions.json')
+__verbose = False
 
 class ISA(object):
     def __init__(self):
         file = open(OPS_JON, 'r')
         self.ops = json.load(file)
         file.close()
+
+def report(isa, filename, section_name, insn_nb, insn, show_alt, msg):
+    if __verbose:
+        print(f'\t\tInstruction #{insn_nb} ({insn}): {msg}')
+        print(f'\t\tKnown patterns for this opcode:')
+        if show_alt:
+            for op in isa.ops:
+                if op['opc'] == insn['opc']:
+                    print(f'\t\t\t{op}')
+    else:
+        print(f'{filename}:{section_name}:{insn_nb}:{insn}: {msg}')
+
+def verbose(msg):
+    if __verbose:
+        print(msg)
 
 def get_insn(insn):
     if sys.byteorder == 'little':
@@ -51,24 +67,28 @@ def process_insn(isa, prev_insn_data, insn_data, next_insn_data,
             break
 
     if not is_valid:
-        print(f'{filename}:{section_name}:{insn_nb}:{insn}: Not a valid instruction')
+        report(isa, filename, section_name, insn_nb, insn, True,
+               'Not a valid instruction')
         return is_valid
 
     # Check that 0x18 is 16-bytes long and followed by a 0x00 opcode
     if insn['opc'] == 0x18:
         next_insn = get_insn(next_insn_data)
         if not next_insn:
-            print(f'{filename}:{section_name}:{insn_nb}:{insn}: 0x18 misses its second half-instruction')
+            report(isa, filename, section_name, insn_nb, insn, False,
+                   '0x18 misses its second half-instruction')
             is_valid = False
         if next_insn['opc'] != 0x00:
-            print(f'{filename}:{section_name}:{insn_nb}:{insn}: 0x18 not followed by 0x00 second half-instruction')
+            report(isa, filename, section_name, insn_nb, insn, False,
+                   '0x18 not followed by 0x00 second half-instruction')
             is_valid = False
 
     # Check that 0x00 opcode is preceeded by 0x18
     if insn['opc'] == 0x00:
         prev_insn = get_insn(prev_insn_data)
         if prev_insn['opc'] != 0x18:
-            print(f'{filename}:{section_name}:{insn_nb}:{insn}: 0x00 not preceeded by 0x18 first half-instruction')
+            report(isa, filename, section_name, insn_nb, insn, False,
+                   '0x00 not preceeded by 0x18 first half-instruction')
             is_valid = False
 
     return is_valid
@@ -95,6 +115,7 @@ def process_section(isa, section, filename):
     return is_valid
 
 def process_file(isa, filename, section_names):
+    verbose(f'Checking file {filename}')
     is_valid = True
     with open(filename, 'rb') as f:
         elffile = ELFFile(f)
@@ -102,11 +123,13 @@ def process_file(isa, filename, section_names):
             section = elffile.get_section_by_name(section_name)
             if not section:
                 raise Exception(f'File {filename}: section "{section_name}" not found!')
+            verbose(f'\tChecking section {section_name} from file {filename}')
             if not process_section(isa, section, filename):
                 is_valid = False
 
         f.close()
 
+    verbose('')
     return is_valid
 
 if __name__ == '__main__':
@@ -115,7 +138,10 @@ if __name__ == '__main__':
     argParser.add_argument('filename', help='input ELF object file')
     argParser.add_argument('--sections', help='Comma-separated list of ELF section names',
                            default='.text')
+    argParser.add_argument('-v', '--verbose', action='store_true',
+                           help='Verbose output')
     args = argParser.parse_args()
+    __verbose = args.verbose
 
     isa = ISA()
     if not process_file(isa, args.filename, args.sections):
