@@ -30,7 +30,7 @@ processes all `TEXT` sections.
 
 ```
 $ ebpf-check.py -h
-usage: ebpf-check.py [-h] [-s SECTIONS [SECTIONS ...]] [-v] filenames [filenames ...]
+usage: ebpf-check.py [-h] [-j] [-s SECTIONS [SECTIONS ...]] [-v] filenames [filenames ...]
 
 Check instructions in provided ELF file and section for compliance with the eBPF ISA specification
 
@@ -39,6 +39,7 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
+  -j, --json            JSON output
   -s SECTIONS [SECTIONS ...], --sections SECTIONS [SECTIONS ...]
                         list of ELF section names, defaults to all TEXT sections in file
   -v, --verbose         verbose output

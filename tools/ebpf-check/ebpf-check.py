@@ -13,6 +13,7 @@ from elftools.elf.elffile import ELFFile
 OPS_JON = os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])),
                        'instructions.json')
 __verbose = False
+__json = False
 
 class ISA(object):
     def __init__(self):
@@ -21,6 +22,9 @@ class ISA(object):
         file.close()
 
 def report(isa, filename, section_name, insn_nb, insn, show_alt, msg):
+    if __json:
+        return
+
     if __verbose:
         print(f'\t\tInstruction #{insn_nb} ({insn}): {msg}')
         print(f'\t\tKnown patterns for this opcode:')
@@ -32,6 +36,8 @@ def report(isa, filename, section_name, insn_nb, insn, show_alt, msg):
         print(f'{filename}:{section_name}:{insn_nb}:{insn}: {msg}')
 
 def verbose(msg):
+    if __json:
+        return
     if __verbose:
         print(msg)
 
@@ -53,10 +59,12 @@ def get_insn(insn):
             'imm': insn[3] + (insn[2] << 8) + (insn[1] << 16) + (insn[0] << 24)
         }
 
-def process_insn(isa, prev_insn_data, insn_data, next_insn_data,
+def process_insn(isa, json_insns, prev_insn_data, insn_data, next_insn_data,
                  filename, section_name, insn_nb):
     is_valid = False
     insn = get_insn(insn_data)
+    if __json:
+        insn['errors'] = []
 
     for op in isa.ops:
         if op['opc'] == insn['opc']:
@@ -68,36 +76,55 @@ def process_insn(isa, prev_insn_data, insn_data, next_insn_data,
             break
 
     if not is_valid:
-        report(isa, filename, section_name, insn_nb, insn, True,
-               'Not a valid instruction')
+        msg = 'Not a valid instruction'
+        report(isa, filename, section_name, insn_nb, insn, True, msg)
+        if __json:
+            insn['valid'] = False
+            insn['errors'].append(msg)
+            json_insns.append(insn)
         return is_valid
 
     # Check that 0x18 is 16-bytes long and followed by a 0x00 opcode
     if insn['opc'] == 0x18:
         next_insn = get_insn(next_insn_data)
+
         if not next_insn:
-            report(isa, filename, section_name, insn_nb, insn, False,
-                   '0x18 misses its second half-instruction')
+            msg = '0x18 misses its second half-instruction'
+            report(isa, filename, section_name, insn_nb, insn, False, msg)
+            if __json:
+                insn['errors'].append(msg)
             is_valid = False
+
         if next_insn['opc'] != 0x00:
-            report(isa, filename, section_name, insn_nb, insn, False,
-                   '0x18 not followed by 0x00 second half-instruction')
+            msg = '0x18 not followed by 0x00 second half-instruction'
+            report(isa, filename, section_name, insn_nb, insn, False, msg)
+            if __json:
+                insn['errors'].append(msg)
             is_valid = False
 
     # Check that 0x00 opcode is preceeded by 0x18
     if insn['opc'] == 0x00:
         prev_insn = get_insn(prev_insn_data)
+
         if prev_insn['opc'] != 0x18:
-            report(isa, filename, section_name, insn_nb, insn, False,
-                   '0x00 not preceeded by 0x18 first half-instruction')
+            msg = '0x00 not preceeded by 0x18 first half-instruction'
+            report(isa, filename, section_name, insn_nb, insn, False, msg)
+            if __json:
+                insn['errors'].append(msg)
             is_valid = False
+
+    if __json:
+        insn['valid'] = is_valid
+        json_insns.append(insn)
 
     return is_valid
 
-def process_section(isa, section, filename):
+def process_section(isa, json_section, section, filename):
     insn_size = 8
     if section.data_size % insn_size:
         raise Exception(f'Data length in section {section.name} is not a multiple of {insn_size} bytes')
+
+    json_insns = []
 
     is_valid = True
     insn = {}
@@ -109,16 +136,23 @@ def process_section(isa, section, filename):
             next_insn = {}
         else:
             next_insn = section.data()[(i+1)*insn_size:(i+2)*insn_size]
-        if not process_insn(isa, prev_insn, insn, next_insn,
+        if not process_insn(isa, json_insns, prev_insn, insn, next_insn,
                             filename, section.name, i):
             is_valid = False
 
+    json_section['insns'] = json_insns
+
     return is_valid
 
-def process_file(isa, filename, section_list):
+def process_file(isa, json_res, filename, section_list):
     verbose(f'Checking file {filename}')
     is_valid = True
     section_names = set(section_list)
+
+    json_file = {}
+    json_file['filename'] = filename
+    json_file['sections'] = []
+
     with open(filename, 'rb') as f:
         elffile = ELFFile(f)
 
@@ -133,11 +167,17 @@ def process_file(isa, filename, section_list):
             if not section:
                 raise Exception(f'File {filename}: section "{section_name}" not found!')
             verbose(f'\tChecking section {section_name} from file {filename}')
-            if not process_section(isa, section, filename):
+            json_section = {}
+            json_section['name'] = section_name
+            json_section['insns'] = []
+            if not process_section(isa, json_section, section, filename):
                 is_valid = False
+            if __json:
+                json_file['sections'].append(json_section)
 
         f.close()
 
+    json_res.append(json_file)
     verbose('')
     return is_valid
 
@@ -146,18 +186,25 @@ if __name__ == '__main__':
     argParser = argparse.ArgumentParser(description=description)
     argParser.add_argument('filenames', nargs='+',
                            help='input ELF object file')
+    argParser.add_argument('-j', '--json', action='store_true',
+                           help='JSON output')
     argParser.add_argument('-s', '--sections', nargs='+', default=[],
                            help='list of ELF section names, defaults to all TEXT sections in file')
     argParser.add_argument('-v', '--verbose', action='store_true',
                            help='verbose output')
     args = argParser.parse_args()
     __verbose = args.verbose
+    __json = args.json
 
     isa = ISA()
     all_valid = True
+    json_res = []
     for filename in args.filenames:
-        if not process_file(isa, filename, args.sections):
+        if not process_file(isa, json_res, filename, args.sections):
             all_valid = False
+
+    if __json:
+        print(json.dumps(json_res, indent=2))
 
     if not all_valid:
         sys.exit(1)
