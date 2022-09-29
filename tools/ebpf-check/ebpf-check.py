@@ -7,6 +7,7 @@ import sys
 
 import json
 
+from elftools.elf.constants import SH_FLAGS
 from elftools.elf.elffile import ELFFile
 
 OPS_JON = os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])),
@@ -114,12 +115,20 @@ def process_section(isa, section, filename):
 
     return is_valid
 
-def process_file(isa, filename, section_names):
+def process_file(isa, filename, section_list):
     verbose(f'Checking file {filename}')
     is_valid = True
+    section_names = set(section_list)
     with open(filename, 'rb') as f:
         elffile = ELFFile(f)
-        for section_name in section_names.split(','):
+
+        # If no section names were provided, process all TEXT sections
+        if not section_names:
+            for section in elffile.iter_sections():
+                if section.header['sh_flags'] is (SH_FLAGS.SHF_ALLOC | SH_FLAGS.SHF_EXECINSTR):
+                    section_names.add(section.name)
+
+        for section_name in section_names:
             section = elffile.get_section_by_name(section_name)
             if not section:
                 raise Exception(f'File {filename}: section "{section_name}" not found!')
@@ -135,14 +144,20 @@ def process_file(isa, filename, section_names):
 if __name__ == '__main__':
     description='Check instructions in provided ELF file and section for compliance with the eBPF ISA specification'
     argParser = argparse.ArgumentParser(description=description)
-    argParser.add_argument('filename', help='input ELF object file')
-    argParser.add_argument('--sections', help='Comma-separated list of ELF section names',
-                           default='.text')
+    argParser.add_argument('filenames', nargs='+',
+                           help='input ELF object file')
+    argParser.add_argument('-s', '--sections', nargs='+', default=[],
+                           help='list of ELF section names, defaults to all TEXT sections in file')
     argParser.add_argument('-v', '--verbose', action='store_true',
-                           help='Verbose output')
+                           help='verbose output')
     args = argParser.parse_args()
     __verbose = args.verbose
 
     isa = ISA()
-    if not process_file(isa, args.filename, args.sections):
+    all_valid = True
+    for filename in args.filenames:
+        if not process_file(isa, filename, args.sections):
+            all_valid = False
+
+    if not all_valid:
         sys.exit(1)
