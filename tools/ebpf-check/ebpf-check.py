@@ -15,6 +15,11 @@ OPS_JON = os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])),
 __verbose = False
 __json = False
 
+BPF_PSEUDO_MAP_FD = 1
+BPF_PSEUDO_BTF_ID = 3
+BPF_PSEUDO_FUNC = 4
+BPF_PSEUDO_MAP_IDX = 5
+
 class ISA(object):
     def __init__(self):
         file = open(OPS_JON, 'r')
@@ -97,6 +102,20 @@ def process_insn(isa, json_insns, prev_insn_data, insn_data, next_insn_data,
 
         if next_insn['opc'] != 0x00:
             msg = '0x18 not followed by 0x00 second half-instruction'
+            report(isa, filename, section_name, insn_nb, insn, False, msg)
+            if __json:
+                insn['errors'].append(msg)
+            is_valid = False
+
+        # These extensions should have 0 in the immediate field of the second
+        # half-instruction
+        if insn['src'] in [
+            BPF_PSEUDO_MAP_FD,
+            BPF_PSEUDO_BTF_ID,
+            BPF_PSEUDO_FUNC,
+            BPF_PSEUDO_MAP_IDX,
+        ] and next_insn['imm'] != 0:
+            msg = f'second half of 0x18 with src == {insn["src"]} has non-0 immediate'
             report(isa, filename, section_name, insn_nb, insn, False, msg)
             if __json:
                 insn['errors'].append(msg)
