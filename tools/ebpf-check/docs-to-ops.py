@@ -7,7 +7,7 @@ import re
 
 __hex = '0[xX][0-9a-fA-F]+'
 HEX_RE = re.compile(__hex)
-OP_RE = re.compile(f'^({__hex})\s+(any|{__hex})\s+(any|{__hex}).*')
+OP_RE = re.compile(f'^({__hex})\s+(any|{__hex})\s+(any|{__hex})\s+(.*\S)\s+`(.*)`_$')
 
 class OpNotFound(BaseException):
     pass
@@ -36,11 +36,32 @@ class Parser(object):
         if not capture:
             raise OpNotFound
 
-        self.ops.append({
+        insn = {
             'opc' : hex_to_dec(capture.group(1)),
             'src' : hex_to_dec(capture.group(2)),
             'imm' : hex_to_dec(capture.group(3))
-        })
+            'dsc' : capture.group(4),
+            'cat' : capture.group(5),
+        }
+
+        # Descriptions spans multiple lines.
+        # Parse them, and seek back when meeting next instruction.
+        if insn['dsc'] == 'lock::':
+            while True:
+                pos = self.reader.tell()
+                line = self.reader.readline()
+                if not line:
+                    break
+                if line == '\n':
+                    continue
+                capture = OP_RE.match(line)
+                if not capture:
+                    insn['dsc'] += '; ' + line.strip()
+                else:
+                    self.reader.seek(pos)
+                    break
+
+        self.ops.append(insn)
 
     def run(self):
         self.seek_to('Appendix',

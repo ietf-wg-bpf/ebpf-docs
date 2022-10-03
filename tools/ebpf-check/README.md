@@ -4,7 +4,7 @@
 
 ## Dependencies
 
-awk, curl, llvm-objdump, pyelftools
+awk, curl, pyelftools
 
 ## Setup
 
@@ -25,29 +25,33 @@ from the RST docs.
 
 After the list of instructions has been generated, call `ebpf-check.py` to
 check an object file. You can pass one or more ELF section names to tell the
-script which sections to check in the object file.
+script which sections to check in the object file. By default, the script
+processes all `TEXT` sections.
 
 ```
 $ ebpf-check.py -h
-usage: ebpf-check.py [-h] [--sections SECTIONS] filename
+usage: ebpf-check.py [-h] [-j] [-s SECTIONS [SECTIONS ...]] [-v] filenames [filenames ...]
 
 Check instructions in provided ELF file and section for compliance with the eBPF ISA specification
 
 positional arguments:
-  filename             input ELF object file
+  filenames             input ELF object file
 
 optional arguments:
-  -h, --help           show this help message and exit
-  --sections SECTIONS  ELF section names
+  -h, --help            show this help message and exit
+  -j, --json            JSON output
+  -s SECTIONS [SECTIONS ...], --sections SECTIONS [SECTIONS ...]
+                        list of ELF section names, defaults to all TEXT sections in file
+  -v, --verbose         verbose output
 ```
 
 ## Run on multiple object files
 
-For convenience, `check-obj-in-dir.sh` is provided to validate all `TEXT`
-sections in multiple ELF files at once. Example usage:
+It is possible to run the script on all `TEXT` sections of multiple object
+files at once. For example:
 
 ```
 $ cd cilium/bpf
 $ make -j
-$ /path/to/check-obj-in-dir.sh .
+$ /path/to/ebpf-check.py --all-sections *.o
 ```
