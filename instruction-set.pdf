@@ -42,12 +42,12 @@ endobj
 endobj
 9 0 obj
 <<
-/Border [ 0 0 0 ] /Contents () /Dest [ 46 0 R /XYZ 57.02362 273.0236 0 ] /Rect [ 77.02362 692.4236 218.2851 702.6236 ] /Subtype /Link /Type /Annot
+/Border [ 0 0 0 ] /Contents () /Dest [ 46 0 R /XYZ 57.02362 261.0236 0 ] /Rect [ 77.02362 692.4236 218.2851 702.6236 ] /Subtype /Link /Type /Annot
 >>
 endobj
 10 0 obj
 <<
-/Border [ 0 0 0 ] /Contents () /Dest [ 46 0 R /XYZ 57.02362 273.0236 0 ] /Rect [ 533.526 693.0611 538.252 703.2611 ] /Subtype /Link /Type /Annot
+/Border [ 0 0 0 ] /Contents () /Dest [ 46 0 R /XYZ 57.02362 261.0236 0 ] /Rect [ 533.526 693.0611 538.252 703.2611 ] /Subtype /Link /Type /Annot
 >>
 endobj
 11 0 obj
@@ -1304,7 +1304,7 @@ endobj
 endobj
 240 0 obj
 <<
-/Border [ 0 0 0 ] /Contents () /Dest [ 74 0 R /XYZ 57.02362 470.5236 0 ] /Rect [ 362.2181 165.0284 442.2481 177.0284 ] /Subtype /Link /Type /Annot
+/Border [ 0 0 0 ] /Contents () /Dest [ 74 0 R /XYZ 57.02362 470.5236 0 ] /Rect [ 362.2181 162.3736 442.2481 174.3736 ] /Subtype /Link /Type /Annot
 >>
 endobj
 241 0 obj
@@ -1385,7 +1385,7 @@ endobj
 endobj
 254 0 obj
 <<
-/Author () /CreationDate (D:20221003224250+00'00') /Creator (\(unspecified\)) /Keywords () /ModDate (D:20221003224250+00'00') /Producer (ReportLab PDF Library - www.reportlab.com) 
+/Author () /CreationDate (D:20221003235751+00'00') /Creator (\(unspecified\)) /Keywords () /ModDate (D:20221003235751+00'00') /Producer (ReportLab PDF Library - www.reportlab.com) 
   /Subject (\(unspecified\)) /Title () /Trapped /False
 >>
 endobj
@@ -1406,7 +1406,7 @@ endobj
 endobj
 258 0 obj
 <<
-/Dest [ 46 0 R /XYZ 57.02362 273.0236 0 ] /Next 259 0 R /Parent 256 0 R /Prev 257 0 R /Title (\376\377\0001\000.\0002\000\240\000\240\000\240\000R\000e\000g\000i\000s\000t\000e\000r\000s\000 \000a\000n\000d\000 \000c\000a\000l\000l\000i\000n\000g\000 \000c\000o\000n\000v\000e\000n\000t\000i\000o\000n)
+/Dest [ 46 0 R /XYZ 57.02362 261.0236 0 ] /Next 259 0 R /Parent 256 0 R /Prev 257 0 R /Title (\376\377\0001\000.\0002\000\240\000\240\000\240\000R\000e\000g\000i\000s\000t\000e\000r\000s\000 \000a\000n\000d\000 \000c\000a\000l\000l\000i\000n\000g\000 \000c\000o\000n\000v\000e\000n\000t\000i\000o\000n)
 >>
 endobj
 259 0 obj
@@ -1509,7 +1509,7 @@ endobj
 endobj
 277 0 obj
 <<
-/Length 8458
+/Length 8617
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -1815,40 +1815,40 @@ BT 1 0 0 1 0 3 Tm 18 TL /F2 15 Tf .133333 .133333 .133333 rg (1.1   Documentatio
 Q
 Q
 q
-1 0 0 1 57.02362 285.0236 cm
+1 0 0 1 57.02362 273.0236 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (This specification uses the standard C types \(uint32_t, etc.\) in documentation.) Tj T* ET
+BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL -0.055092 Tw (For brevity, this document uses the type notion "u64", "u32", etc. to mean an unsigned integer whose width is) Tj T* 0 Tw (the specified number of bits, and "s32", etc. to mean a signed integer of the specified number of bits.) Tj T* ET
 Q
 Q
 q
-1 0 0 1 57.02362 255.0236 cm
+1 0 0 1 57.02362 243.0236 cm
 q
 BT 1 0 0 1 0 3 Tm 18 TL /F2 15 Tf .133333 .133333 .133333 rg (1.2   Registers and calling convention) Tj T* ET
 Q
 Q
 q
-1 0 0 1 57.02362 237.0236 cm
+1 0 0 1 57.02362 225.0236 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (eBPF has 10 general purpose registers and a read-only frame pointer register, all of which are 64-bits wide.) Tj T* ET
 Q
 Q
 q
-1 0 0 1 57.02362 219.0236 cm
+1 0 0 1 57.02362 207.0236 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (The eBPF calling convention is defined as:) Tj T* ET
 Q
 Q
 q
-1 0 0 1 57.02362 213.0236 cm
-Q
-q
-1 0 0 1 57.02362 213.0236 cm
+1 0 0 1 57.02362 201.0236 cm
 Q
 q
 1 0 0 1 57.02362 201.0236 cm
+Q
+q
+1 0 0 1 57.02362 189.0236 cm
 q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
@@ -1871,10 +1871,10 @@ Q
 Q
 Q
 q
-1 0 0 1 57.02362 195.0236 cm
+1 0 0 1 57.02362 183.0236 cm
 Q
 q
-1 0 0 1 57.02362 183.0236 cm
+1 0 0 1 57.02362 171.0236 cm
 q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
@@ -1897,10 +1897,10 @@ Q
 Q
 Q
 q
-1 0 0 1 57.02362 177.0236 cm
+1 0 0 1 57.02362 165.0236 cm
 Q
 q
-1 0 0 1 57.02362 165.0236 cm
+1 0 0 1 57.02362 153.0236 cm
 q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
@@ -1923,10 +1923,10 @@ Q
 Q
 Q
 q
-1 0 0 1 57.02362 159.0236 cm
+1 0 0 1 57.02362 147.0236 cm
 Q
 q
-1 0 0 1 57.02362 147.0236 cm
+1 0 0 1 57.02362 135.0236 cm
 q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
@@ -1949,10 +1949,10 @@ Q
 Q
 Q
 q
-1 0 0 1 57.02362 147.0236 cm
+1 0 0 1 57.02362 135.0236 cm
 Q
 q
-1 0 0 1 57.02362 81.02362 cm
+1 0 0 1 57.02362 69.02362 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 50 Tm /F1 10 Tf 12 TL 1.200464 Tw (Registers R0 - R5 are scratch registers, meaning the BPF program needs to either spill them to the BPF) Tj T* 0 Tw .910491 Tw (stack or move them to callee saved registers if these arguments are to be reused across multiple function) Tj T* 0 Tw 1.723797 Tw (calls. Spilling means that the value in the register is moved to the BPF stack. The reverse operation of) Tj T* 0 Tw .435176 Tw (moving the variable from the BPF stack to the register is called filling. The reason for spilling/filling is due to) Tj T* 0 Tw (the limited number of registers.) Tj T* ET
@@ -3140,7 +3140,7 @@ endstream
 endobj
 280 0 obj
 <<
-/Length 7675
+/Length 7655
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -3467,7 +3467,7 @@ n -6 -6 480.0283 24 re B*
 Q
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL (dst = \(uint32_t\) \(dst + src\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL (dst = \(u32\) \(dst + src\)) Tj T* ET
 Q
 Q
 Q
@@ -3477,7 +3477,7 @@ q
 1 0 0 1 57.02362 309.8236 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (where '\(uint32_t\)' indicates truncation to 32 bits.) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (where '\(u32\)' indicates truncation to 32 bits.) Tj T* ET
 Q
 Q
 q
@@ -3528,7 +3528,7 @@ n -6 -6 480.0283 24 re B*
 Q
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL (src = \(uint32_t\) src ^ \(uint32_t\) imm) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL (src = \(u32\) src ^ \(u32\) imm) Tj T* ET
 Q
 Q
 Q
@@ -3596,7 +3596,7 @@ endstream
 endobj
 281 0 obj
 <<
-/Length 11354
+/Length 11340
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -3623,7 +3623,7 @@ q
 1 0 0 1 57.02362 675.0236 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL 1.078022 Tw (Byte swap instructions use non-default semantics of the 1-bit 'source' field in the 'opcode' field. Instead of) Tj T* 0 Tw (indicating the source operator, it is instead used to select what byte order the operation converts from or to:) Tj T* ET
+BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL 1.211079 Tw (Byte swap instructions use the 1-bit 'source' field in the 'opcode' field as follows. Instead of indicating the) Tj T* 0 Tw (source operator, it is instead used to select what byte order the operation converts from or to:) Tj T* ET
 Q
 Q
 q
@@ -4272,7 +4272,7 @@ endstream
 endobj
 282 0 obj
 <<
-/Length 9352
+/Length 9322
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -4837,7 +4837,7 @@ q
 1 0 0 1 20 0 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (uint64_t function\(uint64_t r1, uint64_t r2, uint64_t r3, uint64_t r4, uint64_t r5\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (u64 function\(u64 r1, u64 r2, u64 r3, u64 r4, u64 r5\)) Tj T* ET
 Q
 Q
 q
@@ -4852,7 +4852,7 @@ endstream
 endobj
 283 0 obj
 <<
-/Length 9837
+/Length 9850
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -4866,7 +4866,7 @@ Q
 q
 1 0 0 1 57.02362 699.0236 cm
 q
-BT 1 0 0 1 0 14 Tm .16755 Tw 12 TL /F1 10 Tf 0 0 0 rg (Note that ) Tj /F4 10 Tf (BPF_CALL) Tj ( ) Tj (|) Tj ( ) Tj (BPF_X) Tj ( ) Tj (|) Tj ( ) Tj (BPF_JMP) Tj /F1 10 Tf ( \(0x8d\), where the helper function integer would be read from a) Tj T* 0 Tw (specified register, is not currently permitted.) Tj T* ET
+BT 1 0 0 1 0 14 Tm .16755 Tw 12 TL /F1 10 Tf 0 0 0 rg (Note that ) Tj /F4 10 Tf (BPF_CALL) Tj ( ) Tj (|) Tj ( ) Tj (BPF_X) Tj ( ) Tj (|) Tj ( ) Tj (BPF_JMP) Tj /F1 10 Tf ( \(0x8d\), where the helper function integer would be read from a) Tj T* 0 Tw (specified register, is reserved and currently not permitted.) Tj T* ET
 Q
 Q
 q
@@ -5415,7 +5415,7 @@ endstream
 endobj
 284 0 obj
 <<
-/Length 11568
+/Length 11498
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -5506,7 +5506,7 @@ q
 1 0 0 1 253.1173 201 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = *\(uint8_t *\) \(src + offset\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = *\(u8 *\) \(src + offset\)) Tj T* ET
 Q
 Q
 q
@@ -5527,7 +5527,7 @@ q
 1 0 0 1 253.1173 183 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = *\(uint16_t *\) \(src + offset\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = *\(u16 *\) \(src + offset\)) Tj T* ET
 Q
 Q
 q
@@ -5548,7 +5548,7 @@ q
 1 0 0 1 253.1173 165 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = *\(uint32_t *\) \(src + offset\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = *\(u32 *\) \(src + offset\)) Tj T* ET
 Q
 Q
 q
@@ -5569,7 +5569,7 @@ q
 1 0 0 1 253.1173 147 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = *\(uint64_t *\) \(src + offset\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = *\(u64 *\) \(src + offset\)) Tj T* ET
 Q
 Q
 q
@@ -5590,7 +5590,7 @@ q
 1 0 0 1 253.1173 129 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(uint8_t *\) \(dst + offset\) = imm) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(u8 *\) \(dst + offset\) = imm) Tj T* ET
 Q
 Q
 q
@@ -5611,7 +5611,7 @@ q
 1 0 0 1 253.1173 111 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(uint16_t *\) \(dst + offset\) = imm) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(u16 *\) \(dst + offset\) = imm) Tj T* ET
 Q
 Q
 q
@@ -5632,7 +5632,7 @@ q
 1 0 0 1 253.1173 93 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(uint32_t *\) \(dst + offset\) = imm) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(u32 *\) \(dst + offset\) = imm) Tj T* ET
 Q
 Q
 q
@@ -5653,7 +5653,7 @@ q
 1 0 0 1 253.1173 75 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(uint64_t *\) \(dst + offset\) = imm) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(u64 *\) \(dst + offset\) = imm) Tj T* ET
 Q
 Q
 q
@@ -5674,7 +5674,7 @@ q
 1 0 0 1 253.1173 57 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(uint8_t *\) \(dst + offset\) = src) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(u8 *\) \(dst + offset\) = src) Tj T* ET
 Q
 Q
 q
@@ -5695,7 +5695,7 @@ q
 1 0 0 1 253.1173 39 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(uint16_t *\) \(dst + offset\) = src) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(u16 *\) \(dst + offset\) = src) Tj T* ET
 Q
 Q
 q
@@ -5716,7 +5716,7 @@ q
 1 0 0 1 253.1173 21 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(uint32_t *\) \(dst + offset\) = src) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(u32 *\) \(dst + offset\) = src) Tj T* ET
 Q
 Q
 q
@@ -5737,7 +5737,7 @@ q
 1 0 0 1 253.1173 3 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(uint64_t *\) \(dst + offset\) = src) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(u64 *\) \(dst + offset\) = src) Tj T* ET
 Q
 Q
 q
@@ -6024,7 +6024,7 @@ n -6 -6 480.0283 24 re B*
 Q
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL (*\(uint32_t *\)\(dst + offset\) += src) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL (*\(u32 *\)\(dst + offset\) += src) Tj T* ET
 Q
 Q
 Q
@@ -6051,7 +6051,7 @@ n -6 -6 480.0283 24 re B*
 Q
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL (*\(uint64_t *\)\(dst + offset\) += src) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL (*\(u64 *\)\(dst + offset\) += src) Tj T* ET
 Q
 Q
 Q
@@ -6741,7 +6741,7 @@ endstream
 endobj
 286 0 obj
 <<
-/Length 8559
+/Length 8549
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -7001,7 +7001,7 @@ q
 1 0 0 1 72.26144 231 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(uint32_t\)\(dst + imm\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(u32\)\(dst + imm\)) Tj T* ET
 Q
 Q
 q
@@ -7106,7 +7106,7 @@ q
 1 0 0 1 72.26144 93 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(uint32_t\)\(dst + src\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(u32\)\(dst + src\)) Tj T* ET
 Q
 Q
 q
@@ -7178,7 +7178,7 @@ endstream
 endobj
 287 0 obj
 <<
-/Length 9525
+/Length 9500
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -7242,7 +7242,7 @@ q
 1 0 0 1 72.26144 663 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(uint32_t\)\(dst - imm\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(u32\)\(dst - imm\)) Tj T* ET
 Q
 Q
 q
@@ -7312,7 +7312,7 @@ q
 1 0 0 1 72.26144 579 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (if \(uint32_t\)dst == imm goto +offset) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (if \(u32\)dst == imm goto +offset) Tj T* ET
 Q
 Q
 q
@@ -7627,7 +7627,7 @@ q
 1 0 0 1 72.26144 201 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(uint32_t\)\(dst - src\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(u32\)\(dst - src\)) Tj T* ET
 Q
 Q
 q
@@ -7697,7 +7697,7 @@ q
 1 0 0 1 72.26144 93 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (if \(uint32_t\)dst == \(uint32_t\)src goto +offset) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (if \(u32\)dst == \(u32\)src goto +offset) Tj T* ET
 Q
 Q
 q
@@ -7777,7 +7777,7 @@ endstream
 endobj
 288 0 obj
 <<
-/Length 9629
+/Length 9594
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -7876,7 +7876,7 @@ q
 1 0 0 1 72.26144 621 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(uint32_t\)\(dst * imm\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(u32\)\(dst * imm\)) Tj T* ET
 Q
 Q
 q
@@ -7944,7 +7944,7 @@ Q
 q
 1 0 0 1 72.26144 537 cm
 q
-BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(uint32_t\)dst > imm goto +offset) Tj T* ET
+BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(u32\)dst > imm goto +offset) Tj T* ET
 Q
 Q
 q
@@ -8049,7 +8049,7 @@ q
 1 0 0 1 72.26144 411 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(uint32_t\)\(dst * src\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(u32\)\(dst * src\)) Tj T* ET
 Q
 Q
 q
@@ -8117,7 +8117,7 @@ Q
 q
 1 0 0 1 72.26144 303 cm
 q
-BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(uint32_t\)dst > \(uint32_t\)src goto +offset) Tj T* ET
+BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(u32\)dst > \(u32\)src goto +offset) Tj T* ET
 Q
 Q
 q
@@ -8222,7 +8222,7 @@ q
 1 0 0 1 72.26144 153 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(uint32_t\)\(\(imm != 0\) ? \(dst / imm\) : 0\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(u32\)\(\(imm != 0\) ? \(dst / imm\) : 0\)) Tj T* ET
 Q
 Q
 q
@@ -8290,7 +8290,7 @@ Q
 q
 1 0 0 1 72.26144 69 cm
 q
-BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(uint32_t\)dst >) Tj (= imm goto +offset) Tj T* ET
+BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(u32\)dst >) Tj (= imm goto +offset) Tj T* ET
 Q
 Q
 q
@@ -8370,7 +8370,7 @@ endstream
 endobj
 289 0 obj
 <<
-/Length 9094
+/Length 9054
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -8467,7 +8467,7 @@ q
 1 0 0 1 72.26144 615 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(uint32_t\)\(\(imm != 0\) ? \(dst / src\) : 0\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(u32\)\(\(imm != 0\) ? \(dst / src\) : 0\)) Tj T* ET
 Q
 Q
 q
@@ -8535,7 +8535,7 @@ Q
 q
 1 0 0 1 72.26144 507 cm
 q
-BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(uint32_t\)dst >) Tj (= \(uint32_t\)src goto +offset) Tj T* ET
+BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(u32\)dst >) Tj (= \(u32\)src goto +offset) Tj T* ET
 Q
 Q
 q
@@ -8640,7 +8640,7 @@ q
 1 0 0 1 72.26144 357 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(uint32_t\)\(dst | imm\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(u32\)\(dst | imm\)) Tj T* ET
 Q
 Q
 q
@@ -8708,7 +8708,7 @@ Q
 q
 1 0 0 1 72.26144 273 cm
 q
-BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(uint32_t\)dst & imm goto +offset) Tj T* ET
+BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(u32\)dst & imm goto +offset) Tj T* ET
 Q
 Q
 q
@@ -8813,7 +8813,7 @@ q
 1 0 0 1 72.26144 147 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(uint32_t\)\(dst | src\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(u32\)\(dst | src\)) Tj T* ET
 Q
 Q
 q
@@ -8881,7 +8881,7 @@ Q
 q
 1 0 0 1 72.26144 39 cm
 q
-BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(uint32_t\)dst & \(uint32_t\)src goto +offset) Tj T* ET
+BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(u32\)dst & \(u32\)src goto +offset) Tj T* ET
 Q
 Q
 q
@@ -8925,7 +8925,7 @@ endstream
 endobj
 290 0 obj
 <<
-/Length 9019
+/Length 8979
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -9056,7 +9056,7 @@ Q
 q
 1 0 0 1 72.26144 561 cm
 q
-BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (dst = \(uint32_t\)\(dst & imm\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (dst = \(u32\)\(dst & imm\)) Tj T* ET
 Q
 Q
 q
@@ -9126,7 +9126,7 @@ q
 1 0 0 1 72.26144 477 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (if \(uint32_t\)dst != imm goto +offset) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (if \(u32\)dst != imm goto +offset) Tj T* ET
 Q
 Q
 q
@@ -9229,7 +9229,7 @@ Q
 q
 1 0 0 1 72.26144 351 cm
 q
-BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (dst = \(uint32_t\)\(dst & src\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (dst = \(u32\)\(dst & src\)) Tj T* ET
 Q
 Q
 q
@@ -9299,7 +9299,7 @@ q
 1 0 0 1 72.26144 243 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (if \(uint32_t\)dst != \(uint32_t\)src goto +offset) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (if \(u32\)dst != \(u32\)src goto +offset) Tj T* ET
 Q
 Q
 q
@@ -9368,7 +9368,7 @@ q
 1 0 0 1 72.26144 135 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = *\(uint32_t *\)\(src + offset\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = *\(u32 *\)\(src + offset\)) Tj T* ET
 Q
 Q
 q
@@ -9403,7 +9403,7 @@ q
 1 0 0 1 72.26144 81 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(uint32_t *\)\(dst + offset\) = imm) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(u32 *\)\(dst + offset\) = imm) Tj T* ET
 Q
 Q
 q
@@ -9438,7 +9438,7 @@ q
 1 0 0 1 72.26144 39 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(uint32_t *\)\(dst + offset\) = src) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(u32 *\)\(dst + offset\) = src) Tj T* ET
 Q
 Q
 q
@@ -9482,7 +9482,7 @@ endstream
 endobj
 291 0 obj
 <<
-/Length 9075
+/Length 9019
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -9543,7 +9543,7 @@ Q
 q
 1 0 0 1 72.26144 669 cm
 q
-BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (dst = \(uint32_t\)\(dst <) Tj (< imm\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (dst = \(u32\)\(dst <) Tj (< imm\)) Tj T* ET
 Q
 Q
 q
@@ -9611,7 +9611,7 @@ Q
 q
 1 0 0 1 72.26144 585 cm
 q
-BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(int32_t\)dst s) Tj (> \(int32_t\)imm goto +offset) Tj T* ET
+BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(s32\)dst s) Tj (> \(s32\)imm goto +offset) Tj T* ET
 Q
 Q
 q
@@ -9680,7 +9680,7 @@ q
 1 0 0 1 72.26144 501 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = *\(uint16_t *\)\(src + offset\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = *\(u16 *\)\(src + offset\)) Tj T* ET
 Q
 Q
 q
@@ -9715,7 +9715,7 @@ q
 1 0 0 1 72.26144 447 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(uint16_t *\)\(dst + offset\) = imm) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(u16 *\)\(dst + offset\) = imm) Tj T* ET
 Q
 Q
 q
@@ -9750,7 +9750,7 @@ q
 1 0 0 1 72.26144 405 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(uint16_t *\)\(dst + offset\) = src) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(u16 *\)\(dst + offset\) = src) Tj T* ET
 Q
 Q
 q
@@ -9784,7 +9784,7 @@ Q
 q
 1 0 0 1 72.26144 351 cm
 q
-BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (dst = \(uint32_t\)\(dst <) Tj (< src\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (dst = \(u32\)\(dst <) Tj (< src\)) Tj T* ET
 Q
 Q
 q
@@ -9852,7 +9852,7 @@ Q
 q
 1 0 0 1 72.26144 243 cm
 q
-BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(int32_t\)dst s) Tj (> \(int32_t\)src goto +offset) Tj T* ET
+BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(s32\)dst s) Tj (> \(s32\)src goto +offset) Tj T* ET
 Q
 Q
 q
@@ -9921,7 +9921,7 @@ q
 1 0 0 1 72.26144 135 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = *\(uint8_t *\)\(src + offset\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = *\(u8 *\)\(src + offset\)) Tj T* ET
 Q
 Q
 q
@@ -9956,7 +9956,7 @@ q
 1 0 0 1 72.26144 81 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(uint8_t *\)\(dst + offset\) = imm) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(u8 *\)\(dst + offset\) = imm) Tj T* ET
 Q
 Q
 q
@@ -9991,7 +9991,7 @@ q
 1 0 0 1 72.26144 39 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(uint8_t *\)\(dst + offset\) = src) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(u8 *\)\(dst + offset\) = src) Tj T* ET
 Q
 Q
 q
@@ -10035,7 +10035,7 @@ endstream
 endobj
 292 0 obj
 <<
-/Length 9018
+/Length 8972
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -10096,7 +10096,7 @@ Q
 q
 1 0 0 1 72.26144 657 cm
 q
-BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (dst = \(uint32_t\)\(dst >) Tj (> imm\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (dst = \(u32\)\(dst >) Tj (> imm\)) Tj T* ET
 Q
 Q
 q
@@ -10164,7 +10164,7 @@ Q
 q
 1 0 0 1 72.26144 573 cm
 q
-BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(int32_t\)dst s) Tj (>) Tj (= \(int32_t\)imm goto +offset) Tj T* ET
+BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(s32\)dst s) Tj (>) Tj (= \(s32\)imm goto +offset) Tj T* ET
 Q
 Q
 q
@@ -10233,7 +10233,7 @@ q
 1 0 0 1 72.26144 489 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = *\(uint64_t *\)\(src + offset\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = *\(u64 *\)\(src + offset\)) Tj T* ET
 Q
 Q
 q
@@ -10268,7 +10268,7 @@ q
 1 0 0 1 72.26144 435 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(uint64_t *\)\(dst + offset\) = imm) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(u64 *\)\(dst + offset\) = imm) Tj T* ET
 Q
 Q
 q
@@ -10303,7 +10303,7 @@ q
 1 0 0 1 72.26144 393 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(uint64_t *\)\(dst + offset\) = src) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(u64 *\)\(dst + offset\) = src) Tj T* ET
 Q
 Q
 q
@@ -10337,7 +10337,7 @@ Q
 q
 1 0 0 1 72.26144 339 cm
 q
-BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (dst = \(uint32_t\)\(dst >) Tj (> src\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (dst = \(u32\)\(dst >) Tj (> src\)) Tj T* ET
 Q
 Q
 q
@@ -10405,7 +10405,7 @@ Q
 q
 1 0 0 1 72.26144 231 cm
 q
-BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(int32_t\)dst s) Tj (>) Tj (= \(int32_t\)src goto +offset) Tj T* ET
+BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(s32\)dst s) Tj (>) Tj (= \(s32\)src goto +offset) Tj T* ET
 Q
 Q
 q
@@ -10474,7 +10474,7 @@ q
 1 0 0 1 72.26144 123 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(uint32_t\)-dst) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(u32\)-dst) Tj T* ET
 Q
 Q
 q
@@ -10588,7 +10588,7 @@ endstream
 endobj
 293 0 obj
 <<
-/Length 8961
+/Length 8926
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -10720,7 +10720,7 @@ q
 1 0 0 1 72.26144 561 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(uint32_t\)\(\(imm != 0\) ? \(dst % imm\) : dst\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(u32\)\(\(imm != 0\) ? \(dst % imm\) : dst\)) Tj T* ET
 Q
 Q
 q
@@ -10825,7 +10825,7 @@ q
 1 0 0 1 72.26144 423 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(uint32_t\)\(\(src != 0\) ? \(dst % src\) : dst\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(u32\)\(\(src != 0\) ? \(dst % src\) : dst\)) Tj T* ET
 Q
 Q
 q
@@ -10895,7 +10895,7 @@ q
 1 0 0 1 72.26144 315 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(uint32_t\)\(dst ^ imm\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(u32\)\(dst ^ imm\)) Tj T* ET
 Q
 Q
 q
@@ -10963,7 +10963,7 @@ Q
 q
 1 0 0 1 72.26144 231 cm
 q
-BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(uint32_t\)dst < imm goto +offset) Tj T* ET
+BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(u32\)dst < imm goto +offset) Tj T* ET
 Q
 Q
 q
@@ -11033,7 +11033,7 @@ q
 1 0 0 1 72.26144 147 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(uint32_t\)\(dst ^ src\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(u32\)\(dst ^ src\)) Tj T* ET
 Q
 Q
 q
@@ -11101,7 +11101,7 @@ Q
 q
 1 0 0 1 72.26144 39 cm
 q
-BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(uint32_t\)dst < \(uint32_t\)src goto +offset) Tj T* ET
+BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(u32\)dst < \(u32\)src goto +offset) Tj T* ET
 Q
 Q
 q
@@ -11145,7 +11145,7 @@ endstream
 endobj
 294 0 obj
 <<
-/Length 9090
+/Length 9035
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -11240,7 +11240,7 @@ q
 1 0 0 1 72.26144 603.4 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(uint32_t\) imm) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(u32\) imm) Tj T* ET
 Q
 Q
 q
@@ -11308,7 +11308,7 @@ Q
 q
 1 0 0 1 72.26144 519.4 cm
 q
-BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(uint32_t\)dst <) Tj (= imm goto +offset) Tj T* ET
+BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(u32\)dst <) Tj (= imm goto +offset) Tj T* ET
 Q
 Q
 q
@@ -11378,7 +11378,7 @@ q
 1 0 0 1 72.26144 435.4 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(uint32_t\) src) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = \(u32\) src) Tj T* ET
 Q
 Q
 q
@@ -11446,7 +11446,7 @@ Q
 q
 1 0 0 1 72.26144 327.4 cm
 q
-BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(uint32_t\)dst <) Tj (= \(uint32_t\)src goto +offset) Tj T* ET
+BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(u32\)dst <) Tj (= \(u32\)src goto +offset) Tj T* ET
 Q
 Q
 q
@@ -11516,7 +11516,7 @@ q
 1 0 0 1 72.26144 219.4 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (lock *\(uint32_t *\)\(dst + offset\) += src) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (lock *\(u32 *\)\(dst + offset\) += src) Tj T* ET
 Q
 Q
 q
@@ -11569,7 +11569,7 @@ n -6 -6 222.787 36 re B*
 Q
 q
 0 0 0 rg
-BT 1 0 0 1 0 14 Tm /F4 10 Tf 12 TL (*\(uint32_t *\)\(dst + offset\) += src) Tj T* (src = *\(uint32_t *\)\(dst + offset\)) Tj T* ET
+BT 1 0 0 1 0 14 Tm /F4 10 Tf 12 TL (*\(u32 *\)\(dst + offset\) += src) Tj T* (src = *\(u32 *\)\(dst + offset\)) Tj T* ET
 Q
 Q
 Q
@@ -11607,7 +11607,7 @@ q
 1 0 0 1 72.26144 102.2 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(uint32_t *\)\(dst + offset\) |= src) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(u32 *\)\(dst + offset\) |= src) Tj T* ET
 Q
 Q
 q
@@ -11660,7 +11660,7 @@ n -6 -6 222.787 36 re B*
 Q
 q
 0 0 0 rg
-BT 1 0 0 1 0 14 Tm /F4 10 Tf 12 TL (*\(uint32_t *\)\(dst + offset\) |= src) Tj T* (src = *\(uint32_t *\)\(dst + offset\)) Tj T* ET
+BT 1 0 0 1 0 14 Tm /F4 10 Tf 12 TL (*\(u32 *\)\(dst + offset\) |= src) Tj T* (src = *\(u32 *\)\(dst + offset\)) Tj T* ET
 Q
 Q
 Q
@@ -11706,7 +11706,7 @@ endstream
 endobj
 295 0 obj
 <<
-/Length 9105
+/Length 9032
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -11763,7 +11763,7 @@ Q
 q
 1 0 0 1 72.26144 657.8 cm
 q
-BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (*\(uint32_t *\)\(dst + offset\) &) Tj (= src) Tj T* ET
+BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (*\(u32 *\)\(dst + offset\) &) Tj (= src) Tj T* ET
 Q
 Q
 q
@@ -11815,7 +11815,7 @@ q
 n -6 -6 222.787 36 re B*
 Q
 q
-BT 1 0 0 1 0 14 Tm 12 TL /F4 10 Tf 0 0 0 rg (*\(uint32_t *\)\(dst + offset\) ) Tj (&) Tj (= src) Tj T* (src = *\(uint32_t *\)\(dst + offset\)) Tj T* ET
+BT 1 0 0 1 0 14 Tm 12 TL /F4 10 Tf 0 0 0 rg (*\(u32 *\)\(dst + offset\) ) Tj (&) Tj (= src) Tj T* (src = *\(u32 *\)\(dst + offset\)) Tj T* ET
 Q
 Q
 Q
@@ -11853,7 +11853,7 @@ q
 1 0 0 1 72.26144 540.6 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(uint32_t *\)\(dst + offset\) ^= src) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(u32 *\)\(dst + offset\) ^= src) Tj T* ET
 Q
 Q
 q
@@ -11906,7 +11906,7 @@ n -6 -6 222.787 36 re B*
 Q
 q
 0 0 0 rg
-BT 1 0 0 1 0 14 Tm /F4 10 Tf 12 TL (*\(uint32_t *\)\(dst + offset\) ^= src) Tj T* (src = *\(uint32_t *\)\(dst + offset\)) Tj T* ET
+BT 1 0 0 1 0 14 Tm /F4 10 Tf 12 TL (*\(u32 *\)\(dst + offset\) ^= src) Tj T* (src = *\(u32 *\)\(dst + offset\)) Tj T* ET
 Q
 Q
 Q
@@ -11962,7 +11962,7 @@ n -6 -6 222.787 48 re B*
 Q
 q
 0 0 0 rg
-BT 1 0 0 1 0 26 Tm /F4 10 Tf 12 TL (temp = *\(uint32_t *\)\(dst + offset\)) Tj T* (*\(uint32_t *\)\(dst + offset\) = src) Tj T* (src = temp) Tj T* ET
+BT 1 0 0 1 0 26 Tm /F4 10 Tf 12 TL (temp = *\(u32 *\)\(dst + offset\)) Tj T* (*\(u32 *\)\(dst + offset\) = src) Tj T* (src = temp) Tj T* ET
 Q
 Q
 Q
@@ -12018,7 +12018,7 @@ n -6 -6 222.787 60 re B*
 Q
 q
 0 0 0 rg
-BT 1 0 0 1 0 38 Tm /F4 10 Tf 12 TL (temp = *\(uint32_t *\)\(dst + offset\)) Tj T* (if *\(uint32_t\)\(dst + offset\) == R0) Tj T* (   *\(uint32_t\)\(dst + offset\) = src) Tj T* (R0 = temp) Tj T* ET
+BT 1 0 0 1 0 38 Tm /F4 10 Tf 12 TL (temp = *\(u32 *\)\(dst + offset\)) Tj T* (if *\(u32\)\(dst + offset\) == R0) Tj T* (   *\(u32\)\(dst + offset\) = src) Tj T* (R0 = temp) Tj T* ET
 Q
 Q
 Q
@@ -12055,7 +12055,7 @@ Q
 q
 1 0 0 1 72.26144 261 cm
 q
-BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (dst = \(uint32_t\)\(dst s) Tj (>) Tj (> imm\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (dst = \(u32\)\(dst s) Tj (>) Tj (> imm\)) Tj T* ET
 Q
 Q
 q
@@ -12123,7 +12123,7 @@ Q
 q
 1 0 0 1 72.26144 177 cm
 q
-BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(int32_t\)dst s) Tj (< \(int32_t\)imm goto +offset) Tj T* ET
+BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(s32\)dst s) Tj (< \(s32\)imm goto +offset) Tj T* ET
 Q
 Q
 q
@@ -12191,7 +12191,7 @@ Q
 q
 1 0 0 1 72.26144 93 cm
 q
-BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (dst = \(uint32_t\)\(dst s) Tj (>) Tj (> src\)) Tj T* ET
+BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (dst = \(u32\)\(dst s) Tj (>) Tj (> src\)) Tj T* ET
 Q
 Q
 q
@@ -12267,345 +12267,345 @@ endstream
 endobj
 296 0 obj
 <<
-/Length 8853
+/Length 8497
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
 q
-1 0 0 1 53.96967 125.2784 cm
+1 0 0 1 53.96967 122.6236 cm
 q
 1 1 1 rg
-n 0 639.7453 487.3362 -54 re f*
+n 0 642.4 487.3362 -54 re f*
 .878431 .878431 .878431 rg
-n 0 585.7453 487.3362 -54 re f*
+n 0 588.4 487.3362 -54 re f*
 1 1 1 rg
-n 0 531.7453 487.3362 -54 re f*
+n 0 534.4 487.3362 -54 re f*
 .878431 .878431 .878431 rg
-n 0 477.7453 487.3362 -54 re f*
+n 0 480.4 487.3362 -54 re f*
 1 1 1 rg
-n 0 423.7453 487.3362 -54 re f*
+n 0 426.4 487.3362 -54 re f*
 .878431 .878431 .878431 rg
-n 0 369.7453 487.3362 -42 re f*
+n 0 372.4 487.3362 -42 re f*
 1 1 1 rg
-n 0 327.7453 487.3362 -42 re f*
+n 0 330.4 487.3362 -42 re f*
 .878431 .878431 .878431 rg
-n 0 285.7453 487.3362 -54 re f*
+n 0 288.4 487.3362 -54 re f*
 1 1 1 rg
-n 0 231.7453 487.3362 -63.2 re f*
+n 0 234.4 487.3362 -63.2 re f*
 .878431 .878431 .878431 rg
-n 0 168.5453 487.3362 -54 re f*
+n 0 171.2 487.3362 -54 re f*
 1 1 1 rg
-n 0 114.5453 487.3362 -60.54526 re f*
+n 0 117.2 487.3362 -63.2 re f*
 .878431 .878431 .878431 rg
 n 0 54 487.3362 -54 re f*
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
-1 0 0 1 6 612.7453 cm
+1 0 0 1 6 615.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL (0xc) Tj T* (e) Tj T* ET
 Q
 Q
 q
-1 0 0 1 33.76317 600.7453 cm
+1 0 0 1 33.76317 603.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL (a) Tj T* (n) Tj T* (y) Tj T* ET
 Q
 Q
 q
-1 0 0 1 53.01231 588.7453 cm
+1 0 0 1 53.01231 591.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 38 Tm /F1 10 Tf 12 TL (0) Tj T* (x) Tj T* (0) Tj T* (0) Tj T* ET
 Q
 Q
 q
-1 0 0 1 72.26144 624.7453 cm
+1 0 0 1 72.26144 627.4 cm
 q
-BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(int32_t\)dst s) Tj (< \(int32_t\)src goto +offset) Tj T* ET
+BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(s32\)dst s) Tj (< \(s32\)src goto +offset) Tj T* ET
 Q
 Q
 q
-1 0 0 1 308.2484 624.7453 cm
+1 0 0 1 308.2484 627.4 cm
 q
 0 .4 .6 rg
 BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Jump instructions) Tj T* ET
 Q
 Q
 q
-1 0 0 1 6 558.7453 cm
+1 0 0 1 6 561.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL (0xc) Tj T* (f) Tj T* ET
 Q
 Q
 q
-1 0 0 1 33.76317 546.7453 cm
+1 0 0 1 33.76317 549.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL (a) Tj T* (n) Tj T* (y) Tj T* ET
 Q
 Q
 q
-1 0 0 1 53.01231 534.7453 cm
+1 0 0 1 53.01231 537.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 38 Tm /F1 10 Tf 12 TL (0) Tj T* (x) Tj T* (0) Tj T* (0) Tj T* ET
 Q
 Q
 q
-1 0 0 1 72.26144 570.7453 cm
+1 0 0 1 72.26144 573.4 cm
 q
 BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (dst s) Tj (>) Tj (>) Tj (= src) Tj T* ET
 Q
 Q
 q
-1 0 0 1 308.2484 570.7453 cm
+1 0 0 1 308.2484 573.4 cm
 q
 0 .4 .6 rg
 BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Arithmetic instructions) Tj T* ET
 Q
 Q
 q
-1 0 0 1 6 504.7453 cm
+1 0 0 1 6 507.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL (0x) Tj T* (d4) Tj T* ET
 Q
 Q
 q
-1 0 0 1 33.76317 492.7453 cm
+1 0 0 1 33.76317 495.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL (0) Tj T* (x) Tj T* (0) Tj T* ET
 Q
 Q
 q
-1 0 0 1 53.01231 480.7453 cm
+1 0 0 1 53.01231 483.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 38 Tm /F1 10 Tf 12 TL (0) Tj T* (x) Tj T* (1) Tj T* (0) Tj T* ET
 Q
 Q
 q
-1 0 0 1 72.26144 516.7453 cm
+1 0 0 1 72.26144 519.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = htole16\(dst\)) Tj T* ET
 Q
 Q
 q
-1 0 0 1 308.2484 516.7453 cm
+1 0 0 1 308.2484 519.4 cm
 q
 0 .4 .6 rg
 BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Byte swap instructions) Tj T* ET
 Q
 Q
 q
-1 0 0 1 6 450.7453 cm
+1 0 0 1 6 453.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL (0x) Tj T* (d4) Tj T* ET
 Q
 Q
 q
-1 0 0 1 33.76317 438.7453 cm
+1 0 0 1 33.76317 441.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL (0) Tj T* (x) Tj T* (0) Tj T* ET
 Q
 Q
 q
-1 0 0 1 53.01231 426.7453 cm
+1 0 0 1 53.01231 429.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 38 Tm /F1 10 Tf 12 TL (0) Tj T* (x) Tj T* (2) Tj T* (0) Tj T* ET
 Q
 Q
 q
-1 0 0 1 72.26144 462.7453 cm
+1 0 0 1 72.26144 465.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = htole32\(dst\)) Tj T* ET
 Q
 Q
 q
-1 0 0 1 308.2484 462.7453 cm
+1 0 0 1 308.2484 465.4 cm
 q
 0 .4 .6 rg
 BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Byte swap instructions) Tj T* ET
 Q
 Q
 q
-1 0 0 1 6 396.7453 cm
+1 0 0 1 6 399.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL (0x) Tj T* (d4) Tj T* ET
 Q
 Q
 q
-1 0 0 1 33.76317 384.7453 cm
+1 0 0 1 33.76317 387.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL (0) Tj T* (x) Tj T* (0) Tj T* ET
 Q
 Q
 q
-1 0 0 1 53.01231 372.7453 cm
+1 0 0 1 53.01231 375.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 38 Tm /F1 10 Tf 12 TL (0) Tj T* (x) Tj T* (4) Tj T* (0) Tj T* ET
 Q
 Q
 q
-1 0 0 1 72.26144 408.7453 cm
+1 0 0 1 72.26144 411.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (dst = htole64\(dst\)) Tj T* ET
 Q
 Q
 q
-1 0 0 1 308.2484 408.7453 cm
+1 0 0 1 308.2484 411.4 cm
 q
 0 .4 .6 rg
 BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Byte swap instructions) Tj T* ET
 Q
 Q
 q
-1 0 0 1 6 342.7453 cm
+1 0 0 1 6 345.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL (0x) Tj T* (d5) Tj T* ET
 Q
 Q
 q
-1 0 0 1 33.76317 330.7453 cm
+1 0 0 1 33.76317 333.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL (0) Tj T* (x) Tj T* (0) Tj T* ET
 Q
 Q
 q
-1 0 0 1 53.01231 330.7453 cm
+1 0 0 1 53.01231 333.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL (a) Tj T* (n) Tj T* (y) Tj T* ET
 Q
 Q
 q
-1 0 0 1 72.26144 354.7453 cm
+1 0 0 1 72.26144 357.4 cm
 q
 BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if dst s) Tj (<) Tj (= imm goto +offset) Tj T* ET
 Q
 Q
 q
-1 0 0 1 308.2484 354.7453 cm
+1 0 0 1 308.2484 357.4 cm
 q
 0 .4 .6 rg
 BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Jump instructions) Tj T* ET
 Q
 Q
 q
-1 0 0 1 6 300.7453 cm
+1 0 0 1 6 303.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL (0x) Tj T* (d6) Tj T* ET
 Q
 Q
 q
-1 0 0 1 33.76317 288.7453 cm
+1 0 0 1 33.76317 291.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL (0) Tj T* (x) Tj T* (0) Tj T* ET
 Q
 Q
 q
-1 0 0 1 53.01231 288.7453 cm
+1 0 0 1 53.01231 291.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL (a) Tj T* (n) Tj T* (y) Tj T* ET
 Q
 Q
 q
-1 0 0 1 72.26144 312.7453 cm
+1 0 0 1 72.26144 315.4 cm
 q
-BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(int32_t\)dst s) Tj (<) Tj (= \(int32_t\)imm goto +offset) Tj T* ET
+BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(s32\)dst s) Tj (<) Tj (= \(s32\)imm goto +offset) Tj T* ET
 Q
 Q
 q
-1 0 0 1 308.2484 312.7453 cm
+1 0 0 1 308.2484 315.4 cm
 q
 0 .4 .6 rg
 BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Jump instructions) Tj T* ET
 Q
 Q
 q
-1 0 0 1 6 258.7453 cm
+1 0 0 1 6 261.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL (0x) Tj T* (db) Tj T* ET
 Q
 Q
 q
-1 0 0 1 33.76317 246.7453 cm
+1 0 0 1 33.76317 249.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL (a) Tj T* (n) Tj T* (y) Tj T* ET
 Q
 Q
 q
-1 0 0 1 53.01231 234.7453 cm
+1 0 0 1 53.01231 237.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 38 Tm /F1 10 Tf 12 TL (0) Tj T* (x) Tj T* (0) Tj T* (0) Tj T* ET
 Q
 Q
 q
-1 0 0 1 72.26144 270.7453 cm
+1 0 0 1 72.26144 273.4 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (lock *\(uint64_t *\)\(dst + offset\) += src) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (lock *\(u64 *\)\(dst + offset\) += src) Tj T* ET
 Q
 Q
 q
-1 0 0 1 308.2484 270.7453 cm
+1 0 0 1 308.2484 273.4 cm
 q
 0 .4 .6 rg
 BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Atomic operations) Tj T* ET
 Q
 Q
 q
-1 0 0 1 6 204.7453 cm
+1 0 0 1 6 207.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL (0x) Tj T* (db) Tj T* ET
 Q
 Q
 q
-1 0 0 1 33.76317 192.7453 cm
+1 0 0 1 33.76317 195.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL (a) Tj T* (n) Tj T* (y) Tj T* ET
 Q
 Q
 q
-1 0 0 1 53.01231 180.7453 cm
+1 0 0 1 53.01231 183.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 38 Tm /F1 10 Tf 12 TL (0) Tj T* (x) Tj T* (0) Tj T* (1) Tj T* ET
 Q
 Q
 q
-1 0 0 1 72.26144 216.7453 cm
+1 0 0 1 72.26144 219.4 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (lock:) Tj T* ET
 Q
 Q
 q
-1 0 0 1 72.26144 171.5453 cm
+1 0 0 1 72.26144 174.2 cm
 q
 q
 1 0 0 1 0 0 cm
@@ -12619,77 +12619,77 @@ n -6 -6 222.787 36 re B*
 Q
 q
 0 0 0 rg
-BT 1 0 0 1 0 14 Tm /F4 10 Tf 12 TL (*\(uint64_t *\)\(dst + offset\) += src) Tj T* (src = *\(uint64_t *\)\(dst + offset\)) Tj T* ET
+BT 1 0 0 1 0 14 Tm /F4 10 Tf 12 TL (*\(u64 *\)\(dst + offset\) += src) Tj T* (src = *\(u64 *\)\(dst + offset\)) Tj T* ET
 Q
 Q
 Q
 Q
 Q
 q
-1 0 0 1 308.2484 216.7453 cm
+1 0 0 1 308.2484 219.4 cm
 q
 0 .4 .6 rg
 BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Atomic operations) Tj T* ET
 Q
 Q
 q
-1 0 0 1 6 141.5453 cm
+1 0 0 1 6 144.2 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL (0x) Tj T* (db) Tj T* ET
 Q
 Q
 q
-1 0 0 1 33.76317 129.5453 cm
+1 0 0 1 33.76317 132.2 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL (a) Tj T* (n) Tj T* (y) Tj T* ET
 Q
 Q
 q
-1 0 0 1 53.01231 117.5453 cm
+1 0 0 1 53.01231 120.2 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 38 Tm /F1 10 Tf 12 TL (0) Tj T* (x) Tj T* (4) Tj T* (0) Tj T* ET
 Q
 Q
 q
-1 0 0 1 72.26144 153.5453 cm
+1 0 0 1 72.26144 156.2 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(uint64_t *\)\(dst + offset\) |= src) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(u64 *\)\(dst + offset\) |= src) Tj T* ET
 Q
 Q
 q
-1 0 0 1 308.2484 153.5453 cm
+1 0 0 1 308.2484 156.2 cm
 q
 0 .4 .6 rg
 BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Atomic operations) Tj T* ET
 Q
 Q
 q
-1 0 0 1 6 87.54526 cm
+1 0 0 1 6 90.2 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL (0x) Tj T* (db) Tj T* ET
 Q
 Q
 q
-1 0 0 1 33.76317 75.54526 cm
+1 0 0 1 33.76317 78.2 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL (a) Tj T* (n) Tj T* (y) Tj T* ET
 Q
 Q
 q
-1 0 0 1 53.01231 63.54526 cm
+1 0 0 1 53.01231 66.2 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 38 Tm /F1 10 Tf 12 TL (0) Tj T* (x) Tj T* (4) Tj T* (1) Tj T* ET
 Q
 Q
 q
-1 0 0 1 72.26144 99.54526 cm
+1 0 0 1 72.26144 102.2 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (lock:) Tj T* ET
@@ -12699,25 +12699,25 @@ q
 1 0 0 1 72.26144 57 cm
 q
 q
-.928636 0 0 .928636 0 0 cm
+1 0 0 1 0 0 cm
 q
-1 0 0 1 6.6 7.107199 cm
+1 0 0 1 6.6 6.6 cm
 q
 .662745 .662745 .662745 RG
 .5 w
 .941176 .972549 1 rg
-n -6 -6 240 36 re B*
+n -6 -6 222.787 36 re B*
 Q
 q
 0 0 0 rg
-BT 1 0 0 1 0 14 Tm /F4 10 Tf 12 TL (*\(uint64_t *\)\(dst + offset\) |= src) Tj T* (lock src = *\(uint64_t *\)\(dst + offset\)) Tj T* ET
+BT 1 0 0 1 0 14 Tm /F4 10 Tf 12 TL (*\(u64 *\)\(dst + offset\) |= src) Tj T* (lock src = *\(u64 *\)\(dst + offset\)) Tj T* ET
 Q
 Q
 Q
 Q
 Q
 q
-1 0 0 1 308.2484 99.54526 cm
+1 0 0 1 308.2484 102.2 cm
 q
 0 .4 .6 rg
 BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Atomic operations) Tj T* ET
@@ -12747,7 +12747,7 @@ Q
 q
 1 0 0 1 72.26144 39 cm
 q
-BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (*\(uint64_t *\)\(dst + offset\) &) Tj (= src) Tj T* ET
+BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (*\(u64 *\)\(dst + offset\) &) Tj (= src) Tj T* ET
 Q
 Q
 q
@@ -12762,25 +12762,25 @@ q
 1 j
 0 0 0 RG
 .25 w
-n 0 639.7453 m 487.3362 639.7453 l S
+n 0 642.4 m 487.3362 642.4 l S
 n 0 0 m 487.3362 0 l S
-n 0 585.7453 m 487.3362 585.7453 l S
-n 0 531.7453 m 487.3362 531.7453 l S
-n 0 477.7453 m 487.3362 477.7453 l S
-n 0 423.7453 m 487.3362 423.7453 l S
-n 0 369.7453 m 487.3362 369.7453 l S
-n 0 327.7453 m 487.3362 327.7453 l S
-n 0 285.7453 m 487.3362 285.7453 l S
-n 0 231.7453 m 487.3362 231.7453 l S
-n 0 168.5453 m 487.3362 168.5453 l S
-n 0 114.5453 m 487.3362 114.5453 l S
+n 0 588.4 m 487.3362 588.4 l S
+n 0 534.4 m 487.3362 534.4 l S
+n 0 480.4 m 487.3362 480.4 l S
+n 0 426.4 m 487.3362 426.4 l S
+n 0 372.4 m 487.3362 372.4 l S
+n 0 330.4 m 487.3362 330.4 l S
+n 0 288.4 m 487.3362 288.4 l S
+n 0 234.4 m 487.3362 234.4 l S
+n 0 171.2 m 487.3362 171.2 l S
+n 0 117.2 m 487.3362 117.2 l S
 n 0 54 m 487.3362 54 l S
-n 27.76317 0 m 27.76317 639.7453 l S
-n 47.01231 0 m 47.01231 639.7453 l S
-n 66.26144 0 m 66.26144 639.7453 l S
-n 302.2484 0 m 302.2484 639.7453 l S
-n 0 0 m 0 639.7453 l S
-n 487.3362 0 m 487.3362 639.7453 l S
+n 27.76317 0 m 27.76317 642.4 l S
+n 47.01231 0 m 47.01231 642.4 l S
+n 66.26144 0 m 66.26144 642.4 l S
+n 302.2484 0 m 302.2484 642.4 l S
+n 0 0 m 0 642.4 l S
+n 487.3362 0 m 487.3362 642.4 l S
 Q
 Q
 Q
@@ -12789,7 +12789,7 @@ endstream
 endobj
 297 0 obj
 <<
-/Length 7863
+/Length 7805
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -12860,7 +12860,7 @@ q
 n -6 -6 222.787 36 re B*
 Q
 q
-BT 1 0 0 1 0 14 Tm 12 TL /F4 10 Tf 0 0 0 rg (*\(uint64_t *\)\(dst + offset\) ) Tj (&) Tj (= src) Tj T* (src = *\(uint64_t *\)\(dst + offset\)) Tj T* ET
+BT 1 0 0 1 0 14 Tm 12 TL /F4 10 Tf 0 0 0 rg (*\(u64 *\)\(dst + offset\) ) Tj (&) Tj (= src) Tj T* (src = *\(u64 *\)\(dst + offset\)) Tj T* ET
 Q
 Q
 Q
@@ -12898,7 +12898,7 @@ q
 1 0 0 1 72.26144 534.6 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(uint64_t *\)\(dst + offset\) ^= src) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (*\(u64 *\)\(dst + offset\) ^= src) Tj T* ET
 Q
 Q
 q
@@ -12951,7 +12951,7 @@ n -6 -6 222.787 36 re B*
 Q
 q
 0 0 0 rg
-BT 1 0 0 1 0 14 Tm /F4 10 Tf 12 TL (*\(uint64_t *\)\(dst + offset\) ^= src) Tj T* (src = *\(uint64_t *\)\(dst + offset\)) Tj T* ET
+BT 1 0 0 1 0 14 Tm /F4 10 Tf 12 TL (*\(u64 *\)\(dst + offset\) ^= src) Tj T* (src = *\(u64 *\)\(dst + offset\)) Tj T* ET
 Q
 Q
 Q
@@ -13007,7 +13007,7 @@ n -6 -6 222.787 48 re B*
 Q
 q
 0 0 0 rg
-BT 1 0 0 1 0 26 Tm /F4 10 Tf 12 TL (temp = *\(uint64_t *\)\(dst + offset\)) Tj T* (*\(uint64_t *\)\(dst + offset\) = src) Tj T* (src = temp) Tj T* ET
+BT 1 0 0 1 0 26 Tm /F4 10 Tf 12 TL (temp = *\(u64 *\)\(dst + offset\)) Tj T* (*\(u64 *\)\(dst + offset\) = src) Tj T* (src = temp) Tj T* ET
 Q
 Q
 Q
@@ -13063,7 +13063,7 @@ n -6 -6 222.787 60 re B*
 Q
 q
 0 0 0 rg
-BT 1 0 0 1 0 38 Tm /F4 10 Tf 12 TL (temp = *\(uint64_t *\)\(dst + offset\)) Tj T* (if *\(uint64_t\)\(dst + offset\) == R0) Tj T* (   *\(uint64_t\)\(dst + offset\) = src) Tj T* (R0 = temp) Tj T* ET
+BT 1 0 0 1 0 38 Tm /F4 10 Tf 12 TL (temp = *\(u64 *\)\(dst + offset\)) Tj T* (if *\(u64\)\(dst + offset\) == R0) Tj T* (   *\(u64\)\(dst + offset\) = src) Tj T* (R0 = temp) Tj T* ET
 Q
 Q
 Q
@@ -13239,7 +13239,7 @@ Q
 q
 1 0 0 1 72.26144 39 cm
 q
-BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(int32_t\)dst s) Tj (<) Tj (= \(int32_t\)src goto +offset) Tj T* ET
+BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (if \(s32\)dst s) Tj (<) Tj (= \(s32\)src goto +offset) Tj T* ET
 Q
 Q
 q
@@ -13674,52 +13674,52 @@ xref
 0000051271 00000 n 
 0000051463 00000 n 
 0000051683 00000 n 
-0000060194 00000 n 
-0000069419 00000 n 
-0000080376 00000 n 
-0000088104 00000 n 
-0000099512 00000 n 
-0000108917 00000 n 
-0000118807 00000 n 
-0000130429 00000 n 
-0000142453 00000 n 
-0000151065 00000 n 
-0000160643 00000 n 
-0000170325 00000 n 
-0000179472 00000 n 
-0000188544 00000 n 
-0000197672 00000 n 
-0000206743 00000 n 
-0000215757 00000 n 
-0000224900 00000 n 
-0000234058 00000 n 
-0000242964 00000 n 
-0000250880 00000 n 
-0000251146 00000 n 
-0000251181 00000 n 
-0000251216 00000 n 
-0000251251 00000 n 
-0000251286 00000 n 
-0000251321 00000 n 
-0000251356 00000 n 
-0000251391 00000 n 
-0000251426 00000 n 
-0000251461 00000 n 
-0000251497 00000 n 
-0000251533 00000 n 
-0000251569 00000 n 
-0000251605 00000 n 
-0000251641 00000 n 
-0000251677 00000 n 
-0000251713 00000 n 
-0000251749 00000 n 
-0000251785 00000 n 
-0000251821 00000 n 
-0000251857 00000 n 
+0000060353 00000 n 
+0000069578 00000 n 
+0000080535 00000 n 
+0000088243 00000 n 
+0000099637 00000 n 
+0000109012 00000 n 
+0000118915 00000 n 
+0000130467 00000 n 
+0000142491 00000 n 
+0000151093 00000 n 
+0000160646 00000 n 
+0000170293 00000 n 
+0000179400 00000 n 
+0000188432 00000 n 
+0000197504 00000 n 
+0000206529 00000 n 
+0000215508 00000 n 
+0000224596 00000 n 
+0000233681 00000 n 
+0000242231 00000 n 
+0000250089 00000 n 
+0000250355 00000 n 
+0000250390 00000 n 
+0000250425 00000 n 
+0000250460 00000 n 
+0000250495 00000 n 
+0000250530 00000 n 
+0000250565 00000 n 
+0000250600 00000 n 
+0000250635 00000 n 
+0000250670 00000 n 
+0000250706 00000 n 
+0000250742 00000 n 
+0000250778 00000 n 
+0000250814 00000 n 
+0000250850 00000 n 
+0000250886 00000 n 
+0000250922 00000 n 
+0000250958 00000 n 
+0000250994 00000 n 
+0000251030 00000 n 
+0000251066 00000 n 
 trailer
 <<
 /ID 
-[<47af543353e1d5992d3f357a3b8240b6><47af543353e1d5992d3f357a3b8240b6>]
+[<709a17a5e876252437fe5cd50b2f7fc2><709a17a5e876252437fe5cd50b2f7fc2>]
 % ReportLab generated PDF document -- digest (http://www.reportlab.com)
 
 /Info 254 0 R
@@ -13727,5 +13727,5 @@ trailer
 /Size 320
 >>
 startxref
-251893
+251102
 %%EOF
