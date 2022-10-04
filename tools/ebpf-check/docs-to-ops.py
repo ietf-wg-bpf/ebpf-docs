@@ -39,7 +39,7 @@ class Parser(object):
         insn = {
             'opc' : hex_to_dec(capture.group(1)),
             'src' : hex_to_dec(capture.group(2)),
-            'imm' : hex_to_dec(capture.group(3))
+            'imm' : hex_to_dec(capture.group(3)),
             'dsc' : capture.group(4),
             'cat' : capture.group(5),
         }
