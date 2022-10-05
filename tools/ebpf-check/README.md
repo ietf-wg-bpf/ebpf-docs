@@ -53,5 +53,5 @@ files at once. For example:
 ```
 $ cd cilium/bpf
 $ make -j
-$ /path/to/ebpf-check.py --all-sections *.o
+$ /path/to/ebpf-check.py *.o
 ```
