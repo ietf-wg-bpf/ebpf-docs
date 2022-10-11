@@ -6,7 +6,7 @@ BPF Type Format (BTF)
 =====================
 
 This file contains Linux-specific additions and clarifications
-to the base BTF specification.
+to the base `BTF specification <btf.rst>`_.
 
 BTF Structures
 =================

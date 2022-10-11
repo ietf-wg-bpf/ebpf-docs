@@ -5,37 +5,40 @@
 Linux implementation notes
 ==========================
 
+eBPF Instruction Set
+====================
+
 This document provides more details specific to the Linux kernel implementation of the eBPF instruction set.
 
 Registers and calling convention
-================================
+--------------------------------
 
 All program types only use R1 which contains the "context", which is typically a structure containing all
 the inputs needed, and the exit value for eBPF programs is passed as a 32 bit value.
 
 Arithmetic instructions
-=======================
+--------------------------------
 
 While the eBPF instruction set document uses the standard C terminology as the cross-platform specification,
 in the Linux kernel, uint32_t is expressed as u32, uint64_t is expressed as u64, etc.
 
 Byte swap instructions
-======================
+--------------------------------
 
 ``BPF_FROM_LE`` and ``BPF_FROM_BE`` exist as aliases for ``BPF_TO_LE`` and ``BPF_TO_BE`` respectively.
 
 Map objects
-===========
+--------------------------------
 
 Linux only supports the 'mva(map)' operation on array maps with a single element.
 
 Variables
-=========
+--------------------------------
 
 Linux uses BTF ids to identify variables.
 
 Legacy BPF Packet access instructions
-=====================================
+-------------------------------------
 
 As mentioned in the `ISA standard documentation <instruction-set.rst#legacy-bpf-packet-access-instructions>`_,
 Linux has special eBPF instructions for access to packet data that have been
@@ -75,7 +78,7 @@ where ``ntohl()`` converts a 32-bit value from network byte order to host byte o
   R0 = ntohl(*(u32 *) ((struct sk_buff *) R6->data + src + imm))
 
 Appendix
-========
+-------------------------------------
 
 For reference, the following table lists legacy Linux-specific opcodes in order by value.
 
@@ -90,3 +93,9 @@ opcode  imm   description                                          reference
 0x48    any   dst = ntohs(\*(uint16_t \*)(R6->data + src + imm))   `Legacy BPF Packet access instructions`_
 0x50    any   dst = \*(uint8_t \*)(R6->data + src + imm))          `Legacy BPF Packet access instructions`_
 0x58    any   dst = ntohll(\*(uint64_t \*)(R6->data + src + imm))  `Legacy BPF Packet access instructions`_
+======  ====  ===================================================  =============
+
+BTF
+====================
+
+See `<btf-linux.rst>`_.
