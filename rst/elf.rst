@@ -94,7 +94,8 @@ Inner Map Index
   one whose values contain ids of other maps, this must be set to 0.
 
 Platform-specific data
-  This field and its size is up to the runtime platform to define.
+  This field and its size is up to the runtime platform to define.  For example,
+  on Linux 4.14 and later, this can hold a NUMA node value.
 
 BTF Map Templates
 --------------------
