@@ -8,27 +8,14 @@ BPF Type Format (BTF)
 Introduction
 ===============
 
-BTF (BPF Type Format) is the metadata format which encodes the debug info
-related to BPF program/map. The name BTF was used initially to describe data
-types. The BTF was later extended to include function info for defined
+BTF (BPF Type Format) is a metadata format that encodes information
+related to eBPF programs and maps. The name BTF was used initially to describe data
+types, but was later extended to include function info for defined
 subroutines, and line info for source/line information.
 
-The debug info is used for map pretty print, function signature, etc. The
-function signature enables better bpf program/function kernel symbol. The line
-info helps generate source annotated translated byte code, jited code and
-verifier log.
-
-The BTF specification contains two parts,
-  * BTF kernel API
-  * BTF ELF file format
-
-The kernel API is the contract between user space and kernel. The kernel
-verifies the BTF info before using it. The ELF file format is a user space
-contract between ELF file and libbpf loader.
-
-The type and string sections are part of the BTF kernel API, describing the
-debug info (mostly types related) referenced by the bpf program. These two
-sections are discussed in details in :ref:`BTF_Type_String`.
+This specification defines a number of data blobs that can be used
+in files, such as in the `eBPF profile for ELF files <elf.rst>`_
+and in platform-specific APIs.
 
 .. _BTF_Type_String:
 
