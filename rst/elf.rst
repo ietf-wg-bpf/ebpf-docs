@@ -2,13 +2,13 @@
 .. sectnum::
 
 ====================================
-eBPF ELF Profile Specification, v1.0
+eBPF ELF Profile Specification, v0.1
 ====================================
 
 The Executable and Linking Format (ELF) is specified in
 Tool Interface Standard (TIS), "Executable and Linking Format (ELF) Specification, Version 1.2", May 1995, https://refspecs.linuxbase.org/elf/elf.pdf.
 
-This document specifies version 1.0 of the eBPF profile for ELF files.
+This document specifies version 0.1 of the eBPF profile for ELF files.
 
 Documentation conventions
 =========================
