@@ -39,10 +39,19 @@ as there are multiple different conventions in use today, including:
 DATA Sections
 =============
 
-Map Templates
--------------
+BTF Map Templates
+--------------------
 
-eBPF map templates are stored in DATA sections named "maps" or matching
+BTF eBPF map templates are stored in a DATA section named ".maps".
+The number of map templates in a section can be determined by counting the
+number of symbols in the ".symtab" section that point into the ".maps" section.
+
+TODO: add format description here
+
+Legacy Map Templates
+--------------------
+
+Legacy eBPF map templates are stored in DATA sections named "maps" or matching
 "maps/<map-name>".  Each such section can contain 0 or more map templates.
 The number of map templates in a section can be determined by counting the
 number of symbols in the ".symtab" section that point into that maps section.
