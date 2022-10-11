@@ -141,6 +141,8 @@ Type and String Data
 --------------------
 
 The optional ".BTF" section contains type and string data. 
+The format of this section is the same as specified in
+`BTF Type and String Encoding <btf.rst#2-btf-type-and-string-encoding>`_.
 
 The section starts with the following header:
 
@@ -176,10 +178,11 @@ Header Length
   Must be set to 24 (0x00000018).
 
 Type data offset
-  Offset in bytes relative to the end of the header.
+  Offset in bytes, relative to the end of the header, of the
+  start of the `Type data`_.
 
 Type data length
-  Size in bytes of the type data.  Must be set to 8 (0x00000008).
+  Size in bytes of the `Type data`_.
 
 String data offset
   Offset in bytes, relative to the end of the header, of the
@@ -187,6 +190,12 @@ String data offset
 
 String data length
   Size in bytes of the `String data`_.  Must be set to 16 (0x00000010).
+
+Type data
+~~~~~~~~~~~
+
+TODO: to be filled in
+See `BTF Type Encoding <btf.rst#22-type-encoding>`_.
 
 String data
 ~~~~~~~~~~~
