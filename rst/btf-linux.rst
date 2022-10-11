@@ -8,6 +8,31 @@ BPF Type Format (BTF)
 This file contains Linux-specific additions and clarifications
 to the base BTF specification.
 
+BTF Structures
+=================
+The file ``include/uapi/linux/btf.h`` provides high-level definition of how
+types/strings are encoded.
+
+The beginning of data blob must be::
+
+    struct btf_header {
+        __u16   magic;
+        __u8    version;
+        __u8    flags;
+        __u32   hdr_len;
+
+        /* All offsets are in bytes relative to the end of this header */
+        __u32   type_off;       /* offset of type section       */
+        __u32   type_len;       /* length of type section       */
+        __u32   str_off;        /* offset of string section     */
+        __u32   str_len;        /* length of string section     */
+    };
+
+The ``btf_header`` is designed to be extensible with
+``hdr_len`` equal to ``sizeof(struct btf_header)`` when a data blob is
+generated.
+
+
 BTF Kernel API
 =================
 
@@ -100,7 +125,10 @@ values for the following attributes:
     __aligned_u64   line_info;      /* line info */
     __u32           line_info_cnt;  /* number of bpf_line_info records */
 
-The func_info and line_info are an array of below, respectively.::
+The func_info and line_info are an array of 
+`Function Record <elf.rst#1443function-record>`_ and
+`Line Record <elf.rst#1445line-record>`_ elements,
+respectively.::
 
     struct bpf_func_info {
         __u32   insn_off; /* [0, insn_cnt - 1] */

@@ -35,39 +35,55 @@ sections are discussed in details in :ref:`BTF_Type_String`.
 BTF Type and String Encoding
 ===============================
 
-The file ``include/uapi/linux/btf.h`` provides high-level definition of how
-types/strings are encoded.
+A type and string encoding data blob starts with the following header:
 
-The beginning of data blob must be::
+.. code-block::
 
-    struct btf_header {
-        __u16   magic;
-        __u8    version;
-        __u8    flags;
-        __u32   hdr_len;
+     0                   1                   2                   3
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+    +-------------------------------+-------------------------------+
+    |              Magic            |    Version    |     Flags     |
+    +-------------------------------+---------------+---------------+
+    |                         Header Length                         |
+    +---------------------------------------------------------------+
+    |                       Type data offset                        |
+    +---------------------------------------------------------------+
+    |                       Type data length                        |
+    +---------------------------------------------------------------+
+    |                      String data offset                       |
+    +---------------------------------------------------------------+
+    |                      String data length                       |
+    +---------------------------------------------------------------+
 
-        /* All offsets are in bytes relative to the end of this header */
-        __u32   type_off;       /* offset of type section       */
-        __u32   type_len;       /* length of type section       */
-        __u32   str_off;        /* offset of string section     */
-        __u32   str_len;        /* length of string section     */
-    };
+Magic
+  Must be set to 0xeB9F, which can be used by a parser to determine whether multi-byte fields
+  are in little-endian or big-endian byte order.
 
-The magic is ``0xeB9F``, which has different encoding for big and little
-endian systems, and can be used to test whether BTF is generated for big- or
-little-endian target. The ``btf_header`` is designed to be extensible with
-``hdr_len`` equal to ``sizeof(struct btf_header)`` when a data blob is
-generated.
+Version
+  Must be set to 1 (0x01).
 
-String Encoding
--------------------
+Flags
+  Must be set to 0.
 
-The first string in the string section must be a null string. The rest of
-string table is a concatenation of other null-terminated strings.
+Header Length
+  Must be set to 24 (0x00000018).
 
-Type Encoding
------------------
+Type data offset
+  Offset in bytes, relative to the end of the header, of the
+  start of the `Type data`_.
 
+Type data length
+  Size in bytes of the `Type data`_.
+
+String data offset
+  Offset in bytes, relative to the end of the header, of the
+  start of the `String data`_.
+
+String data length
+  Size in bytes of the `String data`_.  Must be set to 16 (0x00000010).
+
+Type data
+~~~~~~~~~~~
 The type id ``0`` is reserved for ``void`` type. The type section is parsed
 sequentially and type id is assigned to each recognized type starting from id
 ``1``. Currently, the following types are supported::
@@ -555,3 +571,7 @@ The ``btf_enum64`` encoding:
 If the original enum value is signed and the size is less than 8,
 that value will be sign extended into 8 bytes.
 
+String data
+~~~~~~~~~~~
+
+The string data contains a concatenation of null-terminated UTF-8 strings.  The first string must be the empty string.
