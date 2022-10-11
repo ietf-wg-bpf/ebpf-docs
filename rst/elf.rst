@@ -19,9 +19,22 @@ TEXT Sections
 =============
 
 `eBPF programs <instruction-set.rst#instruction-encoding>`_ are stored in TEXT sections.
-By convention, the section name is typically prefixed with a string that identifies
-the program type, so that the program type can be determined by finding the longest
-substring match across all program type prefixes.  The ".text" section can be empty.
+A TEXT section can contain multiple eBPF programs, each with a different program name
+which is stored as a function in a TEXT section.  The ".text" section can be empty if
+eBPF programs are stored in other TEXT sections.
+
+This specification does not mandate any particular convention for TEXT section names,
+as there are multiple different conventions in use today, including:
+
+* Prefix Convention: The section name is prefixed with a string that
+  identifies the program type, so that the program type of any programs in the section
+  can be determined by finding the longest substring match across all program type prefixes.
+
+* Exact Match Convention: The section name is a string that identifies the program type
+  of any programs in the section.
+
+* Arbitrary Convention: The section name can be anything and the program type of any
+  programs in the section must be determined without consulting the section name.
 
 DATA Sections
 =============
