@@ -5,8 +5,8 @@
 eBPF ELF Profile Specification, v0.1
 ====================================
 
-The Executable and Linking Format (ELF) is specified in
-Tool Interface Standard (TIS), "Executable and Linking Format (ELF) Specification, Version 1.2", May 1995, https://refspecs.linuxbase.org/elf/elf.pdf.
+The Executable and Linking Format (ELF) is specified in Chapter 4 of the
+"System V Application Binary Interface", June 2013, http://www.sco.com/developers/gabi/latest/contents.html.
 
 This document specifies version 0.1 of the eBPF profile for ELF files.
 
@@ -14,6 +14,17 @@ Documentation conventions
 =========================
 
 All integer fields are unsigned.
+
+ELF Header
+=============
+
+The ELF header must have values set as follows:
+
+* ``e_ident[EI_CLASS]`` must be set to ``ELFCLASS64`` (2).
+
+* ``e_type`` must be set to ``ET_REL`` (1).
+
+* ``e_machine`` must be set to ``EM_BPF`` (247).
 
 TEXT Sections
 =============
@@ -51,7 +62,8 @@ The size of a map template can be calculated as:
 
 ``(size of maps section) / (count of map templates in that section)``
 
-The format of a map template is as follows:
+The format of a map template is as follows, where fields are in the byte
+order indicated in ``e_ident[EI_DATA]`` in the ELF header:
 
 .. code-block::
 
@@ -350,7 +362,7 @@ Line number and column number
 BTF ID Values
 ---------------
 
-The .BTF_ids section encodes BTF ID values that are used within the kernel.
+The ``.BTF_ids`` section encodes BTF ID values that are used within the kernel.
 
 This section is created during the kernel compilation with the help of
 macros defined in ``include/linux/btf_ids.h`` header file. Kernel code can
@@ -363,14 +375,14 @@ with following syntax::
   BTF_ID(type1, name1)
   BTF_ID(type2, name2)
 
-resulting in the following layout in the .BTF_ids section::
+resulting in the following layout in the ``.BTF_ids`` section::
 
   __BTF_ID__type1__name1__1:
   .zero 4
   __BTF_ID__type2__name2__2:
   .zero 4
 
-The ``u32 list[];`` variable is defined to access the list.
+The ``u32 list[]`` variable is defined to access the list.
 
 The ``BTF_ID_UNUSED`` macro defines 4 zero bytes. It's used when we
 want to define an unused entry in BTF_ID_LIST, like::
@@ -388,7 +400,7 @@ and their count, with following syntax::
   BTF_ID(type2, name2)
   BTF_SET_END(set)
 
-resulting in the following layout in .BTF_ids section::
+resulting in the following layout in the ``.BTF_ids`` section::
 
   __BTF_ID__set__set:
   .zero 4
@@ -405,5 +417,5 @@ The ``typeX`` name can be one of following::
 
 and is used as a filter when resolving the BTF ID value.
 
-All the BTF ID lists and sets are compiled in the .BTF_ids section and
+All the BTF ID lists and sets are compiled in the ``.BTF_ids`` section and
 resolved during the linking phase of kernel build by ``resolve_btfids`` tool.
