@@ -13,7 +13,11 @@ This document specifies version 0.1 of the eBPF profile for ELF files.
 Documentation conventions
 =========================
 
-All integer fields are unsigned.
+As this specification is a extension to the ELF specification, the same daya representation
+convention is used as specified in 
+http://www.sco.com/developers/gabi/latest/ch4.intro.html#data_representation
+where structures are represented in a C-style format with types such as Elf64_Word for an
+unsigned 32-bit integer.
 
 ELF Header
 =============
@@ -50,70 +54,60 @@ as there are multiple different conventions in use today, including:
 DATA Sections
 =============
 
-Classic Map Templates
---------------------
+Classic Map Definitions
+-----------------------
 
-Classic eBPF map templates are stored in DATA sections named "maps" or matching
-"maps/<map-name>".  Each such section can contain 0 or more map templates.
-The number of map templates in a section can be determined by counting the
+Classic eBPF map definitions are stored in DATA sections named "maps" or matching
+"maps/<map-name>".  Each such section can contain 0 or more map definitions.
+The number of map definitions in a section can be determined by counting the
 number of symbols in the ".symtab" section that point into that maps section.
 
-The size of a map template can be calculated as:
+The size of a map definition can be calculated as:
 
-``(size of maps section) / (count of map templates in that section)``
+``(size of maps section) / (count of map definitions in that section)``
 
-The format of a map template is as follows, where fields are in the byte
+The format of a map definition is as follows, where fields are in the byte
 order indicated in ``e_ident[EI_DATA]`` in the ELF header:
 
 .. code-block::
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +---------------------------------------------------------------+
-    |                             Type                              |
-    +---------------------------------------------------------------+
-    |                           Key Size                            |
-    +---------------------------------------------------------------+
-    |                          Value Size                           |
-    +---------------------------------------------------------------+
-    |                          Max Entries                          |
-    +---------------------------------------------------------------+
-    |                        Inner Map Index                        |
-    +---------------------------------------------------------------+
-    |                                                               |
-    |                    Platform-specific data                     |
-    |                        (variable size)                        |
-    |                                                               |
-    +---------------------------------------------------------------+
+    typedef struct {
+       Elf64_Word    type;
+       Elf64_Word    key_size;
+       Elf64_Word    value_size;
+       Elf64_Word    max_entries;
+       Elf64_Word    inner_map_idx;
+       unsigned char platform_specific_data[];
+    } Elf64_BpfMapDefinition;
 
-Type
+type
   An integer identifying the map type.  Its value and meaning are platform-specific.
 
-Key Size
+key_size
   Size in bytes of keys in the map, if any.
 
-Value Size
+value_size
   Size in bytes of values in the map, if any.
 
-Max Entries
+max_entries
   Maximum number of entries in the map, if the map type has a maximum.
 
-Inner Map Index
+inner_map_idx
   If the map type is one whose values contain ids of other maps, then the inner
-  map index must be set to the 0-based index of another map template in the section.
-  The referenced map template is used to enforce that any maps must match it
+  map index must be set to the 0-based index of another map definition in the section.
+  The referenced map definition is used to enforce that any maps must match it
   for their ids to be allowed as values of this map.  If the map type is not
   one whose values contain ids of other maps, this must be set to 0.
 
-Platform-specific data
+platform_specific_data
   This field and its size is up to the runtime platform to define.  For example,
   on Linux 4.14 and later, this can hold a NUMA node value.
 
-BTF Map Templates
+BTF Map Definitions
 --------------------
 
-BTF eBPF map templates are stored in a DATA section named ".maps".
-The number of map templates in a section can be determined by counting the
+BTF eBPF map definitions are stored in a DATA section named ".maps".
+The number of map definitions in a section can be determined by counting the
 number of symbols in the ".symtab" section that point into the ".maps" section.
 
 TODO: add format description here
@@ -167,53 +161,44 @@ The section starts with the following header:
 
 .. code-block::
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-------------------------------+-------------------------------+
-    |              Magic            |    Version    |     Flags     |
-    +-------------------------------+---------------+---------------+
-    |                         Header Length                         |
-    +---------------------------------------------------------------+
-    |                     Function info offset                      |
-    +---------------------------------------------------------------+
-    |                     Function info length                      |
-    +---------------------------------------------------------------+
-    |                       Line info offset                        |
-    +---------------------------------------------------------------+
-    |                       Line info length                        |
-    +---------------------------------------------------------------+
-    |                                                               |
-    |                    Platform-specific data                     |
-    |                        (variable size)                        |
-    |                                                               |
-    +---------------------------------------------------------------+
+    typedef struct {
+       Elf64_Half    magic;
+       unsigned char version;
+       unsigned char flags;
+       Elf64_Word    hdr_len;
+       Elf64_Word    func_info_off;
+       Elf64_Word    func_info_len;
+       Elf64_Word    line_info_off;
+       Elf64_Word    line_info_len;
+       unsigned char platform_specific_data[];
+    } Elf64_BtfExtHeader;
 
-Magic
+magic
   Must be set to 0xeB9F, which can be used by a parser to determine whether multi-byte fields
   are in little-endian or big-endian byte order.
 
-Version
+version
   Must be set to 1 (0x01).
 
-Flags
+flags
   Must be set to 0.
 
-Header Length
-  Must be set to 24 (0x00000018) or 32 (0x00000020).
+hdr_len
+  The size in bytes of this structure including the platform_specific_data.
 
-Function info offset
+func_info_off
   Offset in bytes past the end of the header, of the start of the `Function information`_.
 
-Function info length
+func_info_len
   Size in bytes of the `Function information`_.  Must be set to 8 (0x00000008).
 
-Line info offset
+line_info_off
   Offset in bytes past the end of the header, of the start of the `Line Information`_.
 
-Line info length
+line_info_len
   Size in bytes of the `Line Information`_.  Must be set to 16 (0x00000010).
 
-Platform-specific data
+platform_specific_data
   This field and its size is up to the runtime platform to define.
 
 Function information
@@ -221,29 +206,18 @@ Function information
 
 .. code-block::
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +---------------------------------------------------------------+
-    |                     Function record size                      |
-    +---------------------------------------------------------------+
-    |                                                               |
-    |                       Function info 1                         |
-    |                                                               |
-    +---------------------------------------------------------------+
-    |                              ...                              |
-    +---------------------------------------------------------------+
-    |                                                               |
-    |                       Function info N                         |
-    |                                                               |
-    +---------------------------------------------------------------+
+    typedef struct {
+        Elf64_Word           func_info_rec_size;
+        Elf64_BtfExtInfoSec  btf_ext_info_sec[];
+    } Elf64_BpfFunctionInfo;
 
-Function record size
+func_info_rec_size
   Size in bytes of each function record contained in an `Info block`_.
   Must be set to 8 (0x00000008).
 
 Function info 1..N
   A set of `Info block`_ data blobs, as many as will fit in the size given
-  as the "Function info length", where each record within an info block is
+  as the ``func_info_len``, where each record within an info block is
   formatted as shown under `Function Record`_ below.
 
 Info block
@@ -251,81 +225,58 @@ Info block
 
 .. code-block::
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +---------------------------------------------------------------+
-    |                     Section name offset                       |
-    +---------------------------------------------------------------+
-    |                         Record count                          |
-    +---------------------------------------------------------------+
-    |                                                               |
-    |                           Record 1                            |
-    |                                                               |
-    +---------------------------------------------------------------+
-    |                   ...                                         |
-    +---------------------------------------------------------------+
-    |                                                               |
-    |                           Record N                            |
-    |                                                               |
-    +---------------------------------------------------------------+
+    typedef struct {
+       Elf64_Word    sec_name_off;
+       Elf64_Word    num_info;
+       unsigned char data[];
+    } Elf64_BtfExtInfoSec;
 
-Section name offset
+sec_name_off
   Offset in bytes of the section name within the `String data`_.
 
-Record count
+num_info
   Number of records that follow.  Must be greater than 0.
 
-Record 1..N
-  A series of records.
+data
+  A series of function or line records.  The total length of data is
+  `num_info * record_size` bytes, where ``record_size`` is the size
+  of a function record or line record.
+
 
 Function Record
 ~~~~~~~~~~~~~~~
 
 .. code-block::
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +---------------------------------------------------------------+
-    |                     Instruction offset                        |
-    +---------------------------------------------------------------+
-    |                           Type id                             |
-    +---------------------------------------------------------------+
+    typedef struct {
+        Elf64_Word insn_off;
+        Elf64_Word type_id;
+    } Elf64_BpfFunctionInfo;
 
-Instruction offset
-  Offset in bytes from the start of the section whose name is
-  given by "Section name offset".  Must be 0 for Record 1, and
-  for subsequent records it must be greater than the instruction offset
-  of the previous record.
+insn_off
+  Number 8 byte units from the start of the section whose name is
+  given by "Section name offset" to the start of the function.
+  Must be 0 for the first record, and for subsequent records it must be
+  greater than the instruction offset of the previous record.
 
-Type id
-  TODO: Add a definition of this field.
+type_id
+  TODO: Add a definition of this field, which is "a BTF_KIND_FUNC type".
 
 Line Information
 ~~~~~~~~~~~~~~~~
 
 .. code-block::
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +---------------------------------------------------------------+
-    |                        Line record size                       |
-    +---------------------------------------------------------------+
-    |                                                               |
-    |                          Line info 1                          |
-    |                                                               |
-    +---------------------------------------------------------------+
-    |                              ...                              |
-    +---------------------------------------------------------------+
-    |                                                               |
-    |                          Line info N                          |
-    |                                                               |
-    +---------------------------------------------------------------+
+    typedef struct {
+        Elf64_Word           line_info_rec_size;
+        Elf64_BtfExtInfoSec  btf_ext_info_sec[];
+    } Elf64_BpfLineInfo;
 
-Line record size
+line_info_rec_size
   Size in bytes of each line record in an `Info block`_.  Must be set to 16 (0x00000010).
 
-Line info 1..N
-  A set of `Info block`_ data blobs, as many as will fit in the size given as the "Line info length",
+btf_ext_info_sec
+  A set of `Info block`_ data blobs, as many as will fit in the size given as the ``line_info_len``,
   where each record within an info block is formatted as shown under `Line Record`_ below.
 
 Line Record
@@ -333,34 +284,31 @@ Line Record
 
 .. code-block::
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +---------------------------------------------------------------+
-    |                      Instruction offset                       |
-    +---------------------------------------------------------------+
-    |                       File name offset                        |
-    +---------------------------------------------------------------+
-    |                      Source line offset                       |
-    +---------------------------------------------------------------+
-    |                Line number and column number                  |
-    +---------------------------------------------------------------+
+    typedef struct {
+        Elf64_Word insn_off;
+        Elf64_Word file_name_off;
+        Elf64_Word line_off;
+        Elf64_Word line_col;
+    } ELF32_BpfLineInfo;
 
-Instruction offset
+insn_off
   0-based instruction index into the eBPF program contained
   in the section whose name is referenced in the `Info block`_.
 
-File name offset
+file_name_off
   Offset in bytes of the file name within the `String data`_.
 
-Source line offset
+line_off
   Offset in bytes of the source line within the `String data`_.
 
-Line number and column number
+line_col
   The line and column number value, computed as
   ``(line number << 10) | (column number)``.
 
 BTF ID Values
 ---------------
+
+TODO: make this secction adhere to the ELF specification data format
 
 The ``.BTF_ids`` section encodes BTF ID values that are used within the kernel.
 
