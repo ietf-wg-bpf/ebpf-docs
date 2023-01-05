@@ -30,58 +30,19 @@ Instruction encoding
 eBPF has two instruction encodings:
 
 * the basic instruction encoding, which uses 64 bits to encode an instruction
-* the wide instruction encoding, which appends a second 64-bit immediate (i.e.,
-  constant) value after the basic instruction for a total of 128 bits.
+* the wide instruction encoding, which appends a second 64-bit immediate value
+  (imm64) after the basic instruction for a total of 128 bits.
 
-The basic instruction encoding is as follows, where MSB and LSB mean the most significant
-bits and least significant bits, respectively:
+The basic instruction encoding looks as follows:
 
 =============  =======  ===============  ====================  ============
 32 bits (MSB)  16 bits  4 bits           4 bits                8 bits (LSB)
 =============  =======  ===============  ====================  ============
-imm            offset   src              dst                   opcode
+immediate      offset   source register  destination register  opcode
 =============  =======  ===============  ====================  ============
-
-imm
-  signed integer immediate value
-
-offset
-  signed integer offset used with pointer arithmetic
-
-src
-  the source register number (0-10), except where otherwise specified
-  (`64-bit immediate instructions`_ reuse this field for other purposes)
-
-dst
-  destination register number (0-10)
-
-opcode
-  operation to perform
 
 Note that most instructions do not use all of the fields.
 Unused fields shall be cleared to zero.
-
-As discussed below in `64-bit immediate instructions`_, a 64-bit immediate
-instruction uses a 64-bit immediate value that is constructed as follows.
-The 64 bits following the basic instruction contain a pseudo instruction
-using the same format but with opcode, dst, src, and offset all set to zero,
-and imm containing the high 32 bits of the immediate value.
-
-=================  ==================
-64 bits (MSB)      64 bits (LSB)
-=================  ==================
-basic instruction  pseudo instruction
-=================  ==================
-
-Thus the 64-bit immediate value is constructed as follows:
-
-  imm64 = imm + (next_imm << 32)
-
-where 'next_imm' refers to the imm value of the pseudo instruction
-following the basic instruction.
-
-In the remainder of this document 'src' and 'dst' refer to the values of the source
-and destination registers, respectively, rather than the register number.
 
 Instruction classes
 -------------------
@@ -110,24 +71,20 @@ For arithmetic and jump instructions (``BPF_ALU``, ``BPF_ALU64``, ``BPF_JMP`` an
 ==============  ======  =================
 4 bits (MSB)    1 bit   3 bits (LSB)
 ==============  ======  =================
-code            source  instruction class
+operation code  source  instruction class
 ==============  ======  =================
 
-code
-  the operation code, whose meaning varies by instruction class
+The 4th bit encodes the source operand:
 
-source
-  the source operand location, which unless otherwise specified is one of:
-
-  ======  =====  ==========================================
+  ======  =====  ========================================
   source  value  description
-  ======  =====  ==========================================
-  BPF_K   0x00   use 32-bit 'imm' value as source operand
-  BPF_X   0x08   use 'src' register value as source operand
-  ======  =====  ==========================================
+  ======  =====  ========================================
+  BPF_K   0x00   use 32-bit immediate as source operand
+  BPF_X   0x08   use 'src_reg' register as source operand
+  ======  =====  ========================================
 
-instruction class
-  the instruction class (see `Instruction classes`_)
+The four MSB bits store the operation code.
+
 
 Arithmetic instructions
 -----------------------
@@ -155,33 +112,21 @@ BPF_ARSH  0xc0   sign extending shift right
 BPF_END   0xd0   byte swap operations (see `Byte swap instructions`_ below)
 ========  =====  ==========================================================
 
-<<<<<<< HEAD
-=======
-where 'src' is the source operand value.
-
-Underflow and overflow are allowed during arithmetic operations,
-meaning the 64-bit or 32-bit value will wrap.  If
-eBPF program execution would result in division by zero,
-the destination register is instead set to zero.
-If execution would result in modulo by zero,
-the destination register is instead left unchanged.
-
->>>>>>> cf7a151753 (bpf, docs: Use consistent names for the same field)
 ``BPF_ADD | BPF_X | BPF_ALU`` means::
 
-  dst = (u32) ((u32) dst + (u32) src)
+  dst_reg = (u32) dst_reg + (u32) src_reg;
 
 ``BPF_ADD | BPF_X | BPF_ALU64`` means::
 
-  dst = dst + src
+  dst_reg = dst_reg + src_reg
 
 ``BPF_XOR | BPF_K | BPF_ALU`` means::
 
-  src = (u32) src ^ (u32) imm
+  dst_reg = (u32) dst_reg ^ (u32) imm32
 
 ``BPF_XOR | BPF_K | BPF_ALU64`` means::
 
-  src = src ^ imm
+  dst_reg = dst_reg ^ imm32
 
 
 Byte swap instructions
@@ -210,11 +155,11 @@ Examples:
 
 ``BPF_ALU | BPF_TO_LE | BPF_END`` with imm = 16 means::
 
-  dst = htole16(dst)
+  dst_reg = htole16(dst_reg)
 
 ``BPF_ALU | BPF_TO_BE | BPF_END`` with imm = 64 means::
 
-  dst = htobe64(dst)
+  dst_reg = htobe64(dst_reg)
 
 Jump instructions
 -----------------
@@ -289,15 +234,15 @@ instructions that transfer data between a register and memory.
 
 ``BPF_MEM | <size> | BPF_STX`` means::
 
-  *(size *) (dst + offset) = src_reg
+  *(size *) (dst_reg + off) = src_reg
 
 ``BPF_MEM | <size> | BPF_ST`` means::
 
-  *(size *) (dst + offset) = imm32
+  *(size *) (dst_reg + off) = imm32
 
 ``BPF_MEM | <size> | BPF_LDX`` means::
 
-  dst = *(size *) (src + offset)
+  dst_reg = *(size *) (src_reg + off)
 
 Where size is one of: ``BPF_B``, ``BPF_H``, ``BPF_W``, or ``BPF_DW``.
 
@@ -331,11 +276,11 @@ BPF_XOR   0xa0   atomic xor
 
 ``BPF_ATOMIC | BPF_W  | BPF_STX`` with 'imm' = BPF_ADD means::
 
-  *(u32 *)(dst + offset) += src
+  *(u32 *)(dst_reg + off16) += src_reg
 
 ``BPF_ATOMIC | BPF_DW | BPF_STX`` with 'imm' = BPF ADD means::
 
-  *(u64 *)(dst + offset) += src
+  *(u64 *)(dst_reg + off16) += src_reg
 
 In addition to the simple atomic operations, there also is a modifier and
 two complex atomic operations:
@@ -350,16 +295,16 @@ BPF_CMPXCHG  0xf0 | BPF_FETCH  atomic compare and exchange
 
 The ``BPF_FETCH`` modifier is optional for simple atomic operations, and
 always set for the complex atomic operations.  If the ``BPF_FETCH`` flag
-is set, then the operation also overwrites ``src`` with the value that
+is set, then the operation also overwrites ``src_reg`` with the value that
 was in memory before it was modified.
 
-The ``BPF_XCHG`` operation atomically exchanges ``src`` with the value
-addressed by ``dst + offset``.
+The ``BPF_XCHG`` operation atomically exchanges ``src_reg`` with the value
+addressed by ``dst_reg + off``.
 
 The ``BPF_CMPXCHG`` operation atomically compares the value addressed by
-``dst + offset`` with ``R0``. If they match, the value addressed by
-``dst + offset`` is replaced with ``src``. In either case, the
-value that was at ``dst + offset`` before the operation is zero-extended
+``dst_reg + off`` with ``R0``. If they match, the value addressed by
+``dst_reg + off`` is replaced with ``src_reg``. In either case, the
+value that was at ``dst_reg + off`` before the operation is zero-extended
 and loaded back to ``R0``.
 
 64-bit immediate instructions
@@ -372,7 +317,7 @@ There is currently only one such instruction.
 
 ``BPF_LD | BPF_DW | BPF_IMM`` means::
 
-  dst = imm64
+  dst_reg = imm64
 
 
 Legacy BPF Packet access instructions
@@ -381,3 +326,4 @@ Legacy BPF Packet access instructions
 eBPF previously introduced special instructions for access to packet data that were
 carried over from classic BPF. However, these instructions are
 deprecated and should no longer be used.
+
