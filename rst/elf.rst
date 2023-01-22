@@ -13,11 +13,11 @@ This document specifies version 0.1 of the eBPF profile for ELF files.
 Documentation conventions
 =========================
 
-As this specification is a extension to the ELF specification, the same daya representation
+As this specification is a extension to the ELF specification, the same data representation
 convention is used as specified in 
 http://www.sco.com/developers/gabi/latest/ch4.intro.html#data_representation
-where structures are represented in a C-style format with types such as Elf64_Word for an
-unsigned 32-bit integer.
+where structures are represented in a C-style format with types such as ``Elf64_Word`` for an
+unsigned 64-bit integer.
 
 ELF Header
 =============
@@ -232,7 +232,7 @@ Info block
     } Elf64_BtfExtInfoSec;
 
 sec_name_off
-  Offset in bytes of the section name within the `String data`_.
+  Offset in bytes of the section name within the `Type and String Data`_.
 
 num_info
   Number of records that follow.  Must be greater than 0.
@@ -296,10 +296,10 @@ insn_off
   in the section whose name is referenced in the `Info block`_.
 
 file_name_off
-  Offset in bytes of the file name within the `String data`_.
+  Offset in bytes of the file name within the `Type and String Data`_.
 
 line_off
-  Offset in bytes of the source line within the `String data`_.
+  Offset in bytes of the source line within the `Type and String Data`_.
 
 line_col
   The line and column number value, computed as
