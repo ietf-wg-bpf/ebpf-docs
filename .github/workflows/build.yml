@@ -1,12 +1,13 @@
-# This action will run rst2pdf to generate a PDF from the latest docs.
+# This action will generate documentation artifacts from the latest doc sources.
 #
-name: rst2pdf
+name: build
 
 on:
   push:
     branches: [ update ]
     paths-ignore:
       - 'pdf/**'
+      - 'rfcxml/**'
 
 permissions:
   contents: write # for Git to git push
@@ -20,6 +21,10 @@ jobs:
       run: |
         pip install --user rst2pdf
 
+    - name: Install xml2rfc
+      run: |
+        pip install --user xml2rfc
+
     - uses: actions/checkout@v3
 
     - name: Clone docs
@@ -32,7 +37,17 @@ jobs:
       run: |
         rst2pdf rst/instruction-set.rst pdf/instruction-set.pdf
 
-    - name: Checkin PDF
+    - name: Build rfcxml
+      run: |
+        wget https://github.com/dthaler/rst2rfcxml/releases/download/v0.1/Ubuntu.Release.rst2rfcxml.zip
+        unzip Ubuntu.Release.rst2rfcxml.zip
+        chmod 755 rst2rfcxml
+        ./rst2rfcxml rst/instruction-set-prologue.rst rst/instruction-set.rst -o pdf/draft-thaler-bpf-isa.xml
+        cd pdf
+        xml2rfc draft-thaler-bpf-isa.xml
+        xml2rfc --html draft-thaler-bpf-isa.xml
+
+    - name: Check in PDF
       run: |
         cd pdf
         git add .
