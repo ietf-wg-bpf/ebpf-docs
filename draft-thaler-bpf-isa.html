@@ -1213,7 +1213,7 @@ li > p:last-of-type:only-child {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Thaler</td>
-<td class="center">Expires 28 July 2023</td>
+<td class="center">Expires 29 July 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1226,12 +1226,12 @@ li > p:last-of-type:only-child {
 <dd class="internet-draft">draft-thaler-bpf-instruction-set-00</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-01-24" class="published">24 January 2023</time>
+<time datetime="2023-01-25" class="published">25 January 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-07-28">28 July 2023</time></dd>
+<dd class="expires"><time datetime="2023-07-29">29 July 2023</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1269,7 +1269,7 @@ li > p:last-of-type:only-child {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 28 July 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 29 July 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1530,7 +1530,7 @@ li > p:last-of-type:only-child {
       </table>
 <p id="section-3-10">
     Thus the 64-bit immediate value is constructed as follows:<a href="#section-3-10" class="pilcrow">¶</a></p>
-<blockquote id="section-3-11">    imm64 = imm + (next_imm &lt;&lt; 32)<a href="#section-3-11" class="pilcrow">¶</a>
+<blockquote id="section-3-11">    imm64 = (next_imm &lt;&lt; 32) | imm<a href="#section-3-11" class="pilcrow">¶</a>
 </blockquote>
 <p id="section-3-12">
     where 'next_imm' refers to the imm value of the pseudo instruction
@@ -1794,39 +1794,38 @@ li > p:last-of-type:only-child {
           </tbody>
         </table>
 <p id="section-4.1-4">
-     where 'src' is the source operand value.<a href="#section-4.1-4" class="pilcrow">¶</a></p>
+     Underflow and overflow are allowed during arithmetic operations, meaning
+     the 64-bit or 32-bit value will wrap. If eBPF program execution would
+     result in division by zero, the destination register is instead set to zero.
+     If execution would result in modulo by zero, for <code>BPF_ALU64</code> the value of
+     the destination register is unchanged whereas for <code>BPF_ALU</code> the upper
+     32 bits of the destination register are zeroed.<a href="#section-4.1-4" class="pilcrow">¶</a></p>
 <p id="section-4.1-5">
-     Underflow and overflow are allowed during arithmetic operations,
-     meaning the 64-bit or 32-bit value will wrap.  If
-     eBPF program execution would result in division by zero,
-     the destination register is instead set to zero.
-     If execution would result in modulo by zero,
-     the destination register is instead left unchanged.<a href="#section-4.1-5" class="pilcrow">¶</a></p>
+     Examples:<a href="#section-4.1-5" class="pilcrow">¶</a></p>
 <p id="section-4.1-6">
-     Examples:<a href="#section-4.1-6" class="pilcrow">¶</a></p>
-<p id="section-4.1-7">
-     <code>BPF_ADD | BPF_X | BPF_ALU</code> (0x0c) means:<a href="#section-4.1-7" class="pilcrow">¶</a></p>
-<blockquote id="section-4.1-8">     dst = (u32) ((u32) dst + (u32) src)<a href="#section-4.1-8" class="pilcrow">¶</a>
+     <code>BPF_ADD | BPF_X | BPF_ALU</code> (0x0c) means:<a href="#section-4.1-6" class="pilcrow">¶</a></p>
+<blockquote id="section-4.1-7">     dst = (u32) ((u32) dst + (u32) src)<a href="#section-4.1-7" class="pilcrow">¶</a>
 </blockquote>
+<p id="section-4.1-8">
+     where '(u32)' indicates that the upper 32 bits are zeroed.<a href="#section-4.1-8" class="pilcrow">¶</a></p>
 <p id="section-4.1-9">
-     where '(u32)' indicates truncation to 32 bits.<a href="#section-4.1-9" class="pilcrow">¶</a></p>
-<p id="section-4.1-10">
-     <code>BPF_ADD | BPF_X | BPF_ALU64</code> (0x0f) means:<a href="#section-4.1-10" class="pilcrow">¶</a></p>
-<blockquote id="section-4.1-11">     dst = dst + src<a href="#section-4.1-11" class="pilcrow">¶</a>
+     <code>BPF_ADD | BPF_X | BPF_ALU64</code> (0x0f) means:<a href="#section-4.1-9" class="pilcrow">¶</a></p>
+<blockquote id="section-4.1-10">     dst = dst + src<a href="#section-4.1-10" class="pilcrow">¶</a>
 </blockquote>
-<p id="section-4.1-12">
-     <code>BPF_XOR | BPF_K | BPF_ALU</code> (0xa4) means:<a href="#section-4.1-12" class="pilcrow">¶</a></p>
-<blockquote id="section-4.1-13">     src = (u32) src ^ (u32) imm<a href="#section-4.1-13" class="pilcrow">¶</a>
+<p id="section-4.1-11">
+     <code>BPF_XOR | BPF_K | BPF_ALU</code> (0xa4) means:<a href="#section-4.1-11" class="pilcrow">¶</a></p>
+<blockquote id="section-4.1-12">     dst = (u32) dst ^ (u32) imm32<a href="#section-4.1-12" class="pilcrow">¶</a>
 </blockquote>
-<p id="section-4.1-14">
-     <code>BPF_XOR | BPF_K | BPF_ALU64</code> (0xa7) means:<a href="#section-4.1-14" class="pilcrow">¶</a></p>
-<blockquote id="section-4.1-15">     src = src ^ imm<a href="#section-4.1-15" class="pilcrow">¶</a>
+<p id="section-4.1-13">
+     <code>BPF_XOR | BPF_K | BPF_ALU64</code> (0xa7) means:<a href="#section-4.1-13" class="pilcrow">¶</a></p>
+<blockquote id="section-4.1-14">     dst = dst ^ imm32<a href="#section-4.1-14" class="pilcrow">¶</a>
 </blockquote>
-<p id="section-4.1-16">
-     Also note that the division and modulo operations are unsigned,
-     where 'imm' is first sign extended to 64 bits and then converted
-     to an unsigned 64-bit value.  There are no instructions for
-     signed division or modulo.<a href="#section-4.1-16" class="pilcrow">¶</a></p>
+<p id="section-4.1-15">
+     Also note that the division and modulo operations are unsigned. Thus, for
+     <code>BPF_ALU</code>, 'imm' is first interpreted as an unsigned 32-bit value, whereas
+     for <code>BPF_ALU64</code>, 'imm' is first sign extended to 64 bits and the result
+     interpreted as an unsigned 64-bit value. There are no instructions for
+     signed division or modulo.<a href="#section-4.1-15" class="pilcrow">¶</a></p>
 <div id="byte-swap-instructions">
 <section id="section-4.1.1">
           <h4 id="name-byte-swap-instructions">

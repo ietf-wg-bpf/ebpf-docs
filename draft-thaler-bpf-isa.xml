@@ -182,7 +182,7 @@ eBPF Instruction Set Specification, v1.0
    <t>
     Thus the 64-bit immediate value is constructed as follows:
    </t>
-   <blockquote>    imm64 = imm + (next_imm &lt;&lt; 32)
+   <blockquote>    imm64 = (next_imm &lt;&lt; 32) | imm
    </blockquote>
    <t>
     where 'next_imm' refers to the imm value of the pseudo instruction
@@ -403,15 +403,12 @@ eBPF Instruction Set Specification, v1.0
      </tbody>
     </table>
     <t>
-     where 'src' is the source operand value.
-    </t>
-    <t>
-     Underflow and overflow are allowed during arithmetic operations,
-     meaning the 64-bit or 32-bit value will wrap.  If
-     eBPF program execution would result in division by zero,
-     the destination register is instead set to zero.
-     If execution would result in modulo by zero,
-     the destination register is instead left unchanged.
+     Underflow and overflow are allowed during arithmetic operations, meaning
+     the 64-bit or 32-bit value will wrap. If eBPF program execution would
+     result in division by zero, the destination register is instead set to zero.
+     If execution would result in modulo by zero, for <tt>BPF_ALU64</tt> the value of
+     the destination register is unchanged whereas for <tt>BPF_ALU</tt> the upper
+     32 bits of the destination register are zeroed.
     </t>
     <t>
      Examples:
@@ -422,7 +419,7 @@ eBPF Instruction Set Specification, v1.0
     <blockquote>     dst = (u32) ((u32) dst + (u32) src)
     </blockquote>
     <t>
-     where '(u32)' indicates truncation to 32 bits.
+     where '(u32)' indicates that the upper 32 bits are zeroed.
     </t>
     <t>
      <tt>BPF_ADD | BPF_X | BPF_ALU64</tt> (0x0f) means:
@@ -432,17 +429,18 @@ eBPF Instruction Set Specification, v1.0
     <t>
      <tt>BPF_XOR | BPF_K | BPF_ALU</tt> (0xa4) means:
     </t>
-    <blockquote>     src = (u32) src ^ (u32) imm
+    <blockquote>     dst = (u32) dst ^ (u32) imm32
     </blockquote>
     <t>
      <tt>BPF_XOR | BPF_K | BPF_ALU64</tt> (0xa7) means:
     </t>
-    <blockquote>     src = src ^ imm
+    <blockquote>     dst = dst ^ imm32
     </blockquote>
     <t>
-     Also note that the division and modulo operations are unsigned,
-     where 'imm' is first sign extended to 64 bits and then converted
-     to an unsigned 64-bit value.  There are no instructions for
+     Also note that the division and modulo operations are unsigned. Thus, for
+     <tt>BPF_ALU</tt>, 'imm' is first interpreted as an unsigned 32-bit value, whereas
+     for <tt>BPF_ALU64</tt>, 'imm' is first sign extended to 64 bits and the result
+     interpreted as an unsigned 64-bit value. There are no instructions for
      signed division or modulo.
     </t>
     <section anchor="byte-swap-instructions" title="Byte swap instructions">

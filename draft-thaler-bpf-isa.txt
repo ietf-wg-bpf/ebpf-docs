@@ -3,9 +3,9 @@
 
 
 Network Working Group                                     D. Thaler, Ed.
-Internet-Draft                                           24 January 2023
+Internet-Draft                                           25 January 2023
 Intended status: Standards Track                                        
-Expires: 28 July 2023
+Expires: 29 July 2023
 
 
                 eBPF Instruction Set Specification, v1.0
@@ -34,7 +34,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 July 2023.
+   This Internet-Draft will expire on 29 July 2023.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Thaler                    Expires 28 July 2023                  [Page 1]
+Thaler                    Expires 29 July 2023                  [Page 1]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Thaler                    Expires 28 July 2023                  [Page 2]
+Thaler                    Expires 29 July 2023                  [Page 2]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -165,7 +165,7 @@ Internet-Draft                  eBPF ISA                    January 2023
 
 
 
-Thaler                    Expires 28 July 2023                  [Page 3]
+Thaler                    Expires 29 July 2023                  [Page 3]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -192,7 +192,7 @@ Internet-Draft                  eBPF ISA                    January 2023
 
    Thus the 64-bit immediate value is constructed as follows:
 
-   |  imm64 = imm + (next_imm << 32)
+   |  imm64 = (next_imm << 32) | imm
 
    where 'next_imm' refers to the imm value of the pseudo instruction
    following the basic instruction.
@@ -221,7 +221,7 @@ Internet-Draft                  eBPF ISA                    January 2023
 
 
 
-Thaler                    Expires 28 July 2023                  [Page 4]
+Thaler                    Expires 29 July 2023                  [Page 4]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -277,7 +277,7 @@ Internet-Draft                  eBPF ISA                    January 2023
 
 
 
-Thaler                    Expires 28 July 2023                  [Page 5]
+Thaler                    Expires 29 July 2023                  [Page 5]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -333,7 +333,7 @@ Internet-Draft                  eBPF ISA                    January 2023
 
 
 
-Thaler                    Expires 28 July 2023                  [Page 6]
+Thaler                    Expires 29 July 2023                  [Page 6]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -373,13 +373,13 @@ Internet-Draft                  eBPF ISA                    January 2023
 
                                   Table 6
 
-   where 'src' is the source operand value.
-
    Underflow and overflow are allowed during arithmetic operations,
    meaning the 64-bit or 32-bit value will wrap.  If eBPF program
    execution would result in division by zero, the destination register
    is instead set to zero.  If execution would result in modulo by zero,
-   the destination register is instead left unchanged.
+   for BPF_ALU64 the value of the destination register is unchanged
+   whereas for BPF_ALU the upper 32 bits of the destination register are
+   zeroed.
 
    Examples:
 
@@ -389,12 +389,12 @@ Internet-Draft                  eBPF ISA                    January 2023
 
 
 
-Thaler                    Expires 28 July 2023                  [Page 7]
+Thaler                    Expires 29 July 2023                  [Page 7]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
 
-   where '(u32)' indicates truncation to 32 bits.
+   where '(u32)' indicates that the upper 32 bits are zeroed.
 
    BPF_ADD | BPF_X | BPF_ALU64 (0x0f) means:
 
@@ -402,16 +402,17 @@ Internet-Draft                  eBPF ISA                    January 2023
 
    BPF_XOR | BPF_K | BPF_ALU (0xa4) means:
 
-   |  src = (u32) src ^ (u32) imm
+   |  dst = (u32) dst ^ (u32) imm32
 
    BPF_XOR | BPF_K | BPF_ALU64 (0xa7) means:
 
-   |  src = src ^ imm
+   |  dst = dst ^ imm32
 
-   Also note that the division and modulo operations are unsigned, where
-   'imm' is first sign extended to 64 bits and then converted to an
-   unsigned 64-bit value.  There are no instructions for signed division
-   or modulo.
+   Also note that the division and modulo operations are unsigned.
+   Thus, for BPF_ALU, 'imm' is first interpreted as an unsigned 32-bit
+   value, whereas for BPF_ALU64, 'imm' is first sign extended to 64 bits
+   and the result interpreted as an unsigned 64-bit value.  There are no
+   instructions for signed division or modulo.
 
 4.1.1.  Byte swap instructions
 
@@ -444,8 +445,7 @@ Internet-Draft                  eBPF ISA                    January 2023
 
 
 
-
-Thaler                    Expires 28 July 2023                  [Page 8]
+Thaler                    Expires 29 July 2023                  [Page 8]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -501,7 +501,7 @@ Internet-Draft                  eBPF ISA                    January 2023
 
 
 
-Thaler                    Expires 28 July 2023                  [Page 9]
+Thaler                    Expires 29 July 2023                  [Page 9]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -557,7 +557,7 @@ Internet-Draft                  eBPF ISA                    January 2023
 
 
 
-Thaler                    Expires 28 July 2023                 [Page 10]
+Thaler                    Expires 29 July 2023                 [Page 10]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -613,7 +613,7 @@ Internet-Draft                  eBPF ISA                    January 2023
 
 
 
-Thaler                    Expires 28 July 2023                 [Page 11]
+Thaler                    Expires 29 July 2023                 [Page 11]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -669,7 +669,7 @@ Internet-Draft                  eBPF ISA                    January 2023
 
 
 
-Thaler                    Expires 28 July 2023                 [Page 12]
+Thaler                    Expires 29 July 2023                 [Page 12]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -725,7 +725,7 @@ Internet-Draft                  eBPF ISA                    January 2023
 
 
 
-Thaler                    Expires 28 July 2023                 [Page 13]
+Thaler                    Expires 29 July 2023                 [Page 13]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -781,7 +781,7 @@ Internet-Draft                  eBPF ISA                    January 2023
 
 
 
-Thaler                    Expires 28 July 2023                 [Page 14]
+Thaler                    Expires 29 July 2023                 [Page 14]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -837,7 +837,7 @@ Internet-Draft                  eBPF ISA                    January 2023
 
 
 
-Thaler                    Expires 28 July 2023                 [Page 15]
+Thaler                    Expires 29 July 2023                 [Page 15]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -893,7 +893,7 @@ Internet-Draft                  eBPF ISA                    January 2023
 
 
 
-Thaler                    Expires 28 July 2023                 [Page 16]
+Thaler                    Expires 29 July 2023                 [Page 16]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -949,7 +949,7 @@ Internet-Draft                  eBPF ISA                    January 2023
 
 
 
-Thaler                    Expires 28 July 2023                 [Page 17]
+Thaler                    Expires 29 July 2023                 [Page 17]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -1005,7 +1005,7 @@ Internet-Draft                  eBPF ISA                    January 2023
 
 
 
-Thaler                    Expires 28 July 2023                 [Page 18]
+Thaler                    Expires 29 July 2023                 [Page 18]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -1061,7 +1061,7 @@ Internet-Draft                  eBPF ISA                    January 2023
 
 
 
-Thaler                    Expires 28 July 2023                 [Page 19]
+Thaler                    Expires 29 July 2023                 [Page 19]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -1117,7 +1117,7 @@ Internet-Draft                  eBPF ISA                    January 2023
 
 
 
-Thaler                    Expires 28 July 2023                 [Page 20]
+Thaler                    Expires 29 July 2023                 [Page 20]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -1173,7 +1173,7 @@ Internet-Draft                  eBPF ISA                    January 2023
 
 
 
-Thaler                    Expires 28 July 2023                 [Page 21]
+Thaler                    Expires 29 July 2023                 [Page 21]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -1229,7 +1229,7 @@ Internet-Draft                  eBPF ISA                    January 2023
 
 
 
-Thaler                    Expires 28 July 2023                 [Page 22]
+Thaler                    Expires 29 July 2023                 [Page 22]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -1285,7 +1285,7 @@ Internet-Draft                  eBPF ISA                    January 2023
 
 
 
-Thaler                    Expires 28 July 2023                 [Page 23]
+Thaler                    Expires 29 July 2023                 [Page 23]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -1341,7 +1341,7 @@ Internet-Draft                  eBPF ISA                    January 2023
 
 
 
-Thaler                    Expires 28 July 2023                 [Page 24]
+Thaler                    Expires 29 July 2023                 [Page 24]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -1397,7 +1397,7 @@ Internet-Draft                  eBPF ISA                    January 2023
 
 
 
-Thaler                    Expires 28 July 2023                 [Page 25]
+Thaler                    Expires 29 July 2023                 [Page 25]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -1453,7 +1453,7 @@ Internet-Draft                  eBPF ISA                    January 2023
 
 
 
-Thaler                    Expires 28 July 2023                 [Page 26]
+Thaler                    Expires 29 July 2023                 [Page 26]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -1509,7 +1509,7 @@ Internet-Draft                  eBPF ISA                    January 2023
 
 
 
-Thaler                    Expires 28 July 2023                 [Page 27]
+Thaler                    Expires 29 July 2023                 [Page 27]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -1565,7 +1565,7 @@ Internet-Draft                  eBPF ISA                    January 2023
 
 
 
-Thaler                    Expires 28 July 2023                 [Page 28]
+Thaler                    Expires 29 July 2023                 [Page 28]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -1621,7 +1621,7 @@ Internet-Draft                  eBPF ISA                    January 2023
 
 
 
-Thaler                    Expires 28 July 2023                 [Page 29]
+Thaler                    Expires 29 July 2023                 [Page 29]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -1677,7 +1677,7 @@ Internet-Draft                  eBPF ISA                    January 2023
 
 
 
-Thaler                    Expires 28 July 2023                 [Page 30]
+Thaler                    Expires 29 July 2023                 [Page 30]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -1733,7 +1733,7 @@ Internet-Draft                  eBPF ISA                    January 2023
 
 
 
-Thaler                    Expires 28 July 2023                 [Page 31]
+Thaler                    Expires 29 July 2023                 [Page 31]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -1789,7 +1789,7 @@ Internet-Draft                  eBPF ISA                    January 2023
 
 
 
-Thaler                    Expires 28 July 2023                 [Page 32]
+Thaler                    Expires 29 July 2023                 [Page 32]
 
 Internet-Draft                  eBPF ISA                    January 2023
 
@@ -1845,4 +1845,4 @@ Author's Address
 
 
 
-Thaler                    Expires 28 July 2023                 [Page 33]
+Thaler                    Expires 29 July 2023                 [Page 33]
