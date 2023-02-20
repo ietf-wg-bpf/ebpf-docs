@@ -513,6 +513,12 @@ opcode  src  imm   description                                          referenc
 0x16    0x0  any   if (u32)dst == imm goto +offset                      `Jump instructions`_
 0x17    0x0  any   dst -= imm                                           `Arithmetic instructions`_
 0x18    0x0  any   dst = imm64                                          `64-bit immediate instructions`_
+0x18    0x1  any   dst = map_by_fd(imm)                                 `64-bit immediate instructions`_
+0x18    0x2  any   dst = mva(map_by_fd(imm)) + next_imm                 `64-bit immediate instructions`_
+0x18    0x3  any   dst = variable_addr(imm)                             `64-bit immediate instructions`_
+0x18    0x4  any   dst = code_addr(imm)                                 `64-bit immediate instructions`_
+0x18    0x5  any   dst = map_by_idx(imm)                                `64-bit immediate instructions`_
+0x18    0x6  any   dst = mva(map_by_idx(imm)) + next_imm                `64-bit immediate instructions`_
 0x1c    any  0x00  dst = (u32)((u32)dst - (u32)src)                     `Arithmetic instructions`_
 0x1d    any  0x00  if dst == src goto +offset                           `Jump instructions`_
 0x1e    any  0x00  if (u32)dst == (u32)src goto +offset                 `Jump instructions`_
