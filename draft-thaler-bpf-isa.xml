@@ -145,39 +145,6 @@ eBPF Instruction Set Specification, v1.0
     **opcode**
     operation to perform
    </t>
-   <dl>
-    <dt>
-     imm
-    </dt>
-    <dd>
-     signed integer immediate value
-    </dd>
-    <dt>
-     offset
-    </dt>
-    <dd>
-     signed integer offset used with pointer arithmetic
-    </dd>
-    <dt>
-     src
-    </dt>
-    <dd>
-     the source register number (0-10), except where otherwise specified
-     (<xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref> reuse this field for other purposes)
-    </dd>
-    <dt>
-     dst
-    </dt>
-    <dd>
-     destination register number (0-10)
-    </dd>
-    <dt>
-     opcode
-    </dt>
-    <dd>
-     operation to perform
-    </dd>
-   </dl>
    <t>
     Note that most instructions do not use all of the fields.
     Unused fields must be set to zero.

@@ -172,18 +172,6 @@ Internet-Draft                  eBPF ISA                   February 2023
 
    **opcode** operation to perform
 
-   imm  signed integer immediate value
-
-   offset  signed integer offset used with pointer arithmetic
-
-   src  the source register number (0-10), except where otherwise
-      specified (64-bit immediate instructions (Section 5.3) reuse this
-      field for other purposes)
-
-   dst  destination register number (0-10)
-
-   opcode  operation to perform
-
    Note that most instructions do not use all of the fields.  Unused
    fields must be set to zero.
 
@@ -214,6 +202,18 @@ Internet-Draft                  eBPF ISA                   February 2023
    The encoding of the 'opcode' field varies and can be determined from
    the three least significant bits (LSB) of the 'opcode' field which
    holds the "instruction class", as follows:
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

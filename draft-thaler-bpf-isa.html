@@ -1482,53 +1482,15 @@ li > p:last-of-type:only-child {
 <p id="section-3-10">
     **opcode**
     operation to perform<a href="#section-3-10" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlParallel" id="section-3-11">
-        <dt id="section-3-11.1">
-     imm
-        </dt>
-        <dd style="margin-left: 1.5em" id="section-3-11.2">
-     signed integer immediate value<a href="#section-3-11.2" class="pilcrow">¶</a>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-3-11.3">
-     offset
-        </dt>
-        <dd style="margin-left: 1.5em" id="section-3-11.4">
-     signed integer offset used with pointer arithmetic<a href="#section-3-11.4" class="pilcrow">¶</a>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-3-11.5">
-     src
-        </dt>
-        <dd style="margin-left: 1.5em" id="section-3-11.6">
-     the source register number (0-10), except where otherwise specified
-     (<span><a href="#_4-bit-immediate-instructions" class="internal xref">64-bit immediate instructions</a> (<a href="#_4-bit-immediate-instructions" class="auto internal xref">Section 5.3</a>)</span> reuse this field for other purposes)<a href="#section-3-11.6" class="pilcrow">¶</a>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-3-11.7">
-     dst
-        </dt>
-        <dd style="margin-left: 1.5em" id="section-3-11.8">
-     destination register number (0-10)<a href="#section-3-11.8" class="pilcrow">¶</a>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-3-11.9">
-     opcode
-        </dt>
-        <dd style="margin-left: 1.5em" id="section-3-11.10">
-     operation to perform<a href="#section-3-11.10" class="pilcrow">¶</a>
-</dd>
-      <dd class="break"></dd>
-</dl>
-<p id="section-3-12">
+<p id="section-3-11">
     Note that most instructions do not use all of the fields.
-    Unused fields must be set to zero.<a href="#section-3-12" class="pilcrow">¶</a></p>
-<p id="section-3-13">
+    Unused fields must be set to zero.<a href="#section-3-11" class="pilcrow">¶</a></p>
+<p id="section-3-12">
     As discussed below in <span><a href="#_4-bit-immediate-instructions" class="internal xref">64-bit immediate instructions</a> (<a href="#_4-bit-immediate-instructions" class="auto internal xref">Section 5.3</a>)</span>, a 64-bit immediate
     instruction uses a 64-bit immediate value that is constructed as follows.
     The 64 bits following the basic instruction contain a pseudo instruction
     using the same format but with opcode, dst_reg, src_reg, and offset all set to zero,
-    and imm containing the high 32 bits of the immediate value.<a href="#section-3-13" class="pilcrow">¶</a></p>
+    and imm containing the high 32 bits of the immediate value.<a href="#section-3-12" class="pilcrow">¶</a></p>
 <table class="center" id="table-2">
         <caption><a href="#table-2" class="selfRef">Table 2</a></caption>
 <thead>
@@ -1544,13 +1506,13 @@ li > p:last-of-type:only-child {
           </tr>
         </tbody>
       </table>
-<p id="section-3-15">
-    Thus the 64-bit immediate value is constructed as follows:<a href="#section-3-15" class="pilcrow">¶</a></p>
-<blockquote id="section-3-16">    imm64 = (next_imm &lt;&lt; 32) | imm<a href="#section-3-16" class="pilcrow">¶</a>
+<p id="section-3-14">
+    Thus the 64-bit immediate value is constructed as follows:<a href="#section-3-14" class="pilcrow">¶</a></p>
+<blockquote id="section-3-15">    imm64 = (next_imm &lt;&lt; 32) | imm<a href="#section-3-15" class="pilcrow">¶</a>
 </blockquote>
-<p id="section-3-17">
+<p id="section-3-16">
     where 'next_imm' refers to the imm value of the pseudo instruction
-    following the basic instruction.<a href="#section-3-17" class="pilcrow">¶</a></p>
+    following the basic instruction.<a href="#section-3-16" class="pilcrow">¶</a></p>
 <div id="instruction-classes">
 <section id="section-3.1">
         <h3 id="name-instruction-classes">
