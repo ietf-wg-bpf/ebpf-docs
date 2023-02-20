@@ -118,12 +118,33 @@ eBPF Instruction Set Specification, v1.0
      <tr>
       <td>imm</td>
       <td>offset</td>
-      <td>src</td>
-      <td>dst</td>
+      <td>src_reg</td>
+      <td>dst_reg</td>
       <td>opcode</td>
      </tr>
     </tbody>
    </table>
+   <t>
+    **imm**
+    signed integer immediate value
+   </t>
+   <t>
+    **offset**
+    signed integer offset used with pointer arithmetic
+   </t>
+   <t>
+    **src_reg**
+    the source register number (0-10), except where otherwise specified
+    (<xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref> reuse this field for other purposes)
+   </t>
+   <t>
+    **dst_reg**
+    destination register number (0-10)
+   </t>
+   <t>
+    **opcode**
+    operation to perform
+   </t>
    <dl>
     <dt>
      imm
@@ -165,7 +186,7 @@ eBPF Instruction Set Specification, v1.0
     As discussed below in <xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref>, a 64-bit immediate
     instruction uses a 64-bit immediate value that is constructed as follows.
     The 64 bits following the basic instruction contain a pseudo instruction
-    using the same format but with opcode, dst, src, and offset all set to zero,
+    using the same format but with opcode, dst_reg, src_reg, and offset all set to zero,
     and imm containing the high 32 bits of the immediate value.
    </t>
    <table><thead><tr>
@@ -187,10 +208,6 @@ eBPF Instruction Set Specification, v1.0
    <t>
     where 'next_imm' refers to the imm value of the pseudo instruction
     following the basic instruction.
-   </t>
-   <t>
-    In the remainder of this document 'src' and 'dst' refer to the values of the source
-    and destination registers, respectively, rather than the register number.
    </t>
    <section anchor="instruction-classes" title="Instruction classes">
     <t>
@@ -275,20 +292,14 @@ eBPF Instruction Set Specification, v1.0
      </tr>
     </tbody>
    </table>
-   <dl>
-    <dt>
-     code
-    </dt>
-    <dd>
-     the operation code, whose meaning varies by instruction class
-    </dd>
-    <dt>
-     source
-    </dt>
-    <dd>
-     the source operand location, which unless otherwise specified is one of:
-    </dd>
-   </dl>
+   <t>
+    **code**
+    the operation code, whose meaning varies by instruction class
+   </t>
+   <t>
+    **source**
+    the source operand location, which unless otherwise specified is one of:
+   </t>
    <table><thead><tr>
      <th>source</th>
      <th>value</th>
@@ -303,26 +314,21 @@ eBPF Instruction Set Specification, v1.0
      <tr>
       <td>BPF_X</td>
       <td>0x08</td>
-      <td>use 'src' register value as source operand</td>
+      <td>use 'src_reg' register value as source operand</td>
      </tr>
     </tbody>
    </table>
-   <dl>
-    <dt>
-     instruction class
-    </dt>
-    <dd>
-     the instruction class (see <xref target="instruction-classes">Instruction classes</xref>)
-    </dd>
-   </dl>
+   <t>
+    **instruction class**
+    the instruction class (see <xref target="instruction-classes">Instruction classes</xref>)
+   </t>
    <section anchor="arithmetic-instructions" title="Arithmetic instructions">
     <t>
      Instruction class <tt>BPF_ALU</tt> uses 32-bit wide operands (zeroing the upper 32 bits
      of the destination register) while <tt>BPF_ALU64</tt> uses 64-bit wide operands for
      otherwise identical operations.
-    </t>
-    <t>
-     The 4-bit 'code' field encodes the operation as follows:
+     The 'code' field encodes the operation as below, where 'src' and 'dst' refer
+     to the values of the source and destination registers, respectively.
     </t>
     <table><thead><tr>
       <th>code</th>
@@ -835,7 +841,7 @@ eBPF Instruction Set Specification, v1.0
     <t>
      <tt>BPF_MEM | &lt;size&gt; | BPF_STX</tt> means:
     </t>
-    <blockquote>     *(size *) (dst + offset) = src_reg
+    <blockquote>     *(size *) (dst + offset) = src
     </blockquote>
     <t>
      <tt>BPF_MEM | &lt;size&gt; | BPF_ST</tt> means:
