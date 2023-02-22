@@ -14,7 +14,8 @@ Documentation conventions
 =========================
 
 For brevity, this document uses the type notion "u64", "u32", etc.
-to mean an unsigned integer whose width is the specified number of bits.
+to mean an unsigned integer whose width is the specified number of bits,
+and "s32", etc. to mean a signed integer of the specified number of bits.
 
 Registers and calling convention
 ================================
@@ -292,6 +293,14 @@ BPF_JLE   0xb    any  PC += offset if dst <= src  unsigned
 BPF_JSLT  0xc    any  PC += offset if dst < src   signed
 BPF_JSLE  0xd    any  PC += offset if dst <= src  signed
 ========  =====  ===  ==========================  ========================
+
+Example:
+
+``BPF_JSGE | BPF_X | BPF_JMP32`` (0x7e) means::
+
+  if (s32)dst s>= (s32)src goto +offset
+
+where 's>=' indicates a signed '>=' comparison.
 
 Helper functions
 ~~~~~~~~~~~~~~~~
