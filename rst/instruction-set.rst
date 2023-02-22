@@ -308,6 +308,14 @@ Example:
 
 where 's>=' indicates a signed '>=' comparison.
 
+Example:
+
+``BPF_JSGE | BPF_X | BPF_JMP32`` (0x7e) means::
+
+  if (s32)dst s>= (s32)src goto +offset
+
+where 's>=' indicates a signed '>=' comparison.
+
 Helper functions
 ~~~~~~~~~~~~~~~~
 
