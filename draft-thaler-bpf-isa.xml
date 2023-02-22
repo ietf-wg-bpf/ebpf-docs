@@ -677,6 +677,17 @@ eBPF Instruction Set Specification, v1.0
       </tr>
      </tbody>
     </table>
+    <t>
+     Example:
+    </t>
+    <t>
+     <tt>BPF_JSGE | BPF_X | BPF_JMP32</tt> (0x7e) means:
+    </t>
+    <blockquote>     if (s32)dst s&gt;= (s32)src goto +offset
+    </blockquote>
+    <t>
+     where 's&gt;=' indicates a signed '&gt;=' comparison.
+    </t>
     <section anchor="helper-functions" title="Helper functions">
      <t>
       Helper functions are a concept whereby BPF programs can call into a

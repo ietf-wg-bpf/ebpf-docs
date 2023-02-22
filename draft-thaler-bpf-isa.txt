@@ -71,7 +71,7 @@ Table of Contents
        4.2.1.  Helper functions  . . . . . . . . . . . . . . . . . .  11
        4.2.2.  Runtime functions . . . . . . . . . . . . . . . . . .  11
        4.2.3.  eBPF functions  . . . . . . . . . . . . . . . . . . .  11
-   5.  Load and store instructions . . . . . . . . . . . . . . . . .  11
+   5.  Load and store instructions . . . . . . . . . . . . . . . . .  12
      5.1.  Regular load and store operations . . . . . . . . . . . .  13
      5.2.  Atomic operations . . . . . . . . . . . . . . . . . . . .  13
      5.3.  64-bit immediate instructions . . . . . . . . . . . . . .  15
@@ -566,6 +566,14 @@ Internet-Draft                  eBPF ISA                   February 2023
 
                                  Table 9
 
+   Example:
+
+   BPF_JSGE | BPF_X | BPF_JMP32 (0x7e) means:
+
+   |  if (s32)dst s>= (s32)src goto +offset
+
+   where 's>=' indicates a signed '>=' comparison.
+
 4.2.1.  Helper functions
 
    Helper functions are a concept whereby BPF programs can call into a
@@ -601,14 +609,6 @@ Internet-Draft                  eBPF ISA                   February 2023
    similar to BPF_JA.  A BPF_EXIT within the eBPF function will return
    to the caller.
 
-5.  Load and store instructions
-
-   For load and store instructions (BPF_LD, BPF_LDX, BPF_ST, and
-   BPF_STX), the 8-bit 'opcode' field is divided as:
-
-
-
-
 
 
 
@@ -617,6 +617,11 @@ Thaler                   Expires 26 August 2023                [Page 11]
 
 Internet-Draft                  eBPF ISA                   February 2023
 
+
+5.  Load and store instructions
+
+   For load and store instructions (BPF_LD, BPF_LDX, BPF_ST, and
+   BPF_STX), the 8-bit 'opcode' field is divided as:
 
                +==============+========+===================+
                | 3 bits (MSB) | 2 bits | 3 bits (LSB)      |
@@ -655,11 +660,6 @@ Internet-Draft                  eBPF ISA                   February 2023
                                   Table 11
 
    size  one of:
-
-
-
-
-
 
 
 
