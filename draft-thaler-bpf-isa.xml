@@ -22,7 +22,7 @@
   <title abbrev="eBPF ISA">
 eBPF Instruction Set Specification, v1.0
   </title>
-  <author fullname="Dave Thaler" initials="D." surname="Thaler" role="editor">
+  <author initials="D." surname="Thaler" fullname="Dave Thaler" role="editor">
    <address>
     <postal>
     <city>Redmond</city>
@@ -124,27 +124,39 @@ eBPF Instruction Set Specification, v1.0
      </tr>
     </tbody>
    </table>
-   <t>
-    **imm**
-    signed integer immediate value
-   </t>
-   <t>
-    **offset**
-    signed integer offset used with pointer arithmetic
-   </t>
-   <t>
-    **src_reg**
-    the source register number (0-10), except where otherwise specified
-    (<xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref> reuse this field for other purposes)
-   </t>
-   <t>
-    **dst_reg**
-    destination register number (0-10)
-   </t>
-   <t>
-    **opcode**
-    operation to perform
-   </t>
+   <dl>
+    <dt>
+     <strong>imm</strong>
+    </dt>
+    <dd>
+     signed integer immediate value
+    </dd>
+    <dt>
+     <strong>offset</strong>
+    </dt>
+    <dd>
+     signed integer offset used with pointer arithmetic
+    </dd>
+    <dt>
+     <strong>src_reg</strong>
+    </dt>
+    <dd>
+     the source register number (0-10), except where otherwise specified
+     (<xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref> reuse this field for other purposes)
+    </dd>
+    <dt>
+     <strong>dst_reg</strong>
+    </dt>
+    <dd>
+     destination register number (0-10)
+    </dd>
+    <dt>
+     <strong>opcode</strong>
+    </dt>
+    <dd>
+     operation to perform
+    </dd>
+   </dl>
    <t>
     Note that most instructions do not use all of the fields.
     Unused fields must be set to zero.
@@ -259,14 +271,20 @@ eBPF Instruction Set Specification, v1.0
      </tr>
     </tbody>
    </table>
-   <t>
-    **code**
-    the operation code, whose meaning varies by instruction class
-   </t>
-   <t>
-    **source**
-    the source operand location, which unless otherwise specified is one of:
-   </t>
+   <dl>
+    <dt>
+     <strong>code</strong>
+    </dt>
+    <dd>
+     the operation code, whose meaning varies by instruction class
+    </dd>
+    <dt>
+     <strong>source</strong>
+    </dt>
+    <dd>
+     the source operand location, which unless otherwise specified is one of:
+    </dd>
+   </dl>
    <table><thead><tr>
      <th>source</th>
      <th>value</th>
@@ -285,10 +303,14 @@ eBPF Instruction Set Specification, v1.0
      </tr>
     </tbody>
    </table>
-   <t>
-    **instruction class**
-    the instruction class (see <xref target="instruction-classes">Instruction classes</xref>)
-   </t>
+   <dl>
+    <dt>
+     <strong>instruction class</strong>
+    </dt>
+    <dd>
+     the instruction class (see <xref target="instruction-classes">Instruction classes</xref>)
+    </dd>
+   </dl>
    <section anchor="arithmetic-instructions" title="Arithmetic instructions">
     <t>
      Instruction class <tt>BPF_ALU</tt> uses 32-bit wide operands (zeroing the upper 32 bits
@@ -381,7 +403,11 @@ eBPF Instruction Set Specification, v1.0
      result in division by zero, the destination register is instead set to zero.
      If execution would result in modulo by zero, for <tt>BPF_ALU64</tt> the value of
      the destination register is unchanged whereas for <tt>BPF_ALU</tt> the upper
-     32 bits of the destination register are zeroed.
+     <ol>
+      <li>
+       bits of the destination register are zeroed.
+      </li>
+     </ol>
     </t>
     <t>
      Examples:
@@ -808,17 +834,17 @@ eBPF Instruction Set Specification, v1.0
     <t>
      <tt>BPF_MEM | &lt;size&gt; | BPF_STX</tt> means:
     </t>
-    <blockquote>     *(size *) (dst + offset) = src
+    <blockquote>     <em>(size</em>) (dst + offset) = src
     </blockquote>
     <t>
      <tt>BPF_MEM | &lt;size&gt; | BPF_ST</tt> means:
     </t>
-    <blockquote>     *(size *) (dst + offset) = imm32
+    <blockquote>     <em>(size</em>) (dst + offset) = imm32
     </blockquote>
     <t>
      <tt>BPF_MEM | &lt;size&gt; | BPF_LDX</tt> means:
     </t>
-    <blockquote>     dst = *(size *) (src + offset)
+    <blockquote>     dst = <em>(size</em>) (src + offset)
     </blockquote>
     <t>
      where size is one of: <tt>BPF_B</tt>, <tt>BPF_H</tt>, <tt>BPF_W</tt>, or <tt>BPF_DW</tt>.
@@ -882,12 +908,12 @@ eBPF Instruction Set Specification, v1.0
     <t>
      <tt>BPF_ATOMIC | BPF_W  | BPF_STX</tt> (0xc3) with 'imm' = BPF_ADD means:
     </t>
-    <blockquote>     *(u32 *)(dst + offset) += src
+    <blockquote>     <em>(u32</em>)(dst + offset) += src
     </blockquote>
     <t>
      <tt>BPF_ATOMIC | BPF_DW | BPF_STX</tt> (0xdb) with 'imm' = BPF ADD means:
     </t>
-    <blockquote>     *(u64 *)(dst + offset) += src
+    <blockquote>     <em>(u64</em>)(dst + offset) += src
     </blockquote>
     <t>
      In addition to the simple atomic operations above, there also is a modifier and
@@ -1910,14 +1936,14 @@ eBPF Instruction Set Specification, v1.0
       <td></td>
       <td></td>
       <td></td>
-      <td>*(u32 *)(dst + offset) += src</td>
+      <td><em>(u32</em>)(dst + offset) += src</td>
       <td></td>
      </tr>
      <tr>
       <td></td>
       <td></td>
       <td></td>
-      <td>src = *(u32 *)(dst + offset)</td>
+      <td>src = <em>(u32</em>)(dst + offset)</td>
       <td></td>
      </tr>
      <tr>
@@ -1945,14 +1971,14 @@ eBPF Instruction Set Specification, v1.0
       <td></td>
       <td></td>
       <td></td>
-      <td>*(u32 *)(dst + offset) |= src</td>
+      <td><em>(u32</em>)(dst + offset) |= src</td>
       <td></td>
      </tr>
      <tr>
       <td></td>
       <td></td>
       <td></td>
-      <td>src = *(u32 *)(dst + offset)</td>
+      <td>src = <em>(u32</em>)(dst + offset)</td>
       <td></td>
      </tr>
      <tr>
@@ -1980,14 +2006,14 @@ eBPF Instruction Set Specification, v1.0
       <td></td>
       <td></td>
       <td></td>
-      <td>*(u32 *)(dst + offset) &amp;= src</td>
+      <td><em>(u32</em>)(dst + offset) &amp;= src</td>
       <td></td>
      </tr>
      <tr>
       <td></td>
       <td></td>
       <td></td>
-      <td>src = *(u32 *)(dst + offset)</td>
+      <td>src = <em>(u32</em>)(dst + offset)</td>
       <td></td>
      </tr>
      <tr>
@@ -2015,14 +2041,14 @@ eBPF Instruction Set Specification, v1.0
       <td></td>
       <td></td>
       <td></td>
-      <td>*(u32 *)(dst + offset) ^= src</td>
+      <td><em>(u32</em>)(dst + offset) ^= src</td>
       <td></td>
      </tr>
      <tr>
       <td></td>
       <td></td>
       <td></td>
-      <td>src = *(u32 *)(dst + offset)</td>
+      <td>src = <em>(u32</em>)(dst + offset)</td>
       <td></td>
      </tr>
      <tr>
@@ -2043,14 +2069,14 @@ eBPF Instruction Set Specification, v1.0
       <td></td>
       <td></td>
       <td></td>
-      <td>temp = *(u32 *)(dst + offset)</td>
+      <td>temp = <em>(u32</em>)(dst + offset)</td>
       <td></td>
      </tr>
      <tr>
       <td></td>
       <td></td>
       <td></td>
-      <td>*(u32 *)(dst + offset) = src</td>
+      <td><em>(u32</em>)(dst + offset) = src</td>
       <td></td>
      </tr>
      <tr>
@@ -2078,7 +2104,7 @@ eBPF Instruction Set Specification, v1.0
       <td></td>
       <td></td>
       <td></td>
-      <td>temp = *(u32 *)(dst + offset)</td>
+      <td>temp = <em>(u32</em>)(dst + offset)</td>
       <td></td>
      </tr>
      <tr>
@@ -2218,14 +2244,14 @@ eBPF Instruction Set Specification, v1.0
       <td></td>
       <td></td>
       <td></td>
-      <td>*(u64 *)(dst + offset) += src</td>
+      <td><em>(u64</em>)(dst + offset) += src</td>
       <td></td>
      </tr>
      <tr>
       <td></td>
       <td></td>
       <td></td>
-      <td>src = *(u64 *)(dst + offset)</td>
+      <td>src = <em>(u64</em>)(dst + offset)</td>
       <td></td>
      </tr>
      <tr>
@@ -2253,14 +2279,14 @@ eBPF Instruction Set Specification, v1.0
       <td></td>
       <td></td>
       <td></td>
-      <td>*(u64 *)(dst + offset) |= src</td>
+      <td><em>(u64</em>)(dst + offset) |= src</td>
       <td></td>
      </tr>
      <tr>
       <td></td>
       <td></td>
       <td></td>
-      <td>lock src = *(u64 *)(dst + offset)</td>
+      <td>lock src = <em>(u64</em>)(dst + offset)</td>
       <td></td>
      </tr>
      <tr>
@@ -2288,14 +2314,14 @@ eBPF Instruction Set Specification, v1.0
       <td></td>
       <td></td>
       <td></td>
-      <td>*(u64 *)(dst + offset) &amp;= src</td>
+      <td><em>(u64</em>)(dst + offset) &amp;= src</td>
       <td></td>
      </tr>
      <tr>
       <td></td>
       <td></td>
       <td></td>
-      <td>src = *(u64 *)(dst + offset)</td>
+      <td>src = <em>(u64</em>)(dst + offset)</td>
       <td></td>
      </tr>
      <tr>
@@ -2323,14 +2349,14 @@ eBPF Instruction Set Specification, v1.0
       <td></td>
       <td></td>
       <td></td>
-      <td>*(u64 *)(dst + offset) ^= src</td>
+      <td><em>(u64</em>)(dst + offset) ^= src</td>
       <td></td>
      </tr>
      <tr>
       <td></td>
       <td></td>
       <td></td>
-      <td>src = *(u64 *)(dst + offset)</td>
+      <td>src = <em>(u64</em>)(dst + offset)</td>
       <td></td>
      </tr>
      <tr>
@@ -2351,14 +2377,14 @@ eBPF Instruction Set Specification, v1.0
       <td></td>
       <td></td>
       <td></td>
-      <td>temp = *(u64 *)(dst + offset)</td>
+      <td>temp = <em>(u64</em>)(dst + offset)</td>
       <td></td>
      </tr>
      <tr>
       <td></td>
       <td></td>
       <td></td>
-      <td>*(u64 *)(dst + offset) = src</td>
+      <td><em>(u64</em>)(dst + offset) = src</td>
       <td></td>
      </tr>
      <tr>
@@ -2386,7 +2412,7 @@ eBPF Instruction Set Specification, v1.0
       <td></td>
       <td></td>
       <td></td>
-      <td>temp = *(u64 *)(dst + offset)</td>
+      <td>temp = <em>(u64</em>)(dst + offset)</td>
       <td></td>
      </tr>
      <tr>
