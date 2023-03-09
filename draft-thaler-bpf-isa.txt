@@ -71,7 +71,7 @@ Table of Contents
        4.2.1.  Helper functions  . . . . . . . . . . . . . . . . . .  11
        4.2.2.  Runtime functions . . . . . . . . . . . . . . . . . .  11
        4.2.3.  eBPF functions  . . . . . . . . . . . . . . . . . . .  11
-   5.  Load and store instructions . . . . . . . . . . . . . . . . .  12
+   5.  Load and store instructions . . . . . . . . . . . . . . . . .  11
      5.1.  Regular load and store operations . . . . . . . . . . . .  13
      5.2.  Atomic operations . . . . . . . . . . . . . . . . . . . .  13
      5.3.  64-bit immediate instructions . . . . . . . . . . . . . .  15
@@ -581,17 +581,6 @@ Internet-Draft                  eBPF ISA                      March 2023
    function is identified by an integer used in a BPF_CALL instruction.
    The available helper functions may differ for each eBPF program type.
 
-   Conceptually, each helper function is implemented with a commonly
-   shared function signature defined as:
-
-   |  u64 function(u64 r1, u64 r2, u64 r3, u64 r4, u64 r5)
-
-   In actuality, each helper function is defined as taking between 0 and
-   5 arguments, with the remaining registers being ignored.  The
-   definition of a helper function is responsible for specifying the
-   type (e.g., integer, pointer, etc.) of the value returned, the number
-   of arguments, and the type of each argument.
-
    Note that BPF_CALL | BPF_X | BPF_JMP (0x8d), where the helper
    function integer would be read from a specified register, is reserved
    and currently not permitted.
@@ -609,15 +598,6 @@ Internet-Draft                  eBPF ISA                      March 2023
    similar to BPF_JA.  A BPF_EXIT within the eBPF function will return
    to the caller.
 
-
-
-
-
-Thaler                  Expires 10 September 2023              [Page 11]
-
-Internet-Draft                  eBPF ISA                      March 2023
-
-
 5.  Load and store instructions
 
    For load and store instructions (BPF_LD, BPF_LDX, BPF_ST, and
@@ -630,6 +610,13 @@ Internet-Draft                  eBPF ISA                      March 2023
                +--------------+--------+-------------------+
 
                                   Table 8
+
+
+
+Thaler                  Expires 10 September 2023              [Page 11]
+
+Internet-Draft                  eBPF ISA                      March 2023
+
 
    mode  one of:
 
@@ -661,19 +648,6 @@ Internet-Draft                  eBPF ISA                      March 2023
 
    size  one of:
 
-
-
-
-
-
-
-
-
-Thaler                  Expires 10 September 2023              [Page 12]
-
-Internet-Draft                  eBPF ISA                      March 2023
-
-
              +===============+=======+=======================+
              | size modifier | value | description           |
              +===============+=======+=======================+
@@ -690,6 +664,15 @@ Internet-Draft                  eBPF ISA                      March 2023
 
    instruction class  the instruction class (see Instruction classes
       (Section 3.1))
+
+
+
+
+
+Thaler                  Expires 10 September 2023              [Page 12]
+
+Internet-Draft                  eBPF ISA                      March 2023
+
 
 5.1.  Regular load and store operations
 
@@ -723,13 +706,6 @@ Internet-Draft                  eBPF ISA                      March 2023
 
    *  BPF_ATOMIC | BPF_DW | BPF_STX (0xdb) for 64-bit operations
 
-
-
-Thaler                  Expires 10 September 2023              [Page 13]
-
-Internet-Draft                  eBPF ISA                      March 2023
-
-
    Note that 8-bit (BPF_B) and 16-bit (BPF_H) wide atomic operations are
    not supported, nor is BPF_ATOMIC | <size> | BPF_ST.
 
@@ -737,6 +713,22 @@ Internet-Draft                  eBPF ISA                      March 2023
    Simple atomic operation use a subset of the values defined to encode
    arithmetic operations in the 'imm' field to encode the atomic
    operation:
+
+
+
+
+
+
+
+
+
+
+
+
+Thaler                  Expires 10 September 2023              [Page 13]
+
+Internet-Draft                  eBPF ISA                      March 2023
+
 
                      +=========+=======+=============+
                      | imm     | value | description |
@@ -775,6 +767,14 @@ Internet-Draft                  eBPF ISA                      March 2023
 
                                  Table 12
 
+   The BPF_FETCH modifier is optional for simple atomic operations, and
+   always set for the complex atomic operations.  If the BPF_FETCH flag
+   is set, then the operation also overwrites src with the value that
+   was in memory before it was modified.
+
+   The BPF_XCHG operation atomically exchanges src with the value
+   addressed by dst + offset.
+
 
 
 
@@ -785,14 +785,6 @@ Thaler                  Expires 10 September 2023              [Page 14]
 
 Internet-Draft                  eBPF ISA                      March 2023
 
-
-   The BPF_FETCH modifier is optional for simple atomic operations, and
-   always set for the complex atomic operations.  If the BPF_FETCH flag
-   is set, then the operation also overwrites src with the value that
-   was in memory before it was modified.
-
-   The BPF_XCHG operation atomically exchanges src with the value
-   addressed by dst + offset.
 
    The BPF_CMPXCHG operation atomically compares the value addressed by
    dst + offset with R0.  If they match, the value addressed by dst +
@@ -809,6 +801,14 @@ Internet-Draft                  eBPF ISA                      March 2023
 
    The following instructions are defined, and use additional concepts
    defined below:
+
+
+
+
+
+
+
+
 
 
 
