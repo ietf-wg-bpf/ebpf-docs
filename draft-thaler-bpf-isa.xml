@@ -104,26 +104,12 @@ eBPF Instruction Set Specification, v1.0
     </li>
    </ul>
    <t>
-    The basic instruction encoding is as follows, where MSB and LSB mean the most significant
-    bits and least significant bits, respectively:
+    The fields conforming an encoded basic instruction are stored in the
+    following order:
    </t>
-   <table><thead><tr>
-     <th>32 bits (MSB)</th>
-     <th>16 bits</th>
-     <th>4 bits</th>
-     <th>4 bits</th>
-     <th>8 bits (LSB)</th>
-    </tr></thead>
-    <tbody>
-     <tr>
-      <td>imm</td>
-      <td>offset</td>
-      <td>src_reg</td>
-      <td>dst_reg</td>
-      <td>opcode</td>
-     </tr>
-    </tbody>
-   </table>
+   <blockquote>    opcode:8 src_reg:4 dst_reg:4 offset:16 imm:32 // In little-endian BPF.
+    opcode:8 dst_reg:4 src_reg:4 offset:16 imm:32 // In big-endian BPF.
+   </blockquote>
    <dl>
     <dt>
      <strong>imm</strong>
@@ -158,6 +144,20 @@ eBPF Instruction Set Specification, v1.0
     </dd>
    </dl>
    <t>
+    Note that the contents of multi-byte fields ('imm' and 'offset') are
+    stored using big-endian byte ordering in big-endian BPF and
+    little-endian byte ordering in little-endian BPF.
+   </t>
+   <t>
+    For example:
+   </t>
+   <blockquote>    opcode                  offset imm          assembly
+    src_reg dst_reg
+    07     0       1        00 00  44 33 22 11  r1 += 0x11223344 // little
+    dst_reg src_reg
+    07     1       0        00 00  11 22 33 44  r1 += 0x11223344 // big
+   </blockquote>
+   <t>
     Note that most instructions do not use all of the fields.
     Unused fields must be set to zero.
    </t>
@@ -168,17 +168,17 @@ eBPF Instruction Set Specification, v1.0
     using the same format but with opcode, dst_reg, src_reg, and offset all set to zero,
     and imm containing the high 32 bits of the immediate value.
    </t>
-   <table><thead><tr>
-     <th>64 bits (MSB)</th>
-     <th>64 bits (LSB)</th>
-    </tr></thead>
-    <tbody>
-     <tr>
-      <td>basic instruction</td>
-      <td>pseudo instruction</td>
-     </tr>
-    </tbody>
-   </table>
+   <t>
+    This is depicted in the following figure:
+   </t>
+   <blockquote>    basic_instruction
+    .-----------------------------.
+    |                             |
+    code:8 regs:8 offset:16 imm:32 unused:32 imm:32
+    |              |
+    '--------------'
+    pseudo instruction
+   </blockquote>
    <t>
     Thus the 64-bit immediate value is constructed as follows:
    </t>
@@ -186,7 +186,8 @@ eBPF Instruction Set Specification, v1.0
    </blockquote>
    <t>
     where 'next_imm' refers to the imm value of the pseudo instruction
-    following the basic instruction.
+    following the basic instruction.  The unused bytes in the pseudo
+    instruction are reserved and shall be cleared to zero.
    </t>
    <section anchor="instruction-classes" title="Instruction classes">
     <t>
