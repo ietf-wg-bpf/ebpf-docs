@@ -329,16 +329,6 @@ caller, and are referenced by offset from the call instruction, similar to
 ``BPF_JA``.  A ``BPF_EXIT`` within the program-local function will return to
 the caller.
 
-Conceptually, each helper function is implemented with a commonly shared function
-signature defined as:
-
-  u64 function(u64 r1, u64 r2, u64 r3, u64 r4, u64 r5)
-
-In actuality, each helper function is defined as taking between 0 and 5 arguments,
-with the remaining registers being ignored.  The definition of a helper function
-is responsible for specifying the type (e.g., integer, pointer, etc.) of the value returned,
-the number of arguments, and the type of each argument.
-
 Note that ``BPF_CALL | BPF_X | BPF_JMP`` (0x8d), where the helper function integer
 would be read from a specified register, is reserved and currently not permitted.
 
