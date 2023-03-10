@@ -7,10 +7,25 @@ Linux implementation notes
 
 This document provides more details specific to the Linux kernel implementation of the eBPF instruction set.
 
+Stack space
+======================
+
+Linux currently supports 512 bytes of stack space.
+
 Byte swap instructions
 ======================
 
 ``BPF_FROM_LE`` and ``BPF_FROM_BE`` exist as aliases for ``BPF_TO_LE`` and ``BPF_TO_BE`` respectively.
+
+Map objects
+===========
+
+Linux only supports the 'mva(map)' operation on array maps with a single element.
+
+Variables
+=========
+
+Linux uses BTF ids to identify variables.
 
 Legacy BPF Packet access instructions
 =====================================
