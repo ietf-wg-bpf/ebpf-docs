@@ -107,9 +107,10 @@ eBPF Instruction Set Specification, v1.0
     The fields conforming an encoded basic instruction are stored in the
     following order:
    </t>
-   <blockquote>    opcode:8 src_reg:4 dst_reg:4 offset:16 imm:32 // In little-endian BPF.
-    opcode:8 dst_reg:4 src_reg:4 offset:16 imm:32 // In big-endian BPF.
-   </blockquote>
+   <artwork>
+  opcode:8 src_reg:4 dst_reg:4 offset:16 imm:32 // In little-endian BPF.
+  opcode:8 dst_reg:4 src_reg:4 offset:16 imm:32 // In big-endian BPF.
+   </artwork>
    <dl>
     <dt>
      <strong>imm</strong>
@@ -151,12 +152,13 @@ eBPF Instruction Set Specification, v1.0
    <t>
     For example:
    </t>
-   <blockquote>    opcode                  offset imm          assembly
-    src_reg dst_reg
-    07     0       1        00 00  44 33 22 11  r1 += 0x11223344 // little
-    dst_reg src_reg
-    07     1       0        00 00  11 22 33 44  r1 += 0x11223344 // big
-   </blockquote>
+   <artwork>
+  opcode                  offset imm          assembly
+         src_reg dst_reg
+  07     0       1        00 00  44 33 22 11  r1 += 0x11223344 // little
+         dst_reg src_reg
+  07     1       0        00 00  11 22 33 44  r1 += 0x11223344 // big
+   </artwork>
    <t>
     Note that most instructions do not use all of the fields.
     Unused fields must be set to zero.
@@ -171,18 +173,20 @@ eBPF Instruction Set Specification, v1.0
    <t>
     This is depicted in the following figure:
    </t>
-   <blockquote>    basic_instruction
-    .-----------------------------.
-    |                             |
-    code:8 regs:8 offset:16 imm:32 unused:32 imm:32
-    |              |
-    '--------------'
-    pseudo instruction
-   </blockquote>
+   <artwork>
+        basic_instruction
+  .-----------------------------.
+  |                             |
+  code:8 regs:8 offset:16 imm:32 unused:32 imm:32
+                                 |              |
+                                 '--------------'
+                                pseudo instruction
+   </artwork>
    <t>
     Thus the 64-bit immediate value is constructed as follows:
    </t>
-   <blockquote>    imm64 = (next_imm &lt;&lt; 32) | imm
+   <blockquote>
+    imm64 = (next_imm &lt;&lt; 32) | imm
    </blockquote>
    <t>
     where 'next_imm' refers to the imm value of the pseudo instruction
@@ -416,26 +420,30 @@ eBPF Instruction Set Specification, v1.0
     <t>
      <tt>BPF_ADD | BPF_X | BPF_ALU</tt> (0x0c) means:
     </t>
-    <blockquote>     dst = (u32) ((u32) dst + (u32) src)
-    </blockquote>
+    <artwork>
+  dst = (u32) ((u32) dst + (u32) src)
+    </artwork>
     <t>
      where '(u32)' indicates that the upper 32 bits are zeroed.
     </t>
     <t>
      <tt>BPF_ADD | BPF_X | BPF_ALU64</tt> (0x0f) means:
     </t>
-    <blockquote>     dst = dst + src
-    </blockquote>
+    <artwork>
+  dst = dst + src
+    </artwork>
     <t>
      <tt>BPF_XOR | BPF_K | BPF_ALU</tt> (0xa4) means:
     </t>
-    <blockquote>     dst = (u32) dst ^ (u32) imm32
-    </blockquote>
+    <artwork>
+  dst = (u32) dst ^ (u32) imm32
+    </artwork>
     <t>
      <tt>BPF_XOR | BPF_K | BPF_ALU64</tt> (0xa7) means:
     </t>
-    <blockquote>     dst = dst ^ imm32
-    </blockquote>
+    <artwork>
+  dst = dst ^ imm32
+    </artwork>
     <t>
      Also note that the division and modulo operations are unsigned. Thus, for
      <tt>BPF_ALU</tt>, 'imm' is first interpreted as an unsigned 32-bit value, whereas
@@ -684,8 +692,9 @@ eBPF Instruction Set Specification, v1.0
     <t>
      <tt>BPF_JSGE | BPF_X | BPF_JMP32</tt> (0x7e) means:
     </t>
-    <blockquote>     if (s32)dst s&gt;= (s32)src goto +offset
-    </blockquote>
+    <artwork>
+  if (s32)dst s>= (s32)src goto +offset
+    </artwork>
     <t>
      where 's&gt;=' indicates a signed '&gt;=' comparison.
     </t>
@@ -834,18 +843,21 @@ eBPF Instruction Set Specification, v1.0
     <t>
      <tt>BPF_MEM | &lt;size&gt; | BPF_STX</tt> means:
     </t>
-    <blockquote>     <em>(size</em>) (dst + offset) = src
-    </blockquote>
+    <artwork>
+  *(size *) (dst + offset) = src
+    </artwork>
     <t>
      <tt>BPF_MEM | &lt;size&gt; | BPF_ST</tt> means:
     </t>
-    <blockquote>     <em>(size</em>) (dst + offset) = imm32
-    </blockquote>
+    <artwork>
+  *(size *) (dst + offset) = imm32
+    </artwork>
     <t>
      <tt>BPF_MEM | &lt;size&gt; | BPF_LDX</tt> means:
     </t>
-    <blockquote>     dst = <em>(size</em>) (src + offset)
-    </blockquote>
+    <artwork>
+  dst = *(size *) (src + offset)
+    </artwork>
     <t>
      where size is one of: <tt>BPF_B</tt>, <tt>BPF_H</tt>, <tt>BPF_W</tt>, or <tt>BPF_DW</tt>.
     </t>
@@ -908,13 +920,15 @@ eBPF Instruction Set Specification, v1.0
     <t>
      <tt>BPF_ATOMIC | BPF_W  | BPF_STX</tt> (0xc3) with 'imm' = BPF_ADD means:
     </t>
-    <blockquote>     <em>(u32</em>)(dst + offset) += src
-    </blockquote>
+    <artwork>
+  *(u32 *)(dst + offset) += src
+    </artwork>
     <t>
      <tt>BPF_ATOMIC | BPF_DW | BPF_STX</tt> (0xdb) with 'imm' = BPF ADD means:
     </t>
-    <blockquote>     <em>(u64</em>)(dst + offset) += src
-    </blockquote>
+    <artwork>
+  *(u64 *)(dst + offset) += src
+    </artwork>
     <t>
      In addition to the simple atomic operations above, there also is a modifier and
      two complex atomic operations:
