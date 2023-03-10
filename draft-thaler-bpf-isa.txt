@@ -577,9 +577,9 @@ Internet-Draft                  eBPF ISA                      March 2023
 4.2.1.  Helper functions
 
    Helper functions are a concept whereby BPF programs can call into a
-   set of function calls exposed by the eBPF runtime.  Each helper
-   function is identified by an integer used in a BPF_CALL instruction.
-   The available helper functions may differ for each eBPF program type.
+   set of function calls exposed by the runtime.  Each helper function
+   is identified by an integer used in a BPF_CALL instruction.  The
+   available helper functions may differ for each program type.
 
    Note that BPF_CALL | BPF_X | BPF_JMP (0x8d), where the helper
    function integer would be read from a specified register, is reserved

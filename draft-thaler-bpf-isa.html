@@ -2110,9 +2110,9 @@ li > p:last-of-type:only-child {
           </h4>
 <p id="section-4.2.1-1">
       Helper functions are a concept whereby BPF programs can call into a
-      set of function calls exposed by the eBPF runtime.  Each helper
+      set of function calls exposed by the runtime.  Each helper
       function is identified by an integer used in a <code>BPF_CALL</code> instruction.
-      The available helper functions may differ for each eBPF program type.<a href="#section-4.2.1-1" class="pilcrow">¶</a></p>
+      The available helper functions may differ for each program type.<a href="#section-4.2.1-1" class="pilcrow">¶</a></p>
 <p id="section-4.2.1-2">
       Note that <code>BPF_CALL | BPF_X | BPF_JMP</code> (0x8d), where the helper function integer
       would be read from a specified register, is reserved and currently not permitted.<a href="#section-4.2.1-2" class="pilcrow">¶</a></p>
