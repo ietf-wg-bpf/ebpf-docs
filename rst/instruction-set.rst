@@ -308,16 +308,8 @@ Example:
 
 where 's>=' indicates a signed '>=' comparison.
 
-Example:
-
-``BPF_JSGE | BPF_X | BPF_JMP32`` (0x7e) means::
-
-  if (s32)dst s>= (s32)src goto +offset
-
-where 's>=' indicates a signed '>=' comparison.
-
-Helper functions
-~~~~~~~~~~~~~~~~
+Platform-agnostic helper functions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Helper functions are a concept whereby BPF programs can call into a
 set of function calls exposed by the underlying platform.
@@ -337,20 +329,19 @@ caller, and are referenced by offset from the call instruction, similar to
 ``BPF_JA``.  A ``BPF_EXIT`` within the program-local function will return to
 the caller.
 
-Note that ``BPF_CALL | BPF_X | BPF_JMP`` (0x8d), where the helper function integer
-would be read from a specified register, is reserved and currently not permitted.
+Platform-specific helper functions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Platform-specific helper functions are helper functions that are unique to
+a particular platform.  They use a separate integer numbering space from
+platform-agnostic helper functions, but otherwise the same considerations
+apply.  Platforms are not required to implement any platform-specific
+functions.
 
-Runtime functions
-~~~~~~~~~~~~~~~~~
-Runtime functions are like helper functions except that they are not specific
-to eBPF programs.  They use a different numbering space from helper functions,
-but otherwise the same considerations apply.
-
-eBPF functions
-~~~~~~~~~~~~~~
-eBPF functions are functions exposed by the same eBPF program as the caller,
+BPF-local functions
+~~~~~~~~~~~~~~~~~~~
+BPF-local functions are functions exposed by the same BPF program as the caller,
 and are referenced by offset from the call instruction, similar to ``BPF_JA``.
-A ``BPF_EXIT`` within the eBPF function will return to the caller.
+A ``BPF_EXIT`` within the BPF-local function will return to the caller.
 
 Load and store instructions
 ===========================
