@@ -633,21 +633,21 @@ eBPF Instruction Set Specification, v1.0
        <td>0x8</td>
        <td>0x0</td>
        <td>call helper function imm</td>
-       <td>see <xref target="helper-functions">Helper functions</xref></td>
+       <td>see <xref target="platform-agnostic-helper-functions">Platform-agnostic helper functions</xref></td>
       </tr>
       <tr>
        <td>BPF_CALL</td>
        <td>0x8</td>
        <td>0x1</td>
        <td>call PC += offset</td>
-       <td>see <xref target="ebpf-functions">eBPF functions</xref></td>
+       <td>see <xref target="bpf-local-functions">BPF-local functions</xref></td>
       </tr>
       <tr>
        <td>BPF_CALL</td>
        <td>0x8</td>
        <td>0x2</td>
        <td>call runtime function imm</td>
-       <td>see <xref target="runtime-functions">Runtime functions</xref></td>
+       <td>see <xref target="platform-specific-helper-functions">Platform-specific helper functions</xref></td>
       </tr>
       <tr>
        <td>BPF_EXIT</td>
@@ -698,30 +698,29 @@ eBPF Instruction Set Specification, v1.0
     <t>
      where 's&gt;=' indicates a signed '&gt;=' comparison.
     </t>
-    <section anchor="helper-functions" title="Helper functions">
+    <section anchor="platform-agnostic-helper-functions" title="Platform-agnostic helper functions">
      <t>
-      Helper functions are a concept whereby BPF programs can call into a
-      set of function calls exposed by the runtime.  Each helper
+      Platform-agnostic helper functions are a concept whereby BPF programs can call
+      into a set of function calls exposed by the runtime.  Each helper
       function is identified by an integer used in a <tt>BPF_CALL</tt> instruction.
-      The available helper functions may differ for each program type.
-     </t>
-     <t>
-      Note that <tt>BPF_CALL | BPF_X | BPF_JMP</tt> (0x8d), where the helper function integer
-      would be read from a specified register, is reserved and currently not permitted.
+      The available platform-agnostic helper functions may differ for each program
+      type, but integer values are unique across all program types.
      </t>
     </section>
-    <section anchor="runtime-functions" title="Runtime functions">
+    <section anchor="platform-specific-helper-functions" title="Platform-specific helper functions">
      <t>
-      Runtime functions are like helper functions except that they are not specific
-      to eBPF programs.  They use a different numbering space from helper functions,
-      but otherwise the same considerations apply.
+      Platform-specific helper functions are helper functions that are unique to
+      a particular platform.  They use a separate integer numbering space from
+      platform-agnostic helper functions, but otherwise the same considerations
+      apply.  Platforms are not required to implement any platform-specific
+      functions.
      </t>
     </section>
-    <section anchor="ebpf-functions" title="eBPF functions">
+    <section anchor="bpf-local-functions" title="BPF-local functions">
      <t>
-      eBPF functions are functions exposed by the same eBPF program as the caller,
+      BPF-local functions are functions exposed by the same BPF program as the caller,
       and are referenced by offset from the call instruction, similar to <tt>BPF_JA</tt>.
-      A <tt>BPF_EXIT</tt> within the eBPF function will return to the caller.
+      A <tt>BPF_EXIT</tt> within the BPF-local function will return to the caller.
      </t>
     </section>
    </section>
@@ -1754,22 +1753,22 @@ eBPF Instruction Set Specification, v1.0
       <td>0x85</td>
       <td>0x0</td>
       <td>any</td>
-      <td>call helper function imm</td>
-      <td><xref target="helper-functions">Helper functions</xref></td>
+      <td>call platform-agnostic helper function imm</td>
+      <td><xref target="platform-agnostic-helper-functions">Platform-agnostic helper functions</xref></td>
      </tr>
      <tr>
       <td>0x85</td>
       <td>0x1</td>
       <td>any</td>
       <td>call PC += offset</td>
-      <td><xref target="ebpf-functions">eBPF functions</xref></td>
+      <td><xref target="bpf-local-functions">BPF-local functions</xref></td>
      </tr>
      <tr>
       <td>0x85</td>
       <td>0x2</td>
       <td>any</td>
-      <td>call runtime function imm</td>
-      <td><xref target="runtime-functions">Runtime functions</xref></td>
+      <td>call platform-specific helper function imm</td>
+      <td><xref target="platform-specific-helper-functions">Platform-specific helper functions</xref></td>
      </tr>
      <tr>
       <td>0x87</td>
