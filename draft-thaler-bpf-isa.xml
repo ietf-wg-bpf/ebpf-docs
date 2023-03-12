@@ -632,7 +632,7 @@ eBPF Instruction Set Specification, v1.0
        <td>BPF_CALL</td>
        <td>0x8</td>
        <td>0x0</td>
-       <td>call helper function imm</td>
+       <td>call platform-agnostic helper function imm</td>
        <td>see <xref target="platform-agnostic-helper-functions">Platform-agnostic helper functions</xref></td>
       </tr>
       <tr>
@@ -646,7 +646,7 @@ eBPF Instruction Set Specification, v1.0
        <td>BPF_CALL</td>
        <td>0x8</td>
        <td>0x2</td>
-       <td>call runtime function imm</td>
+       <td>call platform-specific helper function imm</td>
        <td>see <xref target="platform-specific-helper-functions">Platform-specific helper functions</xref></td>
       </tr>
       <tr>
