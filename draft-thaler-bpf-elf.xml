@@ -547,6 +547,15 @@ eBPF ELF Profile Specification, v0.1
     </t>
    </section>
   </section>
+  <section anchor="acknowledgements" title="Acknowledgements">
+   <t>
+    Portions of this draft were derived from information in btf.rst in the
+    Linux kernel repository, to which a number of individuals have contributed
+    over time, including Andrii Nakryiko, Dave Tucker, David S. Miller, Gary Lin,
+    Ilya Leoshkevich, Indu Bhagat, Jesper Dangaard Brouer, Jiri Olsa, Jonathan Corbet,
+    Mauro Carvalho Chehab, Rong Tao, and Yonghong Song.
+   </t>
+  </section>
  </middle>
  <back>
  <references><name>Normative References</name>

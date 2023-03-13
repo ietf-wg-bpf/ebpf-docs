@@ -77,7 +77,8 @@ Table of Contents
        5.4.4.  Line Information  . . . . . . . . . . . . . . . . . .   7
        5.4.5.  Line Record . . . . . . . . . . . . . . . . . . . . .   8
      5.5.  BTF ID Values . . . . . . . . . . . . . . . . . . . . . .   8
-   6.  Normative References  . . . . . . . . . . . . . . . . . . . .   9
+   6.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  10
+   7.  Normative References  . . . . . . . . . . . . . . . . . . . .  10
    Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  10
 
 1.  Documentation conventions
@@ -101,7 +102,6 @@ Table of Contents
    *  e_type must be set to ET_REL (1).
 
    *  e_machine must be set to EM_BPF (247).
-
 
 
 
@@ -494,10 +494,10 @@ Internet-Draft                  eBPF ISA                      March 2023
    and resolved during the linking phase of kernel build by
    resolve_btfids tool.
 
-6.  Normative References
 
-   [BPF-ISA]  "eBPF Instruction Set Specification, v1.0", <instruction-
-              set.rst>.
+
+
+
 
 
 
@@ -505,6 +505,20 @@ Thaler                  Expires 14 September 2023               [Page 9]
 
 Internet-Draft                  eBPF ISA                      March 2023
 
+
+6.  Acknowledgements
+
+   Portions of this draft were derived from information in btf.rst in
+   the Linux kernel repository, to which a number of individuals have
+   contributed over time, including Andrii Nakryiko, Dave Tucker, David
+   S.  Miller, Gary Lin, Ilya Leoshkevich, Indu Bhagat, Jesper Dangaard
+   Brouer, Jiri Olsa, Jonathan Corbet, Mauro Carvalho Chehab, Rong Tao,
+   and Yonghong Song.
+
+7.  Normative References
+
+   [BPF-ISA]  "eBPF Instruction Set Specification, v1.0", <instruction-
+              set.rst>.
 
    [BTF]      "BPF Type Format (BTF)", <btf.rst>.
 
@@ -515,20 +529,6 @@ Author's Address
    Redmond, WA 98052
    United States of America
    Email: dthaler@microsoft.com
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
