@@ -23,9 +23,12 @@
 eBPF ELF Profile Specification, v0.1
   </title>
   <author initials="D." surname="Thaler" fullname="Dave Thaler" role="editor">
+    <organization>Microsoft</organization>
    <address>
     <postal>
     <city>Redmond</city>
+    <code>98052</code>
+    <country>USA</country>
     <region>WA</region>
     </postal>
     <email>dthaler@microsoft.com</email>

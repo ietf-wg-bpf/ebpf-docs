@@ -23,9 +23,12 @@
 eBPF Instruction Set Specification, v1.0
   </title>
   <author initials="D." surname="Thaler" fullname="Dave Thaler" role="editor">
+    <organization>Microsoft</organization>
    <address>
     <postal>
     <city>Redmond</city>
+    <code>98052</code>
+    <country>USA</country>
     <region>WA</region>
     </postal>
     <email>dthaler@microsoft.com</email>
@@ -1106,6 +1109,16 @@ eBPF Instruction Set Specification, v1.0
      deprecated and should no longer be used.
     </t>
    </section>
+  </section>
+  <section anchor="acknowledgements" title="Acknowledgements">
+   <t>
+    This draft was generated from instruction-set.rst in the Linux
+    kernel repository, to which a number of other individuals have contributed
+    over time, including Jose E. Marchesi, Pencheng Yang, Kosuke Fujimoto,
+    and Zheng Yejian, with review and suggestions by many others including
+    Alan Jowett, Alexei Starovoitov, Daniel Borkmann, David Vernet, Jim Harris,
+    Quentin Monnet, Shung-Hsi Yu, Stanislav Fomichev, and Yonghong Song.
+   </t>
   </section>
   <section anchor="appendix" title="Appendix">
    <t>
