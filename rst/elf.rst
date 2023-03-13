@@ -6,18 +6,17 @@ eBPF ELF Profile Specification, v0.1
 ====================================
 
 The Executable and Linking Format (ELF) is specified in Chapter 4 of the
-"System V Application Binary Interface", June 2013, http://www.sco.com/developers/gabi/latest/contents.html.
-
+System V Application Binary Interface.
 This document specifies version 0.1 of the eBPF profile for ELF files.
 
 Documentation conventions
 =========================
 
-As this specification is a extension to the ELF specification, the same data representation
-convention is used as specified in
-http://www.sco.com/developers/gabi/latest/ch4.intro.html#data_representation
-where structures are represented in a C-style format with types such as ``Elf64_Word`` for an
-unsigned 64-bit integer.
+This specification is a extension to the ELF file format as specified in Chapter 4 of the
+`System V Application Binary Interface <http://www.sco.com/developers/gabi/latest/contents.html>`_.
+As such, the same data representation convention is used as specified in the Data Representation
+section of the ELF specification, where structures are represented in a C-style format with types
+such as ``Elf64_Word`` for an unsigned 64-bit integer.
 
 NOTE: Some content in this draft will eventually move to a separate BTF draft.
 
@@ -82,26 +81,26 @@ order indicated in ``e_ident[EI_DATA]`` in the ELF header:
        unsigned char platform_specific_data[];
     } Elf64_BpfMapDefinition;
 
-type
+**type**
   An integer identifying the map type.  Its value and meaning are platform-specific.
 
-key_size
+**key_size**
   Size in bytes of keys in the map, if any.
 
-value_size
+**value_size**
   Size in bytes of values in the map, if any.
 
-max_entries
+**max_entries**
   Maximum number of entries in the map, if the map type has a maximum.
 
-inner_map_idx
+**inner_map_idx**
   If the map type is one whose values contain ids of other maps, then the inner
   map index must be set to the 0-based index of another map definition in the section.
   The referenced map definition is used to enforce that any maps must match it
   for their ids to be allowed as values of this map.  If the map type is not
   one whose values contain ids of other maps, this must be set to 0.
 
-platform_specific_data
+**platform_specific_data**
   This field and its size is up to the runtime platform to define.  For example,
   on Linux 4.14 and later, this can hold a NUMA node value.
 
@@ -135,8 +134,7 @@ A runtime can optionally restrict what program types and/or helper functions
 can be used based on what license the eBPF program is under.  This information
 can be placed into the ELF file in a section named "license" whose contents
 is a null-terminated SPDX license expression as specified in Annex D of
-ISO/IEC 5962:2021, "Information technology -- SPDX® Specification V2.",
-https://www.iso.org/standard/81870.html.
+`ISO/IEC 5962:2021, "Information technology -- SPDX® Specification V22.1 <https://www.iso.org/standard/81870.html>`_.
 
 Runtime Version restriction
 ---------------------------
@@ -175,32 +173,32 @@ The section starts with the following header:
        unsigned char platform_specific_data[];
     } Elf64_BtfExtHeader;
 
-magic
+**magic**
   Must be set to 0xeB9F, which can be used by a parser to determine whether multi-byte fields
   are in little-endian or big-endian byte order.
 
-version
+**version**
   Must be set to 1 (0x01).
 
-flags
+**flags**
   Must be set to 0.
 
-hdr_len
+**hdr_len**
   The size in bytes of this structure including the platform_specific_data.
 
-func_info_off
+**func_info_off**
   Offset in bytes past the end of the header, of the start of the `Function information`_.
 
-func_info_len
+**func_info_len**
   Size in bytes of the `Function information`_.  Must be set to 8 (0x00000008).
 
-line_info_off
+**line_info_off**
   Offset in bytes past the end of the header, of the start of the `Line Information`_.
 
-line_info_len
+**line_info_len**
   Size in bytes of the `Line Information`_.  Must be set to 16 (0x00000010).
 
-platform_specific_data
+**platform_specific_data**
   This field and its size is up to the runtime platform to define.
 
 Function information
@@ -213,11 +211,11 @@ Function information
         Elf64_BtfExtInfoSec  btf_ext_info_sec[];
     } Elf64_BpfFunctionInfo;
 
-func_info_rec_size
+**func_info_rec_size**
   Size in bytes of each function record contained in an `Info block`_.
   Must be set to 8 (0x00000008).
 
-Function info 1..N
+**btf_ext_info_sec**
   A set of `Info block`_ data blobs, as many as will fit in the size given
   as the ``func_info_len``, where each record within an info block is
   formatted as shown under `Function Record`_ below.
@@ -233,15 +231,15 @@ Info block
        unsigned char data[];
     } Elf64_BtfExtInfoSec;
 
-sec_name_off
+**sec_name_off**
   Offset in bytes of the section name within the `Type and String Data`_.
 
-num_info
+**num_info**
   Number of records that follow.  Must be greater than 0.
 
-data
+**data**
   A series of function or line records.  The total length of data is
-  `num_info * record_size` bytes, where ``record_size`` is the size
+  ``num_info * record_size`` bytes, where ``record_size`` is the size
   of a function record or line record.
 
 
@@ -255,13 +253,13 @@ Function Record
         Elf64_Word type_id;
     } Elf64_BpfFunctionInfo;
 
-insn_off
+**insn_off**
   Number 8 byte units from the start of the section whose name is
   given by "Section name offset" to the start of the function.
   Must be 0 for the first record, and for subsequent records it must be
   greater than the instruction offset of the previous record.
 
-type_id
+**type_id**
   TODO: Add a definition of this field, which is "a BTF_KIND_FUNC type".
 
 Line Information
@@ -274,10 +272,10 @@ Line Information
         Elf64_BtfExtInfoSec  btf_ext_info_sec[];
     } Elf64_BpfLineInfo;
 
-line_info_rec_size
+**line_info_rec_size**
   Size in bytes of each line record in an `Info block`_.  Must be set to 16 (0x00000010).
 
-btf_ext_info_sec
+**btf_ext_info_sec**
   A set of `Info block`_ data blobs, as many as will fit in the size given as the ``line_info_len``,
   where each record within an info block is formatted as shown under `Line Record`_ below.
 
@@ -293,17 +291,17 @@ Line Record
         Elf64_Word line_col;
     } ELF32_BpfLineInfo;
 
-insn_off
+**insn_off**
   0-based instruction index into the eBPF program contained
   in the section whose name is referenced in the `Info block`_.
 
-file_name_off
+**file_name_off**
   Offset in bytes of the file name within the `Type and String Data`_.
 
-line_off
+**line_off**
   Offset in bytes of the source line within the `Type and String Data`_.
 
-line_col
+**line_col**
   The line and column number value, computed as
   ``(line number << 10) | (column number)``.
 
@@ -312,9 +310,9 @@ BTF ID Values
 
 TODO: make this secction adhere to the ELF specification data format
 
-The ``.BTF_ids`` section encodes BTF ID values that are used within the kernel.
+The ``.BTF_ids`` section encodes BTF ID values that are used within the Linux kernel.
 
-This section is created during the kernel compilation with the help of
+This section is created during the Linux kernel compilation with the help of
 macros defined in ``include/linux/btf_ids.h`` header file. Kernel code can
 use them to create lists and sets (sorted lists) of BTF ID values.
 
@@ -368,4 +366,4 @@ The ``typeX`` name can be one of following::
 and is used as a filter when resolving the BTF ID value.
 
 All the BTF ID lists and sets are compiled in the ``.BTF_ids`` section and
-resolved during the linking phase of kernel build by ``resolve_btfids`` tool.
+resolved during the linking phase of Linux kernel build by ``resolve_btfids`` tool.

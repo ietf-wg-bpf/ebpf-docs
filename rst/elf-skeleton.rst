@@ -3,6 +3,7 @@
 .. |category| replace:: std
 .. |titleAbbr| replace:: eBPF ISA
 .. |submissionType| replace:: IETF
+.. |baseTargetUri| replace:: https://elixir.bootlin.com/linux/latest/source/Documentation/bpf
 .. |author[0].fullname| replace:: Dave Thaler
 .. |author[0].role| replace:: editor
 .. |author[0].surname| replace:: Thaler
@@ -16,9 +17,17 @@
 .. |ref[BPF-ISA].title| replace:: eBPF Instruction Set Specification, v1.0
 .. |ref[BPF-ISA].target| replace:: instruction-set.rst
 .. |ref[BPF-ISA].type| replace:: normative
+.. |ref[BPF-ISA].seriesInfo.name| replace:: Internet-Draft
+.. |ref[BPF-ISA].seriesInfo.value| replace:: draft-thaler-bpf-isa-00
 .. |ref[BTF].title| replace:: BPF Type Format (BTF)
 .. |ref[BTF].target| replace:: btf.rst
 .. |ref[BTF].type| replace:: normative
+.. |ref[ELF].title| replace:: System V Application Binary Interface
+.. |ref[ELF].target| replace:: http://www.sco.com/developers/gabi/latest/contents.html
+.. |ref[ELF].type| replace:: normative
+.. |ref[SPDX].title| replace:: Information technology -- SPDX® Specification V.2.1
+.. |ref[SPDX].target| replace:: https://www.iso.org/standard/81870.html
+.. |ref[SPDX].type| replace:: normative
 .. header::
 
 .. include:: elf.rst
