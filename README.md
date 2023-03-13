@@ -5,17 +5,19 @@ to be published by the eBPF Foundation in PDF format.
 
 Instruction Set Architecture:
 
+* [Most recent Internet-Draft submitted](https://datatracker.ietf.org/doc/html/draft-thaler-bpf-isa-00)
 * [Current draft PDF](https://github.com/ebpffoundation/ebpf-docs/blob/pdf/instruction-set.pdf).
 * [Current Internet-Draft working copy](https://htmlpreview.github.io/?https://raw.githubusercontent.com/ebpffoundation/ebpf-docs/pdf/draft-thaler-bpf-isa.html)
 
 ELF File Format:
 
+* [Most recent Internet-Draft submitted](https://datatracker.ietf.org/doc/html/draft-thaler-bpf-elf-00)
 * [Current Internet-Draft working copy](https://htmlpreview.github.io/?https://raw.githubusercontent.com/ebpffoundation/ebpf-docs/pdf/draft-thaler-bpf-elf.html)
 
-The authoritative source from which these are built is expected to be
-in the Linux kernel.org repository, but not be Linux specific.
+The authoritative sources from which these are built are
+in the Linux kernel.org repository, but are not Linux specific.
 
-A GitHub mirror should be used, as is presently done for libbpf and
+A GitHub mirror is used, as is done for libbpf and
 bpftool, so that other platforms and tools can easily use it.
 As such, the documentation uses the subset of RST that GitHub
 renders correctly.
