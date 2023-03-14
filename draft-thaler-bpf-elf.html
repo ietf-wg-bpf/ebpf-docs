@@ -6,15 +6,13 @@
 <meta content="initial-scale=1.0" name="viewport">
 <title>eBPF ELF Profile Specification, v0.1</title>
 <meta content="Dave Thaler" name="author">
-<meta content='
+<meta content="
        
     The Executable and Linking Format (ELF) is specified in Chapter 4 of the
-    "System V Application Binary Interface", June 2013, http://www.sco.com/developers/gabi/latest/contents.html.
-       
-       
+    System V Application Binary Interface.
     This document specifies version 0.1 of the eBPF profile for ELF files.
        
-    ' name="description">
+    " name="description">
 <meta content="xml2rfc 3.16.0" name="generator">
 <meta content="draft-thaler-bpf-elf-00" name="ietf.draft">
 <!-- Generator version information:
@@ -1213,7 +1211,7 @@ li > p:last-of-type:only-child {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Thaler</td>
-<td class="center">Expires 14 September 2023</td>
+<td class="center">Expires 15 September 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1226,12 +1224,12 @@ li > p:last-of-type:only-child {
 <dd class="internet-draft">draft-thaler-bpf-elf-00</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-03-13" class="published">13 March 2023</time>
+<time datetime="2023-03-14" class="published">14 March 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-09-14">14 September 2023</time></dd>
+<dd class="expires"><time datetime="2023-09-15">15 September 2023</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1247,9 +1245,8 @@ li > p:last-of-type:only-child {
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">
     The Executable and Linking Format (ELF) is specified in Chapter 4 of the
-    "System V Application Binary Interface", June 2013, http://www.sco.com/developers/gabi/latest/contents.html.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
-<p id="section-abstract-2">
-    This document specifies version 0.1 of the eBPF profile for ELF files.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
+    System V Application Binary Interface.
+    This document specifies version 0.1 of the eBPF profile for ELF files.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -1270,7 +1267,7 @@ li > p:last-of-type:only-child {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 14 September 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 15 September 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1375,11 +1372,11 @@ li > p:last-of-type:only-child {
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-documentation-conventions" class="section-name selfRef">Documentation conventions</a>
       </h2>
 <p id="section-1-1">
-    As this specification is a extension to the ELF specification, the same data representation
-    convention is used as specified in
-    http://www.sco.com/developers/gabi/latest/ch4.intro.html#data_representation
-    where structures are represented in a C-style format with types such as <code>Elf64_Word</code> for an
-    unsigned 64-bit integer.<a href="#section-1-1" class="pilcrow">¶</a></p>
+    This specification is a extension to the ELF file format as specified in Chapter 4 of the
+    <span><a href="#ELF" class="internal xref">System V Application Binary Interface</a> [<a href="#ELF" class="cite xref">ELF</a>]</span>.
+    As such, the same data representation convention is used as specified in the Data Representation
+    section of the ELF specification, where structures are represented in a C-style format with types
+    such as <code>Elf64_Word</code> for an unsigned 64-bit integer.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">
     NOTE: Some content in this draft will eventually move to a separate BTF draft.<a href="#section-1-2" class="pilcrow">¶</a></p>
 </section>
@@ -1478,35 +1475,35 @@ li > p:last-of-type:only-child {
 </div>
 <span class="break"></span><dl class="dlParallel" id="section-4.1-6">
           <dt id="section-4.1-6.1">
-      type
+      <strong>type</strong>
           </dt>
           <dd style="margin-left: 1.5em" id="section-4.1-6.2">
       An integer identifying the map type.  Its value and meaning are platform-specific.<a href="#section-4.1-6.2" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-6.3">
-      key_size
+      <strong>key_size</strong>
           </dt>
           <dd style="margin-left: 1.5em" id="section-4.1-6.4">
       Size in bytes of keys in the map, if any.<a href="#section-4.1-6.4" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-6.5">
-      value_size
+      <strong>value_size</strong>
           </dt>
           <dd style="margin-left: 1.5em" id="section-4.1-6.6">
       Size in bytes of values in the map, if any.<a href="#section-4.1-6.6" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-6.7">
-      max_entries
+      <strong>max_entries</strong>
           </dt>
           <dd style="margin-left: 1.5em" id="section-4.1-6.8">
       Maximum number of entries in the map, if the map type has a maximum.<a href="#section-4.1-6.8" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-6.9">
-      inner_map_idx
+      <strong>inner_map_idx</strong>
           </dt>
           <dd style="margin-left: 1.5em" id="section-4.1-6.10">
       If the map type is one whose values contain ids of other maps, then the inner
@@ -1517,7 +1514,7 @@ li > p:last-of-type:only-child {
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-6.11">
-      platform_specific_data
+      <strong>platform_specific_data</strong>
           </dt>
           <dd style="margin-left: 1.5em" id="section-4.1-6.12">
       This field and its size is up to the runtime platform to define.  For example,
@@ -1557,33 +1554,53 @@ li > p:last-of-type:only-child {
         </thead>
         <tbody>
           <tr>
-            <td class="text-left" rowspan="1" colspan="1">license</td>
             <td class="text-left" rowspan="1" colspan="1">
-              <span><a href="#program-license" class="internal xref">Program License</a> (<a href="#program-license" class="auto internal xref">Section 5.1</a>)</span>
+              <p id="section-5-1.2.1.1.1">
+        license<a href="#section-5-1.2.1.1.1" class="pilcrow">¶</a></p>
+</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <p id="section-5-1.2.1.2.1">
+        <span><a href="#program-license" class="internal xref">Program License</a> (<a href="#program-license" class="auto internal xref">Section 5.1</a>)</span><a href="#section-5-1.2.1.2.1" class="pilcrow">¶</a></p>
 </td>
           </tr>
           <tr>
-            <td class="text-left" rowspan="1" colspan="1">version</td>
             <td class="text-left" rowspan="1" colspan="1">
-              <span><a href="#runtime-version-restriction" class="internal xref">Runtime Version restriction</a> (<a href="#runtime-version-restriction" class="auto internal xref">Section 5.2</a>)</span>
+              <p id="section-5-1.2.2.1.1">
+        version<a href="#section-5-1.2.2.1.1" class="pilcrow">¶</a></p>
+</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <p id="section-5-1.2.2.2.1">
+        <span><a href="#runtime-version-restriction" class="internal xref">Runtime Version restriction</a> (<a href="#runtime-version-restriction" class="auto internal xref">Section 5.2</a>)</span><a href="#section-5-1.2.2.2.1" class="pilcrow">¶</a></p>
 </td>
           </tr>
           <tr>
-            <td class="text-left" rowspan="1" colspan="1">.BTF</td>
             <td class="text-left" rowspan="1" colspan="1">
-              <span><a href="#type-and-string-data" class="internal xref">Type and String Data</a> (<a href="#type-and-string-data" class="auto internal xref">Section 5.3</a>)</span>
+              <p id="section-5-1.2.3.1.1">
+        .BTF<a href="#section-5-1.2.3.1.1" class="pilcrow">¶</a></p>
+</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <p id="section-5-1.2.3.2.1">
+        <span><a href="#type-and-string-data" class="internal xref">Type and String Data</a> (<a href="#type-and-string-data" class="auto internal xref">Section 5.3</a>)</span><a href="#section-5-1.2.3.2.1" class="pilcrow">¶</a></p>
 </td>
           </tr>
           <tr>
-            <td class="text-left" rowspan="1" colspan="1">.BTF.ext</td>
             <td class="text-left" rowspan="1" colspan="1">
-              <span><a href="#function-and-line-information" class="internal xref">Function and Line Information</a> (<a href="#function-and-line-information" class="auto internal xref">Section 5.4</a>)</span>
+              <p id="section-5-1.2.4.1.1">
+        .BTF.ext<a href="#section-5-1.2.4.1.1" class="pilcrow">¶</a></p>
+</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <p id="section-5-1.2.4.2.1">
+        <span><a href="#function-and-line-information" class="internal xref">Function and Line Information</a> (<a href="#function-and-line-information" class="auto internal xref">Section 5.4</a>)</span><a href="#section-5-1.2.4.2.1" class="pilcrow">¶</a></p>
 </td>
           </tr>
           <tr>
-            <td class="text-left" rowspan="1" colspan="1">.BTF_ids</td>
             <td class="text-left" rowspan="1" colspan="1">
-              <span><a href="#btf-id-values" class="internal xref">BTF ID Values</a> (<a href="#btf-id-values" class="auto internal xref">Section 5.5</a>)</span>
+              <p id="section-5-1.2.5.1.1">
+        .BTF_ids<a href="#section-5-1.2.5.1.1" class="pilcrow">¶</a></p>
+</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <p id="section-5-1.2.5.2.1">
+        <span><a href="#btf-id-values" class="internal xref">BTF ID Values</a> (<a href="#btf-id-values" class="auto internal xref">Section 5.5</a>)</span><a href="#section-5-1.2.5.2.1" class="pilcrow">¶</a></p>
 </td>
           </tr>
         </tbody>
@@ -1598,8 +1615,7 @@ li > p:last-of-type:only-child {
      can be used based on what license the eBPF program is under.  This information
      can be placed into the ELF file in a section named "license" whose contents
      is a null-terminated SPDX license expression as specified in Annex D of
-     ISO/IEC 5962:2021, "Information technology -- SPDX® Specification V2.",
-     https://www.iso.org/standard/81870.html.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
+     <span><a href="#SPDX" class="internal xref">ISO/IEC 5962:2021, "Information technology -- SPDX(R) Specification V22.1</a> [<a href="#SPDX" class="cite xref">SPDX</a>]</span>.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="runtime-version-restriction">
@@ -1652,7 +1668,7 @@ li > p:last-of-type:only-child {
 </div>
 <span class="break"></span><dl class="dlParallel" id="section-5.4-4">
           <dt id="section-5.4-4.1">
-      magic
+      <strong>magic</strong>
           </dt>
           <dd style="margin-left: 1.5em" id="section-5.4-4.2">
       Must be set to 0xeB9F, which can be used by a parser to determine whether multi-byte fields
@@ -1660,56 +1676,56 @@ li > p:last-of-type:only-child {
 </dd>
           <dd class="break"></dd>
 <dt id="section-5.4-4.3">
-      version
+      <strong>version</strong>
           </dt>
           <dd style="margin-left: 1.5em" id="section-5.4-4.4">
       Must be set to 1 (0x01).<a href="#section-5.4-4.4" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-5.4-4.5">
-      flags
+      <strong>flags</strong>
           </dt>
           <dd style="margin-left: 1.5em" id="section-5.4-4.6">
       Must be set to 0.<a href="#section-5.4-4.6" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-5.4-4.7">
-      hdr_len
+      <strong>hdr_len</strong>
           </dt>
           <dd style="margin-left: 1.5em" id="section-5.4-4.8">
       The size in bytes of this structure including the platform_specific_data.<a href="#section-5.4-4.8" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-5.4-4.9">
-      func_info_off
+      <strong>func_info_off</strong>
           </dt>
           <dd style="margin-left: 1.5em" id="section-5.4-4.10">
       Offset in bytes past the end of the header, of the start of the <span><a href="#function-information" class="internal xref">Function information</a> (<a href="#function-information" class="auto internal xref">Section 5.4.1</a>)</span>.<a href="#section-5.4-4.10" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-5.4-4.11">
-      func_info_len
+      <strong>func_info_len</strong>
           </dt>
           <dd style="margin-left: 1.5em" id="section-5.4-4.12">
       Size in bytes of the <span><a href="#function-information" class="internal xref">Function information</a> (<a href="#function-information" class="auto internal xref">Section 5.4.1</a>)</span>.  Must be set to 8 (0x00000008).<a href="#section-5.4-4.12" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-5.4-4.13">
-      line_info_off
+      <strong>line_info_off</strong>
           </dt>
           <dd style="margin-left: 1.5em" id="section-5.4-4.14">
       Offset in bytes past the end of the header, of the start of the <span><a href="#line-information" class="internal xref">Line Information</a> (<a href="#line-information" class="auto internal xref">Section 5.4.4</a>)</span>.<a href="#section-5.4-4.14" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-5.4-4.15">
-      line_info_len
+      <strong>line_info_len</strong>
           </dt>
           <dd style="margin-left: 1.5em" id="section-5.4-4.16">
       Size in bytes of the <span><a href="#line-information" class="internal xref">Line Information</a> (<a href="#line-information" class="auto internal xref">Section 5.4.4</a>)</span>.  Must be set to 16 (0x00000010).<a href="#section-5.4-4.16" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-5.4-4.17">
-      platform_specific_data
+      <strong>platform_specific_data</strong>
           </dt>
           <dd style="margin-left: 1.5em" id="section-5.4-4.18">
       This field and its size is up to the runtime platform to define.<a href="#section-5.4-4.18" class="pilcrow">¶</a>
@@ -1731,7 +1747,7 @@ li > p:last-of-type:only-child {
 </div>
 <span class="break"></span><dl class="dlParallel" id="section-5.4.1-2">
             <dt id="section-5.4.1-2.1">
-       func_info_rec_size
+       <strong>func_info_rec_size</strong>
             </dt>
             <dd style="margin-left: 1.5em" id="section-5.4.1-2.2">
        Size in bytes of each function record contained in an <span><a href="#info-block" class="internal xref">Info block</a> (<a href="#info-block" class="auto internal xref">Section 5.4.2</a>)</span>.
@@ -1739,7 +1755,7 @@ li > p:last-of-type:only-child {
 </dd>
             <dd class="break"></dd>
 <dt id="section-5.4.1-2.3">
-       Function info 1..N
+       <strong>btf_ext_info_sec</strong>
             </dt>
             <dd style="margin-left: 1.5em" id="section-5.4.1-2.4">
        A set of <span><a href="#info-block" class="internal xref">Info block</a> (<a href="#info-block" class="auto internal xref">Section 5.4.2</a>)</span> data blobs, as many as will fit in the size given
@@ -1766,25 +1782,25 @@ li > p:last-of-type:only-child {
 </div>
 <span class="break"></span><dl class="dlParallel" id="section-5.4.2-2">
             <dt id="section-5.4.2-2.1">
-       sec_name_off
+       <strong>sec_name_off</strong>
             </dt>
             <dd style="margin-left: 1.5em" id="section-5.4.2-2.2">
        Offset in bytes of the section name within the <span><a href="#type-and-string-data" class="internal xref">Type and String Data</a> (<a href="#type-and-string-data" class="auto internal xref">Section 5.3</a>)</span>.<a href="#section-5.4.2-2.2" class="pilcrow">¶</a>
 </dd>
             <dd class="break"></dd>
 <dt id="section-5.4.2-2.3">
-       num_info
+       <strong>num_info</strong>
             </dt>
             <dd style="margin-left: 1.5em" id="section-5.4.2-2.4">
        Number of records that follow.  Must be greater than 0.<a href="#section-5.4.2-2.4" class="pilcrow">¶</a>
 </dd>
             <dd class="break"></dd>
 <dt id="section-5.4.2-2.5">
-       data
+       <strong>data</strong>
             </dt>
             <dd style="margin-left: 1.5em" id="section-5.4.2-2.6">
        A series of function or line records.  The total length of data is
-       `num_info * record_size` bytes, where <code>record_size</code> is the size
+       <code>num_info * record_size</code> bytes, where <code>record_size</code> is the size
        of a function record or line record.<a href="#section-5.4.2-2.6" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
@@ -1806,7 +1822,7 @@ li > p:last-of-type:only-child {
 </div>
 <span class="break"></span><dl class="dlParallel" id="section-5.4.3-2">
             <dt id="section-5.4.3-2.1">
-       insn_off
+       <strong>insn_off</strong>
             </dt>
             <dd style="margin-left: 1.5em" id="section-5.4.3-2.2">
        Number 8 byte units from the start of the section whose name is
@@ -1816,7 +1832,7 @@ li > p:last-of-type:only-child {
 </dd>
             <dd class="break"></dd>
 <dt id="section-5.4.3-2.3">
-       type_id
+       <strong>type_id</strong>
             </dt>
             <dd style="margin-left: 1.5em" id="section-5.4.3-2.4">
        TODO: Add a definition of this field, which is "a BTF_KIND_FUNC type".<a href="#section-5.4.3-2.4" class="pilcrow">¶</a>
@@ -1840,14 +1856,14 @@ li > p:last-of-type:only-child {
 </div>
 <span class="break"></span><dl class="dlParallel" id="section-5.4.4-2">
             <dt id="section-5.4.4-2.1">
-       line_info_rec_size
+       <strong>line_info_rec_size</strong>
             </dt>
             <dd style="margin-left: 1.5em" id="section-5.4.4-2.2">
        Size in bytes of each line record in an <span><a href="#info-block" class="internal xref">Info block</a> (<a href="#info-block" class="auto internal xref">Section 5.4.2</a>)</span>.  Must be set to 16 (0x00000010).<a href="#section-5.4.4-2.2" class="pilcrow">¶</a>
 </dd>
             <dd class="break"></dd>
 <dt id="section-5.4.4-2.3">
-       btf_ext_info_sec
+       <strong>btf_ext_info_sec</strong>
             </dt>
             <dd style="margin-left: 1.5em" id="section-5.4.4-2.4">
        A set of <span><a href="#info-block" class="internal xref">Info block</a> (<a href="#info-block" class="auto internal xref">Section 5.4.2</a>)</span> data blobs, as many as will fit in the size given as the <code>line_info_len</code>,
@@ -1874,7 +1890,7 @@ li > p:last-of-type:only-child {
 </div>
 <span class="break"></span><dl class="dlParallel" id="section-5.4.5-2">
             <dt id="section-5.4.5-2.1">
-       insn_off
+       <strong>insn_off</strong>
             </dt>
             <dd style="margin-left: 1.5em" id="section-5.4.5-2.2">
        0-based instruction index into the eBPF program contained
@@ -1882,21 +1898,21 @@ li > p:last-of-type:only-child {
 </dd>
             <dd class="break"></dd>
 <dt id="section-5.4.5-2.3">
-       file_name_off
+       <strong>file_name_off</strong>
             </dt>
             <dd style="margin-left: 1.5em" id="section-5.4.5-2.4">
        Offset in bytes of the file name within the <span><a href="#type-and-string-data" class="internal xref">Type and String Data</a> (<a href="#type-and-string-data" class="auto internal xref">Section 5.3</a>)</span>.<a href="#section-5.4.5-2.4" class="pilcrow">¶</a>
 </dd>
             <dd class="break"></dd>
 <dt id="section-5.4.5-2.5">
-       line_off
+       <strong>line_off</strong>
             </dt>
             <dd style="margin-left: 1.5em" id="section-5.4.5-2.6">
        Offset in bytes of the source line within the <span><a href="#type-and-string-data" class="internal xref">Type and String Data</a> (<a href="#type-and-string-data" class="auto internal xref">Section 5.3</a>)</span>.<a href="#section-5.4.5-2.6" class="pilcrow">¶</a>
 </dd>
             <dd class="break"></dd>
 <dt id="section-5.4.5-2.7">
-       line_col
+       <strong>line_col</strong>
             </dt>
             <dd style="margin-left: 1.5em" id="section-5.4.5-2.8">
        The line and column number value, computed as
@@ -1916,9 +1932,9 @@ li > p:last-of-type:only-child {
 <p id="section-5.5-1">
      TODO: make this secction adhere to the ELF specification data format<a href="#section-5.5-1" class="pilcrow">¶</a></p>
 <p id="section-5.5-2">
-     The <code>.BTF_ids</code> section encodes BTF ID values that are used within the kernel.<a href="#section-5.5-2" class="pilcrow">¶</a></p>
+     The <code>.BTF_ids</code> section encodes BTF ID values that are used within the Linux kernel.<a href="#section-5.5-2" class="pilcrow">¶</a></p>
 <p id="section-5.5-3">
-     This section is created during the kernel compilation with the help of
+     This section is created during the Linux kernel compilation with the help of
      macros defined in <code>include/linux/btf_ids.h</code> header file. Kernel code can
      use them to create lists and sets (sorted lists) of BTF ID values.<a href="#section-5.5-3" class="pilcrow">¶</a></p>
 <p id="section-5.5-4">
@@ -1990,7 +2006,7 @@ li > p:last-of-type:only-child {
      and is used as a filter when resolving the BTF ID value.<a href="#section-5.5-18" class="pilcrow">¶</a></p>
 <p id="section-5.5-19">
      All the BTF ID lists and sets are compiled in the <code>.BTF_ids</code> section and
-     resolved during the linking phase of kernel build by <code>resolve_btfids</code> tool.<a href="#section-5.5-19" class="pilcrow">¶</a></p>
+     resolved during the linking phase of Linux kernel build by <code>resolve_btfids</code> tool.<a href="#section-5.5-19" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -2015,11 +2031,19 @@ li > p:last-of-type:only-child {
 <dl class="references">
 <dt id="BPF-ISA">[BPF-ISA]</dt>
       <dd>
-<span class="refTitle">"eBPF Instruction Set Specification, v1.0"</span>, <span>&lt;<a href="instruction-set.rst">instruction-set.rst</a>&gt;</span>. </dd>
+<span class="refTitle">"eBPF Instruction Set Specification, v1.0"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-thaler-bpf-isa-00</span>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-thaler-bpf-isa-00">https://datatracker.ietf.org/doc/html/draft-thaler-bpf-isa-00</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="BTF">[BTF]</dt>
+      <dd>
+<span class="refTitle">"BPF Type Format (BTF)"</span>, <span>&lt;<a href="https://elixir.bootlin.com/linux/latest/source/Documentation/bpf/btf.rst">https://elixir.bootlin.com/linux/latest/source/Documentation/bpf/btf.rst</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="ELF">[ELF]</dt>
+      <dd>
+<span class="refTitle">"System V Application Binary Interface"</span>, <span>&lt;<a href="http://www.sco.com/developers/gabi/latest/contents.html">http://www.sco.com/developers/gabi/latest/contents.html</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="SPDX">[SPDX]</dt>
     <dd>
-<span class="refTitle">"BPF Type Format (BTF)"</span>, <span>&lt;<a href="btf.rst">btf.rst</a>&gt;</span>. </dd>
+<span class="refTitle">"Information technology -- SPDX® Specification V.2.1"</span>, <span>&lt;<a href="https://www.iso.org/standard/81870.html">https://www.iso.org/standard/81870.html</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>

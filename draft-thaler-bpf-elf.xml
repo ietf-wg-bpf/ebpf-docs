@@ -37,9 +37,7 @@ eBPF ELF Profile Specification, v0.1
   <abstract>
    <t>
     The Executable and Linking Format (ELF) is specified in Chapter 4 of the
-    "System V Application Binary Interface", June 2013, http://www.sco.com/developers/gabi/latest/contents.html.
-   </t>
-   <t>
+    System V Application Binary Interface.
     This document specifies version 0.1 of the eBPF profile for ELF files.
    </t>
   </abstract>
@@ -47,11 +45,11 @@ eBPF ELF Profile Specification, v0.1
  <middle>
   <section anchor="documentation-conventions" title="Documentation conventions">
    <t>
-    As this specification is a extension to the ELF specification, the same data representation
-    convention is used as specified in
-    http://www.sco.com/developers/gabi/latest/ch4.intro.html#data_representation
-    where structures are represented in a C-style format with types such as <tt>Elf64_Word</tt> for an
-    unsigned 64-bit integer.
+    This specification is a extension to the ELF file format as specified in Chapter 4 of the
+    <xref target="ELF">System V Application Binary Interface</xref>.
+    As such, the same data representation convention is used as specified in the Data Representation
+    section of the ELF specification, where structures are represented in a C-style format with types
+    such as <tt>Elf64_Word</tt> for an unsigned 64-bit integer.
    </t>
    <t>
     NOTE: Some content in this draft will eventually move to a separate BTF draft.
@@ -138,31 +136,31 @@ eBPF ELF Profile Specification, v0.1
     </sourcecode>
     <dl>
      <dt>
-      type
+      <strong>type</strong>
      </dt>
      <dd>
       An integer identifying the map type.  Its value and meaning are platform-specific.
      </dd>
      <dt>
-      key_size
+      <strong>key_size</strong>
      </dt>
      <dd>
       Size in bytes of keys in the map, if any.
      </dd>
      <dt>
-      value_size
+      <strong>value_size</strong>
      </dt>
      <dd>
       Size in bytes of values in the map, if any.
      </dd>
      <dt>
-      max_entries
+      <strong>max_entries</strong>
      </dt>
      <dd>
       Maximum number of entries in the map, if the map type has a maximum.
      </dd>
      <dt>
-      inner_map_idx
+      <strong>inner_map_idx</strong>
      </dt>
      <dd>
       If the map type is one whose values contain ids of other maps, then the inner
@@ -172,7 +170,7 @@ eBPF ELF Profile Specification, v0.1
       one whose values contain ids of other maps, this must be set to 0.
      </dd>
      <dt>
-      platform_specific_data
+      <strong>platform_specific_data</strong>
      </dt>
      <dd>
       This field and its size is up to the runtime platform to define.  For example,
@@ -198,24 +196,64 @@ eBPF ELF Profile Specification, v0.1
     </tr></thead>
     <tbody>
      <tr>
-      <td>license</td>
-      <td><xref target="program-license">Program License</xref></td>
+      <td>
+       <t>
+        license
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="program-license">Program License</xref>
+       </t>
+      </td>
      </tr>
      <tr>
-      <td>version</td>
-      <td><xref target="runtime-version-restriction">Runtime Version restriction</xref></td>
+      <td>
+       <t>
+        version
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="runtime-version-restriction">Runtime Version restriction</xref>
+       </t>
+      </td>
      </tr>
      <tr>
-      <td>.BTF</td>
-      <td><xref target="type-and-string-data">Type and String Data</xref></td>
+      <td>
+       <t>
+        .BTF
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="type-and-string-data">Type and String Data</xref>
+       </t>
+      </td>
      </tr>
      <tr>
-      <td>.BTF.ext</td>
-      <td><xref target="function-and-line-information">Function and Line Information</xref></td>
+      <td>
+       <t>
+        .BTF.ext
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="function-and-line-information">Function and Line Information</xref>
+       </t>
+      </td>
      </tr>
      <tr>
-      <td>.BTF_ids</td>
-      <td><xref target="btf-id-values">BTF ID Values</xref></td>
+      <td>
+       <t>
+        .BTF_ids
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="btf-id-values">BTF ID Values</xref>
+       </t>
+      </td>
      </tr>
     </tbody>
    </table>
@@ -225,8 +263,7 @@ eBPF ELF Profile Specification, v0.1
      can be used based on what license the eBPF program is under.  This information
      can be placed into the ELF file in a section named "license" whose contents
      is a null-terminated SPDX license expression as specified in Annex D of
-     ISO/IEC 5962:2021, "Information technology -- SPDX® Specification V2.",
-     https://www.iso.org/standard/81870.html.
+     <xref target="SPDX">ISO/IEC 5962:2021, "Information technology -- SPDX® Specification V22.1</xref>.
     </t>
    </section>
    <section anchor="runtime-version-restriction" title="Runtime Version restriction">
@@ -267,56 +304,56 @@ eBPF ELF Profile Specification, v0.1
     </sourcecode>
     <dl>
      <dt>
-      magic
+      <strong>magic</strong>
      </dt>
      <dd>
       Must be set to 0xeB9F, which can be used by a parser to determine whether multi-byte fields
       are in little-endian or big-endian byte order.
      </dd>
      <dt>
-      version
+      <strong>version</strong>
      </dt>
      <dd>
       Must be set to 1 (0x01).
      </dd>
      <dt>
-      flags
+      <strong>flags</strong>
      </dt>
      <dd>
       Must be set to 0.
      </dd>
      <dt>
-      hdr_len
+      <strong>hdr_len</strong>
      </dt>
      <dd>
       The size in bytes of this structure including the platform_specific_data.
      </dd>
      <dt>
-      func_info_off
+      <strong>func_info_off</strong>
      </dt>
      <dd>
       Offset in bytes past the end of the header, of the start of the <xref target="function-information">Function information</xref>.
      </dd>
      <dt>
-      func_info_len
+      <strong>func_info_len</strong>
      </dt>
      <dd>
       Size in bytes of the <xref target="function-information">Function information</xref>.  Must be set to 8 (0x00000008).
      </dd>
      <dt>
-      line_info_off
+      <strong>line_info_off</strong>
      </dt>
      <dd>
       Offset in bytes past the end of the header, of the start of the <xref target="line-information">Line Information</xref>.
      </dd>
      <dt>
-      line_info_len
+      <strong>line_info_len</strong>
      </dt>
      <dd>
       Size in bytes of the <xref target="line-information">Line Information</xref>.  Must be set to 16 (0x00000010).
      </dd>
      <dt>
-      platform_specific_data
+      <strong>platform_specific_data</strong>
      </dt>
      <dd>
       This field and its size is up to the runtime platform to define.
@@ -331,14 +368,14 @@ eBPF ELF Profile Specification, v0.1
      </sourcecode>
      <dl>
       <dt>
-       func_info_rec_size
+       <strong>func_info_rec_size</strong>
       </dt>
       <dd>
        Size in bytes of each function record contained in an <xref target="info-block">Info block</xref>.
        Must be set to 8 (0x00000008).
       </dd>
       <dt>
-       Function info 1..N
+       <strong>btf_ext_info_sec</strong>
       </dt>
       <dd>
        A set of <xref target="info-block">Info block</xref> data blobs, as many as will fit in the size given
@@ -357,23 +394,23 @@ eBPF ELF Profile Specification, v0.1
      </sourcecode>
      <dl>
       <dt>
-       sec_name_off
+       <strong>sec_name_off</strong>
       </dt>
       <dd>
        Offset in bytes of the section name within the <xref target="type-and-string-data">Type and String Data</xref>.
       </dd>
       <dt>
-       num_info
+       <strong>num_info</strong>
       </dt>
       <dd>
        Number of records that follow.  Must be greater than 0.
       </dd>
       <dt>
-       data
+       <strong>data</strong>
       </dt>
       <dd>
        A series of function or line records.  The total length of data is
-       `num_info * record_size` bytes, where <tt>record_size</tt> is the size
+       <tt>num_info * record_size</tt> bytes, where <tt>record_size</tt> is the size
        of a function record or line record.
       </dd>
      </dl>
@@ -387,7 +424,7 @@ eBPF ELF Profile Specification, v0.1
      </sourcecode>
      <dl>
       <dt>
-       insn_off
+       <strong>insn_off</strong>
       </dt>
       <dd>
        Number 8 byte units from the start of the section whose name is
@@ -396,7 +433,7 @@ eBPF ELF Profile Specification, v0.1
        greater than the instruction offset of the previous record.
       </dd>
       <dt>
-       type_id
+       <strong>type_id</strong>
       </dt>
       <dd>
        TODO: Add a definition of this field, which is "a BTF_KIND_FUNC type".
@@ -412,13 +449,13 @@ eBPF ELF Profile Specification, v0.1
      </sourcecode>
      <dl>
       <dt>
-       line_info_rec_size
+       <strong>line_info_rec_size</strong>
       </dt>
       <dd>
        Size in bytes of each line record in an <xref target="info-block">Info block</xref>.  Must be set to 16 (0x00000010).
       </dd>
       <dt>
-       btf_ext_info_sec
+       <strong>btf_ext_info_sec</strong>
       </dt>
       <dd>
        A set of <xref target="info-block">Info block</xref> data blobs, as many as will fit in the size given as the <tt>line_info_len</tt>,
@@ -437,26 +474,26 @@ eBPF ELF Profile Specification, v0.1
      </sourcecode>
      <dl>
       <dt>
-       insn_off
+       <strong>insn_off</strong>
       </dt>
       <dd>
        0-based instruction index into the eBPF program contained
        in the section whose name is referenced in the <xref target="info-block">Info block</xref>.
       </dd>
       <dt>
-       file_name_off
+       <strong>file_name_off</strong>
       </dt>
       <dd>
        Offset in bytes of the file name within the <xref target="type-and-string-data">Type and String Data</xref>.
       </dd>
       <dt>
-       line_off
+       <strong>line_off</strong>
       </dt>
       <dd>
        Offset in bytes of the source line within the <xref target="type-and-string-data">Type and String Data</xref>.
       </dd>
       <dt>
-       line_col
+       <strong>line_col</strong>
       </dt>
       <dd>
        The line and column number value, computed as
@@ -470,22 +507,22 @@ eBPF ELF Profile Specification, v0.1
      TODO: make this secction adhere to the ELF specification data format
     </t>
     <t>
-     The <tt>.BTF_ids</tt> section encodes BTF ID values that are used within the kernel.
+     The <tt>.BTF_ids</tt> section encodes BTF ID values that are used within the Linux kernel.
     </t>
     <t>
-     This section is created during the kernel compilation with the help of
+     This section is created during the Linux kernel compilation with the help of
      macros defined in <tt>include/linux/btf_ids.h</tt> header file. Kernel code can
      use them to create lists and sets (sorted lists) of BTF ID values.
     </t>
     <t>
      The <tt>BTF_ID_LIST</tt> and <tt>BTF_ID</tt> macros define unsorted list of BTF ID values,
      with following syntax:
-    </t>
-    <artwork>
+     <artwork>
   BTF_ID_LIST(list)
   BTF_ID(type1, name1)
   BTF_ID(type2, name2)
-    </artwork>
+     </artwork>
+    </t>
     <t>
      resulting in the following layout in the <tt>.BTF_ids</tt> section:
     </t>
@@ -501,23 +538,23 @@ eBPF ELF Profile Specification, v0.1
     <t>
      The <tt>BTF_ID_UNUSED</tt> macro defines 4 zero bytes. It's used when we
      want to define an unused entry in BTF_ID_LIST, like:
-    </t>
-    <artwork>
+     <artwork>
       BTF_ID_LIST(bpf_skb_output_btf_ids)
       BTF_ID(struct, sk_buff)
       BTF_ID_UNUSED
       BTF_ID(struct, task_struct)
-    </artwork>
+     </artwork>
+    </t>
     <t>
      The <tt>BTF_SET_START/END</tt> macros pair defines a sorted list of BTF ID values
      and their count, with following syntax:
-    </t>
-    <artwork>
+     <artwork>
   BTF_SET_START(set)
   BTF_ID(type1, name1)
   BTF_ID(type2, name2)
   BTF_SET_END(set)
-    </artwork>
+     </artwork>
+    </t>
     <t>
      resulting in the following layout in the <tt>.BTF_ids</tt> section:
     </t>
@@ -543,7 +580,7 @@ eBPF ELF Profile Specification, v0.1
     </t>
     <t>
      All the BTF ID lists and sets are compiled in the <tt>.BTF_ids</tt> section and
-     resolved during the linking phase of kernel build by <tt>resolve_btfids</tt> tool.
+     resolved during the linking phase of Linux kernel build by <tt>resolve_btfids</tt> tool.
     </t>
    </section>
   </section>
@@ -559,15 +596,28 @@ eBPF ELF Profile Specification, v0.1
  </middle>
  <back>
  <references><name>Normative References</name>
-  <reference anchor="BPF-ISA" target="instruction-set.rst">
+  <reference anchor="BPF-ISA">
    <front>
     <title>eBPF Instruction Set Specification, v1.0</title>
     <author></author>
    </front>
+   <seriesInfo name='Internet-Draft' value='draft-thaler-bpf-isa-00'/>
   </reference>
-  <reference anchor="BTF" target="btf.rst">
+  <reference anchor="BTF" target="https://elixir.bootlin.com/linux/latest/source/Documentation/bpf/btf.rst">
    <front>
     <title>BPF Type Format (BTF)</title>
+    <author></author>
+   </front>
+  </reference>
+  <reference anchor="ELF" target="http://www.sco.com/developers/gabi/latest/contents.html">
+   <front>
+    <title>System V Application Binary Interface</title>
+    <author></author>
+   </front>
+  </reference>
+  <reference anchor="SPDX" target="https://www.iso.org/standard/81870.html">
+   <front>
+    <title>Information technology -- SPDX® Specification V.2.1</title>
     <author></author>
    </front>
   </reference>

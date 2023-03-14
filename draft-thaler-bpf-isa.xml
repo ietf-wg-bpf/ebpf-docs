@@ -109,11 +109,11 @@ eBPF Instruction Set Specification, v1.0
    <t>
     The fields conforming an encoded basic instruction are stored in the
     following order:
-   </t>
-   <artwork>
+    <artwork>
   opcode:8 src_reg:4 dst_reg:4 offset:16 imm:32 // In little-endian BPF.
   opcode:8 dst_reg:4 src_reg:4 offset:16 imm:32 // In big-endian BPF.
-   </artwork>
+    </artwork>
+   </t>
    <dl>
     <dt>
      <strong>imm</strong>
@@ -210,52 +210,180 @@ eBPF Instruction Set Specification, v1.0
      </tr></thead>
      <tbody>
       <tr>
-       <td>BPF_LD</td>
-       <td>0x00</td>
-       <td>non-standard load operations</td>
-       <td><xref target="load-and-store-instructions">Load and store instructions</xref></td>
+       <td>
+        <t>
+         BPF_LD
+        </t>
+       </td>
+       <td>
+        <t>
+         0x00
+        </t>
+       </td>
+       <td>
+        <t>
+         non-standard load operations
+        </t>
+       </td>
+       <td>
+        <t>
+         <xref target="load-and-store-instructions">Load and store instructions</xref>
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_LDX</td>
-       <td>0x01</td>
-       <td>load into register operations</td>
-       <td><xref target="load-and-store-instructions">Load and store instructions</xref></td>
+       <td>
+        <t>
+         BPF_LDX
+        </t>
+       </td>
+       <td>
+        <t>
+         0x01
+        </t>
+       </td>
+       <td>
+        <t>
+         load into register operations
+        </t>
+       </td>
+       <td>
+        <t>
+         <xref target="load-and-store-instructions">Load and store instructions</xref>
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_ST</td>
-       <td>0x02</td>
-       <td>store from immediate operations</td>
-       <td><xref target="load-and-store-instructions">Load and store instructions</xref></td>
+       <td>
+        <t>
+         BPF_ST
+        </t>
+       </td>
+       <td>
+        <t>
+         0x02
+        </t>
+       </td>
+       <td>
+        <t>
+         store from immediate operations
+        </t>
+       </td>
+       <td>
+        <t>
+         <xref target="load-and-store-instructions">Load and store instructions</xref>
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_STX</td>
-       <td>0x03</td>
-       <td>store from register operations</td>
-       <td><xref target="load-and-store-instructions">Load and store instructions</xref></td>
+       <td>
+        <t>
+         BPF_STX
+        </t>
+       </td>
+       <td>
+        <t>
+         0x03
+        </t>
+       </td>
+       <td>
+        <t>
+         store from register operations
+        </t>
+       </td>
+       <td>
+        <t>
+         <xref target="load-and-store-instructions">Load and store instructions</xref>
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_ALU</td>
-       <td>0x04</td>
-       <td>32-bit arithmetic operations</td>
-       <td><xref target="arithmetic-and-jump-instructions">Arithmetic and jump instructions</xref></td>
+       <td>
+        <t>
+         BPF_ALU
+        </t>
+       </td>
+       <td>
+        <t>
+         0x04
+        </t>
+       </td>
+       <td>
+        <t>
+         32-bit arithmetic operations
+        </t>
+       </td>
+       <td>
+        <t>
+         <xref target="arithmetic-and-jump-instructions">Arithmetic and jump instructions</xref>
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_JMP</td>
-       <td>0x05</td>
-       <td>64-bit jump operations</td>
-       <td><xref target="arithmetic-and-jump-instructions">Arithmetic and jump instructions</xref></td>
+       <td>
+        <t>
+         BPF_JMP
+        </t>
+       </td>
+       <td>
+        <t>
+         0x05
+        </t>
+       </td>
+       <td>
+        <t>
+         64-bit jump operations
+        </t>
+       </td>
+       <td>
+        <t>
+         <xref target="arithmetic-and-jump-instructions">Arithmetic and jump instructions</xref>
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_JMP32</td>
-       <td>0x06</td>
-       <td>32-bit jump operations</td>
-       <td><xref target="arithmetic-and-jump-instructions">Arithmetic and jump instructions</xref></td>
+       <td>
+        <t>
+         BPF_JMP32
+        </t>
+       </td>
+       <td>
+        <t>
+         0x06
+        </t>
+       </td>
+       <td>
+        <t>
+         32-bit jump operations
+        </t>
+       </td>
+       <td>
+        <t>
+         <xref target="arithmetic-and-jump-instructions">Arithmetic and jump instructions</xref>
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_ALU64</td>
-       <td>0x07</td>
-       <td>64-bit arithmetic operations</td>
-       <td><xref target="arithmetic-and-jump-instructions">Arithmetic and jump instructions</xref></td>
+       <td>
+        <t>
+         BPF_ALU64
+        </t>
+       </td>
+       <td>
+        <t>
+         0x07
+        </t>
+       </td>
+       <td>
+        <t>
+         64-bit arithmetic operations
+        </t>
+       </td>
+       <td>
+        <t>
+         <xref target="arithmetic-and-jump-instructions">Arithmetic and jump instructions</xref>
+        </t>
+       </td>
       </tr>
      </tbody>
     </table>
@@ -273,9 +401,21 @@ eBPF Instruction Set Specification, v1.0
     </tr></thead>
     <tbody>
      <tr>
-      <td>code</td>
-      <td>source</td>
-      <td>instruction class</td>
+      <td>
+       <t>
+        code
+       </t>
+      </td>
+      <td>
+       <t>
+        source
+       </t>
+      </td>
+      <td>
+       <t>
+        instruction class
+       </t>
+      </td>
      </tr>
     </tbody>
    </table>
@@ -300,14 +440,38 @@ eBPF Instruction Set Specification, v1.0
     </tr></thead>
     <tbody>
      <tr>
-      <td>BPF_K</td>
-      <td>0x00</td>
-      <td>use 32-bit 'imm' value as source operand</td>
+      <td>
+       <t>
+        BPF_K
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        use 32-bit 'imm' value as source operand
+       </t>
+      </td>
      </tr>
      <tr>
-      <td>BPF_X</td>
-      <td>0x08</td>
-      <td>use 'src_reg' register value as source operand</td>
+      <td>
+       <t>
+        BPF_X
+       </t>
+      </td>
+      <td>
+       <t>
+        0x08
+       </t>
+      </td>
+      <td>
+       <t>
+        use 'src_reg' register value as source operand
+       </t>
+      </td>
      </tr>
     </tbody>
    </table>
@@ -334,74 +498,242 @@ eBPF Instruction Set Specification, v1.0
      </tr></thead>
      <tbody>
       <tr>
-       <td>BPF_ADD</td>
-       <td>0x00</td>
-       <td>dst += src</td>
+       <td>
+        <t>
+         BPF_ADD
+        </t>
+       </td>
+       <td>
+        <t>
+         0x00
+        </t>
+       </td>
+       <td>
+        <t>
+         dst += src
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_SUB</td>
-       <td>0x10</td>
-       <td>dst -= src</td>
+       <td>
+        <t>
+         BPF_SUB
+        </t>
+       </td>
+       <td>
+        <t>
+         0x10
+        </t>
+       </td>
+       <td>
+        <t>
+         dst -= src
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_MUL</td>
-       <td>0x20</td>
-       <td>dst *= src</td>
+       <td>
+        <t>
+         BPF_MUL
+        </t>
+       </td>
+       <td>
+        <t>
+         0x20
+        </t>
+       </td>
+       <td>
+        <t>
+         dst *= src
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_DIV</td>
-       <td>0x30</td>
-       <td>dst = (src != 0) ? (dst / src) : 0</td>
+       <td>
+        <t>
+         BPF_DIV
+        </t>
+       </td>
+       <td>
+        <t>
+         0x30
+        </t>
+       </td>
+       <td>
+        <t>
+         dst = (src != 0) ? (dst / src) : 0
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_OR</td>
-       <td>0x40</td>
-       <td>dst |= src</td>
+       <td>
+        <t>
+         BPF_OR
+        </t>
+       </td>
+       <td>
+        <t>
+         0x40
+        </t>
+       </td>
+       <td>
+        <t>
+         dst |= src
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_AND</td>
-       <td>0x50</td>
-       <td>dst &amp;= src</td>
+       <td>
+        <t>
+         BPF_AND
+        </t>
+       </td>
+       <td>
+        <t>
+         0x50
+        </t>
+       </td>
+       <td>
+        <t>
+         dst &amp;= src
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_LSH</td>
-       <td>0x60</td>
-       <td>dst &lt;&lt;= src</td>
+       <td>
+        <t>
+         BPF_LSH
+        </t>
+       </td>
+       <td>
+        <t>
+         0x60
+        </t>
+       </td>
+       <td>
+        <t>
+         dst &lt;&lt;= src
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_RSH</td>
-       <td>0x70</td>
-       <td>dst &gt;&gt;= src</td>
+       <td>
+        <t>
+         BPF_RSH
+        </t>
+       </td>
+       <td>
+        <t>
+         0x70
+        </t>
+       </td>
+       <td>
+        <t>
+         dst &gt;&gt;= src
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_NEG</td>
-       <td>0x80</td>
-       <td>dst = ~src</td>
+       <td>
+        <t>
+         BPF_NEG
+        </t>
+       </td>
+       <td>
+        <t>
+         0x80
+        </t>
+       </td>
+       <td>
+        <t>
+         dst = ~src
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_MOD</td>
-       <td>0x90</td>
-       <td>dst = (src != 0) ? (dst % src) : dst</td>
+       <td>
+        <t>
+         BPF_MOD
+        </t>
+       </td>
+       <td>
+        <t>
+         0x90
+        </t>
+       </td>
+       <td>
+        <t>
+         dst = (src != 0) ? (dst % src) : dst
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_XOR</td>
-       <td>0xa0</td>
-       <td>dst ^= src</td>
+       <td>
+        <t>
+         BPF_XOR
+        </t>
+       </td>
+       <td>
+        <t>
+         0xa0
+        </t>
+       </td>
+       <td>
+        <t>
+         dst ^= src
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_MOV</td>
-       <td>0xb0</td>
-       <td>dst = src</td>
+       <td>
+        <t>
+         BPF_MOV
+        </t>
+       </td>
+       <td>
+        <t>
+         0xb0
+        </t>
+       </td>
+       <td>
+        <t>
+         dst = src
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_ARSH</td>
-       <td>0xc0</td>
-       <td>sign extending shift right</td>
+       <td>
+        <t>
+         BPF_ARSH
+        </t>
+       </td>
+       <td>
+        <t>
+         0xc0
+        </t>
+       </td>
+       <td>
+        <t>
+         sign extending shift right
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_END</td>
-       <td>0xd0</td>
-       <td>byte swap operations (see <xref target="byte-swap-instructions">Byte swap instructions</xref> below)</td>
+       <td>
+        <t>
+         BPF_END
+        </t>
+       </td>
+       <td>
+        <t>
+         0xd0
+        </t>
+       </td>
+       <td>
+        <t>
+         byte swap operations (see <xref target="byte-swap-instructions">Byte swap instructions</xref> below)
+        </t>
+       </td>
       </tr>
      </tbody>
     </table>
@@ -411,11 +743,7 @@ eBPF Instruction Set Specification, v1.0
      result in division by zero, the destination register is instead set to zero.
      If execution would result in modulo by zero, for <tt>BPF_ALU64</tt> the value of
      the destination register is unchanged whereas for <tt>BPF_ALU</tt> the upper
-     <ol>
-      <li>
-       bits of the destination register are zeroed.
-      </li>
-     </ol>
+     32 bits of the destination register are zeroed.
     </t>
     <t>
      Examples:
@@ -475,14 +803,38 @@ eBPF Instruction Set Specification, v1.0
       </tr></thead>
       <tbody>
        <tr>
-        <td>BPF_TO_LE</td>
-        <td>0x00</td>
-        <td>convert between host byte order and little endian</td>
+        <td>
+         <t>
+          BPF_TO_LE
+         </t>
+        </td>
+        <td>
+         <t>
+          0x00
+         </t>
+        </td>
+        <td>
+         <t>
+          convert between host byte order and little endian
+         </t>
+        </td>
        </tr>
        <tr>
-        <td>BPF_TO_BE</td>
-        <td>0x08</td>
-        <td>convert between host byte order and big endian</td>
+        <td>
+         <t>
+          BPF_TO_BE
+         </t>
+        </td>
+        <td>
+         <t>
+          0x08
+         </t>
+        </td>
+        <td>
+         <t>
+          convert between host byte order and big endian
+         </t>
+        </td>
        </tr>
       </tbody>
      </table>
@@ -500,46 +852,166 @@ eBPF Instruction Set Specification, v1.0
       </tr></thead>
       <tbody>
        <tr>
-        <td>BPF_END | BPF_TO_LE | BPF_ALU</td>
-        <td>0xd4</td>
-        <td>16</td>
-        <td>le16 dst</td>
-        <td>dst = htole16(dst)</td>
+        <td>
+         <t>
+          BPF_END | BPF_TO_LE | BPF_ALU
+         </t>
+        </td>
+        <td>
+         <t>
+          0xd4
+         </t>
+        </td>
+        <td>
+         <t>
+          16
+         </t>
+        </td>
+        <td>
+         <t>
+          le16 dst
+         </t>
+        </td>
+        <td>
+         <t>
+          dst = htole16(dst)
+         </t>
+        </td>
        </tr>
        <tr>
-        <td>BPF_END | BPF_TO_LE | BPF_ALU</td>
-        <td>0xd4</td>
-        <td>32</td>
-        <td>le32 dst</td>
-        <td>dst = htole32(dst)</td>
+        <td>
+         <t>
+          BPF_END | BPF_TO_LE | BPF_ALU
+         </t>
+        </td>
+        <td>
+         <t>
+          0xd4
+         </t>
+        </td>
+        <td>
+         <t>
+          32
+         </t>
+        </td>
+        <td>
+         <t>
+          le32 dst
+         </t>
+        </td>
+        <td>
+         <t>
+          dst = htole32(dst)
+         </t>
+        </td>
        </tr>
        <tr>
-        <td>BPF_END | BPF_TO_LE | BPF_ALU</td>
-        <td>0xd4</td>
-        <td>64</td>
-        <td>le64 dst</td>
-        <td>dst = htole64(dst)</td>
+        <td>
+         <t>
+          BPF_END | BPF_TO_LE | BPF_ALU
+         </t>
+        </td>
+        <td>
+         <t>
+          0xd4
+         </t>
+        </td>
+        <td>
+         <t>
+          64
+         </t>
+        </td>
+        <td>
+         <t>
+          le64 dst
+         </t>
+        </td>
+        <td>
+         <t>
+          dst = htole64(dst)
+         </t>
+        </td>
        </tr>
        <tr>
-        <td>BPF_END | BPF_TO_BE | BPF_ALU</td>
-        <td>0xdc</td>
-        <td>16</td>
-        <td>be16 dst</td>
-        <td>dst = htobe16(dst)</td>
+        <td>
+         <t>
+          BPF_END | BPF_TO_BE | BPF_ALU
+         </t>
+        </td>
+        <td>
+         <t>
+          0xdc
+         </t>
+        </td>
+        <td>
+         <t>
+          16
+         </t>
+        </td>
+        <td>
+         <t>
+          be16 dst
+         </t>
+        </td>
+        <td>
+         <t>
+          dst = htobe16(dst)
+         </t>
+        </td>
        </tr>
        <tr>
-        <td>BPF_END | BPF_TO_BE | BPF_ALU</td>
-        <td>0xdc</td>
-        <td>32</td>
-        <td>be32 dst</td>
-        <td>dst = htobe32(dst)</td>
+        <td>
+         <t>
+          BPF_END | BPF_TO_BE | BPF_ALU
+         </t>
+        </td>
+        <td>
+         <t>
+          0xdc
+         </t>
+        </td>
+        <td>
+         <t>
+          32
+         </t>
+        </td>
+        <td>
+         <t>
+          be32 dst
+         </t>
+        </td>
+        <td>
+         <t>
+          dst = htobe32(dst)
+         </t>
+        </td>
        </tr>
        <tr>
-        <td>BPF_END | BPF_TO_BE | BPF_ALU</td>
-        <td>0xdc</td>
-        <td>64</td>
-        <td>be64 dst</td>
-        <td>dst = htobe64(dst)</td>
+        <td>
+         <t>
+          BPF_END | BPF_TO_BE | BPF_ALU
+         </t>
+        </td>
+        <td>
+         <t>
+          0xdc
+         </t>
+        </td>
+        <td>
+         <t>
+          64
+         </t>
+        </td>
+        <td>
+         <t>
+          be64 dst
+         </t>
+        </td>
+        <td>
+         <t>
+          dst = htobe64(dst)
+         </t>
+        </td>
        </tr>
       </tbody>
      </table>
@@ -576,116 +1048,427 @@ eBPF Instruction Set Specification, v1.0
      </tr></thead>
      <tbody>
       <tr>
-       <td>BPF_JA</td>
-       <td>0x0</td>
-       <td>0x0</td>
-       <td>PC += offset</td>
-       <td>BPF_JMP only</td>
+       <td>
+        <t>
+         BPF_JA
+        </t>
+       </td>
+       <td>
+        <t>
+         0x0
+        </t>
+       </td>
+       <td>
+        <t>
+         0x0
+        </t>
+       </td>
+       <td>
+        <t>
+         PC += offset
+        </t>
+       </td>
+       <td>
+        <t>
+         BPF_JMP only
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_JEQ</td>
-       <td>0x1</td>
-       <td>any</td>
-       <td>PC += offset if dst == src</td>
-       <td></td>
+       <td>
+        <t>
+         BPF_JEQ
+        </t>
+       </td>
+       <td>
+        <t>
+         0x1
+        </t>
+       </td>
+       <td>
+        <t>
+         any
+        </t>
+       </td>
+       <td>
+        <t>
+         PC += offset if dst == src
+        </t>
+       </td>
+       <td>
+       </td>
       </tr>
       <tr>
-       <td>BPF_JGT</td>
-       <td>0x2</td>
-       <td>any</td>
-       <td>PC += offset if dst &gt; src</td>
-       <td>unsigned</td>
+       <td>
+        <t>
+         BPF_JGT
+        </t>
+       </td>
+       <td>
+        <t>
+         0x2
+        </t>
+       </td>
+       <td>
+        <t>
+         any
+        </t>
+       </td>
+       <td>
+        <t>
+         PC += offset if dst &gt; src
+        </t>
+       </td>
+       <td>
+        <t>
+         unsigned
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_JGE</td>
-       <td>0x3</td>
-       <td>any</td>
-       <td>PC += offset if dst &gt;= src</td>
-       <td>unsigned</td>
+       <td>
+        <t>
+         BPF_JGE
+        </t>
+       </td>
+       <td>
+        <t>
+         0x3
+        </t>
+       </td>
+       <td>
+        <t>
+         any
+        </t>
+       </td>
+       <td>
+        <t>
+         PC += offset if dst &gt;= src
+        </t>
+       </td>
+       <td>
+        <t>
+         unsigned
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_JSET</td>
-       <td>0x4</td>
-       <td>any</td>
-       <td>PC += offset if dst &amp; src</td>
-       <td></td>
+       <td>
+        <t>
+         BPF_JSET
+        </t>
+       </td>
+       <td>
+        <t>
+         0x4
+        </t>
+       </td>
+       <td>
+        <t>
+         any
+        </t>
+       </td>
+       <td>
+        <t>
+         PC += offset if dst &amp; src
+        </t>
+       </td>
+       <td>
+       </td>
       </tr>
       <tr>
-       <td>BPF_JNE</td>
-       <td>0x5</td>
-       <td>any</td>
-       <td>PC += offset if dst != src</td>
-       <td></td>
+       <td>
+        <t>
+         BPF_JNE
+        </t>
+       </td>
+       <td>
+        <t>
+         0x5
+        </t>
+       </td>
+       <td>
+        <t>
+         any
+        </t>
+       </td>
+       <td>
+        <t>
+         PC += offset if dst != src
+        </t>
+       </td>
+       <td>
+       </td>
       </tr>
       <tr>
-       <td>BPF_JSGT</td>
-       <td>0x6</td>
-       <td>any</td>
-       <td>PC += offset if dst &gt; src</td>
-       <td>signed</td>
+       <td>
+        <t>
+         BPF_JSGT
+        </t>
+       </td>
+       <td>
+        <t>
+         0x6
+        </t>
+       </td>
+       <td>
+        <t>
+         any
+        </t>
+       </td>
+       <td>
+        <t>
+         PC += offset if dst &gt; src
+        </t>
+       </td>
+       <td>
+        <t>
+         signed
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_JSGE</td>
-       <td>0x7</td>
-       <td>any</td>
-       <td>PC += offset if dst &gt;= src</td>
-       <td>signed</td>
+       <td>
+        <t>
+         BPF_JSGE
+        </t>
+       </td>
+       <td>
+        <t>
+         0x7
+        </t>
+       </td>
+       <td>
+        <t>
+         any
+        </t>
+       </td>
+       <td>
+        <t>
+         PC += offset if dst &gt;= src
+        </t>
+       </td>
+       <td>
+        <t>
+         signed
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_CALL</td>
-       <td>0x8</td>
-       <td>0x0</td>
-       <td>call platform-agnostic helper function imm</td>
-       <td>see <xref target="platform-agnostic-helper-functions">Platform-agnostic helper functions</xref></td>
+       <td>
+        <t>
+         BPF_CALL
+        </t>
+       </td>
+       <td>
+        <t>
+         0x8
+        </t>
+       </td>
+       <td>
+        <t>
+         0x0
+        </t>
+       </td>
+       <td>
+        <t>
+         call platform-agnostic helper function imm
+        </t>
+       </td>
+       <td>
+        <t>
+         see <xref target="platform-agnostic-helper-functions">Platform-agnostic helper functions</xref>
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_CALL</td>
-       <td>0x8</td>
-       <td>0x1</td>
-       <td>call PC += offset</td>
-       <td>see <xref target="bpf-local-functions">BPF-local functions</xref></td>
+       <td>
+        <t>
+         BPF_CALL
+        </t>
+       </td>
+       <td>
+        <t>
+         0x8
+        </t>
+       </td>
+       <td>
+        <t>
+         0x1
+        </t>
+       </td>
+       <td>
+        <t>
+         call PC += offset
+        </t>
+       </td>
+       <td>
+        <t>
+         see <xref target="bpf-local-functions">BPF-local functions</xref>
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_CALL</td>
-       <td>0x8</td>
-       <td>0x2</td>
-       <td>call platform-specific helper function imm</td>
-       <td>see <xref target="platform-specific-helper-functions">Platform-specific helper functions</xref></td>
+       <td>
+        <t>
+         BPF_CALL
+        </t>
+       </td>
+       <td>
+        <t>
+         0x8
+        </t>
+       </td>
+       <td>
+        <t>
+         0x2
+        </t>
+       </td>
+       <td>
+        <t>
+         call platform-specific helper function imm
+        </t>
+       </td>
+       <td>
+        <t>
+         see <xref target="platform-specific-helper-functions">Platform-specific helper functions</xref>
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_EXIT</td>
-       <td>0x9</td>
-       <td>0x0</td>
-       <td>return</td>
-       <td>BPF_JMP only</td>
+       <td>
+        <t>
+         BPF_EXIT
+        </t>
+       </td>
+       <td>
+        <t>
+         0x9
+        </t>
+       </td>
+       <td>
+        <t>
+         0x0
+        </t>
+       </td>
+       <td>
+        <t>
+         return
+        </t>
+       </td>
+       <td>
+        <t>
+         BPF_JMP only
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_JLT</td>
-       <td>0xa</td>
-       <td>any</td>
-       <td>PC += offset if dst &lt; src</td>
-       <td>unsigned</td>
+       <td>
+        <t>
+         BPF_JLT
+        </t>
+       </td>
+       <td>
+        <t>
+         0xa
+        </t>
+       </td>
+       <td>
+        <t>
+         any
+        </t>
+       </td>
+       <td>
+        <t>
+         PC += offset if dst &lt; src
+        </t>
+       </td>
+       <td>
+        <t>
+         unsigned
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_JLE</td>
-       <td>0xb</td>
-       <td>any</td>
-       <td>PC += offset if dst &lt;= src</td>
-       <td>unsigned</td>
+       <td>
+        <t>
+         BPF_JLE
+        </t>
+       </td>
+       <td>
+        <t>
+         0xb
+        </t>
+       </td>
+       <td>
+        <t>
+         any
+        </t>
+       </td>
+       <td>
+        <t>
+         PC += offset if dst &lt;= src
+        </t>
+       </td>
+       <td>
+        <t>
+         unsigned
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_JSLT</td>
-       <td>0xc</td>
-       <td>any</td>
-       <td>PC += offset if dst &lt; src</td>
-       <td>signed</td>
+       <td>
+        <t>
+         BPF_JSLT
+        </t>
+       </td>
+       <td>
+        <t>
+         0xc
+        </t>
+       </td>
+       <td>
+        <t>
+         any
+        </t>
+       </td>
+       <td>
+        <t>
+         PC += offset if dst &lt; src
+        </t>
+       </td>
+       <td>
+        <t>
+         signed
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_JSLE</td>
-       <td>0xd</td>
-       <td>any</td>
-       <td>PC += offset if dst &lt;= src</td>
-       <td>signed</td>
+       <td>
+        <t>
+         BPF_JSLE
+        </t>
+       </td>
+       <td>
+        <t>
+         0xd
+        </t>
+       </td>
+       <td>
+        <t>
+         any
+        </t>
+       </td>
+       <td>
+        <t>
+         PC += offset if dst &lt;= src
+        </t>
+       </td>
+       <td>
+        <t>
+         signed
+        </t>
+       </td>
       </tr>
      </tbody>
     </table>
@@ -696,7 +1479,7 @@ eBPF Instruction Set Specification, v1.0
      <tt>BPF_JSGE | BPF_X | BPF_JMP32</tt> (0x7e) means:
     </t>
     <artwork>
-  if (s32)dst s>= (s32)src goto +offset
+  if (s32)dst s&gt;= (s32)src goto +offset
     </artwork>
     <t>
      where 's&gt;=' indicates a signed '&gt;=' comparison.
@@ -740,9 +1523,21 @@ eBPF Instruction Set Specification, v1.0
     </tr></thead>
     <tbody>
      <tr>
-      <td>mode</td>
-      <td>size</td>
-      <td>instruction class</td>
+      <td>
+       <t>
+        mode
+       </t>
+      </td>
+      <td>
+       <t>
+        size
+       </t>
+      </td>
+      <td>
+       <t>
+        instruction class
+       </t>
+      </td>
      </tr>
     </tbody>
    </table>
@@ -762,34 +1557,114 @@ eBPF Instruction Set Specification, v1.0
     </tr></thead>
     <tbody>
      <tr>
-      <td>BPF_IMM</td>
-      <td>0x00</td>
-      <td>64-bit immediate instructions</td>
-      <td><xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref></td>
+      <td>
+       <t>
+        BPF_IMM
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        64-bit immediate instructions
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref>
+       </t>
+      </td>
      </tr>
      <tr>
-      <td>BPF_ABS</td>
-      <td>0x20</td>
-      <td>legacy BPF packet access (absolute)</td>
-      <td><xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref></td>
+      <td>
+       <t>
+        BPF_ABS
+       </t>
+      </td>
+      <td>
+       <t>
+        0x20
+       </t>
+      </td>
+      <td>
+       <t>
+        legacy BPF packet access (absolute)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
      </tr>
      <tr>
-      <td>BPF_IND</td>
-      <td>0x40</td>
-      <td>legacy BPF packet access (indirect)</td>
-      <td><xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref></td>
+      <td>
+       <t>
+        BPF_IND
+       </t>
+      </td>
+      <td>
+       <t>
+        0x40
+       </t>
+      </td>
+      <td>
+       <t>
+        legacy BPF packet access (indirect)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
      </tr>
      <tr>
-      <td>BPF_MEM</td>
-      <td>0x60</td>
-      <td>regular load and store operations</td>
-      <td><xref target="regular-load-and-store-operations">Regular load and store operations</xref></td>
+      <td>
+       <t>
+        BPF_MEM
+       </t>
+      </td>
+      <td>
+       <t>
+        0x60
+       </t>
+      </td>
+      <td>
+       <t>
+        regular load and store operations
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="regular-load-and-store-operations">Regular load and store operations</xref>
+       </t>
+      </td>
      </tr>
      <tr>
-      <td>BPF_ATOMIC</td>
-      <td>0xc0</td>
-      <td>atomic operations</td>
-      <td><xref target="atomic-operations">Atomic operations</xref></td>
+      <td>
+       <t>
+        BPF_ATOMIC
+       </t>
+      </td>
+      <td>
+       <t>
+        0xc0
+       </t>
+      </td>
+      <td>
+       <t>
+        atomic operations
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="atomic-operations">Atomic operations</xref>
+       </t>
+      </td>
      </tr>
     </tbody>
    </table>
@@ -808,24 +1683,72 @@ eBPF Instruction Set Specification, v1.0
     </tr></thead>
     <tbody>
      <tr>
-      <td>BPF_W</td>
-      <td>0x00</td>
-      <td>word        (4 bytes)</td>
+      <td>
+       <t>
+        BPF_W
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        word        (4 bytes)
+       </t>
+      </td>
      </tr>
      <tr>
-      <td>BPF_H</td>
-      <td>0x08</td>
-      <td>half word   (2 bytes)</td>
+      <td>
+       <t>
+        BPF_H
+       </t>
+      </td>
+      <td>
+       <t>
+        0x08
+       </t>
+      </td>
+      <td>
+       <t>
+        half word   (2 bytes)
+       </t>
+      </td>
      </tr>
      <tr>
-      <td>BPF_B</td>
-      <td>0x10</td>
-      <td>byte</td>
+      <td>
+       <t>
+        BPF_B
+       </t>
+      </td>
+      <td>
+       <t>
+        0x10
+       </t>
+      </td>
+      <td>
+       <t>
+        byte
+       </t>
+      </td>
      </tr>
      <tr>
-      <td>BPF_DW</td>
-      <td>0x18</td>
-      <td>double word (8 bytes)</td>
+      <td>
+       <t>
+        BPF_DW
+       </t>
+      </td>
+      <td>
+       <t>
+        0x18
+       </t>
+      </td>
+      <td>
+       <t>
+        double word (8 bytes)
+       </t>
+      </td>
      </tr>
     </tbody>
    </table>
@@ -898,24 +1821,72 @@ eBPF Instruction Set Specification, v1.0
      </tr></thead>
      <tbody>
       <tr>
-       <td>BPF_ADD</td>
-       <td>0x00</td>
-       <td>atomic add</td>
+       <td>
+        <t>
+         BPF_ADD
+        </t>
+       </td>
+       <td>
+        <t>
+         0x00
+        </t>
+       </td>
+       <td>
+        <t>
+         atomic add
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_OR</td>
-       <td>0x40</td>
-       <td>atomic or</td>
+       <td>
+        <t>
+         BPF_OR
+        </t>
+       </td>
+       <td>
+        <t>
+         0x40
+        </t>
+       </td>
+       <td>
+        <t>
+         atomic or
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_AND</td>
-       <td>0x50</td>
-       <td>atomic and</td>
+       <td>
+        <t>
+         BPF_AND
+        </t>
+       </td>
+       <td>
+        <t>
+         0x50
+        </t>
+       </td>
+       <td>
+        <t>
+         atomic and
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_XOR</td>
-       <td>0xa0</td>
-       <td>atomic xor</td>
+       <td>
+        <t>
+         BPF_XOR
+        </t>
+       </td>
+       <td>
+        <t>
+         0xa0
+        </t>
+       </td>
+       <td>
+        <t>
+         atomic xor
+        </t>
+       </td>
       </tr>
      </tbody>
     </table>
@@ -942,19 +1913,55 @@ eBPF Instruction Set Specification, v1.0
      </tr></thead>
      <tbody>
       <tr>
-       <td>BPF_FETCH</td>
-       <td>0x01</td>
-       <td>modifier: return old value</td>
+       <td>
+        <t>
+         BPF_FETCH
+        </t>
+       </td>
+       <td>
+        <t>
+         0x01
+        </t>
+       </td>
+       <td>
+        <t>
+         modifier: return old value
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_XCHG</td>
-       <td>0xe0 | BPF_FETCH</td>
-       <td>atomic exchange</td>
+       <td>
+        <t>
+         BPF_XCHG
+        </t>
+       </td>
+       <td>
+        <t>
+         0xe0 | BPF_FETCH
+        </t>
+       </td>
+       <td>
+        <t>
+         atomic exchange
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_CMPXCHG</td>
-       <td>0xf0 | BPF_FETCH</td>
-       <td>atomic compare and exchange</td>
+       <td>
+        <t>
+         BPF_CMPXCHG
+        </t>
+       </td>
+       <td>
+        <t>
+         0xf0 | BPF_FETCH
+        </t>
+       </td>
+       <td>
+        <t>
+         atomic compare and exchange
+        </t>
+       </td>
       </tr>
      </tbody>
     </table>
@@ -995,60 +2002,228 @@ eBPF Instruction Set Specification, v1.0
      </tr></thead>
      <tbody>
       <tr>
-       <td>BPF_IMM | BPF_DW | BPF_LD</td>
-       <td>0x18</td>
-       <td>0x0</td>
-       <td>dst = imm64</td>
-       <td>integer</td>
-       <td>integer</td>
+       <td>
+        <t>
+         BPF_IMM | BPF_DW | BPF_LD
+        </t>
+       </td>
+       <td>
+        <t>
+         0x18
+        </t>
+       </td>
+       <td>
+        <t>
+         0x0
+        </t>
+       </td>
+       <td>
+        <t>
+         dst = imm64
+        </t>
+       </td>
+       <td>
+        <t>
+         integer
+        </t>
+       </td>
+       <td>
+        <t>
+         integer
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_IMM | BPF_DW | BPF_LD</td>
-       <td>0x18</td>
-       <td>0x1</td>
-       <td>dst = map_by_fd(imm)</td>
-       <td>map fd</td>
-       <td>map</td>
+       <td>
+        <t>
+         BPF_IMM | BPF_DW | BPF_LD
+        </t>
+       </td>
+       <td>
+        <t>
+         0x18
+        </t>
+       </td>
+       <td>
+        <t>
+         0x1
+        </t>
+       </td>
+       <td>
+        <t>
+         dst = map_by_fd(imm)
+        </t>
+       </td>
+       <td>
+        <t>
+         map fd
+        </t>
+       </td>
+       <td>
+        <t>
+         map
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_IMM | BPF_DW | BPF_LD</td>
-       <td>0x18</td>
-       <td>0x2</td>
-       <td>dst = mva(map_by_fd(imm)) + next_imm</td>
-       <td>map fd</td>
-       <td>data pointer</td>
+       <td>
+        <t>
+         BPF_IMM | BPF_DW | BPF_LD
+        </t>
+       </td>
+       <td>
+        <t>
+         0x18
+        </t>
+       </td>
+       <td>
+        <t>
+         0x2
+        </t>
+       </td>
+       <td>
+        <t>
+         dst = mva(map_by_fd(imm)) + next_imm
+        </t>
+       </td>
+       <td>
+        <t>
+         map fd
+        </t>
+       </td>
+       <td>
+        <t>
+         data pointer
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_IMM | BPF_DW | BPF_LD</td>
-       <td>0x18</td>
-       <td>0x3</td>
-       <td>dst = variable_addr(imm)</td>
-       <td>variable id</td>
-       <td>data pointer</td>
+       <td>
+        <t>
+         BPF_IMM | BPF_DW | BPF_LD
+        </t>
+       </td>
+       <td>
+        <t>
+         0x18
+        </t>
+       </td>
+       <td>
+        <t>
+         0x3
+        </t>
+       </td>
+       <td>
+        <t>
+         dst = variable_addr(imm)
+        </t>
+       </td>
+       <td>
+        <t>
+         variable id
+        </t>
+       </td>
+       <td>
+        <t>
+         data pointer
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_IMM | BPF_DW | BPF_LD</td>
-       <td>0x18</td>
-       <td>0x4</td>
-       <td>dst = code_addr(imm)</td>
-       <td>integer</td>
-       <td>code pointer</td>
+       <td>
+        <t>
+         BPF_IMM | BPF_DW | BPF_LD
+        </t>
+       </td>
+       <td>
+        <t>
+         0x18
+        </t>
+       </td>
+       <td>
+        <t>
+         0x4
+        </t>
+       </td>
+       <td>
+        <t>
+         dst = code_addr(imm)
+        </t>
+       </td>
+       <td>
+        <t>
+         integer
+        </t>
+       </td>
+       <td>
+        <t>
+         code pointer
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_IMM | BPF_DW | BPF_LD</td>
-       <td>0x18</td>
-       <td>0x5</td>
-       <td>dst = map_by_idx(imm)</td>
-       <td>map index</td>
-       <td>map</td>
+       <td>
+        <t>
+         BPF_IMM | BPF_DW | BPF_LD
+        </t>
+       </td>
+       <td>
+        <t>
+         0x18
+        </t>
+       </td>
+       <td>
+        <t>
+         0x5
+        </t>
+       </td>
+       <td>
+        <t>
+         dst = map_by_idx(imm)
+        </t>
+       </td>
+       <td>
+        <t>
+         map index
+        </t>
+       </td>
+       <td>
+        <t>
+         map
+        </t>
+       </td>
       </tr>
       <tr>
-       <td>BPF_IMM | BPF_DW | BPF_LD</td>
-       <td>0x18</td>
-       <td>0x6</td>
-       <td>dst = mva(map_by_idx(imm)) + next_imm</td>
-       <td>map index</td>
-       <td>data pointer</td>
+       <td>
+        <t>
+         BPF_IMM | BPF_DW | BPF_LD
+        </t>
+       </td>
+       <td>
+        <t>
+         0x18
+        </t>
+       </td>
+       <td>
+        <t>
+         0x6
+        </t>
+       </td>
+       <td>
+        <t>
+         dst = mva(map_by_idx(imm)) + next_imm
+        </t>
+       </td>
+       <td>
+        <t>
+         map index
+        </t>
+       </td>
+       <td>
+        <t>
+         data pointer
+        </t>
+       </td>
       </tr>
      </tbody>
     </table>
@@ -1133,1369 +2308,4189 @@ eBPF Instruction Set Specification, v1.0
     </tr></thead>
     <tbody>
      <tr>
-      <td>0x00</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>(additional immediate value)</td>
-      <td><xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x04</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>dst = (u32)((u32)dst + (u32)imm)</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x05</td>
-      <td>0x0</td>
-      <td>0x00</td>
-      <td>goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x07</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>dst += imm</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x0c</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>dst = (u32)((u32)dst + (u32)src)</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x0f</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>dst += src</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x14</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>dst = (u32)((u32)dst - (u32)imm)</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x15</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>if dst == imm goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x16</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>if (u32)dst == imm goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x17</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>dst -= imm</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x18</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>dst = imm64</td>
-      <td><xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x18</td>
-      <td>0x1</td>
-      <td>any</td>
-      <td>dst = map_by_fd(imm)</td>
-      <td><xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x18</td>
-      <td>0x2</td>
-      <td>any</td>
-      <td>dst = mva(map_by_fd(imm)) + next_imm</td>
-      <td><xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x18</td>
-      <td>0x3</td>
-      <td>any</td>
-      <td>dst = variable_addr(imm)</td>
-      <td><xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x18</td>
-      <td>0x4</td>
-      <td>any</td>
-      <td>dst = code_addr(imm)</td>
-      <td><xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x18</td>
-      <td>0x5</td>
-      <td>any</td>
-      <td>dst = map_by_idx(imm)</td>
-      <td><xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x18</td>
-      <td>0x6</td>
-      <td>any</td>
-      <td>dst = mva(map_by_idx(imm)) + next_imm</td>
-      <td><xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x1c</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>dst = (u32)((u32)dst - (u32)src)</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x1d</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>if dst == src goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x1e</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>if (u32)dst == (u32)src goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x1f</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>dst -= src</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x20</td>
-      <td>any</td>
-      <td>any</td>
-      <td>(deprecated, implementation-specific)</td>
-      <td><xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x24</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>dst = (u32)(dst * imm)</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x25</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>if dst &gt; imm goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x26</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>if (u32)dst &gt; imm goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x27</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>dst *= imm</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x28</td>
-      <td>any</td>
-      <td>any</td>
-      <td>(deprecated, implementation-specific)</td>
-      <td><xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x2c</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>dst = (u32)(dst * src)</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x2d</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>if dst &gt; src goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x2e</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>if (u32)dst &gt; (u32)src goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x2f</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>dst *= src</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x30</td>
-      <td>any</td>
-      <td>any</td>
-      <td>(deprecated, implementation-specific)</td>
-      <td><xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x34</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>dst = (u32)((imm != 0) ? (dst / imm) : 0)</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x35</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>if dst &gt;= imm goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x36</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>if (u32)dst &gt;= imm goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x37</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>dst = (imm != 0) ? (dst / imm) : 0</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x38</td>
-      <td>any</td>
-      <td>any</td>
-      <td>(deprecated, implementation-specific)</td>
-      <td><xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x3c</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>dst = (u32)((imm != 0) ? (dst / src) : 0)</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x3d</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>if dst &gt;= src goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x3e</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>if (u32)dst &gt;= (u32)src goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x3f</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>dst = (src !+ 0) ? (dst / src) : 0</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x40</td>
-      <td>any</td>
-      <td>any</td>
-      <td>(deprecated, implementation-specific)</td>
-      <td><xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x44</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>dst = (u32)(dst | imm)</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x45</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>if dst &amp; imm goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x46</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>if (u32)dst &amp; imm goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x47</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>dst |= imm</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x48</td>
-      <td>any</td>
-      <td>any</td>
-      <td>(deprecated, implementation-specific)</td>
-      <td><xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x4c</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>dst = (u32)(dst | src)</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x4d</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>if dst &amp; src goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x4e</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>if (u32)dst &amp; (u32)src goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x4f</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>dst |= src</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x50</td>
-      <td>any</td>
-      <td>any</td>
-      <td>(deprecated, implementation-specific)</td>
-      <td><xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x54</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>dst = (u32)(dst &amp; imm)</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x55</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>if dst != imm goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x56</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>if (u32)dst != imm goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x57</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>dst &amp;= imm</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x58</td>
-      <td>any</td>
-      <td>any</td>
-      <td>(deprecated, implementation-specific)</td>
-      <td><xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x5c</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>dst = (u32)(dst &amp; src)</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x5d</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>if dst != src goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x5e</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>if (u32)dst != (u32)src goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x5f</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>dst &amp;= src</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x61</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>dst = *(u32 *)(src + offset)</td>
-      <td><xref target="load-and-store-instructions">Load and store instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x62</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>*(u32 *)(dst + offset) = imm</td>
-      <td><xref target="load-and-store-instructions">Load and store instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x63</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>*(u32 *)(dst + offset) = src</td>
-      <td><xref target="load-and-store-instructions">Load and store instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x64</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>dst = (u32)(dst &lt;&lt; imm)</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x65</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>if dst s&gt; imm goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x66</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>if (s32)dst s&gt; (s32)imm goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x67</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>dst &lt;&lt;= imm</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x69</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>dst = *(u16 *)(src + offset)</td>
-      <td><xref target="load-and-store-instructions">Load and store instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x6a</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>*(u16 *)(dst + offset) = imm</td>
-      <td><xref target="load-and-store-instructions">Load and store instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x6b</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>*(u16 *)(dst + offset) = src</td>
-      <td><xref target="load-and-store-instructions">Load and store instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x6c</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>dst = (u32)(dst &lt;&lt; src)</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x6d</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>if dst s&gt; src goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x6e</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>if (s32)dst s&gt; (s32)src goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x6f</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>dst &lt;&lt;= src</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x71</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>dst = *(u8 *)(src + offset)</td>
-      <td><xref target="load-and-store-instructions">Load and store instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x72</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>*(u8 *)(dst + offset) = imm</td>
-      <td><xref target="load-and-store-instructions">Load and store instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x73</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>*(u8 *)(dst + offset) = src</td>
-      <td><xref target="load-and-store-instructions">Load and store instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x74</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>dst = (u32)(dst &gt;&gt; imm)</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x75</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>if dst s&gt;= imm goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x76</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>if (s32)dst s&gt;= (s32)imm goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x77</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>dst &gt;&gt;= imm</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x79</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>dst = *(u64 *)(src + offset)</td>
-      <td><xref target="load-and-store-instructions">Load and store instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x7a</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>*(u64 *)(dst + offset) = imm</td>
-      <td><xref target="load-and-store-instructions">Load and store instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x7b</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>*(u64 *)(dst + offset) = src</td>
-      <td><xref target="load-and-store-instructions">Load and store instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x7c</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>dst = (u32)(dst &gt;&gt; src)</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x7d</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>if dst s&gt;= src goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x7e</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>if (s32)dst s&gt;= (s32)src goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x7f</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>dst &gt;&gt;= src</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x84</td>
-      <td>0x0</td>
-      <td>0x00</td>
-      <td>dst = (u32)-dst</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x85</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>call platform-agnostic helper function imm</td>
-      <td><xref target="platform-agnostic-helper-functions">Platform-agnostic helper functions</xref></td>
-     </tr>
-     <tr>
-      <td>0x85</td>
-      <td>0x1</td>
-      <td>any</td>
-      <td>call PC += offset</td>
-      <td><xref target="bpf-local-functions">BPF-local functions</xref></td>
-     </tr>
-     <tr>
-      <td>0x85</td>
-      <td>0x2</td>
-      <td>any</td>
-      <td>call platform-specific helper function imm</td>
-      <td><xref target="platform-specific-helper-functions">Platform-specific helper functions</xref></td>
-     </tr>
-     <tr>
-      <td>0x87</td>
-      <td>0x0</td>
-      <td>0x00</td>
-      <td>dst = -dst</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x94</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>dst = (u32)((imm != 0) ? (dst % imm) : dst)</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x95</td>
-      <td>0x0</td>
-      <td>0x00</td>
-      <td>return</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x97</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>dst = (imm != 0) ? (dst % imm) : dst</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x9c</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>dst = (u32)((src != 0) ? (dst % src) : dst)</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0x9f</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>dst = (src != 0) ? (dst % src) : dst</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xa4</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>dst = (u32)(dst ^ imm)</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xa5</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>if dst &lt; imm goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xa6</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>if (u32)dst &lt; imm goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xa7</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>dst ^= imm</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xac</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>dst = (u32)(dst ^ src)</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xad</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>if dst &lt; src goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xae</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>if (u32)dst &lt; (u32)src goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xaf</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>dst ^= src</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xb4</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>dst = (u32) imm</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xb5</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>if dst &lt;= imm goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xa6</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>if (u32)dst &lt;= imm goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xb7</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>dst = imm</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xbc</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>dst = (u32) src</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xbd</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>if dst &lt;= src goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xbe</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>if (u32)dst &lt;= (u32)src goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xbf</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>dst = src</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xc3</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>lock *(u32 *)(dst + offset) += src</td>
-      <td><xref target="atomic-operations">Atomic operations</xref></td>
-     </tr>
-     <tr>
-      <td>0xc3</td>
-      <td>any</td>
-      <td>0x01</td>
-      <td>lock:</td>
-      <td><xref target="atomic-operations">Atomic operations</xref></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><em>(u32</em>)(dst + offset) += src</td>
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>src = <em>(u32</em>)(dst + offset)</td>
-      <td></td>
-     </tr>
-     <tr>
-      <td>0xc3</td>
-      <td>any</td>
-      <td>0x40</td>
-      <td>*(u32 *)(dst + offset) |= src</td>
-      <td><xref target="atomic-operations">Atomic operations</xref></td>
-     </tr>
-     <tr>
-      <td>0xc3</td>
-      <td>any</td>
-      <td>0x41</td>
-      <td>lock:</td>
-      <td><xref target="atomic-operations">Atomic operations</xref></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><em>(u32</em>)(dst + offset) |= src</td>
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>src = <em>(u32</em>)(dst + offset)</td>
-      <td></td>
-     </tr>
-     <tr>
-      <td>0xc3</td>
-      <td>any</td>
-      <td>0x50</td>
-      <td>*(u32 *)(dst + offset) &amp;= src</td>
-      <td><xref target="atomic-operations">Atomic operations</xref></td>
-     </tr>
-     <tr>
-      <td>0xc3</td>
-      <td>any</td>
-      <td>0x51</td>
-      <td>lock:</td>
-      <td><xref target="atomic-operations">Atomic operations</xref></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><em>(u32</em>)(dst + offset) &amp;= src</td>
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>src = <em>(u32</em>)(dst + offset)</td>
-      <td></td>
-     </tr>
-     <tr>
-      <td>0xc3</td>
-      <td>any</td>
-      <td>0xa0</td>
-      <td>*(u32 *)(dst + offset) ^= src</td>
-      <td><xref target="atomic-operations">Atomic operations</xref></td>
-     </tr>
-     <tr>
-      <td>0xc3</td>
-      <td>any</td>
-      <td>0xa1</td>
-      <td>lock:</td>
-      <td><xref target="atomic-operations">Atomic operations</xref></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><em>(u32</em>)(dst + offset) ^= src</td>
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>src = <em>(u32</em>)(dst + offset)</td>
-      <td></td>
-     </tr>
-     <tr>
-      <td>0xc3</td>
-      <td>any</td>
-      <td>0xe1</td>
-      <td>lock:</td>
-      <td><xref target="atomic-operations">Atomic operations</xref></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>temp = <em>(u32</em>)(dst + offset)</td>
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><em>(u32</em>)(dst + offset) = src</td>
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>src = temp</td>
-      <td></td>
-     </tr>
-     <tr>
-      <td>0xc3</td>
-      <td>any</td>
-      <td>0xf1</td>
-      <td>lock:</td>
-      <td><xref target="atomic-operations">Atomic operations</xref></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>temp = <em>(u32</em>)(dst + offset)</td>
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>if *(u32)(dst + offset) == R0</td>
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>*(u32)(dst + offset) = src</td>
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>R0 = temp</td>
-      <td></td>
-     </tr>
-     <tr>
-      <td>0xc4</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>dst = (u32)(dst s&gt;&gt; imm)</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xc5</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>if dst s&lt; imm goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xc6</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>if (s32)dst s&lt; (s32)imm goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xc7</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>dst s&gt;&gt;= imm</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xcc</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>dst = (u32)(dst s&gt;&gt; src)</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xcd</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>if dst s&lt; src goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xce</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>if (s32)dst s&lt; (s32)src goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xcf</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>dst s&gt;&gt;= src</td>
-      <td><xref target="arithmetic-instructions">Arithmetic instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xd4</td>
-      <td>0x0</td>
-      <td>0x10</td>
-      <td>dst = htole16(dst)</td>
-      <td><xref target="byte-swap-instructions">Byte swap instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xd4</td>
-      <td>0x0</td>
-      <td>0x20</td>
-      <td>dst = htole32(dst)</td>
-      <td><xref target="byte-swap-instructions">Byte swap instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xd4</td>
-      <td>0x0</td>
-      <td>0x40</td>
-      <td>dst = htole64(dst)</td>
-      <td><xref target="byte-swap-instructions">Byte swap instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xd5</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>if dst s&lt;= imm goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xd6</td>
-      <td>0x0</td>
-      <td>any</td>
-      <td>if (s32)dst s&lt;= (s32)imm goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xdb</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>lock *(u64 *)(dst + offset) += src</td>
-      <td><xref target="atomic-operations">Atomic operations</xref></td>
-     </tr>
-     <tr>
-      <td>0xdb</td>
-      <td>any</td>
-      <td>0x01</td>
-      <td>lock:</td>
-      <td><xref target="atomic-operations">Atomic operations</xref></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><em>(u64</em>)(dst + offset) += src</td>
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>src = <em>(u64</em>)(dst + offset)</td>
-      <td></td>
-     </tr>
-     <tr>
-      <td>0xdb</td>
-      <td>any</td>
-      <td>0x40</td>
-      <td>*(u64 *)(dst + offset) |= src</td>
-      <td><xref target="atomic-operations">Atomic operations</xref></td>
-     </tr>
-     <tr>
-      <td>0xdb</td>
-      <td>any</td>
-      <td>0x41</td>
-      <td>lock:</td>
-      <td><xref target="atomic-operations">Atomic operations</xref></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><em>(u64</em>)(dst + offset) |= src</td>
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>lock src = <em>(u64</em>)(dst + offset)</td>
-      <td></td>
-     </tr>
-     <tr>
-      <td>0xdb</td>
-      <td>any</td>
-      <td>0x50</td>
-      <td>*(u64 *)(dst + offset) &amp;= src</td>
-      <td><xref target="atomic-operations">Atomic operations</xref></td>
-     </tr>
-     <tr>
-      <td>0xdb</td>
-      <td>any</td>
-      <td>0x51</td>
-      <td>lock:</td>
-      <td><xref target="atomic-operations">Atomic operations</xref></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><em>(u64</em>)(dst + offset) &amp;= src</td>
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>src = <em>(u64</em>)(dst + offset)</td>
-      <td></td>
-     </tr>
-     <tr>
-      <td>0xdb</td>
-      <td>any</td>
-      <td>0xa0</td>
-      <td>*(u64 *)(dst + offset) ^= src</td>
-      <td><xref target="atomic-operations">Atomic operations</xref></td>
-     </tr>
-     <tr>
-      <td>0xdb</td>
-      <td>any</td>
-      <td>0xa1</td>
-      <td>lock:</td>
-      <td><xref target="atomic-operations">Atomic operations</xref></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><em>(u64</em>)(dst + offset) ^= src</td>
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>src = <em>(u64</em>)(dst + offset)</td>
-      <td></td>
-     </tr>
-     <tr>
-      <td>0xdb</td>
-      <td>any</td>
-      <td>0xe1</td>
-      <td>lock:</td>
-      <td><xref target="atomic-operations">Atomic operations</xref></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>temp = <em>(u64</em>)(dst + offset)</td>
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><em>(u64</em>)(dst + offset) = src</td>
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>src = temp</td>
-      <td></td>
-     </tr>
-     <tr>
-      <td>0xdb</td>
-      <td>any</td>
-      <td>0xf1</td>
-      <td>lock:</td>
-      <td><xref target="atomic-operations">Atomic operations</xref></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>temp = <em>(u64</em>)(dst + offset)</td>
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>if *(u64)(dst + offset) == R0</td>
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>*(u64)(dst + offset) = src</td>
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>R0 = temp</td>
-      <td></td>
-     </tr>
-     <tr>
-      <td>0xdc</td>
-      <td>0x0</td>
-      <td>0x10</td>
-      <td>dst = htobe16(dst)</td>
-      <td><xref target="byte-swap-instructions">Byte swap instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xdc</td>
-      <td>0x0</td>
-      <td>0x20</td>
-      <td>dst = htobe32(dst)</td>
-      <td><xref target="byte-swap-instructions">Byte swap instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xdc</td>
-      <td>0x0</td>
-      <td>0x40</td>
-      <td>dst = htobe64(dst)</td>
-      <td><xref target="byte-swap-instructions">Byte swap instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xdd</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>if dst s&lt;= src goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
-     </tr>
-     <tr>
-      <td>0xde</td>
-      <td>any</td>
-      <td>0x00</td>
-      <td>if (s32)dst s&lt;= (s32)src goto +offset</td>
-      <td><xref target="jump-instructions">Jump instructions</xref></td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (additional immediate value)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x04
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32)((u32)dst + (u32)imm)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x05
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x07
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst += imm
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x0c
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32)((u32)dst + (u32)src)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x0f
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        dst += src
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x14
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32)((u32)dst - (u32)imm)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x15
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        if dst == imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x16
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        if (u32)dst == imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x17
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst -= imm
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x18
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = imm64
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x18
+       </t>
+      </td>
+      <td>
+       <t>
+        0x1
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = map_by_fd(imm)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x18
+       </t>
+      </td>
+      <td>
+       <t>
+        0x2
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = mva(map_by_fd(imm)) + next_imm
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x18
+       </t>
+      </td>
+      <td>
+       <t>
+        0x3
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = variable_addr(imm)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x18
+       </t>
+      </td>
+      <td>
+       <t>
+        0x4
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = code_addr(imm)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x18
+       </t>
+      </td>
+      <td>
+       <t>
+        0x5
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = map_by_idx(imm)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x18
+       </t>
+      </td>
+      <td>
+       <t>
+        0x6
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = mva(map_by_idx(imm)) + next_imm
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x1c
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32)((u32)dst - (u32)src)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x1d
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        if dst == src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x1e
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        if (u32)dst == (u32)src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x1f
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        dst -= src
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x20
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x24
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32)(dst * imm)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x25
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        if dst &gt; imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x26
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        if (u32)dst &gt; imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x27
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst *= imm
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x28
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x2c
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32)(dst * src)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x2d
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        if dst &gt; src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x2e
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        if (u32)dst &gt; (u32)src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x2f
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        dst *= src
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x30
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x34
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32)((imm != 0) ? (dst / imm) : 0)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x35
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        if dst &gt;= imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x36
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        if (u32)dst &gt;= imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x37
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (imm != 0) ? (dst / imm) : 0
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x38
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x3c
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32)((imm != 0) ? (dst / src) : 0)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x3d
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        if dst &gt;= src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x3e
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        if (u32)dst &gt;= (u32)src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x3f
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (src !+ 0) ? (dst / src) : 0
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x40
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x44
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32)(dst | imm)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x45
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        if dst &amp; imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x46
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        if (u32)dst &amp; imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x47
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst |= imm
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x48
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x4c
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32)(dst | src)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x4d
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        if dst &amp; src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x4e
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        if (u32)dst &amp; (u32)src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x4f
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        dst |= src
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x50
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x54
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32)(dst &amp; imm)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x55
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        if dst != imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x56
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        if (u32)dst != imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x57
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst &amp;= imm
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x58
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x5c
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32)(dst &amp; src)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x5d
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        if dst != src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x5e
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        if (u32)dst != (u32)src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x5f
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        dst &amp;= src
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x61
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = *(u32 *)(src + offset)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="load-and-store-instructions">Load and store instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x62
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        *(u32 *)(dst + offset) = imm
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="load-and-store-instructions">Load and store instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x63
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        *(u32 *)(dst + offset) = src
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="load-and-store-instructions">Load and store instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x64
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32)(dst &lt;&lt; imm)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x65
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        if dst s&gt; imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x66
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        if (s32)dst s&gt; (s32)imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x67
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst &lt;&lt;= imm
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x69
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = *(u16 *)(src + offset)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="load-and-store-instructions">Load and store instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x6a
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        *(u16 *)(dst + offset) = imm
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="load-and-store-instructions">Load and store instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x6b
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        *(u16 *)(dst + offset) = src
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="load-and-store-instructions">Load and store instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x6c
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32)(dst &lt;&lt; src)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x6d
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        if dst s&gt; src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x6e
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        if (s32)dst s&gt; (s32)src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x6f
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        dst &lt;&lt;= src
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x71
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = *(u8 *)(src + offset)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="load-and-store-instructions">Load and store instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x72
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        *(u8 *)(dst + offset) = imm
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="load-and-store-instructions">Load and store instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x73
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        *(u8 *)(dst + offset) = src
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="load-and-store-instructions">Load and store instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x74
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32)(dst &gt;&gt; imm)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x75
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        if dst s&gt;= imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x76
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        if (s32)dst s&gt;= (s32)imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x77
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst &gt;&gt;= imm
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x79
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = *(u64 *)(src + offset)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="load-and-store-instructions">Load and store instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x7a
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        *(u64 *)(dst + offset) = imm
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="load-and-store-instructions">Load and store instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x7b
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        *(u64 *)(dst + offset) = src
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="load-and-store-instructions">Load and store instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x7c
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32)(dst &gt;&gt; src)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x7d
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        if dst s&gt;= src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x7e
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        if (s32)dst s&gt;= (s32)src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x7f
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        dst &gt;&gt;= src
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x84
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32)-dst
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x85
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        call platform-agnostic helper function imm
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="platform-agnostic-helper-functions">Platform-agnostic helper functions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x85
+       </t>
+      </td>
+      <td>
+       <t>
+        0x1
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        call PC += offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="bpf-local-functions">BPF-local functions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x85
+       </t>
+      </td>
+      <td>
+       <t>
+        0x2
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        call platform-specific helper function imm
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="platform-specific-helper-functions">Platform-specific helper functions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x87
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = -dst
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x94
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32)((imm != 0) ? (dst % imm) : dst)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x95
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        return
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x97
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (imm != 0) ? (dst % imm) : dst
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x9c
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32)((src != 0) ? (dst % src) : dst)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x9f
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (src != 0) ? (dst % src) : dst
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xa4
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32)(dst ^ imm)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xa5
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        if dst &lt; imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xa6
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        if (u32)dst &lt; imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xa7
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst ^= imm
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xac
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32)(dst ^ src)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xad
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        if dst &lt; src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xae
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        if (u32)dst &lt; (u32)src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xaf
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        dst ^= src
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xb4
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32) imm
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xb5
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        if dst &lt;= imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xa6
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        if (u32)dst &lt;= imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xb7
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = imm
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xbc
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32) src
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xbd
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        if dst &lt;= src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xbe
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        if (u32)dst &lt;= (u32)src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xbf
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = src
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xc3
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        lock *(u32 *)(dst + offset) += src
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="atomic-operations">Atomic operations</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xc3
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x01
+       </t>
+      </td>
+      <td>
+       <t>
+        lock:
+       </t>
+       <artwork>
+    *(u32 *)(dst + offset) += src
+    src = *(u32 *)(dst + offset)
+       </artwork>
+      </td>
+      <td>
+       <t>
+        <xref target="atomic-operations">Atomic operations</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xc3
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x40
+       </t>
+      </td>
+      <td>
+       <t>
+        *(u32 *)(dst + offset) |= src
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="atomic-operations">Atomic operations</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xc3
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x41
+       </t>
+      </td>
+      <td>
+       <t>
+        lock:
+       </t>
+       <artwork>
+    *(u32 *)(dst + offset) |= src
+    src = *(u32 *)(dst + offset)
+       </artwork>
+      </td>
+      <td>
+       <t>
+        <xref target="atomic-operations">Atomic operations</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xc3
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x50
+       </t>
+      </td>
+      <td>
+       <t>
+        *(u32 *)(dst + offset) &amp;= src
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="atomic-operations">Atomic operations</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xc3
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x51
+       </t>
+      </td>
+      <td>
+       <t>
+        lock:
+       </t>
+       <artwork>
+    *(u32 *)(dst + offset) &amp;= src
+    src = *(u32 *)(dst + offset)
+       </artwork>
+      </td>
+      <td>
+       <t>
+        <xref target="atomic-operations">Atomic operations</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xc3
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0xa0
+       </t>
+      </td>
+      <td>
+       <t>
+        *(u32 *)(dst + offset) ^= src
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="atomic-operations">Atomic operations</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xc3
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0xa1
+       </t>
+      </td>
+      <td>
+       <t>
+        lock:
+       </t>
+       <artwork>
+    *(u32 *)(dst + offset) ^= src
+    src = *(u32 *)(dst + offset)
+       </artwork>
+      </td>
+      <td>
+       <t>
+        <xref target="atomic-operations">Atomic operations</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xc3
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0xe1
+       </t>
+      </td>
+      <td>
+       <t>
+        lock:
+       </t>
+       <artwork>
+    temp = *(u32 *)(dst + offset)
+    *(u32 *)(dst + offset) = src
+    src = temp
+       </artwork>
+      </td>
+      <td>
+       <t>
+        <xref target="atomic-operations">Atomic operations</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xc3
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0xf1
+       </t>
+      </td>
+      <td>
+       <t>
+        lock:
+       </t>
+       <artwork>
+    temp = *(u32 *)(dst + offset)
+    if *(u32)(dst + offset) == R0
+       *(u32)(dst + offset) = src
+    R0 = temp
+       </artwork>
+      </td>
+      <td>
+       <t>
+        <xref target="atomic-operations">Atomic operations</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xc4
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32)(dst s&gt;&gt; imm)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xc5
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        if dst s&lt; imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xc6
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        if (s32)dst s&lt; (s32)imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xc7
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        dst s&gt;&gt;= imm
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xcc
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32)(dst s&gt;&gt; src)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xcd
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        if dst s&lt; src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xce
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        if (s32)dst s&lt; (s32)src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xcf
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        dst s&gt;&gt;= src
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xd4
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        0x10
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = htole16(dst)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="byte-swap-instructions">Byte swap instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xd4
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        0x20
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = htole32(dst)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="byte-swap-instructions">Byte swap instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xd4
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        0x40
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = htole64(dst)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="byte-swap-instructions">Byte swap instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xd5
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        if dst s&lt;= imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xd6
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        if (s32)dst s&lt;= (s32)imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xdb
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        lock *(u64 *)(dst + offset) += src
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="atomic-operations">Atomic operations</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xdb
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x01
+       </t>
+      </td>
+      <td>
+       <t>
+        lock:
+       </t>
+       <artwork>
+    *(u64 *)(dst + offset) += src
+    src = *(u64 *)(dst + offset)
+       </artwork>
+      </td>
+      <td>
+       <t>
+        <xref target="atomic-operations">Atomic operations</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xdb
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x40
+       </t>
+      </td>
+      <td>
+       <t>
+        *(u64 *)(dst + offset) |= src
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="atomic-operations">Atomic operations</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xdb
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x41
+       </t>
+      </td>
+      <td>
+       <t>
+        lock:
+       </t>
+       <artwork>
+    *(u64 *)(dst + offset) |= src
+    lock src = *(u64 *)(dst + offset)
+       </artwork>
+      </td>
+      <td>
+       <t>
+        <xref target="atomic-operations">Atomic operations</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xdb
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x50
+       </t>
+      </td>
+      <td>
+       <t>
+        *(u64 *)(dst + offset) &amp;= src
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="atomic-operations">Atomic operations</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xdb
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x51
+       </t>
+      </td>
+      <td>
+       <t>
+        lock:
+       </t>
+       <artwork>
+    *(u64 *)(dst + offset) &amp;= src
+    src = *(u64 *)(dst + offset)
+       </artwork>
+      </td>
+      <td>
+       <t>
+        <xref target="atomic-operations">Atomic operations</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xdb
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0xa0
+       </t>
+      </td>
+      <td>
+       <t>
+        *(u64 *)(dst + offset) ^= src
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="atomic-operations">Atomic operations</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xdb
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0xa1
+       </t>
+      </td>
+      <td>
+       <t>
+        lock:
+       </t>
+       <artwork>
+    *(u64 *)(dst + offset) ^= src
+    src = *(u64 *)(dst + offset)
+       </artwork>
+      </td>
+      <td>
+       <t>
+        <xref target="atomic-operations">Atomic operations</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xdb
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0xe1
+       </t>
+      </td>
+      <td>
+       <t>
+        lock:
+       </t>
+       <artwork>
+    temp = *(u64 *)(dst + offset)
+    *(u64 *)(dst + offset) = src
+    src = temp
+       </artwork>
+      </td>
+      <td>
+       <t>
+        <xref target="atomic-operations">Atomic operations</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xdb
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0xf1
+       </t>
+      </td>
+      <td>
+       <t>
+        lock:
+       </t>
+       <artwork>
+    temp = *(u64 *)(dst + offset)
+    if *(u64)(dst + offset) == R0
+       *(u64)(dst + offset) = src
+    R0 = temp
+       </artwork>
+      </td>
+      <td>
+       <t>
+        <xref target="atomic-operations">Atomic operations</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xdc
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        0x10
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = htobe16(dst)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="byte-swap-instructions">Byte swap instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xdc
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        0x20
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = htobe32(dst)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="byte-swap-instructions">Byte swap instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xdc
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        0x40
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = htobe64(dst)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="byte-swap-instructions">Byte swap instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xdd
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        if dst s&lt;= src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xde
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        if (s32)dst s&lt;= (s32)src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
      </tr>
     </tbody>
    </table>
