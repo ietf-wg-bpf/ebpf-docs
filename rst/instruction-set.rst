@@ -10,7 +10,7 @@ This document specifies version 1.0 of the eBPF instruction set.
 Documentation conventions
 =========================
 
-For brevity, this document uses the type notion "u64", "u32", etc.
+For brevity, this document uses the type notation "u64", "u32", etc.
 to mean an unsigned integer whose width is the specified number of bits.
 
 Registers and calling convention
@@ -26,8 +26,8 @@ The eBPF calling convention is defined as:
 * R6 - R9: callee saved registers that function calls will preserve
 * R10: read-only frame pointer to access stack
 
-R0 - R5 are scratch registers and eBPF programs needs to spill/fill them if
-necessary across calls.
+R0 - R5 are scratch registers and eBPF programs need to spill/fill them, if
+necessary, across calls.
 
 Instruction encoding
 ====================
