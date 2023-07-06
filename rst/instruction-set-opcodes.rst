@@ -93,9 +93,9 @@ opcode  src  imm   description                                          referenc
 0x7e    any  0x00  if (s32)dst s>= (s32)src goto +offset                `Jump instructions`_
 0x7f    any  0x00  dst >>= src                                          `Arithmetic instructions`_
 0x84    0x0  0x00  dst = (u32)-dst                                      `Arithmetic instructions`_
-0x85    0x0  any   call platform-agnostic helper function imm           `Platform-agnostic helper functions`_
-0x85    0x1  any   call PC += offset                                    `BPF-local functions`_
-0x85    0x2  any   call platform-specific helper function imm           `Platform-specific helper functions`_
+0x85    0x0  any   call platform-agnostic helper function imm           `Helper functions`_
+0x85    0x1  any   call PC += offset                                    `Program-local functions`_
+0x85    0x2  any   call platform-specific helper function imm           `Helper functions`_
 0x87    0x0  0x00  dst = -dst                                           `Arithmetic instructions`_
 0x94    0x0  any   dst = (u32)((imm != 0) ? (dst % imm) : dst)          `Arithmetic instructions`_
 0x95    0x0  0x00  return                                               `Jump instructions`_
