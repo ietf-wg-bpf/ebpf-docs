@@ -17,7 +17,6 @@
 <?rfc docmapping="yes"?>
 
 <rfc ipr="trust200902" docName="draft-thaler-bpf-isa-00" category="std" submissionType="IETF">
-
  <front>
   <title abbrev="eBPF ISA">
 eBPF Instruction Set Specification, v1.0
@@ -202,12 +201,15 @@ eBPF Instruction Set Specification, v1.0
      the three least significant bits (LSB) of the 'opcode' field which holds
      the "instruction class", as follows:
     </t>
-    <table><thead><tr>
-      <th>class</th>
-      <th>value</th>
-      <th>description</th>
-      <th>reference</th>
-     </tr></thead>
+    <table>
+     <thead>
+      <tr>
+       <th>class</th>
+       <th>value</th>
+       <th>description</th>
+       <th>reference</th>
+      </tr>
+     </thead>
      <tbody>
       <tr>
        <td>
@@ -394,11 +396,14 @@ eBPF Instruction Set Specification, v1.0
     For arithmetic and jump instructions (<tt>BPF_ALU</tt>, <tt>BPF_ALU64</tt>, <tt>BPF_JMP</tt> and
     <tt>BPF_JMP32</tt>), the 8-bit 'opcode' field is divided into three parts:
    </t>
-   <table><thead><tr>
-     <th>4 bits (MSB)</th>
-     <th>1 bit</th>
-     <th>3 bits (LSB)</th>
-    </tr></thead>
+   <table>
+    <thead>
+     <tr>
+      <th>4 bits (MSB)</th>
+      <th>1 bit</th>
+      <th>3 bits (LSB)</th>
+     </tr>
+    </thead>
     <tbody>
      <tr>
       <td>
@@ -433,11 +438,14 @@ eBPF Instruction Set Specification, v1.0
      the source operand location, which unless otherwise specified is one of:
     </dd>
    </dl>
-   <table><thead><tr>
-     <th>source</th>
-     <th>value</th>
-     <th>description</th>
-    </tr></thead>
+   <table>
+    <thead>
+     <tr>
+      <th>source</th>
+      <th>value</th>
+      <th>description</th>
+     </tr>
+    </thead>
     <tbody>
      <tr>
       <td>
@@ -491,11 +499,14 @@ eBPF Instruction Set Specification, v1.0
      The 'code' field encodes the operation as below, where 'src' and 'dst' refer
      to the values of the source and destination registers, respectively.
     </t>
-    <table><thead><tr>
-      <th>code</th>
-      <th>value</th>
-      <th>description</th>
-     </tr></thead>
+    <table>
+     <thead>
+      <tr>
+       <th>code</th>
+       <th>value</th>
+       <th>description</th>
+      </tr>
+     </thead>
      <tbody>
       <tr>
        <td>
@@ -612,7 +623,7 @@ eBPF Instruction Set Specification, v1.0
        </td>
        <td>
         <t>
-         dst &lt;&lt;= src
+         dst &lt;&lt;= (src &amp; mask)
         </t>
        </td>
       </tr>
@@ -629,7 +640,7 @@ eBPF Instruction Set Specification, v1.0
        </td>
        <td>
         <t>
-         dst &gt;&gt;= src
+         dst &gt;&gt;= (src &amp; mask)
         </t>
        </td>
       </tr>
@@ -646,7 +657,7 @@ eBPF Instruction Set Specification, v1.0
        </td>
        <td>
         <t>
-         dst = ~src
+         dst = -src
         </t>
        </td>
       </tr>
@@ -714,7 +725,7 @@ eBPF Instruction Set Specification, v1.0
        </td>
        <td>
         <t>
-         sign extending shift right
+         sign extending dst &gt;&gt;= (src &amp; mask)
         </t>
        </td>
       </tr>
@@ -782,6 +793,10 @@ eBPF Instruction Set Specification, v1.0
      interpreted as an unsigned 64-bit value. There are no instructions for
      signed division or modulo.
     </t>
+    <t>
+     Shift operations use a mask of 0x3F (63) for 64-bit operations and 0x1F (31)
+     for 32-bit operations.
+    </t>
     <section anchor="byte-swap-instructions" title="Byte swap instructions">
      <t>
       The byte swap instructions use an instruction class of <tt>BPF_ALU</tt> and a 4-bit
@@ -796,11 +811,14 @@ eBPF Instruction Set Specification, v1.0
       as follows.  Instead of indicating the source operator, it is instead
       used to select what byte order the operation converts from or to:
      </t>
-     <table><thead><tr>
-       <th>source</th>
-       <th>value</th>
-       <th>description</th>
-      </tr></thead>
+     <table>
+      <thead>
+       <tr>
+        <th>source</th>
+        <th>value</th>
+        <th>description</th>
+       </tr>
+      </thead>
       <tbody>
        <tr>
         <td>
@@ -840,195 +858,29 @@ eBPF Instruction Set Specification, v1.0
      </table>
      <t>
       The 'imm' field encodes the width of the swap operations.  The following widths
-      are supported: 16, 32 and 64. The following table summarizes the resulting
-      possibilities:
+      are supported: 16, 32 and 64.
      </t>
-     <table><thead><tr>
-       <th>opcode construction</th>
-       <th>opcode</th>
-       <th>imm</th>
-       <th>mnemonic</th>
-       <th>pseudocode</th>
-      </tr></thead>
-      <tbody>
-       <tr>
-        <td>
-         <t>
-          BPF_END | BPF_TO_LE | BPF_ALU
-         </t>
-        </td>
-        <td>
-         <t>
-          0xd4
-         </t>
-        </td>
-        <td>
-         <t>
-          16
-         </t>
-        </td>
-        <td>
-         <t>
-          le16 dst
-         </t>
-        </td>
-        <td>
-         <t>
-          dst = htole16(dst)
-         </t>
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <t>
-          BPF_END | BPF_TO_LE | BPF_ALU
-         </t>
-        </td>
-        <td>
-         <t>
-          0xd4
-         </t>
-        </td>
-        <td>
-         <t>
-          32
-         </t>
-        </td>
-        <td>
-         <t>
-          le32 dst
-         </t>
-        </td>
-        <td>
-         <t>
-          dst = htole32(dst)
-         </t>
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <t>
-          BPF_END | BPF_TO_LE | BPF_ALU
-         </t>
-        </td>
-        <td>
-         <t>
-          0xd4
-         </t>
-        </td>
-        <td>
-         <t>
-          64
-         </t>
-        </td>
-        <td>
-         <t>
-          le64 dst
-         </t>
-        </td>
-        <td>
-         <t>
-          dst = htole64(dst)
-         </t>
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <t>
-          BPF_END | BPF_TO_BE | BPF_ALU
-         </t>
-        </td>
-        <td>
-         <t>
-          0xdc
-         </t>
-        </td>
-        <td>
-         <t>
-          16
-         </t>
-        </td>
-        <td>
-         <t>
-          be16 dst
-         </t>
-        </td>
-        <td>
-         <t>
-          dst = htobe16(dst)
-         </t>
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <t>
-          BPF_END | BPF_TO_BE | BPF_ALU
-         </t>
-        </td>
-        <td>
-         <t>
-          0xdc
-         </t>
-        </td>
-        <td>
-         <t>
-          32
-         </t>
-        </td>
-        <td>
-         <t>
-          be32 dst
-         </t>
-        </td>
-        <td>
-         <t>
-          dst = htobe32(dst)
-         </t>
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <t>
-          BPF_END | BPF_TO_BE | BPF_ALU
-         </t>
-        </td>
-        <td>
-         <t>
-          0xdc
-         </t>
-        </td>
-        <td>
-         <t>
-          64
-         </t>
-        </td>
-        <td>
-         <t>
-          be64 dst
-         </t>
-        </td>
-        <td>
-         <t>
-          dst = htobe64(dst)
-         </t>
-        </td>
-       </tr>
-      </tbody>
-     </table>
      <t>
-      where
+      Examples:
      </t>
-     <ul>
-      <li>
-       mnenomic indicates a short form that might be displayed by some tools such as disassemblers
-      </li>
-      <li>
-       'htoleNN()' indicates converting a NN-bit value from host byte order to little-endian byte order
-      </li>
-      <li>
-       'htobeNN()' indicates converting a NN-bit value from host byte order to big-endian byte order
-      </li>
-     </ul>
+     <t>
+      <tt>BPF_ALU | BPF_TO_LE | BPF_END</tt> with imm = 16 means:
+     </t>
+     <artwork>
+  dst = htole16(dst)
+     </artwork>
+     <t>
+      where 'htole16()' indicates converting a 16-bit value from host byte order to little-endian byte order.
+     </t>
+     <t>
+      <tt>BPF_ALU | BPF_TO_BE | BPF_END</tt> with imm = 64 means:
+     </t>
+     <artwork>
+  dst = htobe64(dst)
+     </artwork>
+     <t>
+      where 'htobe64()' indicates converting a 64-bit value from host byte order to big-endian byte order.
+     </t>
     </section>
    </section>
    <section anchor="jump-instructions" title="Jump instructions">
@@ -1039,13 +891,16 @@ eBPF Instruction Set Specification, v1.0
     <t>
      The 4-bit 'code' field encodes the operation as below, where PC is the program counter:
     </t>
-    <table><thead><tr>
-      <th>code</th>
-      <th>value</th>
-      <th>src</th>
-      <th>description</th>
-      <th>notes</th>
-     </tr></thead>
+    <table>
+     <thead>
+      <tr>
+       <th>code</th>
+       <th>value</th>
+       <th>src</th>
+       <th>description</th>
+       <th>notes</th>
+      </tr>
+     </thead>
      <tbody>
       <tr>
        <td>
@@ -1272,12 +1127,12 @@ eBPF Instruction Set Specification, v1.0
        </td>
        <td>
         <t>
-         call platform-agnostic helper function imm
+         call helper function by address
         </t>
        </td>
        <td>
         <t>
-         see <xref target="platform-agnostic-helper-functions">Platform-agnostic helper functions</xref>
+         see <xref target="helper-functions">Helper functions</xref>
         </t>
        </td>
       </tr>
@@ -1304,7 +1159,7 @@ eBPF Instruction Set Specification, v1.0
        </td>
        <td>
         <t>
-         see <xref target="bpf-local-functions">BPF-local functions</xref>
+         see <xref target="program-local-functions">Program-local functions</xref>
         </t>
        </td>
       </tr>
@@ -1326,12 +1181,12 @@ eBPF Instruction Set Specification, v1.0
        </td>
        <td>
         <t>
-         call platform-specific helper function imm
+         call helper function by BTF ID
         </t>
        </td>
        <td>
         <t>
-         see <xref target="platform-specific-helper-functions">Platform-specific helper functions</xref>
+         see <xref target="helper-functions">Helper functions</xref>
         </t>
        </td>
       </tr>
@@ -1473,6 +1328,10 @@ eBPF Instruction Set Specification, v1.0
      </tbody>
     </table>
     <t>
+     The eBPF program needs to store the return value into register R0 before doing a
+     <tt>BPF_EXIT</tt>.
+    </t>
+    <t>
      Example:
     </t>
     <t>
@@ -1484,29 +1343,28 @@ eBPF Instruction Set Specification, v1.0
     <t>
      where 's&gt;=' indicates a signed '&gt;=' comparison.
     </t>
-    <section anchor="platform-agnostic-helper-functions" title="Platform-agnostic helper functions">
+    <section anchor="helper-functions" title="Helper functions">
      <t>
-      Platform-agnostic helper functions are a concept whereby BPF programs can call
-      into a set of function calls exposed by the runtime.  Each helper
-      function is identified by an integer used in a <tt>BPF_CALL</tt> instruction.
-      The available platform-agnostic helper functions may differ for each program
-      type, but integer values are unique across all program types.
+      Helper functions are a concept whereby BPF programs can call into a
+      set of function calls exposed by the underlying platform.
+     </t>
+     <t>
+      Historically, each helper function was identified by an address
+      encoded in the imm field.  The available helper functions may differ
+      for each program type, but address values are unique across all program types.
+     </t>
+     <t>
+      Platforms that support the BPF Type Format (BTF) support identifying
+      a helper function by a BTF ID encoded in the imm field, where the BTF ID
+      identifies the helper name and type.
      </t>
     </section>
-    <section anchor="platform-specific-helper-functions" title="Platform-specific helper functions">
+    <section anchor="program-local-functions" title="Program-local functions">
      <t>
-      Platform-specific helper functions are helper functions that are unique to
-      a particular platform.  They use a separate integer numbering space from
-      platform-agnostic helper functions, but otherwise the same considerations
-      apply.  Platforms are not required to implement any platform-specific
-      functions.
-     </t>
-    </section>
-    <section anchor="bpf-local-functions" title="BPF-local functions">
-     <t>
-      BPF-local functions are functions exposed by the same BPF program as the caller,
-      and are referenced by offset from the call instruction, similar to <tt>BPF_JA</tt>.
-      A <tt>BPF_EXIT</tt> within the BPF-local function will return to the caller.
+      Program-local functions are functions exposed by the same BPF program as the
+      caller, and are referenced by offset from the call instruction, similar to
+      <tt>BPF_JA</tt>.  A <tt>BPF_EXIT</tt> within the program-local function will return to
+      the caller.
      </t>
     </section>
    </section>
@@ -1516,11 +1374,14 @@ eBPF Instruction Set Specification, v1.0
     For load and store instructions (<tt>BPF_LD</tt>, <tt>BPF_LDX</tt>, <tt>BPF_ST</tt>, and <tt>BPF_STX</tt>), the
     8-bit 'opcode' field is divided as:
    </t>
-   <table><thead><tr>
-     <th>3 bits (MSB)</th>
-     <th>2 bits</th>
-     <th>3 bits (LSB)</th>
-    </tr></thead>
+   <table>
+    <thead>
+     <tr>
+      <th>3 bits (MSB)</th>
+      <th>2 bits</th>
+      <th>3 bits (LSB)</th>
+     </tr>
+    </thead>
     <tbody>
      <tr>
       <td>
@@ -1549,12 +1410,15 @@ eBPF Instruction Set Specification, v1.0
      one of:
     </dd>
    </dl>
-   <table><thead><tr>
-     <th>mode modifier</th>
-     <th>value</th>
-     <th>description</th>
-     <th>reference</th>
-    </tr></thead>
+   <table>
+    <thead>
+     <tr>
+      <th>mode modifier</th>
+      <th>value</th>
+      <th>description</th>
+      <th>reference</th>
+     </tr>
+    </thead>
     <tbody>
      <tr>
       <td>
@@ -1676,11 +1540,14 @@ eBPF Instruction Set Specification, v1.0
      one of:
     </dd>
    </dl>
-   <table><thead><tr>
-     <th>size modifier</th>
-     <th>value</th>
-     <th>description</th>
-    </tr></thead>
+   <table>
+    <thead>
+     <tr>
+      <th>size modifier</th>
+      <th>value</th>
+      <th>description</th>
+     </tr>
+    </thead>
     <tbody>
      <tr>
       <td>
@@ -1806,7 +1673,7 @@ eBPF Instruction Set Specification, v1.0
      </li>
     </ul>
     <t>
-     Note that 8-bit (<tt>BPF_B</tt>) and 16-bit (<tt>BPF_H</tt>) wide atomic operations are not supported,
+     Note that 8-bit (<tt>BPF_B</tt>) and 16-bit (<tt>BPF_H</tt>) wide atomic operations are not currently supported,
      nor is <tt>BPF_ATOMIC | &lt;size&gt; | BPF_ST</tt>.
     </t>
     <t>
@@ -1814,11 +1681,14 @@ eBPF Instruction Set Specification, v1.0
      Simple atomic operation use a subset of the values defined to encode
      arithmetic operations in the 'imm' field to encode the atomic operation:
     </t>
-    <table><thead><tr>
-      <th>imm</th>
-      <th>value</th>
-      <th>description</th>
-     </tr></thead>
+    <table>
+     <thead>
+      <tr>
+       <th>imm</th>
+       <th>value</th>
+       <th>description</th>
+      </tr>
+     </thead>
      <tbody>
       <tr>
        <td>
@@ -1906,11 +1776,14 @@ eBPF Instruction Set Specification, v1.0
      In addition to the simple atomic operations above, there also is a modifier and
      two complex atomic operations:
     </t>
-    <table><thead><tr>
-      <th>imm</th>
-      <th>value</th>
-      <th>description</th>
-     </tr></thead>
+    <table>
+     <thead>
+      <tr>
+       <th>imm</th>
+       <th>value</th>
+       <th>description</th>
+      </tr>
+     </thead>
      <tbody>
       <tr>
        <td>
@@ -1990,16 +1863,21 @@ eBPF Instruction Set Specification, v1.0
      basic instruction to hold an opcode subtype.
     </t>
     <t>
-     The following instructions are defined, and use additional concepts defined below:
+     The following table defines a set of <tt>BPF_IMM | BPF_DW | BPF_LD</tt> instructions
+     with opcode subtypes in the 'src' field, using new terms such as "map"
+     defined further below:
     </t>
-    <table><thead><tr>
-      <th>opcode construction</th>
-      <th>opcode</th>
-      <th>src</th>
-      <th>pseudocode</th>
-      <th>imm type</th>
-      <th>dst type</th>
-     </tr></thead>
+    <table>
+     <thead>
+      <tr>
+       <th>opcode construction</th>
+       <th>opcode</th>
+       <th>src</th>
+       <th>pseudocode</th>
+       <th>imm type</th>
+       <th>dst type</th>
+      </tr>
+     </thead>
      <tbody>
       <tr>
        <td>
@@ -2083,7 +1961,7 @@ eBPF Instruction Set Specification, v1.0
        </td>
        <td>
         <t>
-         dst = mva(map_by_fd(imm)) + next_imm
+         dst = map_val(map_by_fd(imm)) + next_imm
         </t>
        </td>
        <td>
@@ -2115,7 +1993,7 @@ eBPF Instruction Set Specification, v1.0
        </td>
        <td>
         <t>
-         dst = variable_addr(imm)
+         dst = var_addr(imm)
         </t>
        </td>
        <td>
@@ -2211,7 +2089,7 @@ eBPF Instruction Set Specification, v1.0
        </td>
        <td>
         <t>
-         dst = mva(map_by_idx(imm)) + next_imm
+         dst = map_val(map_by_idx(imm)) + next_imm
         </t>
        </td>
        <td>
@@ -2232,19 +2110,19 @@ eBPF Instruction Set Specification, v1.0
     </t>
     <ul>
      <li>
-      map_by_fd(fd) means to convert a 32-bit POSIX file descriptor into an address of a map object (see <xref target="map-objects">Map objects</xref>)
+      map_by_fd(imm) means to convert a 32-bit file descriptor into an address of a map (see <xref target="maps">Maps</xref>)
      </li>
      <li>
-      map_by_index(index) means to convert a 32-bit index into an address of a map object
+      map_by_idx(imm) means to convert a 32-bit index into an address of a map
      </li>
      <li>
-      mva(map) gets the address of the first value in a given map object
+      map_val(map) gets the address of the first value in a given map
      </li>
      <li>
-      variable_addr(id) gets the address of a variable (see <xref target="variables">Variables</xref>) with a given id
+      var_addr(imm) gets the address of a platform variable (see <xref target="platform-variables">Platform Variables</xref>) with a given id
      </li>
      <li>
-      code_addr(offset) gets the address of the instruction at a specified relative offset in units of 64-bit blocks
+      code_addr(imm) gets the address of the instruction at a specified relative offset in number of (64-bit) instructions
      </li>
      <li>
       the 'imm type' can be used by disassemblers for display
@@ -2253,27 +2131,27 @@ eBPF Instruction Set Specification, v1.0
       the 'dst type' can be used for verification and JIT compilation purposes
      </li>
     </ul>
-    <section anchor="map-objects" title="Map objects">
+    <section anchor="maps" title="Maps">
      <t>
-      Maps are shared memory regions accessible by eBPF programs on some platforms, where we use the term "map object"
-      to refer to an object containing the data and metadata (e.g., size) about the memory region.
-      A map can have various semantics as defined in a separate document, and may or may not have a single
-      contiguous memory region, but the 'mva(map)' is currently only defined for maps that do have a single
-      contiguous memory region.  Support for maps is optional.
+      Maps are shared memory regions accessible by eBPF programs on some platforms.
+      A map can have various semantics as defined in a separate document, and may or
+      may not have a single contiguous memory region, but the 'map_val(map)' is
+      currently only defined for maps that do have a single contiguous memory region.
      </t>
      <t>
-      Each map object can have a POSIX file descriptor (fd) if supported by the platform,
-      where 'map_by_fd(fd)' means to get the map with the specified file descriptor.
-      Each eBPF program can also be defined to use a set of maps associated with the program
-      at load time, and 'map_by_index(index)' means to get the map with the given index in the set
-      associated with the eBPF program containing the instruction.
+      Each map can have a file descriptor (fd) if supported by the platform, where
+      'map_by_fd(imm)' means to get the map with the specified file descriptor. Each
+      BPF program can also be defined to use a set of maps associated with the
+      program at load time, and 'map_by_idx(imm)' means to get the map with the given
+      index in the set associated with the BPF program containing the instruction.
      </t>
     </section>
-    <section anchor="variables" title="Variables">
+    <section anchor="platform-variables" title="Platform Variables">
      <t>
-      Variables are memory regions, identified by integer ids, accessible by eBPF programs on
-      some platforms.  The 'variable_addr(id)' operation means to get the address of the memory region
-      identified by the given id.  Support for such variables is optional.
+      Platform variables are memory regions, identified by integer ids, exposed by
+      the runtime and accessible by BPF programs on some platforms.  The
+      'var_addr(imm)' operation means to get the address of the memory region
+      identified by the given id.
      </t>
     </section>
    </section>
@@ -2288,7 +2166,7 @@ eBPF Instruction Set Specification, v1.0
   <section anchor="acknowledgements" title="Acknowledgements">
    <t>
     This draft was generated from instruction-set.rst in the Linux
-    kernel repository, to which a number of other individuals have contributed
+    kernel repository, to which a number of other individuals have authored contributions
     over time, including Akhil Raj, Christoph Hellwig, Jose E. Marchesi, Kosuke Fujimoto,
     Shahab Vahedi, Tiezhu Yang, and Zheng Yejian, with review and suggestions by many others including
     Alan Jowett, Alexei Starovoitov, Andrii Nakryiko, Daniel Borkmann, David Vernet, Jim Harris,
@@ -2299,13 +2177,16 @@ eBPF Instruction Set Specification, v1.0
    <t>
     For reference, the following table lists opcodes in order by value.
    </t>
-   <table><thead><tr>
-     <th>opcode</th>
-     <th>src</th>
-     <th>imm</th>
-     <th>description</th>
-     <th>reference</th>
-    </tr></thead>
+   <table>
+    <thead>
+     <tr>
+      <th>opcode</th>
+      <th>src</th>
+      <th>imm</th>
+      <th>description</th>
+      <th>reference</th>
+     </tr>
+    </thead>
     <tbody>
      <tr>
       <td>
@@ -4760,7 +4641,7 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
-        <xref target="platform-agnostic-helper-functions">Platform-agnostic helper functions</xref>
+        <xref target="helper-functions">Helper functions</xref>
        </t>
       </td>
      </tr>
@@ -4787,7 +4668,7 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
-        <xref target="bpf-local-functions">BPF-local functions</xref>
+        <xref target="program-local-functions">Program-local functions</xref>
        </t>
       </td>
      </tr>
@@ -4814,7 +4695,7 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
-        <xref target="platform-specific-helper-functions">Platform-specific helper functions</xref>
+        <xref target="helper-functions">Helper functions</xref>
        </t>
       </td>
      </tr>

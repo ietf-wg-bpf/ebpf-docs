@@ -15,24 +15,22 @@
     and an implementation-specific amount (e.g., 512 bytes) of stack space.
        
     " name="description">
-<meta content="xml2rfc 3.16.0" name="generator">
+<meta content="xml2rfc 3.17.4" name="generator">
 <meta content="draft-thaler-bpf-isa-00" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.16.0
-    Python 3.10.6
-    appdirs 1.4.4
-    ConfigArgParse 1.5.3
-    google-i18n-address 2.5.2
-    html5lib 1.1
+  xml2rfc 3.17.4
+    Python 3.8.10
+    ConfigArgParse 1.5.5
+    google-i18n-address 3.1.0
     intervaltree 3.1.0
     Jinja2 3.1.2
-    lxml 4.9.2
-    MarkupSafe 2.1.2
+    lxml 4.9.3
+    platformdirs 3.8.0
     pycountry 22.3.5
-    PyYAML 5.4.1
-    requests 2.25.1
-    setuptools 59.6.0
-    six 1.16.0
+    PyYAML 5.3.1
+    requests 2.22.0
+    setuptools 45.2.0
+    six 1.14.0
     wcwidth 0.2.6
 -->
 <link href="draft-thaler-bpf-isa.xml" rel="alternate" type="application/rfc+xml">
@@ -63,7 +61,6 @@
 
 @viewport {
   zoom: 1.0;
-  width: extend-to-zoom;
 }
 @-ms-viewport {
   width: extend-to-zoom;
@@ -259,7 +256,8 @@ a[href]:hover {
   background-color: #f2f2f2;
 }
 figcaption a[href],
-a[href].selfRef {
+a[href].selfRef,
+.iref + a[href].internal {
   color: #222;
 }
 /* XXX probably not this:
@@ -1209,11 +1207,11 @@ li > p:last-of-type:only-child {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">eBPF ISA</td>
-<td class="right">March 2023</td>
+<td class="right">July 2023</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Thaler</td>
-<td class="center">Expires 15 September 2023</td>
+<td class="center">Expires 7 January 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1226,12 +1224,12 @@ li > p:last-of-type:only-child {
 <dd class="internet-draft">draft-thaler-bpf-isa-00</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-03-14" class="published">14 March 2023</time>
+<time datetime="2023-07-06" class="published">6 July 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-09-15">15 September 2023</time></dd>
+<dd class="expires"><time datetime="2024-01-07">7 January 2024</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1270,7 +1268,7 @@ li > p:last-of-type:only-child {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 15 September 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 7 January 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1328,13 +1326,10 @@ li > p:last-of-type:only-child {
                 <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-jump-instructions" class="internal xref">Jump instructions</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.1">
-                    <p id="section-toc.1-1.4.2.2.2.1.1"><a href="#section-4.2.1" class="auto internal xref">4.2.1</a>.  <a href="#name-platform-agnostic-helper-fu" class="internal xref">Platform-agnostic helper functions</a></p>
+                    <p id="section-toc.1-1.4.2.2.2.1.1"><a href="#section-4.2.1" class="auto internal xref">4.2.1</a>.  <a href="#name-helper-functions" class="internal xref">Helper functions</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.2">
-                    <p id="section-toc.1-1.4.2.2.2.2.1"><a href="#section-4.2.2" class="auto internal xref">4.2.2</a>.  <a href="#name-platform-specific-helper-fu" class="internal xref">Platform-specific helper functions</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.3">
-                    <p id="section-toc.1-1.4.2.2.2.3.1"><a href="#section-4.2.3" class="auto internal xref">4.2.3</a>.  <a href="#name-bpf-local-functions" class="internal xref">BPF-local functions</a></p>
+                    <p id="section-toc.1-1.4.2.2.2.2.1"><a href="#section-4.2.2" class="auto internal xref">4.2.2</a>.  <a href="#name-program-local-functions" class="internal xref">Program-local functions</a></p>
 </li>
                 </ul>
 </li>
@@ -1353,10 +1348,10 @@ li > p:last-of-type:only-child {
                 <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="auto internal xref">5.3</a>.  <a href="#name-64-bit-immediate-instructio" class="internal xref">64-bit immediate instructions</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.3.2.1">
-                    <p id="section-toc.1-1.5.2.3.2.1.1"><a href="#section-5.3.1" class="auto internal xref">5.3.1</a>.  <a href="#name-map-objects" class="internal xref">Map objects</a></p>
+                    <p id="section-toc.1-1.5.2.3.2.1.1"><a href="#section-5.3.1" class="auto internal xref">5.3.1</a>.  <a href="#name-maps" class="internal xref">Maps</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.3.2.2">
-                    <p id="section-toc.1-1.5.2.3.2.2.1"><a href="#section-5.3.2" class="auto internal xref">5.3.2</a>.  <a href="#name-variables" class="internal xref">Variables</a></p>
+                    <p id="section-toc.1-1.5.2.3.2.2.1"><a href="#section-5.3.2" class="auto internal xref">5.3.2</a>.  <a href="#name-platform-variables" class="internal xref">Platform Variables</a></p>
 </li>
                 </ul>
 </li>
@@ -1924,7 +1919,7 @@ li > p:last-of-type:only-child {
 </td>
               <td class="text-left" rowspan="1" colspan="1">
                 <p id="section-4.1-2.2.7.3.1">
-         dst &lt;&lt;= src<a href="#section-4.1-2.2.7.3.1" class="pilcrow">¶</a></p>
+         dst &lt;&lt;= (src &amp; mask)<a href="#section-4.1-2.2.7.3.1" class="pilcrow">¶</a></p>
 </td>
             </tr>
             <tr>
@@ -1938,7 +1933,7 @@ li > p:last-of-type:only-child {
 </td>
               <td class="text-left" rowspan="1" colspan="1">
                 <p id="section-4.1-2.2.8.3.1">
-         dst &gt;&gt;= src<a href="#section-4.1-2.2.8.3.1" class="pilcrow">¶</a></p>
+         dst &gt;&gt;= (src &amp; mask)<a href="#section-4.1-2.2.8.3.1" class="pilcrow">¶</a></p>
 </td>
             </tr>
             <tr>
@@ -1952,7 +1947,7 @@ li > p:last-of-type:only-child {
 </td>
               <td class="text-left" rowspan="1" colspan="1">
                 <p id="section-4.1-2.2.9.3.1">
-         dst = ~src<a href="#section-4.1-2.2.9.3.1" class="pilcrow">¶</a></p>
+         dst = -src<a href="#section-4.1-2.2.9.3.1" class="pilcrow">¶</a></p>
 </td>
             </tr>
             <tr>
@@ -2008,7 +2003,7 @@ li > p:last-of-type:only-child {
 </td>
               <td class="text-left" rowspan="1" colspan="1">
                 <p id="section-4.1-2.2.13.3.1">
-         sign extending shift right<a href="#section-4.1-2.2.13.3.1" class="pilcrow">¶</a></p>
+         sign extending dst &gt;&gt;= (src &amp; mask)<a href="#section-4.1-2.2.13.3.1" class="pilcrow">¶</a></p>
 </td>
             </tr>
             <tr>
@@ -2072,6 +2067,9 @@ li > p:last-of-type:only-child {
      for <code>BPF_ALU64</code>, 'imm' is first sign extended to 64 bits and the result
      interpreted as an unsigned 64-bit value. There are no instructions for
      signed division or modulo.<a href="#section-4.1-14" class="pilcrow">¶</a></p>
+<p id="section-4.1-15">
+     Shift operations use a mask of 0x3F (63) for 64-bit operations and 0x1F (31)
+     for 32-bit operations.<a href="#section-4.1-15" class="pilcrow">¶</a></p>
 <div id="byte-swap-instructions">
 <section id="section-4.1.1">
           <h4 id="name-byte-swap-instructions">
@@ -2129,167 +2127,27 @@ li > p:last-of-type:only-child {
           </table>
 <p id="section-4.1.1-5">
       The 'imm' field encodes the width of the swap operations.  The following widths
-      are supported: 16, 32 and 64. The following table summarizes the resulting
-      possibilities:<a href="#section-4.1.1-5" class="pilcrow">¶</a></p>
-<table class="center" id="table-6">
-            <caption><a href="#table-6" class="selfRef">Table 6</a></caption>
-<thead>
-              <tr>
-                <th class="text-left" rowspan="1" colspan="1">opcode construction</th>
-                <th class="text-left" rowspan="1" colspan="1">opcode</th>
-                <th class="text-left" rowspan="1" colspan="1">imm</th>
-                <th class="text-left" rowspan="1" colspan="1">mnemonic</th>
-                <th class="text-left" rowspan="1" colspan="1">pseudocode</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">
-                  <p id="section-4.1.1-6.2.1.1.1">
-          BPF_END | BPF_TO_LE | BPF_ALU<a href="#section-4.1.1-6.2.1.1.1" class="pilcrow">¶</a></p>
-</td>
-                <td class="text-left" rowspan="1" colspan="1">
-                  <p id="section-4.1.1-6.2.1.2.1">
-          0xd4<a href="#section-4.1.1-6.2.1.2.1" class="pilcrow">¶</a></p>
-</td>
-                <td class="text-left" rowspan="1" colspan="1">
-                  <p id="section-4.1.1-6.2.1.3.1">
-          16<a href="#section-4.1.1-6.2.1.3.1" class="pilcrow">¶</a></p>
-</td>
-                <td class="text-left" rowspan="1" colspan="1">
-                  <p id="section-4.1.1-6.2.1.4.1">
-          le16 dst<a href="#section-4.1.1-6.2.1.4.1" class="pilcrow">¶</a></p>
-</td>
-                <td class="text-left" rowspan="1" colspan="1">
-                  <p id="section-4.1.1-6.2.1.5.1">
-          dst = htole16(dst)<a href="#section-4.1.1-6.2.1.5.1" class="pilcrow">¶</a></p>
-</td>
-              </tr>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">
-                  <p id="section-4.1.1-6.2.2.1.1">
-          BPF_END | BPF_TO_LE | BPF_ALU<a href="#section-4.1.1-6.2.2.1.1" class="pilcrow">¶</a></p>
-</td>
-                <td class="text-left" rowspan="1" colspan="1">
-                  <p id="section-4.1.1-6.2.2.2.1">
-          0xd4<a href="#section-4.1.1-6.2.2.2.1" class="pilcrow">¶</a></p>
-</td>
-                <td class="text-left" rowspan="1" colspan="1">
-                  <p id="section-4.1.1-6.2.2.3.1">
-          32<a href="#section-4.1.1-6.2.2.3.1" class="pilcrow">¶</a></p>
-</td>
-                <td class="text-left" rowspan="1" colspan="1">
-                  <p id="section-4.1.1-6.2.2.4.1">
-          le32 dst<a href="#section-4.1.1-6.2.2.4.1" class="pilcrow">¶</a></p>
-</td>
-                <td class="text-left" rowspan="1" colspan="1">
-                  <p id="section-4.1.1-6.2.2.5.1">
-          dst = htole32(dst)<a href="#section-4.1.1-6.2.2.5.1" class="pilcrow">¶</a></p>
-</td>
-              </tr>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">
-                  <p id="section-4.1.1-6.2.3.1.1">
-          BPF_END | BPF_TO_LE | BPF_ALU<a href="#section-4.1.1-6.2.3.1.1" class="pilcrow">¶</a></p>
-</td>
-                <td class="text-left" rowspan="1" colspan="1">
-                  <p id="section-4.1.1-6.2.3.2.1">
-          0xd4<a href="#section-4.1.1-6.2.3.2.1" class="pilcrow">¶</a></p>
-</td>
-                <td class="text-left" rowspan="1" colspan="1">
-                  <p id="section-4.1.1-6.2.3.3.1">
-          64<a href="#section-4.1.1-6.2.3.3.1" class="pilcrow">¶</a></p>
-</td>
-                <td class="text-left" rowspan="1" colspan="1">
-                  <p id="section-4.1.1-6.2.3.4.1">
-          le64 dst<a href="#section-4.1.1-6.2.3.4.1" class="pilcrow">¶</a></p>
-</td>
-                <td class="text-left" rowspan="1" colspan="1">
-                  <p id="section-4.1.1-6.2.3.5.1">
-          dst = htole64(dst)<a href="#section-4.1.1-6.2.3.5.1" class="pilcrow">¶</a></p>
-</td>
-              </tr>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">
-                  <p id="section-4.1.1-6.2.4.1.1">
-          BPF_END | BPF_TO_BE | BPF_ALU<a href="#section-4.1.1-6.2.4.1.1" class="pilcrow">¶</a></p>
-</td>
-                <td class="text-left" rowspan="1" colspan="1">
-                  <p id="section-4.1.1-6.2.4.2.1">
-          0xdc<a href="#section-4.1.1-6.2.4.2.1" class="pilcrow">¶</a></p>
-</td>
-                <td class="text-left" rowspan="1" colspan="1">
-                  <p id="section-4.1.1-6.2.4.3.1">
-          16<a href="#section-4.1.1-6.2.4.3.1" class="pilcrow">¶</a></p>
-</td>
-                <td class="text-left" rowspan="1" colspan="1">
-                  <p id="section-4.1.1-6.2.4.4.1">
-          be16 dst<a href="#section-4.1.1-6.2.4.4.1" class="pilcrow">¶</a></p>
-</td>
-                <td class="text-left" rowspan="1" colspan="1">
-                  <p id="section-4.1.1-6.2.4.5.1">
-          dst = htobe16(dst)<a href="#section-4.1.1-6.2.4.5.1" class="pilcrow">¶</a></p>
-</td>
-              </tr>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">
-                  <p id="section-4.1.1-6.2.5.1.1">
-          BPF_END | BPF_TO_BE | BPF_ALU<a href="#section-4.1.1-6.2.5.1.1" class="pilcrow">¶</a></p>
-</td>
-                <td class="text-left" rowspan="1" colspan="1">
-                  <p id="section-4.1.1-6.2.5.2.1">
-          0xdc<a href="#section-4.1.1-6.2.5.2.1" class="pilcrow">¶</a></p>
-</td>
-                <td class="text-left" rowspan="1" colspan="1">
-                  <p id="section-4.1.1-6.2.5.3.1">
-          32<a href="#section-4.1.1-6.2.5.3.1" class="pilcrow">¶</a></p>
-</td>
-                <td class="text-left" rowspan="1" colspan="1">
-                  <p id="section-4.1.1-6.2.5.4.1">
-          be32 dst<a href="#section-4.1.1-6.2.5.4.1" class="pilcrow">¶</a></p>
-</td>
-                <td class="text-left" rowspan="1" colspan="1">
-                  <p id="section-4.1.1-6.2.5.5.1">
-          dst = htobe32(dst)<a href="#section-4.1.1-6.2.5.5.1" class="pilcrow">¶</a></p>
-</td>
-              </tr>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">
-                  <p id="section-4.1.1-6.2.6.1.1">
-          BPF_END | BPF_TO_BE | BPF_ALU<a href="#section-4.1.1-6.2.6.1.1" class="pilcrow">¶</a></p>
-</td>
-                <td class="text-left" rowspan="1" colspan="1">
-                  <p id="section-4.1.1-6.2.6.2.1">
-          0xdc<a href="#section-4.1.1-6.2.6.2.1" class="pilcrow">¶</a></p>
-</td>
-                <td class="text-left" rowspan="1" colspan="1">
-                  <p id="section-4.1.1-6.2.6.3.1">
-          64<a href="#section-4.1.1-6.2.6.3.1" class="pilcrow">¶</a></p>
-</td>
-                <td class="text-left" rowspan="1" colspan="1">
-                  <p id="section-4.1.1-6.2.6.4.1">
-          be64 dst<a href="#section-4.1.1-6.2.6.4.1" class="pilcrow">¶</a></p>
-</td>
-                <td class="text-left" rowspan="1" colspan="1">
-                  <p id="section-4.1.1-6.2.6.5.1">
-          dst = htobe64(dst)<a href="#section-4.1.1-6.2.6.5.1" class="pilcrow">¶</a></p>
-</td>
-              </tr>
-            </tbody>
-          </table>
+      are supported: 16, 32 and 64.<a href="#section-4.1.1-5" class="pilcrow">¶</a></p>
+<p id="section-4.1.1-6">
+      Examples:<a href="#section-4.1.1-6" class="pilcrow">¶</a></p>
 <p id="section-4.1.1-7">
-      where<a href="#section-4.1.1-7" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-4.1.1-8.1">
-       mnenomic indicates a short form that might be displayed by some tools such as disassemblers<a href="#section-4.1.1-8.1" class="pilcrow">¶</a>
-</li>
-            <li class="normal" id="section-4.1.1-8.2">
-       'htoleNN()' indicates converting a NN-bit value from host byte order to little-endian byte order<a href="#section-4.1.1-8.2" class="pilcrow">¶</a>
-</li>
-            <li class="normal" id="section-4.1.1-8.3">
-       'htobeNN()' indicates converting a NN-bit value from host byte order to big-endian byte order<a href="#section-4.1.1-8.3" class="pilcrow">¶</a>
-</li>
-          </ul>
+      <code>BPF_ALU | BPF_TO_LE | BPF_END</code> with imm = 16 means:<a href="#section-4.1.1-7" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-4.1.1-8">
+<pre>
+  dst = htole16(dst)
+</pre><a href="#section-4.1.1-8" class="pilcrow">¶</a>
+</div>
+<p id="section-4.1.1-9">
+      where 'htole16()' indicates converting a 16-bit value from host byte order to little-endian byte order.<a href="#section-4.1.1-9" class="pilcrow">¶</a></p>
+<p id="section-4.1.1-10">
+      <code>BPF_ALU | BPF_TO_BE | BPF_END</code> with imm = 64 means:<a href="#section-4.1.1-10" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-4.1.1-11">
+<pre>
+  dst = htobe64(dst)
+</pre><a href="#section-4.1.1-11" class="pilcrow">¶</a>
+</div>
+<p id="section-4.1.1-12">
+      where 'htobe64()' indicates converting a 64-bit value from host byte order to big-endian byte order.<a href="#section-4.1.1-12" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -2304,8 +2162,8 @@ li > p:last-of-type:only-child {
      otherwise identical operations.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
 <p id="section-4.2-2">
      The 4-bit 'code' field encodes the operation as below, where PC is the program counter:<a href="#section-4.2-2" class="pilcrow">¶</a></p>
-<table class="center" id="table-7">
-          <caption><a href="#table-7" class="selfRef">Table 7</a></caption>
+<table class="center" id="table-6">
+          <caption><a href="#table-6" class="selfRef">Table 6</a></caption>
 <thead>
             <tr>
               <th class="text-left" rowspan="1" colspan="1">code</th>
@@ -2501,11 +2359,11 @@ li > p:last-of-type:only-child {
 </td>
               <td class="text-left" rowspan="1" colspan="1">
                 <p id="section-4.2-3.2.9.4.1">
-         call platform-agnostic helper function imm<a href="#section-4.2-3.2.9.4.1" class="pilcrow">¶</a></p>
+         call helper function by address<a href="#section-4.2-3.2.9.4.1" class="pilcrow">¶</a></p>
 </td>
               <td class="text-left" rowspan="1" colspan="1">
                 <p id="section-4.2-3.2.9.5.1">
-         see <span><a href="#platform-agnostic-helper-functions" class="internal xref">Platform-agnostic helper functions</a> (<a href="#platform-agnostic-helper-functions" class="auto internal xref">Section 4.2.1</a>)</span><a href="#section-4.2-3.2.9.5.1" class="pilcrow">¶</a></p>
+         see <span><a href="#helper-functions" class="internal xref">Helper functions</a> (<a href="#helper-functions" class="auto internal xref">Section 4.2.1</a>)</span><a href="#section-4.2-3.2.9.5.1" class="pilcrow">¶</a></p>
 </td>
             </tr>
             <tr>
@@ -2527,7 +2385,7 @@ li > p:last-of-type:only-child {
 </td>
               <td class="text-left" rowspan="1" colspan="1">
                 <p id="section-4.2-3.2.10.5.1">
-         see <span><a href="#bpf-local-functions" class="internal xref">BPF-local functions</a> (<a href="#bpf-local-functions" class="auto internal xref">Section 4.2.3</a>)</span><a href="#section-4.2-3.2.10.5.1" class="pilcrow">¶</a></p>
+         see <span><a href="#program-local-functions" class="internal xref">Program-local functions</a> (<a href="#program-local-functions" class="auto internal xref">Section 4.2.2</a>)</span><a href="#section-4.2-3.2.10.5.1" class="pilcrow">¶</a></p>
 </td>
             </tr>
             <tr>
@@ -2545,11 +2403,11 @@ li > p:last-of-type:only-child {
 </td>
               <td class="text-left" rowspan="1" colspan="1">
                 <p id="section-4.2-3.2.11.4.1">
-         call platform-specific helper function imm<a href="#section-4.2-3.2.11.4.1" class="pilcrow">¶</a></p>
+         call helper function by BTF ID<a href="#section-4.2-3.2.11.4.1" class="pilcrow">¶</a></p>
 </td>
               <td class="text-left" rowspan="1" colspan="1">
                 <p id="section-4.2-3.2.11.5.1">
-         see <span><a href="#platform-specific-helper-functions" class="internal xref">Platform-specific helper functions</a> (<a href="#platform-specific-helper-functions" class="auto internal xref">Section 4.2.2</a>)</span><a href="#section-4.2-3.2.11.5.1" class="pilcrow">¶</a></p>
+         see <span><a href="#helper-functions" class="internal xref">Helper functions</a> (<a href="#helper-functions" class="auto internal xref">Section 4.2.1</a>)</span><a href="#section-4.2-3.2.11.5.1" class="pilcrow">¶</a></p>
 </td>
             </tr>
             <tr>
@@ -2665,51 +2523,47 @@ li > p:last-of-type:only-child {
           </tbody>
         </table>
 <p id="section-4.2-4">
-     Example:<a href="#section-4.2-4" class="pilcrow">¶</a></p>
+     The eBPF program needs to store the return value into register R0 before doing a
+     <code>BPF_EXIT</code>.<a href="#section-4.2-4" class="pilcrow">¶</a></p>
 <p id="section-4.2-5">
-     <code>BPF_JSGE | BPF_X | BPF_JMP32</code> (0x7e) means:<a href="#section-4.2-5" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-4.2-6">
+     Example:<a href="#section-4.2-5" class="pilcrow">¶</a></p>
+<p id="section-4.2-6">
+     <code>BPF_JSGE | BPF_X | BPF_JMP32</code> (0x7e) means:<a href="#section-4.2-6" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-4.2-7">
 <pre>
   if (s32)dst s&gt;= (s32)src goto +offset
-</pre><a href="#section-4.2-6" class="pilcrow">¶</a>
+</pre><a href="#section-4.2-7" class="pilcrow">¶</a>
 </div>
-<p id="section-4.2-7">
-     where 's&gt;=' indicates a signed '&gt;=' comparison.<a href="#section-4.2-7" class="pilcrow">¶</a></p>
-<div id="platform-agnostic-helper-functions">
+<p id="section-4.2-8">
+     where 's&gt;=' indicates a signed '&gt;=' comparison.<a href="#section-4.2-8" class="pilcrow">¶</a></p>
+<div id="helper-functions">
 <section id="section-4.2.1">
-          <h4 id="name-platform-agnostic-helper-fu">
-<a href="#section-4.2.1" class="section-number selfRef">4.2.1. </a><a href="#name-platform-agnostic-helper-fu" class="section-name selfRef">Platform-agnostic helper functions</a>
+          <h4 id="name-helper-functions">
+<a href="#section-4.2.1" class="section-number selfRef">4.2.1. </a><a href="#name-helper-functions" class="section-name selfRef">Helper functions</a>
           </h4>
 <p id="section-4.2.1-1">
-      Platform-agnostic helper functions are a concept whereby BPF programs can call
-      into a set of function calls exposed by the runtime.  Each helper
-      function is identified by an integer used in a <code>BPF_CALL</code> instruction.
-      The available platform-agnostic helper functions may differ for each program
-      type, but integer values are unique across all program types.<a href="#section-4.2.1-1" class="pilcrow">¶</a></p>
+      Helper functions are a concept whereby BPF programs can call into a
+      set of function calls exposed by the underlying platform.<a href="#section-4.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.2.1-2">
+      Historically, each helper function was identified by an address
+      encoded in the imm field.  The available helper functions may differ
+      for each program type, but address values are unique across all program types.<a href="#section-4.2.1-2" class="pilcrow">¶</a></p>
+<p id="section-4.2.1-3">
+      Platforms that support the BPF Type Format (BTF) support identifying
+      a helper function by a BTF ID encoded in the imm field, where the BTF ID
+      identifies the helper name and type.<a href="#section-4.2.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="platform-specific-helper-functions">
+<div id="program-local-functions">
 <section id="section-4.2.2">
-          <h4 id="name-platform-specific-helper-fu">
-<a href="#section-4.2.2" class="section-number selfRef">4.2.2. </a><a href="#name-platform-specific-helper-fu" class="section-name selfRef">Platform-specific helper functions</a>
+          <h4 id="name-program-local-functions">
+<a href="#section-4.2.2" class="section-number selfRef">4.2.2. </a><a href="#name-program-local-functions" class="section-name selfRef">Program-local functions</a>
           </h4>
 <p id="section-4.2.2-1">
-      Platform-specific helper functions are helper functions that are unique to
-      a particular platform.  They use a separate integer numbering space from
-      platform-agnostic helper functions, but otherwise the same considerations
-      apply.  Platforms are not required to implement any platform-specific
-      functions.<a href="#section-4.2.2-1" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="bpf-local-functions">
-<section id="section-4.2.3">
-          <h4 id="name-bpf-local-functions">
-<a href="#section-4.2.3" class="section-number selfRef">4.2.3. </a><a href="#name-bpf-local-functions" class="section-name selfRef">BPF-local functions</a>
-          </h4>
-<p id="section-4.2.3-1">
-      BPF-local functions are functions exposed by the same BPF program as the caller,
-      and are referenced by offset from the call instruction, similar to <code>BPF_JA</code>.
-      A <code>BPF_EXIT</code> within the BPF-local function will return to the caller.<a href="#section-4.2.3-1" class="pilcrow">¶</a></p>
+      Program-local functions are functions exposed by the same BPF program as the
+      caller, and are referenced by offset from the call instruction, similar to
+      <code>BPF_JA</code>.  A <code>BPF_EXIT</code> within the program-local function will return to
+      the caller.<a href="#section-4.2.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -2724,8 +2578,8 @@ li > p:last-of-type:only-child {
 <p id="section-5-1">
     For load and store instructions (<code>BPF_LD</code>, <code>BPF_LDX</code>, <code>BPF_ST</code>, and <code>BPF_STX</code>), the
     8-bit 'opcode' field is divided as:<a href="#section-5-1" class="pilcrow">¶</a></p>
-<table class="center" id="table-8">
-        <caption><a href="#table-8" class="selfRef">Table 8</a></caption>
+<table class="center" id="table-7">
+        <caption><a href="#table-7" class="selfRef">Table 7</a></caption>
 <thead>
           <tr>
             <th class="text-left" rowspan="1" colspan="1">3 bits (MSB)</th>
@@ -2759,8 +2613,8 @@ li > p:last-of-type:only-child {
 </dd>
       <dd class="break"></dd>
 </dl>
-<table class="center" id="table-9">
-        <caption><a href="#table-9" class="selfRef">Table 9</a></caption>
+<table class="center" id="table-8">
+        <caption><a href="#table-8" class="selfRef">Table 8</a></caption>
 <thead>
           <tr>
             <th class="text-left" rowspan="1" colspan="1">mode modifier</th>
@@ -2871,8 +2725,8 @@ li > p:last-of-type:only-child {
 </dd>
       <dd class="break"></dd>
 </dl>
-<table class="center" id="table-10">
-        <caption><a href="#table-10" class="selfRef">Table 10</a></caption>
+<table class="center" id="table-9">
+        <caption><a href="#table-9" class="selfRef">Table 9</a></caption>
 <thead>
           <tr>
             <th class="text-left" rowspan="1" colspan="1">size modifier</th>
@@ -3002,14 +2856,14 @@ li > p:last-of-type:only-child {
 </li>
         </ul>
 <p id="section-5.2-4">
-     Note that 8-bit (<code>BPF_B</code>) and 16-bit (<code>BPF_H</code>) wide atomic operations are not supported,
+     Note that 8-bit (<code>BPF_B</code>) and 16-bit (<code>BPF_H</code>) wide atomic operations are not currently supported,
      nor is <code>BPF_ATOMIC | &lt;size&gt; | BPF_ST</code>.<a href="#section-5.2-4" class="pilcrow">¶</a></p>
 <p id="section-5.2-5">
      The 'imm' field is used to encode the actual atomic operation.
      Simple atomic operation use a subset of the values defined to encode
      arithmetic operations in the 'imm' field to encode the atomic operation:<a href="#section-5.2-5" class="pilcrow">¶</a></p>
-<table class="center" id="table-11">
-          <caption><a href="#table-11" class="selfRef">Table 11</a></caption>
+<table class="center" id="table-10">
+          <caption><a href="#table-10" class="selfRef">Table 10</a></caption>
 <thead>
             <tr>
               <th class="text-left" rowspan="1" colspan="1">imm</th>
@@ -3093,8 +2947,8 @@ li > p:last-of-type:only-child {
 <p id="section-5.2-11">
      In addition to the simple atomic operations above, there also is a modifier and
      two complex atomic operations:<a href="#section-5.2-11" class="pilcrow">¶</a></p>
-<table class="center" id="table-12">
-          <caption><a href="#table-12" class="selfRef">Table 12</a></caption>
+<table class="center" id="table-11">
+          <caption><a href="#table-11" class="selfRef">Table 11</a></caption>
 <thead>
             <tr>
               <th class="text-left" rowspan="1" colspan="1">imm</th>
@@ -3173,9 +3027,11 @@ li > p:last-of-type:only-child {
      encoding defined in <span><a href="#instruction-encoding" class="internal xref">Instruction encoding</a> (<a href="#instruction-encoding" class="auto internal xref">Section 3</a>)</span>, and use the 'src' field of the
      basic instruction to hold an opcode subtype.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
 <p id="section-5.3-2">
-     The following instructions are defined, and use additional concepts defined below:<a href="#section-5.3-2" class="pilcrow">¶</a></p>
-<table class="center" id="table-13">
-          <caption><a href="#table-13" class="selfRef">Table 13</a></caption>
+     The following table defines a set of <code>BPF_IMM | BPF_DW | BPF_LD</code> instructions
+     with opcode subtypes in the 'src' field, using new terms such as "map"
+     defined further below:<a href="#section-5.3-2" class="pilcrow">¶</a></p>
+<table class="center" id="table-12">
+          <caption><a href="#table-12" class="selfRef">Table 12</a></caption>
 <thead>
             <tr>
               <th class="text-left" rowspan="1" colspan="1">opcode construction</th>
@@ -3254,7 +3110,7 @@ li > p:last-of-type:only-child {
 </td>
               <td class="text-left" rowspan="1" colspan="1">
                 <p id="section-5.3-3.2.3.4.1">
-         dst = mva(map_by_fd(imm)) + next_imm<a href="#section-5.3-3.2.3.4.1" class="pilcrow">¶</a></p>
+         dst = map_val(map_by_fd(imm)) + next_imm<a href="#section-5.3-3.2.3.4.1" class="pilcrow">¶</a></p>
 </td>
               <td class="text-left" rowspan="1" colspan="1">
                 <p id="section-5.3-3.2.3.5.1">
@@ -3280,7 +3136,7 @@ li > p:last-of-type:only-child {
 </td>
               <td class="text-left" rowspan="1" colspan="1">
                 <p id="section-5.3-3.2.4.4.1">
-         dst = variable_addr(imm)<a href="#section-5.3-3.2.4.4.1" class="pilcrow">¶</a></p>
+         dst = var_addr(imm)<a href="#section-5.3-3.2.4.4.1" class="pilcrow">¶</a></p>
 </td>
               <td class="text-left" rowspan="1" colspan="1">
                 <p id="section-5.3-3.2.4.5.1">
@@ -3358,7 +3214,7 @@ li > p:last-of-type:only-child {
 </td>
               <td class="text-left" rowspan="1" colspan="1">
                 <p id="section-5.3-3.2.7.4.1">
-         dst = mva(map_by_idx(imm)) + next_imm<a href="#section-5.3-3.2.7.4.1" class="pilcrow">¶</a></p>
+         dst = map_val(map_by_idx(imm)) + next_imm<a href="#section-5.3-3.2.7.4.1" class="pilcrow">¶</a></p>
 </td>
               <td class="text-left" rowspan="1" colspan="1">
                 <p id="section-5.3-3.2.7.5.1">
@@ -3375,19 +3231,19 @@ li > p:last-of-type:only-child {
      where<a href="#section-5.3-4" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-5.3-5.1">
-      map_by_fd(fd) means to convert a 32-bit POSIX file descriptor into an address of a map object (see <span><a href="#map-objects" class="internal xref">Map objects</a> (<a href="#map-objects" class="auto internal xref">Section 5.3.1</a>)</span>)<a href="#section-5.3-5.1" class="pilcrow">¶</a>
+      map_by_fd(imm) means to convert a 32-bit file descriptor into an address of a map (see <span><a href="#maps" class="internal xref">Maps</a> (<a href="#maps" class="auto internal xref">Section 5.3.1</a>)</span>)<a href="#section-5.3-5.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-5.3-5.2">
-      map_by_index(index) means to convert a 32-bit index into an address of a map object<a href="#section-5.3-5.2" class="pilcrow">¶</a>
+      map_by_idx(imm) means to convert a 32-bit index into an address of a map<a href="#section-5.3-5.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-5.3-5.3">
-      mva(map) gets the address of the first value in a given map object<a href="#section-5.3-5.3" class="pilcrow">¶</a>
+      map_val(map) gets the address of the first value in a given map<a href="#section-5.3-5.3" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-5.3-5.4">
-      variable_addr(id) gets the address of a variable (see <span><a href="#variables" class="internal xref">Variables</a> (<a href="#variables" class="auto internal xref">Section 5.3.2</a>)</span>) with a given id<a href="#section-5.3-5.4" class="pilcrow">¶</a>
+      var_addr(imm) gets the address of a platform variable (see <span><a href="#platform-variables" class="internal xref">Platform Variables</a> (<a href="#platform-variables" class="auto internal xref">Section 5.3.2</a>)</span>) with a given id<a href="#section-5.3-5.4" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-5.3-5.5">
-      code_addr(offset) gets the address of the instruction at a specified relative offset in units of 64-bit blocks<a href="#section-5.3-5.5" class="pilcrow">¶</a>
+      code_addr(imm) gets the address of the instruction at a specified relative offset in number of (64-bit) instructions<a href="#section-5.3-5.5" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-5.3-5.6">
       the 'imm type' can be used by disassemblers for display<a href="#section-5.3-5.6" class="pilcrow">¶</a>
@@ -3396,34 +3252,34 @@ li > p:last-of-type:only-child {
       the 'dst type' can be used for verification and JIT compilation purposes<a href="#section-5.3-5.7" class="pilcrow">¶</a>
 </li>
         </ul>
-<div id="map-objects">
+<div id="maps">
 <section id="section-5.3.1">
-          <h4 id="name-map-objects">
-<a href="#section-5.3.1" class="section-number selfRef">5.3.1. </a><a href="#name-map-objects" class="section-name selfRef">Map objects</a>
+          <h4 id="name-maps">
+<a href="#section-5.3.1" class="section-number selfRef">5.3.1. </a><a href="#name-maps" class="section-name selfRef">Maps</a>
           </h4>
 <p id="section-5.3.1-1">
-      Maps are shared memory regions accessible by eBPF programs on some platforms, where we use the term "map object"
-      to refer to an object containing the data and metadata (e.g., size) about the memory region.
-      A map can have various semantics as defined in a separate document, and may or may not have a single
-      contiguous memory region, but the 'mva(map)' is currently only defined for maps that do have a single
-      contiguous memory region.  Support for maps is optional.<a href="#section-5.3.1-1" class="pilcrow">¶</a></p>
+      Maps are shared memory regions accessible by eBPF programs on some platforms.
+      A map can have various semantics as defined in a separate document, and may or
+      may not have a single contiguous memory region, but the 'map_val(map)' is
+      currently only defined for maps that do have a single contiguous memory region.<a href="#section-5.3.1-1" class="pilcrow">¶</a></p>
 <p id="section-5.3.1-2">
-      Each map object can have a POSIX file descriptor (fd) if supported by the platform,
-      where 'map_by_fd(fd)' means to get the map with the specified file descriptor.
-      Each eBPF program can also be defined to use a set of maps associated with the program
-      at load time, and 'map_by_index(index)' means to get the map with the given index in the set
-      associated with the eBPF program containing the instruction.<a href="#section-5.3.1-2" class="pilcrow">¶</a></p>
+      Each map can have a file descriptor (fd) if supported by the platform, where
+      'map_by_fd(imm)' means to get the map with the specified file descriptor. Each
+      BPF program can also be defined to use a set of maps associated with the
+      program at load time, and 'map_by_idx(imm)' means to get the map with the given
+      index in the set associated with the BPF program containing the instruction.<a href="#section-5.3.1-2" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="variables">
+<div id="platform-variables">
 <section id="section-5.3.2">
-          <h4 id="name-variables">
-<a href="#section-5.3.2" class="section-number selfRef">5.3.2. </a><a href="#name-variables" class="section-name selfRef">Variables</a>
+          <h4 id="name-platform-variables">
+<a href="#section-5.3.2" class="section-number selfRef">5.3.2. </a><a href="#name-platform-variables" class="section-name selfRef">Platform Variables</a>
           </h4>
 <p id="section-5.3.2-1">
-      Variables are memory regions, identified by integer ids, accessible by eBPF programs on
-      some platforms.  The 'variable_addr(id)' operation means to get the address of the memory region
-      identified by the given id.  Support for such variables is optional.<a href="#section-5.3.2-1" class="pilcrow">¶</a></p>
+      Platform variables are memory regions, identified by integer ids, exposed by
+      the runtime and accessible by BPF programs on some platforms.  The
+      'var_addr(imm)' operation means to get the address of the memory region
+      identified by the given id.<a href="#section-5.3.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -3448,7 +3304,7 @@ li > p:last-of-type:only-child {
       </h2>
 <p id="section-6-1">
     This draft was generated from instruction-set.rst in the Linux
-    kernel repository, to which a number of other individuals have contributed
+    kernel repository, to which a number of other individuals have authored contributions
     over time, including Akhil Raj, Christoph Hellwig, Jose E. Marchesi, Kosuke Fujimoto,
     Shahab Vahedi, Tiezhu Yang, and Zheng Yejian, with review and suggestions by many others including
     Alan Jowett, Alexei Starovoitov, Andrii Nakryiko, Daniel Borkmann, David Vernet, Jim Harris,
@@ -3462,8 +3318,8 @@ li > p:last-of-type:only-child {
       </h2>
 <p id="section-7-1">
     For reference, the following table lists opcodes in order by value.<a href="#section-7-1" class="pilcrow">¶</a></p>
-<table class="center" id="table-14">
-        <caption><a href="#table-14" class="selfRef">Table 14</a></caption>
+<table class="center" id="table-13">
+        <caption><a href="#table-13" class="selfRef">Table 13</a></caption>
 <thead>
           <tr>
             <th class="text-left" rowspan="1" colspan="1">opcode</th>
@@ -5473,7 +5329,7 @@ li > p:last-of-type:only-child {
 </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.91.5.1">
-        <span><a href="#platform-agnostic-helper-functions" class="internal xref">Platform-agnostic helper functions</a> (<a href="#platform-agnostic-helper-functions" class="auto internal xref">Section 4.2.1</a>)</span><a href="#section-7-2.2.91.5.1" class="pilcrow">¶</a></p>
+        <span><a href="#helper-functions" class="internal xref">Helper functions</a> (<a href="#helper-functions" class="auto internal xref">Section 4.2.1</a>)</span><a href="#section-7-2.2.91.5.1" class="pilcrow">¶</a></p>
 </td>
           </tr>
           <tr>
@@ -5495,7 +5351,7 @@ li > p:last-of-type:only-child {
 </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.92.5.1">
-        <span><a href="#bpf-local-functions" class="internal xref">BPF-local functions</a> (<a href="#bpf-local-functions" class="auto internal xref">Section 4.2.3</a>)</span><a href="#section-7-2.2.92.5.1" class="pilcrow">¶</a></p>
+        <span><a href="#program-local-functions" class="internal xref">Program-local functions</a> (<a href="#program-local-functions" class="auto internal xref">Section 4.2.2</a>)</span><a href="#section-7-2.2.92.5.1" class="pilcrow">¶</a></p>
 </td>
           </tr>
           <tr>
@@ -5517,7 +5373,7 @@ li > p:last-of-type:only-child {
 </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.93.5.1">
-        <span><a href="#platform-specific-helper-functions" class="internal xref">Platform-specific helper functions</a> (<a href="#platform-specific-helper-functions" class="auto internal xref">Section 4.2.2</a>)</span><a href="#section-7-2.2.93.5.1" class="pilcrow">¶</a></p>
+        <span><a href="#helper-functions" class="internal xref">Helper functions</a> (<a href="#helper-functions" class="auto internal xref">Section 4.2.1</a>)</span><a href="#section-7-2.2.93.5.1" class="pilcrow">¶</a></p>
 </td>
           </tr>
           <tr>
