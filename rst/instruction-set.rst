@@ -402,7 +402,7 @@ that use the ``BPF_ATOMIC`` mode modifier as follows:
 * ``BPF_ATOMIC | BPF_W | BPF_STX`` (0xc3) for 32-bit operations
 * ``BPF_ATOMIC | BPF_DW | BPF_STX`` (0xdb) for 64-bit operations
 
-Note that 8-bit (``BPF_B``) and 16-bit (``BPF_H``) wide atomic operations are not supported,
+Note that 8-bit (``BPF_B``) and 16-bit (``BPF_H``) wide atomic operations are not currently supported,
 nor is ``BPF_ATOMIC | <size> | BPF_ST``.
 
 The 'imm' field is used to encode the actual atomic operation.
