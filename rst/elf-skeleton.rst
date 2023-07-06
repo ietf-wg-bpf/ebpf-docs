@@ -1,4 +1,4 @@
-.. |docName| replace:: draft-thaler-bpf-elf-00
+.. |docName| replace:: draft-thaler-bpf-elf-01
 .. |ipr| replace:: trust200902
 .. |category| replace:: std
 .. |titleAbbr| replace:: eBPF ISA
@@ -32,11 +32,16 @@
 
 .. include:: elf.rst
 
+IANA Considerations
+===================
+
+This document has no IANA actions.
+
 Acknowledgements
 ================
 
 Portions of this draft were derived from information in btf.rst in the
-Linux kernel repository, to which a number of individuals have contributed
+Linux kernel repository, to which a number of individuals have authored contributions
 over time, including Andrii Nakryiko, Dave Tucker, David S. Miller, Gary Lin,
 Ilya Leoshkevich, Indu Bhagat, Jesper Dangaard Brouer, Jiri Olsa, Jonathan Corbet,
 Mauro Carvalho Chehab, Rong Tao, and Yonghong Song.
