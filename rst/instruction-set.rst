@@ -308,8 +308,8 @@ Example:
 
 where 's>=' indicates a signed '>=' comparison.
 
-Platform-agnostic helper functions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Helper functions
+~~~~~~~~~~~~~~~~
 
 Helper functions are a concept whereby BPF programs can call into a
 set of function calls exposed by the underlying platform.
@@ -328,20 +328,6 @@ Program-local functions are functions exposed by the same BPF program as the
 caller, and are referenced by offset from the call instruction, similar to
 ``BPF_JA``.  A ``BPF_EXIT`` within the program-local function will return to
 the caller.
-
-Platform-specific helper functions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Platform-specific helper functions are helper functions that are unique to
-a particular platform.  They use a separate integer numbering space from
-platform-agnostic helper functions, but otherwise the same considerations
-apply.  Platforms are not required to implement any platform-specific
-functions.
-
-BPF-local functions
-~~~~~~~~~~~~~~~~~~~
-BPF-local functions are functions exposed by the same BPF program as the caller,
-and are referenced by offset from the call instruction, similar to ``BPF_JA``.
-A ``BPF_EXIT`` within the BPF-local function will return to the caller.
 
 Load and store instructions
 ===========================
