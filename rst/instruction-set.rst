@@ -248,25 +248,21 @@ BPF_TO_BE  0x08   convert between host byte order and big endian
 =========  =====  =================================================
 
 The 'imm' field encodes the width of the swap operations.  The following widths
-are supported: 16, 32 and 64. The following table summarizes the resulting
-possibilities:
+are supported: 16, 32 and 64.
 
-=============================  =========  ===  ========  ==================
-opcode construction            opcode     imm  mnemonic  pseudocode
-=============================  =========  ===  ========  ==================
-BPF_END | BPF_TO_LE | BPF_ALU  0xd4       16   le16 dst  dst = htole16(dst)
-BPF_END | BPF_TO_LE | BPF_ALU  0xd4       32   le32 dst  dst = htole32(dst)
-BPF_END | BPF_TO_LE | BPF_ALU  0xd4       64   le64 dst  dst = htole64(dst)
-BPF_END | BPF_TO_BE | BPF_ALU  0xdc       16   be16 dst  dst = htobe16(dst)
-BPF_END | BPF_TO_BE | BPF_ALU  0xdc       32   be32 dst  dst = htobe32(dst)
-BPF_END | BPF_TO_BE | BPF_ALU  0xdc       64   be64 dst  dst = htobe64(dst)
-=============================  =========  ===  ========  ==================
+Examples:
 
-where
+``BPF_ALU | BPF_TO_LE | BPF_END`` with imm = 16 means::
 
-* mnenomic indicates a short form that might be displayed by some tools such as disassemblers
-* 'htoleNN()' indicates converting a NN-bit value from host byte order to little-endian byte order
-* 'htobeNN()' indicates converting a NN-bit value from host byte order to big-endian byte order
+  dst = htole16(dst)
+
+where 'htole16()' indicates converting a 16-bit value from host byte order to little-endian byte order.
+
+``BPF_ALU | BPF_TO_BE | BPF_END`` with imm = 64 means::
+
+  dst = htobe64(dst)
+
+where 'htobe64()' indicates converting a 64-bit value from host byte order to big-endian byte order.
 
 Jump instructions
 -----------------
