@@ -8,14 +8,14 @@ Intended status: Standards Track                             6 July 2023
 Expires: 7 January 2024
 
 
-                  eBPF ELF Profile Specification, v0.1
-                        draft-thaler-bpf-elf-00
+                  BPF ELF Profile Specification, v0.1
+                        draft-thaler-bpf-elf-01
 
 Abstract
 
    The Executable and Linking Format (ELF) is specified in Chapter 4 of
    the System V Application Binary Interface.  This document specifies
-   version 0.1 of the eBPF profile for ELF files.
+   version 0.1 of the BPF profile for ELF files.
 
 Status of This Memo
 
@@ -77,8 +77,9 @@ Table of Contents
        5.4.4.  Line Information  . . . . . . . . . . . . . . . . . .   7
        5.4.5.  Line Record . . . . . . . . . . . . . . . . . . . . .   8
      5.5.  BTF ID Values . . . . . . . . . . . . . . . . . . . . . .   8
-   6.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  10
-   7.  Normative References  . . . . . . . . . . . . . . . . . . . .  10
+   6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   9
+   7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  10
+   8.  Normative References  . . . . . . . . . . . . . . . . . . . .  10
    Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  10
 
 1.  Documentation conventions
@@ -108,7 +109,6 @@ Table of Contents
 
 
 
-
 Thaler                   Expires 7 January 2024                 [Page 2]
 
 Internet-Draft                  eBPF ISA                       July 2023
@@ -116,10 +116,10 @@ Internet-Draft                  eBPF ISA                       July 2023
 
 3.  TEXT Sections
 
-   eBPF programs [BPF-ISA] are stored in TEXT sections.  A TEXT section
-   can contain multiple eBPF programs, each with a different program
-   name which is stored as a function in a TEXT section.  The ".text"
-   section can be empty if eBPF programs are stored in other TEXT
+   BPF programs [BPF-ISA] are stored in TEXT sections.  A TEXT section
+   can contain multiple BPF programs, each with a different program name
+   which is stored as a function in a TEXT section.  The ".text" section
+   can be absent or empty if BPF programs are stored in other TEXT
    sections.
 
    This specification does not mandate any particular convention for
@@ -142,7 +142,7 @@ Internet-Draft                  eBPF ISA                       July 2023
 
 4.1.  Classic Map Definitions
 
-   Classic eBPF map definitions are stored in DATA sections named "maps"
+   Classic BPF map definitions are stored in DATA sections named "maps"
    or matching "maps/<map-name>".  Each such section can contain 0 or
    more map definitions.  The number of map definitions in a section can
    be determined by counting the number of symbols in the ".symtab"
@@ -203,7 +203,7 @@ Internet-Draft                  eBPF ISA                       July 2023
 
 4.2.  BTF Map Definitions
 
-   BTF eBPF map definitions are stored in a DATA section named ".maps".
+   BTF BPF map definitions are stored in a DATA section named ".maps".
    The number of map definitions in a section can be determined by
    counting the number of symbols in the ".symtab" section that point
    into the ".maps" section.
@@ -239,15 +239,15 @@ Internet-Draft                  eBPF ISA                       July 2023
 5.1.  Program License
 
    A runtime can optionally restrict what program types and/or helper
-   functions can be used based on what license the eBPF program is
-   under.  This information can be placed into the ELF file in a section
-   named "license" whose contents is a null-terminated SPDX license
-   expression as specified in Annex D of ISO/IEC 5962:2021, "Information
-   technology -- SPDX(R) Specification V22.1 [SPDX].
+   functions can be used based on what license the BPF program is under.
+   This information can be placed into the ELF file in a section named
+   "license" whose contents is a null-terminated SPDX license expression
+   as specified in Annex D of ISO/IEC 5962:2021, "Information technology
+   -- SPDX(R) Specification V22.1 [SPDX].
 
 5.2.  Runtime Version restriction
 
-   A runtime can optionally restrict whether an eBPF program can load
+   A runtime can optionally restrict whether a BPF program can load
    based on what runtime version it was designed to interact with.  This
    information can be placed into the ELF file in a section named
    "version" containing a 4-byte version identifier whose use is
@@ -262,7 +262,7 @@ Internet-Draft                  eBPF ISA                       July 2023
 5.4.  Function and Line Information
 
    The optional ".BTF.ext" section contains source line information for
-   the first eBPF instruction for each source line.
+   the first BPF instruction for each source line.
 
    The section starts with the following header:
 
@@ -408,7 +408,7 @@ Internet-Draft                  eBPF ISA                       July 2023
            Elf64_Word line_col;
        } ELF32_BpfLineInfo;
 
-   *insn_off*  0-based instruction index into the eBPF program contained
+   *insn_off*  0-based instruction index into the BPF program contained
       in the section whose name is referenced in the Info block
       (Section 5.4.2).
 
@@ -423,7 +423,7 @@ Internet-Draft                  eBPF ISA                       July 2023
 
 5.5.  BTF ID Values
 
-   TODO: make this secction adhere to the ELF specification data format
+   TODO: make this section adhere to the ELF specification data format
 
    The .BTF_ids section encodes BTF ID values that are used within the
    Linux kernel.
@@ -494,9 +494,9 @@ Internet-Draft                  eBPF ISA                       July 2023
    and resolved during the linking phase of Linux kernel build by
    resolve_btfids tool.
 
+6.  IANA Considerations
 
-
-
+   This document has no IANA actions.
 
 
 
@@ -506,16 +506,16 @@ Thaler                   Expires 7 January 2024                 [Page 9]
 Internet-Draft                  eBPF ISA                       July 2023
 
 
-6.  Acknowledgements
+7.  Acknowledgements
 
    Portions of this draft were derived from information in btf.rst in
    the Linux kernel repository, to which a number of individuals have
-   contributed over time, including Andrii Nakryiko, Dave Tucker, David
-   S.  Miller, Gary Lin, Ilya Leoshkevich, Indu Bhagat, Jesper Dangaard
-   Brouer, Jiri Olsa, Jonathan Corbet, Mauro Carvalho Chehab, Rong Tao,
-   and Yonghong Song.
+   authored contributions over time, including Andrii Nakryiko, Dave
+   Tucker, David S.  Miller, Gary Lin, Ilya Leoshkevich, Indu Bhagat,
+   Jesper Dangaard Brouer, Jiri Olsa, Jonathan Corbet, Mauro Carvalho
+   Chehab, Rong Tao, and Yonghong Song.
 
-7.  Normative References
+8.  Normative References
 
    [BPF-ISA]  "eBPF Instruction Set Specification, v1.0", Work in
               Progress, Internet-Draft, draft-thaler-bpf-isa-00,
