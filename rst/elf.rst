@@ -260,7 +260,7 @@ Function Record
   greater than the instruction offset of the previous record.
 
 **type_id**
-  TODO: Add a definition of this field, which is "a BTF_KIND_FUNC type".
+  A BTF type id as specified in `Section 2.2 of the BTF Type Format (BTF) <btf.rst#2-2-type-encoding>`_.
 
 Line Information
 ~~~~~~~~~~~~~~~~
