@@ -438,7 +438,7 @@ BPF ELF Profile Specification, v0.1
        <strong>type_id</strong>
       </dt>
       <dd>
-       TODO: Add a definition of this field, which is "a BTF_KIND_FUNC type".
+       A BTF type id as specified in <xref target="BTF">Section 2.2 of the BTF Type Format (BTF)</xref>.
       </dd>
      </dl>
     </section>

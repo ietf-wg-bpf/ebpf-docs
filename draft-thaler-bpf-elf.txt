@@ -373,8 +373,8 @@ Internet-Draft                  eBPF ISA                       July 2023
       records it must be greater than the instruction offset of the
       previous record.
 
-   *type_id*  TODO: Add a definition of this field, which is "a
-      BTF_KIND_FUNC type".
+   *type_id*  A BTF type id as specified in Section 2.2 of the BTF Type
+      Format (BTF) [BTF].
 
 5.4.4.  Line Information
 
