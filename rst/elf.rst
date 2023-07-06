@@ -2,12 +2,12 @@
 .. sectnum::
 
 ====================================
-eBPF ELF Profile Specification, v0.1
+BPF ELF Profile Specification, v0.1
 ====================================
 
 The Executable and Linking Format (ELF) is specified in Chapter 4 of the
 System V Application Binary Interface.
-This document specifies version 0.1 of the eBPF profile for ELF files.
+This document specifies version 0.1 of the BPF profile for ELF files.
 
 Documentation conventions
 =========================
@@ -34,10 +34,10 @@ The ELF header must have values set as follows:
 TEXT Sections
 =============
 
-`eBPF programs <instruction-set.rst#instruction-encoding>`_ are stored in TEXT sections.
-A TEXT section can contain multiple eBPF programs, each with a different program name
-which is stored as a function in a TEXT section.  The ".text" section can be empty if
-eBPF programs are stored in other TEXT sections.
+`BPF programs <instruction-set.rst#instruction-encoding>`_ are stored in TEXT sections.
+A TEXT section can contain multiple BPF programs, each with a different program name
+which is stored as a function in a TEXT section.  The ".text" section can be absent or empty if
+BPF programs are stored in other TEXT sections.
 
 This specification does not mandate any particular convention for TEXT section names,
 as there are multiple different conventions in use today, including:
@@ -58,7 +58,7 @@ DATA Sections
 Classic Map Definitions
 -----------------------
 
-Classic eBPF map definitions are stored in DATA sections named "maps" or matching
+Classic BPF map definitions are stored in DATA sections named "maps" or matching
 "maps/<map-name>".  Each such section can contain 0 or more map definitions.
 The number of map definitions in a section can be determined by counting the
 number of symbols in the ".symtab" section that point into that maps section.
@@ -107,7 +107,7 @@ order indicated in ``e_ident[EI_DATA]`` in the ELF header:
 BTF Map Definitions
 --------------------
 
-BTF eBPF map definitions are stored in a DATA section named ".maps".
+BTF BPF map definitions are stored in a DATA section named ".maps".
 The number of map definitions in a section can be determined by counting the
 number of symbols in the ".symtab" section that point into the ".maps" section.
 
@@ -131,7 +131,7 @@ Program License
 ---------------
 
 A runtime can optionally restrict what program types and/or helper functions
-can be used based on what license the eBPF program is under.  This information
+can be used based on what license the BPF program is under.  This information
 can be placed into the ELF file in a section named "license" whose contents
 is a null-terminated SPDX license expression as specified in Annex D of
 `ISO/IEC 5962:2021, "Information technology -- SPDX® Specification V22.1 <https://www.iso.org/standard/81870.html>`_.
@@ -139,7 +139,7 @@ is a null-terminated SPDX license expression as specified in Annex D of
 Runtime Version restriction
 ---------------------------
 
-A runtime can optionally restrict whether an eBPF program can load based
+A runtime can optionally restrict whether a BPF program can load based
 on what runtime version it was designed to interact with.  This information
 can be placed into the ELF file in a section named "version" containing
 a 4-byte version identifier whose use is runtime-specific.
@@ -154,7 +154,7 @@ The format of this section is the same as specified in
 Function and Line Information
 -----------------------------
 
-The optional ".BTF.ext" section contains source line information for the first eBPF instruction
+The optional ".BTF.ext" section contains source line information for the first BPF instruction
 for each source line.
 
 The section starts with the following header:
@@ -292,7 +292,7 @@ Line Record
     } ELF32_BpfLineInfo;
 
 **insn_off**
-  0-based instruction index into the eBPF program contained
+  0-based instruction index into the BPF program contained
   in the section whose name is referenced in the `Info block`_.
 
 **file_name_off**
@@ -308,7 +308,7 @@ Line Record
 BTF ID Values
 ---------------
 
-TODO: make this secction adhere to the ELF specification data format
+TODO: make this section adhere to the ELF specification data format
 
 The ``.BTF_ids`` section encodes BTF ID values that are used within the Linux kernel.
 
