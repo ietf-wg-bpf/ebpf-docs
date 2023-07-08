@@ -1,3 +1,6 @@
+This appendix is informative. In case of any discrepancy, the body
+of the document is authoritative.
+
 For reference, the following table lists opcodes in order by value.
 
 ======  ===  ====  ===================================================  ========================================
