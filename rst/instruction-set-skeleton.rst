@@ -13,9 +13,36 @@
 .. |author[0].region| replace:: WA
 .. |author[0].code| replace:: 98052
 .. |author[0].country| replace:: USA
+.. |ref[RFC8126].target| replace:: https://www.rfc-editor.org/rfc/rfc8126.html
+.. |ref[RFC8126].title| replace:: Guidelines for Writing an IANA Considerations Section in RFCs
+.. |ref[RFC8126].type| replace:: normative
+.. |ref[RFC8126].seriesInfo.name| replace:: RFC
+.. |ref[RFC8126].seriesInfo.value| replace:: 8126
 .. header::
 
 .. include:: instruction-set.rst
+
+IANA Considerations
+===================
+
+This document proposes a new IANA registry for BPF instructions, as follows:
+
+* Name of the registry: BPF Instruction Set
+* Name of the registry group: same as registry name
+* Required information for registrations: The values to appear in the entry fields.
+* Syntax of registry entries: Each entry has the following fields:
+  * opcode: a 1-byte value in hex format indicating the value of the opcode field
+  * src: a 4-bit value in hex format indicating the value of the src field, or "any"
+  * imm: either a value in hex format indicating the value of the imm field, or "any"
+  * description: description of what the instruction does, typically in pseudocode
+  * reference: a reference to the defining specification
+  * status: Permanent, Provisional, or Historical
+* Registration policy (see `RFC 8126 section 4 <https://www.rfc-editor.org/rfc/rfc8126.html#section-4>`_ for details):
+  * Permanent: Standards action
+  * Provisional: Specification required
+  * Historical: Specification required
+* Initial registrations: See the Appendix. Instructions other than those listed
+  as deprecated are Permanent. Any listed as deprecated are Historical.
 
 Acknowledgements
 ================
