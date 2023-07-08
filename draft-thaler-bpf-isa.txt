@@ -4,8 +4,8 @@
 
 Network Working Group                                     D. Thaler, Ed.
 Internet-Draft                                                 Microsoft
-Intended status: Standards Track                             6 July 2023
-Expires: 7 January 2024
+Intended status: Standards Track                             8 July 2023
+Expires: 9 January 2024
 
 
                 eBPF Instruction Set Specification, v1.0
@@ -14,10 +14,6 @@ Expires: 7 January 2024
 Abstract
 
    This document specifies version 1.0 of the eBPF instruction set.
-
-   The eBPF instruction set consists of eleven 64 bit registers, a
-   program counter, and an implementation-specific amount (e.g., 512
-   bytes) of stack space.
 
 Status of This Memo
 
@@ -34,7 +30,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 January 2024.
+   This Internet-Draft will expire on 9 January 2024.
 
 Copyright Notice
 
@@ -53,7 +49,11 @@ Copyright Notice
 
 
 
-Thaler                   Expires 7 January 2024                 [Page 1]
+
+
+
+
+Thaler                   Expires 9 January 2024                 [Page 1]
 
 Internet-Draft                  eBPF ISA                       July 2023
 
@@ -68,18 +68,18 @@ Table of Contents
      4.1.  Arithmetic instructions . . . . . . . . . . . . . . . . .   6
        4.1.1.  Byte swap instructions  . . . . . . . . . . . . . . .   8
      4.2.  Jump instructions . . . . . . . . . . . . . . . . . . . .   9
-       4.2.1.  Helper functions  . . . . . . . . . . . . . . . . . .  11
+       4.2.1.  Helper functions  . . . . . . . . . . . . . . . . . .  10
        4.2.2.  Program-local functions . . . . . . . . . . . . . . .  11
    5.  Load and store instructions . . . . . . . . . . . . . . . . .  11
-     5.1.  Regular load and store operations . . . . . . . . . . . .  13
-     5.2.  Atomic operations . . . . . . . . . . . . . . . . . . . .  13
-     5.3.  64-bit immediate instructions . . . . . . . . . . . . . .  15
-       5.3.1.  Maps  . . . . . . . . . . . . . . . . . . . . . . . .  17
-       5.3.2.  Platform Variables  . . . . . . . . . . . . . . . . .  17
-     5.4.  Legacy BPF Packet access instructions . . . . . . . . . .  17
-   6.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  17
-   7.  Appendix  . . . . . . . . . . . . . . . . . . . . . . . . . .  18
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  32
+     5.1.  Regular load and store operations . . . . . . . . . . . .  12
+     5.2.  Atomic operations . . . . . . . . . . . . . . . . . . . .  12
+     5.3.  64-bit immediate instructions . . . . . . . . . . . . . .  14
+       5.3.1.  Maps  . . . . . . . . . . . . . . . . . . . . . . . .  16
+       5.3.2.  Platform Variables  . . . . . . . . . . . . . . . . .  16
+     5.4.  Legacy BPF Packet access instructions . . . . . . . . . .  16
+   6.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  16
+   7.  Appendix  . . . . . . . . . . . . . . . . . . . . . . . . . .  17
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  31
 
 1.  Documentation conventions
 
@@ -104,34 +104,17 @@ Table of Contents
 
    *  R10: read-only frame pointer to access stack
 
+   R0 - R5 are scratch registers and eBPF programs needs to spill/fill
+   them if necessary across calls.
 
 
 
-
-
-Thaler                   Expires 7 January 2024                 [Page 2]
+Thaler                   Expires 9 January 2024                 [Page 2]
 
 Internet-Draft                  eBPF ISA                       July 2023
 
 
-   Registers R0 - R5 are caller-saved registers, meaning the BPF program
-   needs to either spill them to the BPF stack or move them to callee
-   saved registers if these arguments are to be reused across multiple
-   function calls.  Spilling means that the value in the register is
-   moved to the BPF stack.  The reverse operation of moving the variable
-   from the BPF stack to the register is called filling.  The reason for
-   spilling/filling is due to the limited number of registers.
-
-   Upon entering execution of an eBPF program, registers R1 - R5
-   initially can contain the input arguments for the program (similar to
-   the argc/argv pair for a typical C program).  The actual number of
-   registers used, and their meaning, is defined by the program type;
-   for example, a networking program might have an argument that
-   includes network packet data and/or metadata.
-
 3.  Instruction encoding
-
-   An eBPF program is a sequence of instructions.
 
    eBPF has two instruction encodings:
 
@@ -160,16 +143,6 @@ Internet-Draft                  eBPF ISA                       July 2023
 
    *opcode*  operation to perform
 
-
-
-
-
-
-Thaler                   Expires 7 January 2024                 [Page 3]
-
-Internet-Draft                  eBPF ISA                       July 2023
-
-
    Note that the contents of multi-byte fields ('imm' and 'offset') are
    stored using big-endian byte ordering in big-endian BPF and little-
    endian byte ordering in little-endian BPF.
@@ -183,7 +156,19 @@ Internet-Draft                  eBPF ISA                       July 2023
   07     1       0        00 00  11 22 33 44  r1 += 0x11223344 // big
 
    Note that most instructions do not use all of the fields.  Unused
-   fields must be set to zero.
+   fields shall be cleared to zero.
+
+
+
+
+
+
+
+
+Thaler                   Expires 9 January 2024                 [Page 3]
+
+Internet-Draft                  eBPF ISA                       July 2023
+
 
    As discussed below in 64-bit immediate instructions (Section 5.3), a
    64-bit immediate instruction uses a 64-bit immediate value that is
@@ -212,16 +197,31 @@ Internet-Draft                  eBPF ISA                       July 2023
 
 3.1.  Instruction classes
 
-   The encoding of the 'opcode' field varies and can be determined from
-   the three least significant bits (LSB) of the 'opcode' field which
-   holds the "instruction class", as follows:
+   The three LSB bits of the 'opcode' field store the instruction class:
 
 
 
 
 
 
-Thaler                   Expires 7 January 2024                 [Page 4]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thaler                   Expires 9 January 2024                 [Page 4]
 
 Internet-Draft                  eBPF ISA                       July 2023
 
@@ -277,7 +277,7 @@ Internet-Draft                  eBPF ISA                       July 2023
 
 
 
-Thaler                   Expires 7 January 2024                 [Page 5]
+Thaler                   Expires 9 January 2024                 [Page 5]
 
 Internet-Draft                  eBPF ISA                       July 2023
 
@@ -302,11 +302,10 @@ Internet-Draft                  eBPF ISA                       July 2023
 
 4.1.  Arithmetic instructions
 
-   Instruction class BPF_ALU uses 32-bit wide operands (zeroing the
-   upper 32 bits of the destination register) while BPF_ALU64 uses
-   64-bit wide operands for otherwise identical operations.  The 'code'
-   field encodes the operation as below, where 'src' and 'dst' refer to
-   the values of the source and destination registers, respectively.
+   BPF_ALU uses 32-bit wide operands while BPF_ALU64 uses 64-bit wide
+   operands for otherwise identical operations.  The 'code' field
+   encodes the operation as below, where 'src' and 'dst' refer to the
+   values of the source and destination registers, respectively.
 
 
 
@@ -333,7 +332,8 @@ Internet-Draft                  eBPF ISA                       July 2023
 
 
 
-Thaler                   Expires 7 January 2024                 [Page 6]
+
+Thaler                   Expires 9 January 2024                 [Page 6]
 
 Internet-Draft                  eBPF ISA                       July 2023
 
@@ -381,30 +381,28 @@ Internet-Draft                  eBPF ISA                       July 2023
    whereas for BPF_ALU the upper 32 bits of the destination register are
    zeroed.
 
-   Examples:
-
-   BPF_ADD | BPF_X | BPF_ALU (0x0c) means:
+   BPF_ADD | BPF_X | BPF_ALU means:
 
      dst = (u32) ((u32) dst + (u32) src)
 
+   where '(u32)' indicates that the upper 32 bits are zeroed.
 
 
-Thaler                   Expires 7 January 2024                 [Page 7]
+
+Thaler                   Expires 9 January 2024                 [Page 7]
 
 Internet-Draft                  eBPF ISA                       July 2023
 
 
-   where '(u32)' indicates that the upper 32 bits are zeroed.
-
-   BPF_ADD | BPF_X | BPF_ALU64 (0x0f) means:
+   BPF_ADD | BPF_X | BPF_ALU64 means:
 
      dst = dst + src
 
-   BPF_XOR | BPF_K | BPF_ALU (0xa4) means:
+   BPF_XOR | BPF_K | BPF_ALU means:
 
      dst = (u32) dst ^ (u32) imm32
 
-   BPF_XOR | BPF_K | BPF_ALU64 (0xa7) means:
+   BPF_XOR | BPF_K | BPF_ALU64 means:
 
      dst = dst ^ imm32
 
@@ -425,10 +423,8 @@ Internet-Draft                  eBPF ISA                       July 2023
    The byte swap instructions operate on the destination register only
    and do not use a separate source register or immediate value.
 
-   Byte swap instructions use the 1-bit 'source' field in the 'opcode'
-   field as follows.  Instead of indicating the source operator, it is
-   instead used to select what byte order the operation converts from or
-   to:
+   The 1-bit source operand field in the opcode is used to select what
+   byte order the operation convert from or to:
 
              +===========+=======+===========================+
              | source    | value | description               |
@@ -442,40 +438,31 @@ Internet-Draft                  eBPF ISA                       July 2023
 
                                   Table 5
 
-
-
-
-Thaler                   Expires 7 January 2024                 [Page 8]
-
-Internet-Draft                  eBPF ISA                       July 2023
-
-
    The 'imm' field encodes the width of the swap operations.  The
    following widths are supported: 16, 32 and 64.
 
    Examples:
 
+
+
+Thaler                   Expires 9 January 2024                 [Page 8]
+
+Internet-Draft                  eBPF ISA                       July 2023
+
+
    BPF_ALU | BPF_TO_LE | BPF_END with imm = 16 means:
 
      dst = htole16(dst)
-
-   where 'htole16()' indicates converting a 16-bit value from host byte
-   order to little-endian byte order.
 
    BPF_ALU | BPF_TO_BE | BPF_END with imm = 64 means:
 
      dst = htobe64(dst)
 
-   where 'htobe64()' indicates converting a 64-bit value from host byte
-   order to big-endian byte order.
-
 4.2.  Jump instructions
 
-   Instruction class BPF_JMP32 uses 32-bit wide operands while BPF_JMP
-   uses 64-bit wide operands for otherwise identical operations.
-
-   The 4-bit 'code' field encodes the operation as below, where PC is
-   the program counter:
+   BPF_JMP32 uses 32-bit wide operands while BPF_JMP uses 64-bit wide
+   operands for otherwise identical operations.  The 'code' field
+   encodes the operation as below:
 
    +==========+=======+=====+=====================+===================+
    | code     | value | src | description         | notes             |
@@ -498,14 +485,6 @@ Internet-Draft                  eBPF ISA                       July 2023
    |          |       |     | != src              |                   |
    +----------+-------+-----+---------------------+-------------------+
    | BPF_JSGT | 0x6   | any | PC += offset if dst | signed            |
-
-
-
-Thaler                   Expires 7 January 2024                 [Page 9]
-
-Internet-Draft                  eBPF ISA                       July 2023
-
-
    |          |       |     | > src               |                   |
    +----------+-------+-----+---------------------+-------------------+
    | BPF_JSGE | 0x7   | any | PC += offset if dst | signed            |
@@ -519,6 +498,14 @@ Internet-Draft                  eBPF ISA                       July 2023
    |          |       |     |                     | functions         |
    |          |       |     |                     | (Section 4.2.2)   |
    +----------+-------+-----+---------------------+-------------------+
+
+
+
+Thaler                   Expires 9 January 2024                 [Page 9]
+
+Internet-Draft                  eBPF ISA                       July 2023
+
+
    | BPF_CALL | 0x8   | 0x2 | call helper         | see Helper        |
    |          |       |     | function by BTF ID  | functions         |
    |          |       |     |                     | (Section 4.2.1)   |
@@ -551,17 +538,6 @@ Internet-Draft                  eBPF ISA                       July 2023
 
    where 's>=' indicates a signed '>=' comparison.
 
-
-
-
-
-
-
-Thaler                   Expires 7 January 2024                [Page 10]
-
-Internet-Draft                  eBPF ISA                       July 2023
-
-
 4.2.1.  Helper functions
 
    Helper functions are a concept whereby BPF programs can call into a
@@ -575,6 +551,16 @@ Internet-Draft                  eBPF ISA                       July 2023
    Platforms that support the BPF Type Format (BTF) support identifying
    a helper function by a BTF ID encoded in the imm field, where the BTF
    ID identifies the helper name and type.
+
+
+
+
+
+
+Thaler                   Expires 9 January 2024                [Page 10]
+
+Internet-Draft                  eBPF ISA                       July 2023
+
 
 4.2.2.  Program-local functions
 
@@ -596,27 +582,7 @@ Internet-Draft                  eBPF ISA                       July 2023
 
                                   Table 7
 
-   mode  one of:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Thaler                   Expires 7 January 2024                [Page 11]
-
-Internet-Draft                  eBPF ISA                       July 2023
-
+   The mode modifier is one of:
 
       +============+=======+==================+=====================+
       | mode       | value | description      | reference           |
@@ -644,7 +610,15 @@ Internet-Draft                  eBPF ISA                       July 2023
 
                                   Table 8
 
-   size  one of:
+
+
+
+Thaler                   Expires 9 January 2024                [Page 11]
+
+Internet-Draft                  eBPF ISA                       July 2023
+
+
+   The size modifier is one of:
 
              +===============+=======+=======================+
              | size modifier | value | description           |
@@ -659,20 +633,6 @@ Internet-Draft                  eBPF ISA                       July 2023
              +---------------+-------+-----------------------+
 
                                   Table 9
-
-   instruction class  the instruction class (see Instruction classes
-      (Section 3.1))
-
-
-
-
-
-
-
-Thaler                   Expires 7 January 2024                [Page 12]
-
-Internet-Draft                  eBPF ISA                       July 2023
-
 
 5.1.  Regular load and store operations
 
@@ -691,7 +651,7 @@ Internet-Draft                  eBPF ISA                       July 2023
 
      dst = *(size *) (src + offset)
 
-   where size is one of: BPF_B, BPF_H, BPF_W, or BPF_DW.
+   Where size is one of: BPF_B, BPF_H, BPF_W, or BPF_DW.
 
 5.2.  Atomic operations
 
@@ -702,33 +662,24 @@ Internet-Draft                  eBPF ISA                       July 2023
    All atomic operations supported by eBPF are encoded as store
    operations that use the BPF_ATOMIC mode modifier as follows:
 
-   *  BPF_ATOMIC | BPF_W | BPF_STX (0xc3) for 32-bit operations
+   *  BPF_ATOMIC | BPF_W | BPF_STX for 32-bit operations
 
-   *  BPF_ATOMIC | BPF_DW | BPF_STX (0xdb) for 64-bit operations
+   *  BPF_ATOMIC | BPF_DW | BPF_STX for 64-bit operations
 
-   Note that 8-bit (BPF_B) and 16-bit (BPF_H) wide atomic operations are
-   not currently supported, nor is BPF_ATOMIC | <size> | BPF_ST.
+
+
+
+Thaler                   Expires 9 January 2024                [Page 12]
+
+Internet-Draft                  eBPF ISA                       July 2023
+
+
+   *  8-bit and 16-bit wide atomic operations are not supported.
 
    The 'imm' field is used to encode the actual atomic operation.
    Simple atomic operation use a subset of the values defined to encode
    arithmetic operations in the 'imm' field to encode the atomic
    operation:
-
-
-
-
-
-
-
-
-
-
-
-
-Thaler                   Expires 7 January 2024                [Page 13]
-
-Internet-Draft                  eBPF ISA                       July 2023
-
 
                      +=========+=======+=============+
                      | imm     | value | description |
@@ -744,16 +695,16 @@ Internet-Draft                  eBPF ISA                       July 2023
 
                                   Table 10
 
-   BPF_ATOMIC | BPF_W | BPF_STX (0xc3) with 'imm' = BPF_ADD means:
+   BPF_ATOMIC | BPF_W | BPF_STX with 'imm' = BPF_ADD means:
 
      *(u32 *)(dst + offset) += src
 
-   BPF_ATOMIC | BPF_DW | BPF_STX (0xdb) with 'imm' = BPF ADD means:
+   BPF_ATOMIC | BPF_DW | BPF_STX with 'imm' = BPF ADD means:
 
      *(u64 *)(dst + offset) += src
 
-   In addition to the simple atomic operations above, there also is a
-   modifier and two complex atomic operations:
+   In addition to the simple atomic operations, there also is a modifier
+   and two complex atomic operations:
 
      +=============+==================+=============================+
      | imm         | value            | description                 |
@@ -772,19 +723,15 @@ Internet-Draft                  eBPF ISA                       July 2023
    is set, then the operation also overwrites src with the value that
    was in memory before it was modified.
 
-   The BPF_XCHG operation atomically exchanges src with the value
-   addressed by dst + offset.
 
 
-
-
-
-
-
-Thaler                   Expires 7 January 2024                [Page 14]
+Thaler                   Expires 9 January 2024                [Page 13]
 
 Internet-Draft                  eBPF ISA                       July 2023
 
+
+   The BPF_XCHG operation atomically exchanges src with the value
+   addressed by dst + offset.
 
    The BPF_CMPXCHG operation atomically compares the value addressed by
    dst + offset with R0.  If they match, the value addressed by dst +
@@ -834,10 +781,7 @@ Internet-Draft                  eBPF ISA                       July 2023
 
 
 
-
-
-
-Thaler                   Expires 7 January 2024                [Page 15]
+Thaler                   Expires 9 January 2024                [Page 14]
 
 Internet-Draft                  eBPF ISA                       July 2023
 
@@ -893,7 +837,7 @@ Internet-Draft                  eBPF ISA                       July 2023
 
 
 
-Thaler                   Expires 7 January 2024                [Page 16]
+Thaler                   Expires 9 January 2024                [Page 15]
 
 Internet-Draft                  eBPF ISA                       July 2023
 
@@ -949,7 +893,7 @@ Internet-Draft                  eBPF ISA                       July 2023
 
 
 
-Thaler                   Expires 7 January 2024                [Page 17]
+Thaler                   Expires 9 January 2024                [Page 16]
 
 Internet-Draft                  eBPF ISA                       July 2023
 
@@ -1005,7 +949,7 @@ Internet-Draft                  eBPF ISA                       July 2023
 
 
 
-Thaler                   Expires 7 January 2024                [Page 18]
+Thaler                   Expires 9 January 2024                [Page 17]
 
 Internet-Draft                  eBPF ISA                       July 2023
 
@@ -1061,7 +1005,7 @@ Internet-Draft                  eBPF ISA                       July 2023
 
 
 
-Thaler                   Expires 7 January 2024                [Page 19]
+Thaler                   Expires 9 January 2024                [Page 18]
 
 Internet-Draft                  eBPF ISA                       July 2023
 
@@ -1117,7 +1061,7 @@ Internet-Draft                  eBPF ISA                       July 2023
 
 
 
-Thaler                   Expires 7 January 2024                [Page 20]
+Thaler                   Expires 9 January 2024                [Page 19]
 
 Internet-Draft                  eBPF ISA                       July 2023
 
@@ -1173,7 +1117,7 @@ Internet-Draft                  eBPF ISA                       July 2023
 
 
 
-Thaler                   Expires 7 January 2024                [Page 21]
+Thaler                   Expires 9 January 2024                [Page 20]
 
 Internet-Draft                  eBPF ISA                       July 2023
 
@@ -1229,7 +1173,7 @@ Internet-Draft                  eBPF ISA                       July 2023
 
 
 
-Thaler                   Expires 7 January 2024                [Page 22]
+Thaler                   Expires 9 January 2024                [Page 21]
 
 Internet-Draft                  eBPF ISA                       July 2023
 
@@ -1285,7 +1229,7 @@ Internet-Draft                  eBPF ISA                       July 2023
 
 
 
-Thaler                   Expires 7 January 2024                [Page 23]
+Thaler                   Expires 9 January 2024                [Page 22]
 
 Internet-Draft                  eBPF ISA                       July 2023
 
@@ -1341,7 +1285,7 @@ Internet-Draft                  eBPF ISA                       July 2023
 
 
 
-Thaler                   Expires 7 January 2024                [Page 24]
+Thaler                   Expires 9 January 2024                [Page 23]
 
 Internet-Draft                  eBPF ISA                       July 2023
 
@@ -1397,7 +1341,7 @@ Internet-Draft                  eBPF ISA                       July 2023
 
 
 
-Thaler                   Expires 7 January 2024                [Page 25]
+Thaler                   Expires 9 January 2024                [Page 24]
 
 Internet-Draft                  eBPF ISA                       July 2023
 
@@ -1453,7 +1397,7 @@ Internet-Draft                  eBPF ISA                       July 2023
 
 
 
-Thaler                   Expires 7 January 2024                [Page 26]
+Thaler                   Expires 9 January 2024                [Page 25]
 
 Internet-Draft                  eBPF ISA                       July 2023
 
@@ -1509,7 +1453,7 @@ Internet-Draft                  eBPF ISA                       July 2023
 
 
 
-Thaler                   Expires 7 January 2024                [Page 27]
+Thaler                   Expires 9 January 2024                [Page 26]
 
 Internet-Draft                  eBPF ISA                       July 2023
 
@@ -1565,7 +1509,7 @@ Internet-Draft                  eBPF ISA                       July 2023
 
 
 
-Thaler                   Expires 7 January 2024                [Page 28]
+Thaler                   Expires 9 January 2024                [Page 27]
 
 Internet-Draft                  eBPF ISA                       July 2023
 
@@ -1621,7 +1565,7 @@ Internet-Draft                  eBPF ISA                       July 2023
 
 
 
-Thaler                   Expires 7 January 2024                [Page 29]
+Thaler                   Expires 9 January 2024                [Page 28]
 
 Internet-Draft                  eBPF ISA                       July 2023
 
@@ -1677,7 +1621,7 @@ Internet-Draft                  eBPF ISA                       July 2023
 
 
 
-Thaler                   Expires 7 January 2024                [Page 30]
+Thaler                   Expires 9 January 2024                [Page 29]
 
 Internet-Draft                  eBPF ISA                       July 2023
 
@@ -1733,7 +1677,7 @@ Internet-Draft                  eBPF ISA                       July 2023
 
 
 
-Thaler                   Expires 7 January 2024                [Page 31]
+Thaler                   Expires 9 January 2024                [Page 30]
 
 Internet-Draft                  eBPF ISA                       July 2023
 
@@ -1789,4 +1733,4 @@ Author's Address
 
 
 
-Thaler                   Expires 7 January 2024                [Page 32]
+Thaler                   Expires 9 January 2024                [Page 31]
