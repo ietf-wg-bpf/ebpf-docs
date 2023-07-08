@@ -2163,6 +2163,41 @@ eBPF Instruction Set Specification, v1.0
     </t>
    </section>
   </section>
+  <section anchor="iana-considerations" title="IANA Considerations">
+   <t>
+    This document proposes a new IANA registry for BPF instructions, as follows:
+   </t>
+   <ul>
+    <li>
+     Name of the registry: BPF Instruction Set
+    </li>
+    <li>
+     Name of the registry group: same as registry name
+    </li>
+    <li>
+     Required information for registrations: The values to appear in the entry fields.
+    </li>
+    <li>
+     Syntax of registry entries: Each entry has the following fields:
+     * opcode: a 1-byte value in hex format indicating the value of the opcode field
+     * src: a 4-bit value in hex format indicating the value of the src field, or "any"
+     * imm: either a value in hex format indicating the value of the imm field, or "any"
+     * description: description of what the instruction does, typically in pseudocode
+     * reference: a reference to the defining specification
+     * status: Permanent, Provisional, or Historical
+    </li>
+    <li>
+     Registration policy (see <xref target="RFC8126">RFC 8126 section 4</xref> for details):
+     * Permanent: Standards action
+     * Provisional: Specification required
+     * Historical: Specification required
+    </li>
+    <li>
+     Initial registrations: See the Appendix. Instructions other than those listed
+     as deprecated are Permanent. Any listed as deprecated are Historical.
+    </li>
+   </ul>
+  </section>
   <section anchor="acknowledgements" title="Acknowledgements">
    <t>
     This draft was generated from instruction-set.rst in the Linux
@@ -2174,6 +2209,10 @@ eBPF Instruction Set Specification, v1.0
    </t>
   </section>
   <section anchor="appendix" title="Appendix">
+   <t>
+    This appendix is informative. In case of any discrepancy, the body
+    of the document is authoritative.
+   </t>
    <t>
     For reference, the following table lists opcodes in order by value.
    </t>
@@ -6378,5 +6417,14 @@ eBPF Instruction Set Specification, v1.0
   </section>
  </middle>
  <back>
+ <references><name>Normative References</name>
+  <reference anchor="RFC8126">
+   <front>
+    <title>Guidelines for Writing an IANA Considerations Section in RFCs</title>
+    <author></author>
+   </front>
+   <seriesInfo name='RFC' value='8126'/>
+  </reference>
+ </references>
  </back>
 </rfc>
