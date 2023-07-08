@@ -1,0 +1,64 @@
+# This action will generate documentation artifacts from the latest doc sources.
+#
+name: build
+
+on:
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - 'generated/**'
+      - 'rfcxml/**'
+  pull_request:
+    branches: [ main ]
+    paths-ignore:
+      - 'generated/**'
+      - 'rfcxml/**'
+
+permissions:
+  contents: write # for Git to git push
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Install rst2pdf
+      run: |
+        pip install --user rst2pdf
+
+    - name: Install xml2rfc
+      run: |
+        pip install --user xml2rfc
+
+    - uses: actions/checkout@v3
+
+    - name: Clone docs
+      run: |
+        git config --global user.email 'ebpf-docs@users.noreply.github.com'
+        git config --global user.name 'Github Action'
+        git clone --branch generated https://github.com/ebpffoundation/ebpf-docs.git generated
+
+    - name: Build PDF
+      run: |
+        rst2pdf rst/instruction-set.rst generated/instruction-set.pdf
+
+    - name: Build rfcxml
+      run: |
+        wget https://github.com/dthaler/rst2rfcxml/releases/download/v0.6/Ubuntu.Release.rst2rfcxml.zip
+        unzip Ubuntu.Release.rst2rfcxml.zip
+        chmod 755 rst2rfcxml
+        ./rst2rfcxml rst/instruction-set-skeleton.rst -o generated/draft-thaler-bpf-isa.xml
+        cd generated
+        xml2rfc draft-thaler-bpf-isa.xml
+        xml2rfc --html draft-thaler-bpf-isa.xml
+
+    - name: Check in generated files
+      if: github.event_name == 'push'
+      run: |
+        cd generated
+        git add .
+        if [ -n "$(git status --porcelain)" ]; then
+          git commit -s -m "Updated PDF"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/ebpffoundation/ebpf-docs.git
+          git push
+        fi
