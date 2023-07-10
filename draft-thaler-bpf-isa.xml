@@ -16,7 +16,7 @@
 <?rfc text-list-symbols="-o*+"?>
 <?rfc docmapping="yes"?>
 
-<rfc ipr="trust200902" docName="draft-thaler-bpf-isa-00" category="std" submissionType="IETF">
+<rfc ipr="trust200902" docName="draft-thaler-bpf-isa-01" category="std" submissionType="IETF">
  <front>
   <title abbrev="eBPF ISA">
 eBPF Instruction Set Specification, v1.0
