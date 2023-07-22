@@ -31,13 +31,16 @@ This document proposes a new IANA registry for BPF instructions, as follows:
 * Name of the registry group: same as registry name
 * Required information for registrations: The values to appear in the entry fields.
 * Syntax of registry entries: Each entry has the following fields:
+
   * opcode: a 1-byte value in hex format indicating the value of the opcode field
-  * src: a 4-bit value in hex format indicating the value of the src field, or "any"
-  * imm: either a value in hex format indicating the value of the imm field, or "any"
+  * src: either a value indicating the value of the src field, or "any"
+  * imm: either a value indicating the value of the imm field, or "any"
+  * offset: either a value indicating the value of the offset field, or "any"
   * description: description of what the instruction does, typically in pseudocode
   * reference: a reference to the defining specification
   * status: Permanent, Provisional, or Historical
 * Registration policy (see `RFC 8126 section 4 <https://www.rfc-editor.org/rfc/rfc8126.html#section-4>`_ for details):
+
   * Permanent: Standards action
   * Provisional: Specification required
   * Historical: Specification required
