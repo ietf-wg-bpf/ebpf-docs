@@ -41,7 +41,7 @@ This document proposes a new IANA registry for BPF instructions, as follows:
   * status: Permanent, Provisional, or Historical
 * Registration policy (see `RFC 8126 section 4 <https://www.rfc-editor.org/rfc/rfc8126.html#section-4>`_ for details):
 
-  * Permanent: Standards action
+  * Permanent: Standards action or IESG Review
   * Provisional: Specification required
   * Historical: Specification required
 * Initial registrations: See the Appendix. Instructions other than those listed
