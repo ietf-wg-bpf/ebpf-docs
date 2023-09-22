@@ -2111,6 +2111,50 @@ eBPF Instruction Set Specification, v1.0
     </t>
    </section>
   </section>
+  <section anchor="iana-considerations" title="IANA Considerations">
+   <t>
+    This document proposes a new IANA registry for BPF instructions, as follows:
+   </t>
+   <ul>
+    <li>
+     Name of the registry: BPF Instruction Set
+    </li>
+    <li>
+     Name of the registry group: same as registry name
+    </li>
+    <li>
+     Required information for registrations: The values to appear in the entry fields.
+    </li>
+    <li>
+     Syntax of registry entries: Each entry has the following fields:
+    </li>
+   </ul>
+   <blockquote>
+    * opcode: a 1-byte value in hex format indicating the value of the opcode field
+    * src: either a value indicating the value of the src field, or "any"
+    * imm: either a value indicating the value of the imm field, or "any"
+    * offset: either a value indicating the value of the offset field, or "any"
+    * description: description of what the instruction does, typically in pseudocode
+    * reference: a reference to the defining specification
+    * status: Permanent, Provisional, or Historical
+    <ul>
+     <li>
+      Registration policy (see <xref target="RFC8126">RFC 8126 section 4</xref> for details):
+     </li>
+    </ul>
+   </blockquote>
+   <blockquote>
+    * Permanent: Standards action or IESG Review
+    * Provisional: Specification required
+    * Historical: Specification required
+    <ul>
+     <li>
+      Initial registrations: See the Appendix. Instructions other than those listed
+      as deprecated are Permanent. Any listed as deprecated are Historical.
+     </li>
+    </ul>
+   </blockquote>
+  </section>
   <section anchor="acknowledgements" title="Acknowledgements">
    <t>
     This draft was generated from instruction-set.rst in the Linux
@@ -2123,7 +2167,9 @@ eBPF Instruction Set Specification, v1.0
   </section>
   <section anchor="appendix" title="Appendix">
    <t>
-    For reference, the following table lists opcodes in order by value.
+    Initial values for the BPF Instruction registry are given below.
+    The descriptions in this table are informative. In case of any discrepancy, the reference
+    is authoritative.
    </t>
    <table>
     <thead>
@@ -2131,6 +2177,7 @@ eBPF Instruction Set Specification, v1.0
       <th>opcode</th>
       <th>src</th>
       <th>imm</th>
+      <th>offset</th>
       <th>description</th>
       <th>reference</th>
      </tr>
@@ -2150,6 +2197,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         any
+       </t>
+      </td>
+      <td>
+       <t>
+        0
        </t>
       </td>
       <td>
@@ -2181,6 +2233,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst = (u32)((u32)dst + (u32)imm)
        </t>
       </td>
@@ -2204,6 +2261,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        0
        </t>
       </td>
       <td>
@@ -2235,6 +2297,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst += imm
        </t>
       </td>
@@ -2258,6 +2325,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        0
        </t>
       </td>
       <td>
@@ -2289,6 +2361,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst += src
        </t>
       </td>
@@ -2316,6 +2393,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst = (u32)((u32)dst - (u32)imm)
        </t>
       </td>
@@ -2334,6 +2416,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -2370,6 +2457,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         if (u32)dst == imm goto +offset
        </t>
       </td>
@@ -2393,6 +2485,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         any
+       </t>
+      </td>
+      <td>
+       <t>
+        0
        </t>
       </td>
       <td>
@@ -2424,6 +2521,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst = imm64
        </t>
       </td>
@@ -2447,6 +2549,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         any
+       </t>
+      </td>
+      <td>
+       <t>
+        0
        </t>
       </td>
       <td>
@@ -2478,6 +2585,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst = mva(map_by_fd(imm)) + next_imm
        </t>
       </td>
@@ -2501,6 +2613,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         any
+       </t>
+      </td>
+      <td>
+       <t>
+        0
        </t>
       </td>
       <td>
@@ -2532,6 +2649,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst = code_addr(imm)
        </t>
       </td>
@@ -2555,6 +2677,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         any
+       </t>
+      </td>
+      <td>
+       <t>
+        0
        </t>
       </td>
       <td>
@@ -2586,6 +2713,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst = mva(map_by_idx(imm)) + next_imm
        </t>
       </td>
@@ -2609,6 +2741,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        0
        </t>
       </td>
       <td>
@@ -2640,6 +2777,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         if dst == src goto +offset
        </t>
       </td>
@@ -2663,6 +2805,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -2694,6 +2841,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst -= src
        </t>
       </td>
@@ -2707,6 +2859,107 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x20
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x21
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x22
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x23
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -2748,6 +3001,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst = (u32)(dst * imm)
        </t>
       </td>
@@ -2766,6 +3024,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -2802,6 +3065,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         if (u32)dst &gt; imm goto +offset
        </t>
       </td>
@@ -2829,6 +3097,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst *= imm
        </t>
       </td>
@@ -2842,6 +3115,107 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x28
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x29
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x2a
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x2b
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -2883,6 +3257,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst = (u32)(dst * src)
        </t>
       </td>
@@ -2906,6 +3285,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -2937,6 +3321,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         if (u32)dst &gt; (u32)src goto +offset
        </t>
       </td>
@@ -2964,6 +3353,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst *= src
        </t>
       </td>
@@ -2977,6 +3371,107 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x30
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x31
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x32
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x33
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -3018,6 +3513,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst = (u32)((imm != 0) ? (dst / imm) : 0)
        </t>
       </td>
@@ -3036,6 +3536,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -3072,6 +3577,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         if (u32)dst &gt;= imm goto +offset
        </t>
       </td>
@@ -3099,6 +3609,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst = (imm != 0) ? (dst / imm) : 0
        </t>
       </td>
@@ -3112,6 +3627,107 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x38
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x39
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x3a
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x3b
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -3153,6 +3769,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst = (u32)((imm != 0) ? (dst / src) : 0)
        </t>
       </td>
@@ -3176,6 +3797,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -3207,6 +3833,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         if (u32)dst &gt;= (u32)src goto +offset
        </t>
       </td>
@@ -3234,6 +3865,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst = (src !+ 0) ? (dst / src) : 0
        </t>
       </td>
@@ -3247,6 +3883,107 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x40
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x41
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x42
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x43
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -3288,6 +4025,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst = (u32)(dst | imm)
        </t>
       </td>
@@ -3306,6 +4048,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -3342,6 +4089,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         if (u32)dst &amp; imm goto +offset
        </t>
       </td>
@@ -3369,6 +4121,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst |= imm
        </t>
       </td>
@@ -3382,6 +4139,107 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x48
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x49
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x4a
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x4b
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -3423,6 +4281,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst = (u32)(dst | src)
        </t>
       </td>
@@ -3446,6 +4309,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -3477,6 +4345,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         if (u32)dst &amp; (u32)src goto +offset
        </t>
       </td>
@@ -3504,6 +4377,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst |= src
        </t>
       </td>
@@ -3517,6 +4395,107 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x50
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x51
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x52
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x53
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -3558,6 +4537,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst = (u32)(dst &amp; imm)
        </t>
       </td>
@@ -3576,6 +4560,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -3612,6 +4601,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         if (u32)dst != imm goto +offset
        </t>
       </td>
@@ -3639,6 +4633,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst &amp;= imm
        </t>
       </td>
@@ -3652,6 +4651,107 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x58
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x59
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x5a
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x5b
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -3693,6 +4793,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst = (u32)(dst &amp; src)
        </t>
       </td>
@@ -3716,6 +4821,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -3747,6 +4857,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         if (u32)dst != (u32)src goto +offset
        </t>
       </td>
@@ -3770,6 +4885,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        0
        </t>
       </td>
       <td>
@@ -3801,6 +4921,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         dst = *(u32 *)(src + offset)
        </t>
       </td>
@@ -3819,6 +4944,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -3855,6 +4985,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         *(u32 *)(dst + offset) = src
        </t>
       </td>
@@ -3882,6 +5017,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst = (u32)(dst &lt;&lt; imm)
        </t>
       </td>
@@ -3900,6 +5040,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -3936,6 +5081,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         if (s32)dst s&gt; (s32)imm goto +offset
        </t>
       </td>
@@ -3959,6 +5109,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         any
+       </t>
+      </td>
+      <td>
+       <t>
+        0
        </t>
       </td>
       <td>
@@ -3990,6 +5145,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         dst = *(u16 *)(src + offset)
        </t>
       </td>
@@ -4008,6 +5168,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -4044,6 +5209,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         *(u16 *)(dst + offset) = src
        </t>
       </td>
@@ -4067,6 +5237,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        0
        </t>
       </td>
       <td>
@@ -4098,6 +5273,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         if dst s&gt; src goto +offset
        </t>
       </td>
@@ -4121,6 +5301,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -4152,6 +5337,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst &lt;&lt;= src
        </t>
       </td>
@@ -4179,6 +5369,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         dst = *(u8 *)(src + offset)
        </t>
       </td>
@@ -4197,6 +5392,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -4233,6 +5433,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         *(u8 *)(dst + offset) = src
        </t>
       </td>
@@ -4260,6 +5465,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst = (u32)(dst &gt;&gt; imm)
        </t>
       </td>
@@ -4278,6 +5488,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -4314,6 +5529,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         if (s32)dst s&gt;= (s32)imm goto +offset
        </t>
       </td>
@@ -4337,6 +5557,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         any
+       </t>
+      </td>
+      <td>
+       <t>
+        0
        </t>
       </td>
       <td>
@@ -4368,6 +5593,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         dst = *(u64 *)(src + offset)
        </t>
       </td>
@@ -4386,6 +5616,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -4422,6 +5657,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         *(u64 *)(dst + offset) = src
        </t>
       </td>
@@ -4445,6 +5685,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        0
        </t>
       </td>
       <td>
@@ -4476,6 +5721,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         if dst s&gt;= src goto +offset
        </t>
       </td>
@@ -4499,6 +5749,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -4530,6 +5785,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst &gt;&gt;= src
        </t>
       </td>
@@ -4553,6 +5813,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        0
        </t>
       </td>
       <td>
@@ -4584,6 +5849,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         call platform-agnostic helper function imm
        </t>
       </td>
@@ -4602,6 +5872,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x1
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -4638,6 +5913,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         call platform-specific helper function imm
        </t>
       </td>
@@ -4661,6 +5941,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        0
        </t>
       </td>
       <td>
@@ -4692,6 +5977,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst = (u32)((imm != 0) ? (dst % imm) : dst)
        </t>
       </td>
@@ -4715,6 +6005,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        0
        </t>
       </td>
       <td>
@@ -4746,6 +6041,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst = (imm != 0) ? (dst % imm) : dst
        </t>
       </td>
@@ -4769,6 +6069,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        0
        </t>
       </td>
       <td>
@@ -4800,6 +6105,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst = (src != 0) ? (dst % src) : dst
        </t>
       </td>
@@ -4827,6 +6137,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst = (u32)(dst ^ imm)
        </t>
       </td>
@@ -4845,6 +6160,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -4881,6 +6201,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         if (u32)dst &lt; imm goto +offset
        </t>
       </td>
@@ -4904,6 +6229,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         any
+       </t>
+      </td>
+      <td>
+       <t>
+        0
        </t>
       </td>
       <td>
@@ -4935,6 +6265,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst = (u32)(dst ^ src)
        </t>
       </td>
@@ -4958,6 +6293,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -4989,6 +6329,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         if (u32)dst &lt; (u32)src goto +offset
        </t>
       </td>
@@ -5012,6 +6357,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        0
        </t>
       </td>
       <td>
@@ -5043,6 +6393,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst = (u32) imm
        </t>
       </td>
@@ -5061,6 +6416,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -5097,6 +6457,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         if (u32)dst &lt;= imm goto +offset
        </t>
       </td>
@@ -5120,6 +6485,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         any
+       </t>
+      </td>
+      <td>
+       <t>
+        0
        </t>
       </td>
       <td>
@@ -5151,6 +6521,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst = (u32) src
        </t>
       </td>
@@ -5174,6 +6549,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -5205,6 +6585,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         if (u32)dst &lt;= (u32)src goto +offset
        </t>
       </td>
@@ -5228,6 +6613,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        0
        </t>
       </td>
       <td>
@@ -5259,6 +6649,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         lock *(u32 *)(dst + offset) += src
        </t>
       </td>
@@ -5286,11 +6681,16 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         lock:
        </t>
        <artwork>
-    *(u32 *)(dst + offset) += src
-    src = *(u32 *)(dst + offset)
+     *(u32 *)(dst + offset) += src
+     src = *(u32 *)(dst + offset)
        </artwork>
       </td>
       <td>
@@ -5313,6 +6713,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x40
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -5344,11 +6749,16 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         lock:
        </t>
        <artwork>
-    *(u32 *)(dst + offset) |= src
-    src = *(u32 *)(dst + offset)
+     *(u32 *)(dst + offset) |= src
+     src = *(u32 *)(dst + offset)
        </artwork>
       </td>
       <td>
@@ -5371,6 +6781,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x50
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -5402,11 +6817,16 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         lock:
        </t>
        <artwork>
-    *(u32 *)(dst + offset) &amp;= src
-    src = *(u32 *)(dst + offset)
+     *(u32 *)(dst + offset) &amp;= src
+     src = *(u32 *)(dst + offset)
        </artwork>
       </td>
       <td>
@@ -5429,6 +6849,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0xa0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -5460,11 +6885,16 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         lock:
        </t>
        <artwork>
-    *(u32 *)(dst + offset) ^= src
-    src = *(u32 *)(dst + offset)
+     *(u32 *)(dst + offset) ^= src
+     src = *(u32 *)(dst + offset)
        </artwork>
       </td>
       <td>
@@ -5491,12 +6921,17 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         lock:
        </t>
        <artwork>
-    temp = *(u32 *)(dst + offset)
-    *(u32 *)(dst + offset) = src
-    src = temp
+     temp = *(u32 *)(dst + offset)
+     *(u32 *)(dst + offset) = src
+     src = temp
        </artwork>
       </td>
       <td>
@@ -5523,13 +6958,18 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         lock:
        </t>
        <artwork>
-    temp = *(u32 *)(dst + offset)
-    if *(u32)(dst + offset) == R0
-       *(u32)(dst + offset) = src
-    R0 = temp
+     temp = *(u32 *)(dst + offset)
+     if *(u32)(dst + offset) == R0
+        *(u32)(dst + offset) = src
+     R0 = temp
        </artwork>
       </td>
       <td>
@@ -5556,6 +6996,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst = (u32)(dst s&gt;&gt; imm)
        </t>
       </td>
@@ -5574,6 +7019,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -5610,6 +7060,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         if (s32)dst s&lt; (s32)imm goto +offset
        </t>
       </td>
@@ -5633,6 +7088,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         any
+       </t>
+      </td>
+      <td>
+       <t>
+        0
        </t>
       </td>
       <td>
@@ -5664,6 +7124,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst = (u32)(dst s&gt;&gt; src)
        </t>
       </td>
@@ -5687,6 +7152,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -5718,6 +7188,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         if (s32)dst s&lt; (s32)src goto +offset
        </t>
       </td>
@@ -5741,6 +7216,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        0
        </t>
       </td>
       <td>
@@ -5772,6 +7252,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst = htole16(dst)
        </t>
       </td>
@@ -5795,6 +7280,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x20
+       </t>
+      </td>
+      <td>
+       <t>
+        0
        </t>
       </td>
       <td>
@@ -5826,6 +7316,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst = htole64(dst)
        </t>
       </td>
@@ -5844,6 +7339,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -5880,6 +7380,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         if (s32)dst s&lt;= (s32)imm goto +offset
        </t>
       </td>
@@ -5903,6 +7408,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -5934,11 +7444,16 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         lock:
        </t>
        <artwork>
-    *(u64 *)(dst + offset) += src
-    src = *(u64 *)(dst + offset)
+     *(u64 *)(dst + offset) += src
+     src = *(u64 *)(dst + offset)
        </artwork>
       </td>
       <td>
@@ -5961,6 +7476,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x40
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -5992,11 +7512,16 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         lock:
        </t>
        <artwork>
-    *(u64 *)(dst + offset) |= src
-    lock src = *(u64 *)(dst + offset)
+     *(u64 *)(dst + offset) |= src
+     lock src = *(u64 *)(dst + offset)
        </artwork>
       </td>
       <td>
@@ -6019,6 +7544,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x50
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -6050,11 +7580,16 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         lock:
        </t>
        <artwork>
-    *(u64 *)(dst + offset) &amp;= src
-    src = *(u64 *)(dst + offset)
+     *(u64 *)(dst + offset) &amp;= src
+     src = *(u64 *)(dst + offset)
        </artwork>
       </td>
       <td>
@@ -6077,6 +7612,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0xa0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
        </t>
       </td>
       <td>
@@ -6108,11 +7648,16 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         lock:
        </t>
        <artwork>
-    *(u64 *)(dst + offset) ^= src
-    src = *(u64 *)(dst + offset)
+     *(u64 *)(dst + offset) ^= src
+     src = *(u64 *)(dst + offset)
        </artwork>
       </td>
       <td>
@@ -6139,12 +7684,17 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         lock:
        </t>
        <artwork>
-    temp = *(u64 *)(dst + offset)
-    *(u64 *)(dst + offset) = src
-    src = temp
+     temp = *(u64 *)(dst + offset)
+     *(u64 *)(dst + offset) = src
+     src = temp
        </artwork>
       </td>
       <td>
@@ -6171,13 +7721,18 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         lock:
        </t>
        <artwork>
-    temp = *(u64 *)(dst + offset)
-    if *(u64)(dst + offset) == R0
-       *(u64)(dst + offset) = src
-    R0 = temp
+     temp = *(u64 *)(dst + offset)
+     if *(u64)(dst + offset) == R0
+        *(u64)(dst + offset) = src
+     R0 = temp
        </artwork>
       </td>
       <td>
@@ -6200,6 +7755,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x10
+       </t>
+      </td>
+      <td>
+       <t>
+        0
        </t>
       </td>
       <td>
@@ -6231,6 +7791,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
         dst = htobe32(dst)
        </t>
       </td>
@@ -6254,6 +7819,11 @@ eBPF Instruction Set Specification, v1.0
       <td>
        <t>
         0x40
+       </t>
+      </td>
+      <td>
+       <t>
+        0
        </t>
       </td>
       <td>
@@ -6285,6 +7855,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         if dst s&lt;= src goto +offset
        </t>
       </td>
@@ -6312,6 +7887,11 @@ eBPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
         if (s32)dst s&lt;= (s32)src goto +offset
        </t>
       </td>
@@ -6326,5 +7906,14 @@ eBPF Instruction Set Specification, v1.0
   </section>
  </middle>
  <back>
+ <references><name>Normative References</name>
+  <reference anchor="RFC8126">
+   <front>
+    <title>Guidelines for Writing an IANA Considerations Section in RFCs</title>
+    <author></author>
+   </front>
+   <seriesInfo name='RFC' value='8126'/>
+  </reference>
+ </references>
  </back>
 </rfc>
