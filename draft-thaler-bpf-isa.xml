@@ -19,7 +19,7 @@
 <rfc ipr="trust200902" docName="draft-thaler-bpf-isa-01" category="std" submissionType="IETF">
  <front>
   <title abbrev="eBPF ISA">
-eBPF Instruction Set Specification, v1.0
+BPF Instruction Set Specification, v1.0
   </title>
   <author initials="D." surname="Thaler" fullname="Dave Thaler" role="editor">
     <organization>Microsoft</organization>
@@ -35,48 +35,220 @@ eBPF Instruction Set Specification, v1.0
   </author>
   <abstract>
    <t>
-    This document specifies version 1.0 of the eBPF instruction set.
+    This document specifies version 1.0 of the BPF instruction set.
    </t>
   </abstract>
  </front>
  <middle>
   <section anchor="documentation-conventions" title="Documentation conventions">
    <t>
-    For brevity, this document uses the type notion "u64", "u32", etc.
-    to mean an unsigned integer whose width is the specified number of bits,
-    and "s32", etc. to mean a signed integer of the specified number of bits.
+    For brevity and consistency, this document refers to families
+    of types using a shorthand syntax and refers to several expository,
+    mnemonic functions when describing the semantics of instructions.
+    The range of valid values for those types and the semantics of those
+    functions are defined in the following subsections.
    </t>
-  </section>
-  <section anchor="registers-and-calling-convention" title="Registers and calling convention">
-   <t>
-    eBPF has 10 general purpose registers and a read-only frame pointer register,
-    all of which are 64-bits wide.
-   </t>
-   <t>
-    The eBPF calling convention is defined as:
-   </t>
-   <ul>
-    <li>
-     R0: return value from function calls, and exit value for eBPF programs
-    </li>
-    <li>
-     R1 - R5: arguments for function calls
-    </li>
-    <li>
-     R6 - R9: callee saved registers that function calls will preserve
-    </li>
-    <li>
-     R10: read-only frame pointer to access stack
-    </li>
-   </ul>
-   <t>
-    R0 - R5 are scratch registers and eBPF programs needs to spill/fill them if
-    necessary across calls.
-   </t>
+   <section anchor="types" title="Types">
+    <t>
+     This document refers to integer types with the notation `SN` to specify
+     a type's signedness (`S`) and bit width (`N`), respectively.
+    </t>
+    <table>
+     <name>Meaning of signedness notation.</name>
+     <thead>
+      <tr>
+       <th>`S`</th>
+       <th>Meaning</th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td>
+        <t>
+         `u`
+        </t>
+       </td>
+       <td>
+        <t>
+         unsigned
+        </t>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <t>
+         `s`
+        </t>
+       </td>
+       <td>
+        <t>
+         signed
+        </t>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <table>
+     <name>Meaning of bit-width notation.</name>
+     <thead>
+      <tr>
+       <th>`N`</th>
+       <th>Bit width</th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td>
+        <t>
+         `8`
+        </t>
+       </td>
+       <td>
+        <t>
+         8 bits
+        </t>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <t>
+         `16`
+        </t>
+       </td>
+       <td>
+        <t>
+         16 bits
+        </t>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <t>
+         `32`
+        </t>
+       </td>
+       <td>
+        <t>
+         32 bits
+        </t>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <t>
+         `64`
+        </t>
+       </td>
+       <td>
+        <t>
+         64 bits
+        </t>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <t>
+         `128`
+        </t>
+       </td>
+       <td>
+        <t>
+         128 bits
+        </t>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <t>
+     For example, `u32` is a type whose valid values are all the 32-bit unsigned
+     numbers and `s16` is a types whose valid values are all the 16-bit signed
+     numbers.
+    </t>
+   </section>
+   <section anchor="functions" title="Functions">
+    <ul>
+     <li>
+      `htobe16`: Takes an unsigned 16-bit number in host-endian format and
+      returns the equivalent number as an unsigned 16-bit number in big-endian
+      format.
+     </li>
+     <li>
+      `htobe32`: Takes an unsigned 32-bit number in host-endian format and
+      returns the equivalent number as an unsigned 32-bit number in big-endian
+      format.
+     </li>
+     <li>
+      `htobe64`: Takes an unsigned 64-bit number in host-endian format and
+      returns the equivalent number as an unsigned 64-bit number in big-endian
+      format.
+     </li>
+     <li>
+      `htole16`: Takes an unsigned 16-bit number in host-endian format and
+      returns the equivalent number as an unsigned 16-bit number in little-endian
+      format.
+     </li>
+     <li>
+      `htole32`: Takes an unsigned 32-bit number in host-endian format and
+      returns the equivalent number as an unsigned 32-bit number in little-endian
+      format.
+     </li>
+     <li>
+      `htole64`: Takes an unsigned 64-bit number in host-endian format and
+      returns the equivalent number as an unsigned 64-bit number in little-endian
+      format.
+     </li>
+     <li>
+      `bswap16`: Takes an unsigned 16-bit number in either big- or little-endian
+      format and returns the equivalent number with the same bit width but
+      opposite endianness.
+     </li>
+     <li>
+      `bswap32`: Takes an unsigned 32-bit number in either big- or little-endian
+      format and returns the equivalent number with the same bit width but
+      opposite endianness.
+     </li>
+     <li>
+      `bswap64`: Takes an unsigned 64-bit number in either big- or little-endian
+      format and returns the equivalent number with the same bit width but
+      opposite endianness.
+     </li>
+    </ul>
+   </section>
+   <section anchor="definitions" title="Definitions">
+    <dl>
+     <dt>
+      Sign Extend
+     </dt>
+     <dd>
+      <t>
+       To `sign extend an` <tt>X</tt> `-bit number, A, to a` <tt>Y</tt> `-bit number, B  ,` means to
+      </t>
+      <ol>
+       <li>
+        Copy all <tt>X</tt> bits from `A` to the lower <tt>X</tt> bits of `B`.
+       </li>
+       <li>
+        Set the value of the remaining <tt>Y</tt> - <tt>X</tt> bits of `B` to the value of
+        the  most-significant bit of `A`.
+       </li>
+      </ol>
+     </dd>
+    </dl>
+    <aside>
+     <t><strong>Example</strong></t>
+     <t>
+      Sign extend an 8-bit number <tt>A</tt> to a 16-bit number <tt>B</tt> on a big-endian platform:
+     </t>
+     <artwork>
+    A:          10000110
+    B: 11111111 10000110
+     </artwork>
+    </aside>
+   </section>
   </section>
   <section anchor="instruction-encoding" title="Instruction encoding">
    <t>
-    eBPF has two instruction encodings:
+    BPF has two instruction encodings:
    </t>
    <ul>
     <li>
@@ -90,42 +262,52 @@ eBPF Instruction Set Specification, v1.0
    <t>
     The fields conforming an encoded basic instruction are stored in the
     following order:
-    <artwork>
+   </t>
+   <artwork>
   opcode:8 src_reg:4 dst_reg:4 offset:16 imm:32 // In little-endian BPF.
   opcode:8 dst_reg:4 src_reg:4 offset:16 imm:32 // In big-endian BPF.
-    </artwork>
-   </t>
+   </artwork>
    <dl>
     <dt>
      <strong>imm</strong>
     </dt>
     <dd>
-     signed integer immediate value
+     <t>
+      signed integer immediate value
+     </t>
     </dd>
     <dt>
      <strong>offset</strong>
     </dt>
     <dd>
-     signed integer offset used with pointer arithmetic
+     <t>
+      signed integer offset used with pointer arithmetic
+     </t>
     </dd>
     <dt>
      <strong>src_reg</strong>
     </dt>
     <dd>
-     the source register number (0-10), except where otherwise specified
-     (<xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref> reuse this field for other purposes)
+     <t>
+      the source register number (0-10), except where otherwise specified
+      (<xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref> reuse this field for other purposes)
+     </t>
     </dd>
     <dt>
      <strong>dst_reg</strong>
     </dt>
     <dd>
-     destination register number (0-10)
+     <t>
+      destination register number (0-10)
+     </t>
     </dd>
     <dt>
      <strong>opcode</strong>
     </dt>
     <dd>
-     operation to perform
+     <t>
+      operation to perform
+     </t>
     </dd>
    </dl>
    <t>
@@ -409,13 +591,17 @@ eBPF Instruction Set Specification, v1.0
      <strong>code</strong>
     </dt>
     <dd>
-     the operation code, whose meaning varies by instruction class
+     <t>
+      the operation code, whose meaning varies by instruction class
+     </t>
     </dd>
     <dt>
      <strong>source</strong>
     </dt>
     <dd>
-     the source operand location, which unless otherwise specified is one of:
+     <t>
+      the source operand location, which unless otherwise specified is one of:
+     </t>
     </dd>
    </dl>
    <table>
@@ -468,7 +654,9 @@ eBPF Instruction Set Specification, v1.0
      <strong>instruction class</strong>
     </dt>
     <dd>
-     the instruction class (see <xref target="instruction-classes">Instruction classes</xref>)
+     <t>
+      the instruction class (see <xref target="instruction-classes">Instruction classes</xref>)
+     </t>
     </dd>
    </dl>
    <section anchor="arithmetic-instructions" title="Arithmetic instructions">
@@ -483,6 +671,7 @@ eBPF Instruction Set Specification, v1.0
       <tr>
        <th>code</th>
        <th>value</th>
+       <th>offset</th>
        <th>description</th>
       </tr>
      </thead>
@@ -496,6 +685,11 @@ eBPF Instruction Set Specification, v1.0
        <td>
         <t>
          0x00
+        </t>
+       </td>
+       <td>
+        <t>
+         0
         </t>
        </td>
        <td>
@@ -517,6 +711,11 @@ eBPF Instruction Set Specification, v1.0
        </td>
        <td>
         <t>
+         0
+        </t>
+       </td>
+       <td>
+        <t>
          dst -= src
         </t>
        </td>
@@ -530,6 +729,11 @@ eBPF Instruction Set Specification, v1.0
        <td>
         <t>
          0x20
+        </t>
+       </td>
+       <td>
+        <t>
+         0
         </t>
        </td>
        <td>
@@ -551,7 +755,34 @@ eBPF Instruction Set Specification, v1.0
        </td>
        <td>
         <t>
+         0
+        </t>
+       </td>
+       <td>
+        <t>
          dst = (src != 0) ? (dst / src) : 0
+        </t>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <t>
+         BPF_SDIV
+        </t>
+       </td>
+       <td>
+        <t>
+         0x30
+        </t>
+       </td>
+       <td>
+        <t>
+         1
+        </t>
+       </td>
+       <td>
+        <t>
+         dst = (src != 0) ? (dst s/ src) : 0
         </t>
        </td>
       </tr>
@@ -564,6 +795,11 @@ eBPF Instruction Set Specification, v1.0
        <td>
         <t>
          0x40
+        </t>
+       </td>
+       <td>
+        <t>
+         0
         </t>
        </td>
        <td>
@@ -585,6 +821,11 @@ eBPF Instruction Set Specification, v1.0
        </td>
        <td>
         <t>
+         0
+        </t>
+       </td>
+       <td>
+        <t>
          dst &amp;= src
         </t>
        </td>
@@ -598,6 +839,11 @@ eBPF Instruction Set Specification, v1.0
        <td>
         <t>
          0x60
+        </t>
+       </td>
+       <td>
+        <t>
+         0
         </t>
        </td>
        <td>
@@ -619,6 +865,11 @@ eBPF Instruction Set Specification, v1.0
        </td>
        <td>
         <t>
+         0
+        </t>
+       </td>
+       <td>
+        <t>
          dst &gt;&gt;= (src &amp; mask)
         </t>
        </td>
@@ -636,7 +887,12 @@ eBPF Instruction Set Specification, v1.0
        </td>
        <td>
         <t>
-         dst = -src
+         0
+        </t>
+       </td>
+       <td>
+        <t>
+         dst = -dst
         </t>
        </td>
       </tr>
@@ -653,7 +909,34 @@ eBPF Instruction Set Specification, v1.0
        </td>
        <td>
         <t>
+         0
+        </t>
+       </td>
+       <td>
+        <t>
          dst = (src != 0) ? (dst % src) : dst
+        </t>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <t>
+         BPF_SMOD
+        </t>
+       </td>
+       <td>
+        <t>
+         0x90
+        </t>
+       </td>
+       <td>
+        <t>
+         1
+        </t>
+       </td>
+       <td>
+        <t>
+         dst = (src != 0) ? (dst s% src) : dst
         </t>
        </td>
       </tr>
@@ -666,6 +949,11 @@ eBPF Instruction Set Specification, v1.0
        <td>
         <t>
          0xa0
+        </t>
+       </td>
+       <td>
+        <t>
+         0
         </t>
        </td>
        <td>
@@ -687,7 +975,34 @@ eBPF Instruction Set Specification, v1.0
        </td>
        <td>
         <t>
+         0
+        </t>
+       </td>
+       <td>
+        <t>
          dst = src
+        </t>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <t>
+         BPF_MOVSX
+        </t>
+       </td>
+       <td>
+        <t>
+         0xb0
+        </t>
+       </td>
+       <td>
+        <t>
+         8/16/32
+        </t>
+       </td>
+       <td>
+        <t>
+         dst = (s8,s16,s32)src
         </t>
        </td>
       </tr>
@@ -704,7 +1019,12 @@ eBPF Instruction Set Specification, v1.0
        </td>
        <td>
         <t>
-         sign extending dst &gt;&gt;= (src &amp; mask)
+         0
+        </t>
+       </td>
+       <td>
+        <t>
+         :term:`sign extending&lt;Sign Extend&gt;` dst &gt;&gt;= (src &amp; mask)
         </t>
        </td>
       </tr>
@@ -721,6 +1041,11 @@ eBPF Instruction Set Specification, v1.0
        </td>
        <td>
         <t>
+         0
+        </t>
+       </td>
+       <td>
+        <t>
          byte swap operations (see <xref target="byte-swap-instructions">Byte swap instructions</xref> below)
         </t>
        </td>
@@ -729,7 +1054,7 @@ eBPF Instruction Set Specification, v1.0
     </table>
     <t>
      Underflow and overflow are allowed during arithmetic operations, meaning
-     the 64-bit or 32-bit value will wrap. If eBPF program execution would
+     the 64-bit or 32-bit value will wrap. If BPF program execution would
      result in division by zero, the destination register is instead set to zero.
      If execution would result in modulo by zero, for <tt>BPF_ALU64</tt> the value of
      the destination register is unchanged whereas for <tt>BPF_ALU</tt> the upper
@@ -763,94 +1088,160 @@ eBPF Instruction Set Specification, v1.0
   dst = dst ^ imm32
     </artwork>
     <t>
-     Also note that the division and modulo operations are unsigned. Thus, for
-     <tt>BPF_ALU</tt>, 'imm' is first interpreted as an unsigned 32-bit value, whereas
-     for <tt>BPF_ALU64</tt>, 'imm' is first sign extended to 64 bits and the result
-     interpreted as an unsigned 64-bit value. There are no instructions for
-     signed division or modulo.
+     Note that most instructions have instruction offset of 0. Only three instructions
+     (<tt>BPF_SDIV</tt>, <tt>BPF_SMOD</tt>, <tt>BPF_MOVSX</tt>) have a non-zero offset.
+    </t>
+    <t>
+     The division and modulo operations support both unsigned and signed flavors.
+    </t>
+    <t>
+     For unsigned operations (<tt>BPF_DIV</tt> and <tt>BPF_MOD</tt>), for <tt>BPF_ALU</tt>,
+     'imm' is interpreted as a 32-bit unsigned value. For <tt>BPF_ALU64</tt>,
+     'imm' is first :term:`sign extended&lt;Sign Extend&gt;` from 32 to 64 bits, and then
+     interpreted as a 64-bit unsigned value.
+    </t>
+    <t>
+     For signed operations (<tt>BPF_SDIV</tt> and <tt>BPF_SMOD</tt>), for <tt>BPF_ALU</tt>,
+     'imm' is interpreted as a 32-bit signed value. For <tt>BPF_ALU64</tt>, 'imm'
+     is first :term:`sign extended&lt;Sign Extend&gt;` from 32 to 64 bits, and then
+     interpreted as a 64-bit signed value.
+    </t>
+    <t>
+     The <tt>BPF_MOVSX</tt> instruction does a move operation with sign extension.
+     <tt>BPF_ALU | BPF_MOVSX</tt> :term:`sign extends&lt;Sign Extend&gt;` 8-bit and 16-bit operands into 32
+     bit operands, and zeroes the remaining upper 32 bits.
+     <tt>BPF_ALU64 | BPF_MOVSX</tt> :term:`sign extends&lt;Sign Extend&gt;` 8-bit, 16-bit, and 32-bit
+     operands into 64 bit operands.
     </t>
     <t>
      Shift operations use a mask of 0x3F (63) for 64-bit operations and 0x1F (31)
      for 32-bit operations.
     </t>
-    <section anchor="byte-swap-instructions" title="Byte swap instructions">
-     <t>
-      The byte swap instructions use an instruction class of <tt>BPF_ALU</tt> and a 4-bit
-      'code' field of <tt>BPF_END</tt>.
-     </t>
-     <t>
-      The byte swap instructions operate on the destination register
-      only and do not use a separate source register or immediate value.
-     </t>
-     <t>
-      The 1-bit source operand field in the opcode is used to select what byte
-      order the operation convert from or to:
-     </t>
-     <table>
-      <thead>
-       <tr>
-        <th>source</th>
-        <th>value</th>
-        <th>description</th>
-       </tr>
-      </thead>
-      <tbody>
-       <tr>
-        <td>
-         <t>
-          BPF_TO_LE
-         </t>
-        </td>
-        <td>
-         <t>
-          0x00
-         </t>
-        </td>
-        <td>
-         <t>
-          convert between host byte order and little endian
-         </t>
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <t>
-          BPF_TO_BE
-         </t>
-        </td>
-        <td>
-         <t>
-          0x08
-         </t>
-        </td>
-        <td>
-         <t>
-          convert between host byte order and big endian
-         </t>
-        </td>
-       </tr>
-      </tbody>
-     </table>
-     <t>
-      The 'imm' field encodes the width of the swap operations.  The following widths
-      are supported: 16, 32 and 64.
-     </t>
-     <t>
-      Examples:
-     </t>
-     <t>
-      <tt>BPF_ALU | BPF_TO_LE | BPF_END</tt> with imm = 16 means:
-     </t>
-     <artwork>
+   </section>
+   <section anchor="byte-swap-instructions" title="Byte swap instructions">
+    <t>
+     The byte swap instructions use instruction classes of <tt>BPF_ALU</tt> and <tt>BPF_ALU64</tt>
+     and a 4-bit 'code' field of <tt>BPF_END</tt>.
+    </t>
+    <t>
+     The byte swap instructions operate on the destination register
+     only and do not use a separate source register or immediate value.
+    </t>
+    <t>
+     For <tt>BPF_ALU</tt>, the 1-bit source operand field in the opcode is used to
+     select what byte order the operation converts from or to. For
+     <tt>BPF_ALU64</tt>, the 1-bit source operand field in the opcode is reserved
+     and must be set to 0.
+    </t>
+    <table>
+     <thead>
+      <tr>
+       <th>class</th>
+       <th>source</th>
+       <th>value</th>
+       <th>description</th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td>
+        <t>
+         BPF_ALU
+        </t>
+       </td>
+       <td>
+        <t>
+         BPF_TO_LE
+        </t>
+       </td>
+       <td>
+        <t>
+         0x00
+        </t>
+       </td>
+       <td>
+        <t>
+         convert between host byte order and little endian
+        </t>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <t>
+         BPF_ALU
+        </t>
+       </td>
+       <td>
+        <t>
+         BPF_TO_BE
+        </t>
+       </td>
+       <td>
+        <t>
+         0x08
+        </t>
+       </td>
+       <td>
+        <t>
+         convert between host byte order and big endian
+        </t>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <t>
+         BPF_ALU64
+        </t>
+       </td>
+       <td>
+        <t>
+         Reserved
+        </t>
+       </td>
+       <td>
+        <t>
+         0x00
+        </t>
+       </td>
+       <td>
+        <t>
+         do byte swap unconditionally
+        </t>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <t>
+     The 'imm' field encodes the width of the swap operations.  The following widths
+     are supported: 16, 32 and 64.
+    </t>
+    <t>
+     Examples:
+    </t>
+    <t>
+     <tt>BPF_ALU | BPF_TO_LE | BPF_END</tt> with imm = 16/32/64 means:
+    </t>
+    <artwork>
   dst = htole16(dst)
-     </artwork>
-     <t>
-      <tt>BPF_ALU | BPF_TO_BE | BPF_END</tt> with imm = 64 means:
-     </t>
-     <artwork>
+  dst = htole32(dst)
+  dst = htole64(dst)
+    </artwork>
+    <t>
+     <tt>BPF_ALU | BPF_TO_BE | BPF_END</tt> with imm = 16/32/64 means:
+    </t>
+    <artwork>
+  dst = htobe16(dst)
+  dst = htobe32(dst)
   dst = htobe64(dst)
-     </artwork>
-    </section>
+    </artwork>
+    <t>
+     <tt>BPF_ALU64 | BPF_TO_LE | BPF_END</tt> with imm = 16/32/64 means:
+    </t>
+    <artwork>
+  dst = bswap16(dst)
+  dst = bswap32(dst)
+  dst = bswap64(dst)
+    </artwork>
    </section>
    <section anchor="jump-instructions" title="Jump instructions">
     <t>
@@ -892,7 +1283,34 @@ eBPF Instruction Set Specification, v1.0
        </td>
        <td>
         <t>
-         BPF_JMP only
+         BPF_JMP class
+        </t>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <t>
+         BPF_JA
+        </t>
+       </td>
+       <td>
+        <t>
+         0x0
+        </t>
+       </td>
+       <td>
+        <t>
+         0x0
+        </t>
+       </td>
+       <td>
+        <t>
+         PC += imm
+        </t>
+       </td>
+       <td>
+        <t>
+         BPF_JMP32 class
         </t>
        </td>
       </tr>
@@ -1121,7 +1539,7 @@ eBPF Instruction Set Specification, v1.0
        </td>
        <td>
         <t>
-         call PC += offset
+         call PC += imm
         </t>
        </td>
        <td>
@@ -1295,7 +1713,7 @@ eBPF Instruction Set Specification, v1.0
      </tbody>
     </table>
     <t>
-     The eBPF program needs to store the return value into register R0 before doing a
+     The BPF program needs to store the return value into register R0 before doing a
      <tt>BPF_EXIT</tt>.
     </t>
     <t>
@@ -1309,6 +1727,23 @@ eBPF Instruction Set Specification, v1.0
     </artwork>
     <t>
      where 's&gt;=' indicates a signed '&gt;=' comparison.
+    </t>
+    <t>
+     <tt>BPF_JA | BPF_K | BPF_JMP32</tt> (0x06) means:
+    </t>
+    <artwork>
+  gotol +imm
+    </artwork>
+    <t>
+     where 'imm' means the branch offset comes from insn 'imm' field.
+    </t>
+    <t>
+     Note that there are two flavors of <tt>BPF_JA</tt> instructions. The
+     <tt>BPF_JMP</tt> class permits a 16-bit jump offset specified by the 'offset'
+     field, whereas the <tt>BPF_JMP32</tt> class permits a 32-bit jump offset
+     specified by the 'imm' field. A &gt; 16-bit conditional jump may be
+     converted to a &lt; 16-bit conditional jump plus a 32-bit unconditional
+     jump.
     </t>
     <section anchor="helper-functions" title="Helper functions">
      <t>
@@ -1330,8 +1765,8 @@ eBPF Instruction Set Specification, v1.0
      <t>
       Program-local functions are functions exposed by the same BPF program as the
       caller, and are referenced by offset from the call instruction, similar to
-      <tt>BPF_JA</tt>.  A <tt>BPF_EXIT</tt> within the program-local function will return to
-      the caller.
+      <tt>BPF_JA</tt>.  The offset is encoded in the imm field of the call instruction.
+      A <tt>BPF_EXIT</tt> within the program-local function will return to the caller.
      </t>
     </section>
    </section>
@@ -1473,6 +1908,28 @@ eBPF Instruction Set Specification, v1.0
      <tr>
       <td>
        <t>
+        BPF_MEMSX
+       </t>
+      </td>
+      <td>
+       <t>
+        0x80
+       </t>
+      </td>
+      <td>
+       <t>
+        sign-extension load operations
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="sign-extension-load-operations">Sign-extension load operations</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
         BPF_ATOMIC
        </t>
       </td>
@@ -1597,20 +2054,37 @@ eBPF Instruction Set Specification, v1.0
      <tt>BPF_MEM | &lt;size&gt; | BPF_LDX</tt> means:
     </t>
     <artwork>
-  dst = *(size *) (src + offset)
+  dst = *(unsigned size *) (src + offset)
     </artwork>
     <t>
-     Where size is one of: <tt>BPF_B</tt>, <tt>BPF_H</tt>, <tt>BPF_W</tt>, or <tt>BPF_DW</tt>.
+     Where size is one of: <tt>BPF_B</tt>, <tt>BPF_H</tt>, <tt>BPF_W</tt>, or <tt>BPF_DW</tt> and
+     'unsigned size' is one of u8, u16, u32 or u64.
+    </t>
+   </section>
+   <section anchor="sign-extension-load-operations" title="Sign-extension load operations">
+    <t>
+     The <tt>BPF_MEMSX</tt> mode modifier is used to encode :term:`sign-extension&lt;Sign Extend&gt;` load
+     instructions that transfer data between a register and memory.
+    </t>
+    <t>
+     <tt>BPF_MEMSX | &lt;size&gt; | BPF_LDX</tt> means:
+    </t>
+    <artwork>
+  dst = *(signed size *) (src + offset)
+    </artwork>
+    <t>
+     Where size is one of: <tt>BPF_B</tt>, <tt>BPF_H</tt> or <tt>BPF_W</tt>, and
+     'signed size' is one of s8, s16 or s32.
     </t>
    </section>
    <section anchor="atomic-operations" title="Atomic operations">
     <t>
      Atomic operations are operations that operate on memory and can not be
      interrupted or corrupted by other access to the same memory region
-     by other eBPF programs or means outside of this specification.
+     by other BPF programs or means outside of this specification.
     </t>
     <t>
-     All atomic operations supported by eBPF are encoded as store operations
+     All atomic operations supported by BPF are encoded as store operations
      that use the <tt>BPF_ATOMIC</tt> mode modifier as follows:
     </t>
     <ul>
@@ -2081,7 +2555,7 @@ eBPF Instruction Set Specification, v1.0
     </ul>
     <section anchor="maps" title="Maps">
      <t>
-      Maps are shared memory regions accessible by eBPF programs on some platforms.
+      Maps are shared memory regions accessible by BPF programs on some platforms.
       A map can have various semantics as defined in a separate document, and may or
       may not have a single contiguous memory region, but the 'map_val(map)' is
       currently only defined for maps that do have a single contiguous memory region.
@@ -2105,7 +2579,7 @@ eBPF Instruction Set Specification, v1.0
    </section>
    <section anchor="legacy-bpf-packet-access-instructions" title="Legacy BPF Packet access instructions">
     <t>
-     eBPF previously introduced special instructions for access to packet data that were
+     BPF previously introduced special instructions for access to packet data that were
      carried over from classic BPF. However, these instructions are
      deprecated and should no longer be used.
     </t>
@@ -2127,33 +2601,49 @@ eBPF Instruction Set Specification, v1.0
     </li>
     <li>
      Syntax of registry entries: Each entry has the following fields:
+     <ul>
+      <li>
+       opcode: a 1-byte value in hex format indicating the value of the opcode field
+      </li>
+      <li>
+       src: either a value indicating the value of the src field, or "any"
+      </li>
+      <li>
+       imm: either a value indicating the value of the imm field, or "any"
+      </li>
+      <li>
+       offset: either a value indicating the value of the offset field, or "any"
+      </li>
+      <li>
+       description: description of what the instruction does, typically in pseudocode
+      </li>
+      <li>
+       reference: a reference to the defining specification
+      </li>
+      <li>
+       status: Permanent, Provisional, or Historical
+      </li>
+     </ul>
+    </li>
+    <li>
+     Registration policy (see <xref target="RFC8126">RFC 8126 section 4</xref> for details):
+     <ul>
+      <li>
+       Permanent: Standards action or IESG Review
+      </li>
+      <li>
+       Provisional: Specification required
+      </li>
+      <li>
+       Historical: Specification required
+      </li>
+     </ul>
+    </li>
+    <li>
+     Initial registrations: See the Appendix. Instructions other than those listed
+     as deprecated are Permanent. Any listed as deprecated are Historical.
     </li>
    </ul>
-   <blockquote>
-    * opcode: a 1-byte value in hex format indicating the value of the opcode field
-    * src: either a value indicating the value of the src field, or "any"
-    * imm: either a value indicating the value of the imm field, or "any"
-    * offset: either a value indicating the value of the offset field, or "any"
-    * description: description of what the instruction does, typically in pseudocode
-    * reference: a reference to the defining specification
-    * status: Permanent, Provisional, or Historical
-    <ul>
-     <li>
-      Registration policy (see <xref target="RFC8126">RFC 8126 section 4</xref> for details):
-     </li>
-    </ul>
-   </blockquote>
-   <blockquote>
-    * Permanent: Standards action or IESG Review
-    * Provisional: Specification required
-    * Historical: Specification required
-    <ul>
-     <li>
-      Initial registrations: See the Appendix. Instructions other than those listed
-      as deprecated are Permanent. Any listed as deprecated are Historical.
-     </li>
-    </ul>
-   </blockquote>
   </section>
   <section anchor="acknowledgements" title="Acknowledgements">
    <t>
