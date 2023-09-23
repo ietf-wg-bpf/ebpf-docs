@@ -57,7 +57,7 @@ opcode  src  imm   offset  description                                          
 0x3c    any  0x00  0       dst = (u32)((imm != 0) ? (dst / src) : 0)            `Arithmetic instructions`_
 0x3d    any  0x00  any     if dst >= src goto +offset                           `Jump instructions`_
 0x3e    any  0x00  any     if (u32)dst >= (u32)src goto +offset                 `Jump instructions`_
-0x3f    any  0x00  0       dst = (src !+ 0) ? (dst / src) : 0                   `Arithmetic instructions`_
+0x3f    any  0x00  0       dst = (src != 0) ? (dst / src) : 0                   `Arithmetic instructions`_
 0x40    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
 0x41    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
 0x42    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
