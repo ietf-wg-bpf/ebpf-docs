@@ -44,7 +44,7 @@ jobs:
 
     - name: Build rfcxml
       run: |
-        wget https://github.com/dthaler/rst2rfcxml/releases/download/v0.6/Ubuntu.Release.rst2rfcxml.zip
+        wget https://github.com/dthaler/rst2rfcxml/releases/download/v0.7/Ubuntu.Release.rst2rfcxml.zip
         unzip Ubuntu.Release.rst2rfcxml.zip
         chmod 755 rst2rfcxml
         ./rst2rfcxml rst/instruction-set-skeleton.rst -o generated/draft-thaler-bpf-isa.xml
