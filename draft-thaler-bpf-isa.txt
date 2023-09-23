@@ -1403,7 +1403,7 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
    +------+---+----+------+--------------------------+---------------+
-   |0x3f  |any|0x00|0     |dst = (src !+ 0) ? (dst   | Arithmetic    |
+   |0x3f  |any|0x00|0     |dst = (src != 0) ? (dst   | Arithmetic    |
    |      |   |    |      |/ src) : 0                | instructions  |
    |      |   |    |      |                          | (Section 3.1) |
    +------+---+----+------+--------------------------+---------------+

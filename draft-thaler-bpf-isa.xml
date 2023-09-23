@@ -4360,7 +4360,7 @@ BPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
-        dst = (src !+ 0) ? (dst / src) : 0
+        dst = (src != 0) ? (dst / src) : 0
        </t>
       </td>
       <td>
