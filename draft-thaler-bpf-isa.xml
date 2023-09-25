@@ -2755,7 +2755,7 @@ BPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
-        0
+        any
        </t>
       </td>
       <td>
@@ -2782,7 +2782,7 @@ BPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
-        0x00
+        any
        </t>
       </td>
       <td>
@@ -4350,7 +4350,7 @@ BPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
-        0x00
+        any
        </t>
       </td>
       <td>
@@ -4382,7 +4382,7 @@ BPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
-        0x00
+        any
        </t>
       </td>
       <td>
@@ -6531,7 +6531,7 @@ BPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
-        any
+        0
        </t>
       </td>
       <td>

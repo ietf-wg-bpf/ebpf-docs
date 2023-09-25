@@ -1140,11 +1140,11 @@ Internet-Draft                  eBPF ISA                  September 2023
    |      |   |    |      |(u32)imm)                 | instructions  |
    |      |   |    |      |                          | (Section 3.1) |
    +------+---+----+------+--------------------------+---------------+
-   |0x05  |0x0|0x00|0     |goto +offset              | Jump          |
+   |0x05  |0x0|0x00|any   |goto +offset              | Jump          |
    |      |   |    |      |                          | instructions  |
    |      |   |    |      |                          | (Section 3.3) |
    +------+---+----+------+--------------------------+---------------+
-   |0x06  |0x0|0x00|0     |goto +imm                 | Jump          |
+   |0x06  |0x0|any |0     |goto +imm                 | Jump          |
    |      |   |    |      |                          | instructions  |
    |      |   |    |      |                          | (Section 3.3) |
    +------+---+----+------+--------------------------+---------------+
@@ -1403,11 +1403,11 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
    +------+---+----+------+--------------------------+---------------+
-   |0x3c  |any|0x00|0     |dst = (u32)((imm != 0) ?  | Arithmetic    |
+   |0x3c  |any|any |0     |dst = (u32)((imm != 0) ?  | Arithmetic    |
    |      |   |    |      |(dst / src) : 0)          | instructions  |
    |      |   |    |      |                          | (Section 3.1) |
    +------+---+----+------+--------------------------+---------------+
-   |0x3c  |any|0x00|1     |dst = (u32)((imm != 0) ?  | Arithmetic    |
+   |0x3c  |any|any |1     |dst = (u32)((imm != 0) ?  | Arithmetic    |
    |      |   |    |      |(dst s/ src) : 0)         | instructions  |
    |      |   |    |      |                          | (Section 3.1) |
    +------+---+----+------+--------------------------+---------------+
@@ -1752,7 +1752,7 @@ Internet-Draft                  eBPF ISA                  September 2023
    |      |   |    |      |                          | (Section      |
    |      |   |    |      |                          | 3.3.1)        |
    +------+---+----+------+--------------------------+---------------+
-   |0x85  |0x1|any |any   |call PC += imm            | Program-local |
+   |0x85  |0x1|any |0     |call PC += imm            | Program-local |
    |      |   |    |      |                          | functions     |
    |      |   |    |      |                          | (Section      |
    |      |   |    |      |                          | 3.3.2)        |
