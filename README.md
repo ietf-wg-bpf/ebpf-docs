@@ -1,7 +1,7 @@
-# eBPF Standard Documentation
+# BPF Standard Documentation
 
-This repository is a working draft of standard eBPF documentation
-to be published by the eBPF Foundation in PDF format.
+This repository is a working draft of standard BPF documentation
+to be published by the [IETF BPF Working Group](https://datatracker.ietf.org/wg/bpf/about/).
 
 Instruction Set Architecture:
 
@@ -24,5 +24,5 @@ bpftool, so that other platforms and tools can easily use it.
 As such, the documentation uses the subset of RST that GitHub
 renders correctly.
 
-The documentation can be IETF RFC style MUST/SHOULD/MAY language
+The documentation can use IETF RFC style MUST/SHOULD/MAY language
 if desired.  It does not currently do so.
