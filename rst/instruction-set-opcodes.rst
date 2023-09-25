@@ -196,6 +196,9 @@ opcode  src  imm   offset  description                                          
 0xd4    0x0  0x40  0       dst = htole64(dst)                                   `Byte swap instructions`_
 0xd5    0x0  any   any     if dst s<= imm goto +offset                          `Jump instructions`_
 0xd6    0x0  any   any     if (s32)dst s<= (s32)imm goto +offset                `Jump instructions`_
+0xd7    0x0  0x10  0       dst = bswap16(dst)                                   `Byte swap instructions`_
+0xd7    0x0  0x20  0       dst = bswap32(dst)                                   `Byte swap instructions`_
+0xd7    0x0  0x40  0       dst = bswap64(dst)                                   `Byte swap instructions`_
 0xdb    any  0x00  any     lock \*(u64 \*)(dst + offset) += src                 `Atomic operations`_
 0xdb    any  0x01  any     lock::                                               `Atomic operations`_
 
