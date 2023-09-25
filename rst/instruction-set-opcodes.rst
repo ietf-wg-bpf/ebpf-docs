@@ -125,7 +125,7 @@ opcode  src  imm   offset  description                                          
 0x7f    any  0x00  0       dst >>= src                                          `Arithmetic instructions`_
 0x84    0x0  0x00  0       dst = (u32)-dst                                      `Arithmetic instructions`_
 0x85    0x0  any   0       call platform-agnostic helper function imm           `Helper functions`_
-0x85    0x1  any   any     call PC += imm                                       `Program-local functions`_
+0x85    0x1  any   0       call PC += imm                                       `Program-local functions`_
 0x85    0x2  any   0       call platform-specific helper function imm           `Helper functions`_
 0x87    0x0  0x00  0       dst = -dst                                           `Arithmetic instructions`_
 0x94    0x0  any   0       dst = (u32)((imm != 0) ? (dst % imm) : dst)          `Arithmetic instructions`_
