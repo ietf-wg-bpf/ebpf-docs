@@ -2649,7 +2649,7 @@ BPF Instruction Set Specification, v1.0
    <t>
     This draft was generated from instruction-set.rst in the Linux
     kernel repository, to which a number of other individuals have authored contributions
-    over time, including Akhil Raj, Christoph Hellwig, Jose E. Marchesi, Kosuke Fujimoto,
+    over time, including Akhil Raj, Will Hawkins, Christoph Hellwig, Jose E. Marchesi, Kosuke Fujimoto,
     Shahab Vahedi, Tiezhu Yang, and Zheng Yejian, with review and suggestions by many others including
     Alan Jowett, Alexei Starovoitov, Andrii Nakryiko, Daniel Borkmann, David Vernet, Jim Harris,
     Quentin Monnet, Song Liu, Shung-Hsi Yu, Stanislav Fomichev, and Yonghong Song.
@@ -6376,7 +6376,7 @@ BPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
-        call PC += offset
+        call PC += imm
        </t>
       </td>
       <td>
