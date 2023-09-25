@@ -2772,6 +2772,38 @@ BPF Instruction Set Specification, v1.0
      <tr>
       <td>
        <t>
+        0x06
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
+        goto +imm
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
         0x07
        </t>
       </td>
@@ -4020,6 +4052,38 @@ BPF Instruction Set Specification, v1.0
      <tr>
       <td>
        <t>
+        0x34
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        1
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32)((imm != 0) ? (dst s/ imm) : 0)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
         0x35
        </t>
       </td>
@@ -4105,6 +4169,38 @@ BPF Instruction Set Specification, v1.0
       <td>
        <t>
         dst = (imm != 0) ? (dst / imm) : 0
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x37
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        1
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (imm != 0) ? (dst s/ imm) : 0
        </t>
       </td>
       <td>
@@ -4276,6 +4372,38 @@ BPF Instruction Set Specification, v1.0
      <tr>
       <td>
        <t>
+        0x3c
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        1
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32)((imm != 0) ? (dst s/ src) : 0)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
         0x3d
        </t>
       </td>
@@ -4361,6 +4489,38 @@ BPF Instruction Set Specification, v1.0
       <td>
        <t>
         dst = (src != 0) ? (dst / src) : 0
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x3f
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        1
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (src != 0) ? (dst s/ src) : 0
        </t>
       </td>
       <td>
@@ -6484,6 +6644,38 @@ BPF Instruction Set Specification, v1.0
      <tr>
       <td>
        <t>
+        0x94
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        1
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32)((imm != 0) ? (dst s% imm) : dst)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
         0x95
        </t>
       </td>
@@ -6548,6 +6740,38 @@ BPF Instruction Set Specification, v1.0
      <tr>
       <td>
        <t>
+        0x97
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        1
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (imm != 0) ? (dst s% imm) : dst
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
         0x9c
        </t>
       </td>
@@ -6580,6 +6804,38 @@ BPF Instruction Set Specification, v1.0
      <tr>
       <td>
        <t>
+        0x9c
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        1
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32)((src != 0) ? (dst s% src) : dst)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
         0x9f
        </t>
       </td>
@@ -6601,6 +6857,38 @@ BPF Instruction Set Specification, v1.0
       <td>
        <t>
         dst = (src != 0) ? (dst % src) : dst
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0x9f
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        1
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (src != 0) ? (dst s% src) : dst
        </t>
       </td>
       <td>
@@ -6900,6 +7188,70 @@ BPF Instruction Set Specification, v1.0
      <tr>
       <td>
        <t>
+        0xb4
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        8
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32) (s32) (s8) imm
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xb4
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        16
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32) (s32) (s16) imm
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
         0xb5
        </t>
       </td>
@@ -6985,6 +7337,102 @@ BPF Instruction Set Specification, v1.0
       <td>
        <t>
         dst = imm
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xb7
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        8
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (s64) (s8) imm
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xb7
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        16
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (s64) (s16) imm
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xb7
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        32
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (s64) (s32) imm
        </t>
       </td>
       <td>
@@ -7881,6 +8329,102 @@ BPF Instruction Set Specification, v1.0
       <td>
        <t>
         <xref target="jump-instructions">Jump instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xd7
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        0x10
+       </t>
+      </td>
+      <td>
+       <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = bswap16(dst)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="byte-swap-instructions">Byte swap instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xd7
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        0x20
+       </t>
+      </td>
+      <td>
+       <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = bswap32(dst)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="byte-swap-instructions">Byte swap instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xd7
+       </t>
+      </td>
+      <td>
+       <t>
+        0x0
+       </t>
+      </td>
+      <td>
+       <t>
+        0x40
+       </t>
+      </td>
+      <td>
+       <t>
+        0
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = bswap64(dst)
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="byte-swap-instructions">Byte swap instructions</xref>
        </t>
       </td>
      </tr>
