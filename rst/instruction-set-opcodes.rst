@@ -146,9 +146,14 @@ opcode  src  imm   offset  description                                          
 0xae    any  0x00  any     if (u32)dst < (u32)src goto +offset                  `Jump instructions`_
 0xaf    any  0x00  0       dst ^= src                                           `Arithmetic instructions`_
 0xb4    0x0  any   0       dst = (u32) imm                                      `Arithmetic instructions`_
+0xb4    0x0  any   8       dst = (u32) (s32) (s8) imm                           `Arithmetic instructions`_
+0xb4    0x0  any   16      dst = (u32) (s32) (s16) imm                          `Arithmetic instructions`_
 0xb5    0x0  any   any     if dst <= imm goto +offset                           `Jump instructions`_
 0xa6    0x0  any   any     if (u32)dst <= imm goto +offset                      `Jump instructions`_
 0xb7    0x0  any   0       dst = imm                                            `Arithmetic instructions`_
+0xb7    0x0  any   8       dst = (s64) (s8) imm                                 `Arithmetic instructions`_
+0xb7    0x0  any   16      dst = (s64) (s16) imm                                `Arithmetic instructions`_
+0xb7    0x0  any   32      dst = (s64) (s32) imm                                `Arithmetic instructions`_
 0xbc    any  0x00  0       dst = (u32) src                                      `Arithmetic instructions`_
 0xbd    any  0x00  any     if dst <= src goto +offset                           `Jump instructions`_
 0xbe    any  0x00  any     if (u32)dst <= (u32)src goto +offset                 `Jump instructions`_
