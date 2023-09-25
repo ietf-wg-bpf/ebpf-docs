@@ -7,8 +7,8 @@ opcode  src  imm   offset  description                                          
 ======  ===  ====  ======  ===================================================  ========================================
 0x00    0x0  any   0       (additional immediate value)                         `64-bit immediate instructions`_
 0x04    0x0  any   0       dst = (u32)((u32)dst + (u32)imm)                     `Arithmetic instructions`_
-0x05    0x0  0x00  0       goto +offset                                         `Jump instructions`_
-0x06    0x0  0x00  0       goto +imm                                            `Jump instructions`_
+0x05    0x0  0x00  any     goto +offset                                         `Jump instructions`_
+0x06    0x0  any   0       goto +imm                                            `Jump instructions`_
 0x07    0x0  any   0       dst += imm                                           `Arithmetic instructions`_
 0x0c    any  0x00  0       dst = (u32)((u32)dst + (u32)src)                     `Arithmetic instructions`_
 0x0f    any  0x00  0       dst += src                                           `Arithmetic instructions`_
