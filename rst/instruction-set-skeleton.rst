@@ -1,4 +1,4 @@
-.. |docName| replace:: draft-thaler-bpf-isa-01
+.. |docName| replace:: draft-thaler-bpf-isa-02
 .. |ipr| replace:: trust200902
 .. |category| replace:: std
 .. |titleAbbr| replace:: eBPF ISA
