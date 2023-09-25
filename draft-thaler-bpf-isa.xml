@@ -50,14 +50,14 @@ BPF Instruction Set Specification, v1.0
    </t>
    <section anchor="types" title="Types">
     <t>
-     This document refers to integer types with the notation `SN` to specify
-     a type's signedness (`S`) and bit width (`N`), respectively.
+     This document refers to integer types with the notation <em>SN</em> to specify
+     a type's signedness (<em>S</em>) and bit width (<em>N</em>), respectively.
     </t>
     <table>
      <name>Meaning of signedness notation.</name>
      <thead>
       <tr>
-       <th>`S`</th>
+       <th><em>S</em></th>
        <th>Meaning</th>
       </tr>
      </thead>
@@ -65,7 +65,7 @@ BPF Instruction Set Specification, v1.0
       <tr>
        <td>
         <t>
-         `u`
+         <em>u</em>
         </t>
        </td>
        <td>
@@ -77,7 +77,7 @@ BPF Instruction Set Specification, v1.0
       <tr>
        <td>
         <t>
-         `s`
+         <em>s</em>
         </t>
        </td>
        <td>
@@ -92,7 +92,7 @@ BPF Instruction Set Specification, v1.0
      <name>Meaning of bit-width notation.</name>
      <thead>
       <tr>
-       <th>`N`</th>
+       <th><em>N</em></th>
        <th>Bit width</th>
       </tr>
      </thead>
@@ -100,7 +100,7 @@ BPF Instruction Set Specification, v1.0
       <tr>
        <td>
         <t>
-         `8`
+         <em>8</em>
         </t>
        </td>
        <td>
@@ -112,7 +112,7 @@ BPF Instruction Set Specification, v1.0
       <tr>
        <td>
         <t>
-         `16`
+         <em>16</em>
         </t>
        </td>
        <td>
@@ -124,7 +124,7 @@ BPF Instruction Set Specification, v1.0
       <tr>
        <td>
         <t>
-         `32`
+         <em>32</em>
         </t>
        </td>
        <td>
@@ -136,7 +136,7 @@ BPF Instruction Set Specification, v1.0
       <tr>
        <td>
         <t>
-         `64`
+         <em>64</em>
         </t>
        </td>
        <td>
@@ -148,7 +148,7 @@ BPF Instruction Set Specification, v1.0
       <tr>
        <td>
         <t>
-         `128`
+         <em>128</em>
         </t>
        </td>
        <td>
@@ -160,55 +160,55 @@ BPF Instruction Set Specification, v1.0
      </tbody>
     </table>
     <t>
-     For example, `u32` is a type whose valid values are all the 32-bit unsigned
-     numbers and `s16` is a types whose valid values are all the 16-bit signed
+     For example, <em>u32</em> is a type whose valid values are all the 32-bit unsigned
+     numbers and <em>s16</em> is a types whose valid values are all the 16-bit signed
      numbers.
     </t>
    </section>
    <section anchor="functions" title="Functions">
     <ul>
      <li>
-      `htobe16`: Takes an unsigned 16-bit number in host-endian format and
+      <em>htobe16</em>: Takes an unsigned 16-bit number in host-endian format and
       returns the equivalent number as an unsigned 16-bit number in big-endian
       format.
      </li>
      <li>
-      `htobe32`: Takes an unsigned 32-bit number in host-endian format and
+      <em>htobe32</em>: Takes an unsigned 32-bit number in host-endian format and
       returns the equivalent number as an unsigned 32-bit number in big-endian
       format.
      </li>
      <li>
-      `htobe64`: Takes an unsigned 64-bit number in host-endian format and
+      <em>htobe64</em>: Takes an unsigned 64-bit number in host-endian format and
       returns the equivalent number as an unsigned 64-bit number in big-endian
       format.
      </li>
      <li>
-      `htole16`: Takes an unsigned 16-bit number in host-endian format and
+      <em>htole16</em>: Takes an unsigned 16-bit number in host-endian format and
       returns the equivalent number as an unsigned 16-bit number in little-endian
       format.
      </li>
      <li>
-      `htole32`: Takes an unsigned 32-bit number in host-endian format and
+      <em>htole32</em>: Takes an unsigned 32-bit number in host-endian format and
       returns the equivalent number as an unsigned 32-bit number in little-endian
       format.
      </li>
      <li>
-      `htole64`: Takes an unsigned 64-bit number in host-endian format and
+      <em>htole64</em>: Takes an unsigned 64-bit number in host-endian format and
       returns the equivalent number as an unsigned 64-bit number in little-endian
       format.
      </li>
      <li>
-      `bswap16`: Takes an unsigned 16-bit number in either big- or little-endian
+      <em>bswap16</em>: Takes an unsigned 16-bit number in either big- or little-endian
       format and returns the equivalent number with the same bit width but
       opposite endianness.
      </li>
      <li>
-      `bswap32`: Takes an unsigned 32-bit number in either big- or little-endian
+      <em>bswap32</em>: Takes an unsigned 32-bit number in either big- or little-endian
       format and returns the equivalent number with the same bit width but
       opposite endianness.
      </li>
      <li>
-      `bswap64`: Takes an unsigned 64-bit number in either big- or little-endian
+      <em>bswap64</em>: Takes an unsigned 64-bit number in either big- or little-endian
       format and returns the equivalent number with the same bit width but
       opposite endianness.
      </li>
@@ -216,20 +216,20 @@ BPF Instruction Set Specification, v1.0
    </section>
    <section anchor="definitions" title="Definitions">
     <dl>
-     <dt>
+     <dt anchor="term-sign-extend">
       Sign Extend
      </dt>
      <dd>
       <t>
-       To `sign extend an` <tt>X</tt> `-bit number, A, to a` <tt>Y</tt> `-bit number, B  ,` means to
+       To <em>sign extend an</em> <tt>X</tt> <em>-bit number, A, to a</em> <tt>Y</tt> <em>-bit number, B  ,</em> means to
       </t>
       <ol>
        <li>
-        Copy all <tt>X</tt> bits from `A` to the lower <tt>X</tt> bits of `B`.
+        Copy all <tt>X</tt> bits from <em>A</em> to the lower <tt>X</tt> bits of <em>B</em>.
        </li>
        <li>
-        Set the value of the remaining <tt>Y</tt> - <tt>X</tt> bits of `B` to the value of
-        the  most-significant bit of `A`.
+        Set the value of the remaining <tt>Y</tt> - <tt>X</tt> bits of <em>B</em> to the value of
+        the  most-significant bit of <em>A</em>.
        </li>
       </ol>
      </dd>
@@ -268,7 +268,7 @@ BPF Instruction Set Specification, v1.0
   opcode:8 dst_reg:4 src_reg:4 offset:16 imm:32 // In big-endian BPF.
    </artwork>
    <dl>
-    <dt>
+    <dt anchor="term---imm--">
      <strong>imm</strong>
     </dt>
     <dd>
@@ -276,7 +276,7 @@ BPF Instruction Set Specification, v1.0
       signed integer immediate value
      </t>
     </dd>
-    <dt>
+    <dt anchor="term---offset--">
      <strong>offset</strong>
     </dt>
     <dd>
@@ -284,7 +284,7 @@ BPF Instruction Set Specification, v1.0
       signed integer offset used with pointer arithmetic
      </t>
     </dd>
-    <dt>
+    <dt anchor="term---src_reg--">
      <strong>src_reg</strong>
     </dt>
     <dd>
@@ -293,7 +293,7 @@ BPF Instruction Set Specification, v1.0
       (<xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref> reuse this field for other purposes)
      </t>
     </dd>
-    <dt>
+    <dt anchor="term---dst_reg--">
      <strong>dst_reg</strong>
     </dt>
     <dd>
@@ -301,7 +301,7 @@ BPF Instruction Set Specification, v1.0
       destination register number (0-10)
      </t>
     </dd>
-    <dt>
+    <dt anchor="term---opcode--">
      <strong>opcode</strong>
     </dt>
     <dd>
@@ -587,7 +587,7 @@ BPF Instruction Set Specification, v1.0
     </tbody>
    </table>
    <dl>
-    <dt>
+    <dt anchor="term---code--">
      <strong>code</strong>
     </dt>
     <dd>
@@ -595,7 +595,7 @@ BPF Instruction Set Specification, v1.0
       the operation code, whose meaning varies by instruction class
      </t>
     </dd>
-    <dt>
+    <dt anchor="term---source--">
      <strong>source</strong>
     </dt>
     <dd>
@@ -650,7 +650,7 @@ BPF Instruction Set Specification, v1.0
     </tbody>
    </table>
    <dl>
-    <dt>
+    <dt anchor="term---instruction-class--">
      <strong>instruction class</strong>
     </dt>
     <dd>
@@ -1024,7 +1024,7 @@ BPF Instruction Set Specification, v1.0
        </td>
        <td>
         <t>
-         :term:`sign extending&lt;Sign Extend&gt;` dst &gt;&gt;= (src &amp; mask)
+         <xref target="term-sign-extend">sign extending</xref> dst &gt;&gt;= (src &amp; mask)
         </t>
        </td>
       </tr>
@@ -1097,20 +1097,20 @@ BPF Instruction Set Specification, v1.0
     <t>
      For unsigned operations (<tt>BPF_DIV</tt> and <tt>BPF_MOD</tt>), for <tt>BPF_ALU</tt>,
      'imm' is interpreted as a 32-bit unsigned value. For <tt>BPF_ALU64</tt>,
-     'imm' is first :term:`sign extended&lt;Sign Extend&gt;` from 32 to 64 bits, and then
+     'imm' is first <xref target="term-sign-extend">sign extended</xref> from 32 to 64 bits, and then
      interpreted as a 64-bit unsigned value.
     </t>
     <t>
      For signed operations (<tt>BPF_SDIV</tt> and <tt>BPF_SMOD</tt>), for <tt>BPF_ALU</tt>,
      'imm' is interpreted as a 32-bit signed value. For <tt>BPF_ALU64</tt>, 'imm'
-     is first :term:`sign extended&lt;Sign Extend&gt;` from 32 to 64 bits, and then
+     is first <xref target="term-sign-extend">sign extended</xref> from 32 to 64 bits, and then
      interpreted as a 64-bit signed value.
     </t>
     <t>
      The <tt>BPF_MOVSX</tt> instruction does a move operation with sign extension.
-     <tt>BPF_ALU | BPF_MOVSX</tt> :term:`sign extends&lt;Sign Extend&gt;` 8-bit and 16-bit operands into 32
+     <tt>BPF_ALU | BPF_MOVSX</tt> <xref target="term-sign-extend">sign extends</xref> 8-bit and 16-bit operands into 32
      bit operands, and zeroes the remaining upper 32 bits.
-     <tt>BPF_ALU64 | BPF_MOVSX</tt> :term:`sign extends&lt;Sign Extend&gt;` 8-bit, 16-bit, and 32-bit
+     <tt>BPF_ALU64 | BPF_MOVSX</tt> <xref target="term-sign-extend">sign extends</xref> 8-bit, 16-bit, and 32-bit
      operands into 64 bit operands.
     </t>
     <t>
@@ -2063,7 +2063,7 @@ BPF Instruction Set Specification, v1.0
    </section>
    <section anchor="sign-extension-load-operations" title="Sign-extension load operations">
     <t>
-     The <tt>BPF_MEMSX</tt> mode modifier is used to encode :term:`sign-extension&lt;Sign Extend&gt;` load
+     The <tt>BPF_MEMSX</tt> mode modifier is used to encode <xref target="term-sign-extend">sign-extension</xref> load
      instructions that transfer data between a register and memory.
     </t>
     <t>
