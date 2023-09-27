@@ -1,0 +1,333 @@
+%PDF-1.4
+%“Œ‹ž ReportLab Generated PDF document http://www.reportlab.com
+1 0 obj
+<<
+/F1 2 0 R /F2 3 0 R /F3 4 0 R /F4 9 0 R
+>>
+endobj
+2 0 obj
+<<
+/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+>>
+endobj
+3 0 obj
+<<
+/BaseFont /Times-Roman /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+>>
+endobj
+4 0 obj
+<<
+/BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F3 /Subtype /Type1 /Type /Font
+>>
+endobj
+5 0 obj
+<<
+/Border [ 0 0 0 ] /Contents () /Dest [ 10 0 R /XYZ 57.02362 693.6236 0 ] /Rect [ 57.02362 724.8236 302.1721 735.0236 ] /Subtype /Link /Type /Annot
+>>
+endobj
+6 0 obj
+<<
+/Border [ 0 0 0 ] /Contents () /Dest [ 10 0 R /XYZ 57.02362 693.6236 0 ] /Rect [ 533.526 725.4611 538.252 735.6611 ] /Subtype /Link /Type /Annot
+>>
+endobj
+7 0 obj
+<<
+/Border [ 0 0 0 ] /Contents () /Dest [ 10 0 R /XYZ 57.02362 630.6236 0 ] /Rect [ 77.02362 708.6236 218.2851 718.8236 ] /Subtype /Link /Type /Annot
+>>
+endobj
+8 0 obj
+<<
+/Border [ 0 0 0 ] /Contents () /Dest [ 10 0 R /XYZ 57.02362 630.6236 0 ] /Rect [ 533.526 709.2611 538.252 719.4611 ] /Subtype /Link /Type /Annot
+>>
+endobj
+9 0 obj
+<<
+/BaseFont /Courier /Encoding /WinAnsiEncoding /Name /F4 /Subtype /Type1 /Type /Font
+>>
+endobj
+10 0 obj
+<<
+/Annots [ 5 0 R 6 0 R 7 0 R 8 0 R ] /Contents 17 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 16 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 
+  /Trans <<
+
+>> /Type /Page
+>>
+endobj
+11 0 obj
+<<
+/Outlines 13 0 R /PageLabels 18 0 R /PageMode /UseNone /Pages 16 0 R /Type /Catalog
+>>
+endobj
+12 0 obj
+<<
+/Author () /CreationDate (D:20230927023652+00'00') /Creator (\(unspecified\)) /Keywords () /ModDate (D:20230927023652+00'00') /Producer (ReportLab PDF Library - www.reportlab.com) 
+  /Subject (\(unspecified\)) /Title () /Trapped /False
+>>
+endobj
+13 0 obj
+<<
+/Count 3 /First 14 0 R /Last 14 0 R /Type /Outlines
+>>
+endobj
+14 0 obj
+<<
+/Count 1 /Dest [ 10 0 R /XYZ 57.02362 693.6236 0 ] /First 15 0 R /Last 15 0 R /Parent 13 0 R /Title (\376\377\0001\000\240\000\240\000\240\000B\000P\000F\000 \000A\000B\000I\000 \000R\000e\000c\000o\000m\000m\000e\000n\000d\000e\000d\000 \000C\000o\000n\000v\000e\000n\000t\000i\000o\000n\000s\000 \000a\000n\000d\000 \000G\000u\000i\000d\000e\000l\000i\000n\000e\000s\000 \000v\0001\000.\0000)
+>>
+endobj
+15 0 obj
+<<
+/Dest [ 10 0 R /XYZ 57.02362 630.6236 0 ] /Parent 14 0 R /Title (\376\377\0001\000.\0001\000\240\000\240\000\240\000R\000e\000g\000i\000s\000t\000e\000r\000s\000 \000a\000n\000d\000 \000c\000a\000l\000l\000i\000n\000g\000 \000c\000o\000n\000v\000e\000n\000t\000i\000o\000n)
+>>
+endobj
+16 0 obj
+<<
+/Count 1 /Kids [ 10 0 R ] /Type /Pages
+>>
+endobj
+17 0 obj
+<<
+/Length 3254
+>>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+1 0 0 1 57.02362 744.0236 cm
+q
+BT 1 0 0 1 0 3.5 Tm 21 TL /F2 17.5 Tf .133333 .133333 .133333 rg (Contents) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 705.6236 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 0 19.2 cm
+q
+BT 1 0 0 1 0 1.7 Tm 10.2 TL /F3 8.5 Tf 0 .4 .6 rg (1   BPF ABI Recommended Conventions and Guidelines v1.0) Tj T* ET
+Q
+Q
+q
+1 0 0 1 409.2283 19.2 cm
+q
+0 .4 .6 rg
+BT 1 0 0 1 0 1.7 Tm /F3 8.5 Tf 10.2 TL 67.274 0 Td (1) Tj T* -67.274 0 Td ET
+Q
+Q
+q
+1 0 0 1 0 3 cm
+q
+BT 1 0 0 1 20 1.7 Tm 10.2 TL /F1 8.5 Tf 0 .4 .6 rg (1.1   Registers and calling convention) Tj T* ET
+Q
+Q
+q
+1 0 0 1 409.2283 3 cm
+q
+0 .4 .6 rg
+BT 1 0 0 1 0 1.7 Tm /F1 8.5 Tf 10.2 TL 67.274 0 Td (1) Tj T* -67.274 0 Td ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 57.02362 672.6236 cm
+q
+BT 1 0 0 1 0 3.5 Tm 21 TL /F2 17.5 Tf .133333 .133333 .133333 rg (1   BPF ABI Recommended Conventions and Guidelines v1.0) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 642.6236 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL 1.23218 Tw (This is version 1.0 of an informational document containing recommended conventions and guidelines for) Tj T* 0 Tw (producing portable BPF program binaries.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 612.6236 cm
+q
+BT 1 0 0 1 0 3 Tm 18 TL /F2 15 Tf .133333 .133333 .133333 rg (1.1   Registers and calling convention) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 594.6236 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (BPF has 10 general purpose registers and a read-only frame pointer register, all of which are 64-bits wide.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 576.6236 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (The BPF calling convention is defined as:) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 570.6236 cm
+Q
+q
+1 0 0 1 57.02362 570.6236 cm
+Q
+q
+1 0 0 1 57.02362 558.6236 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 6 -3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL 8 0 Td (\177) Tj T* -8 0 Td ET
+Q
+Q
+q
+1 0 0 1 23 -3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (R0: return value from function calls, and exit value for BPF programs) Tj T* ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 57.02362 552.6236 cm
+Q
+q
+1 0 0 1 57.02362 540.6236 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 6 -3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL 8 0 Td (\177) Tj T* -8 0 Td ET
+Q
+Q
+q
+1 0 0 1 23 -3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (R1 - R5: arguments for function calls) Tj T* ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 57.02362 534.6236 cm
+Q
+q
+1 0 0 1 57.02362 522.6236 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 6 -3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL 8 0 Td (\177) Tj T* -8 0 Td ET
+Q
+Q
+q
+1 0 0 1 23 -3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (R6 - R9: callee saved registers that function calls will preserve) Tj T* ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 57.02362 516.6236 cm
+Q
+q
+1 0 0 1 57.02362 504.6236 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 6 -3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F4 10 Tf 12 TL 8 0 Td (\177) Tj T* -8 0 Td ET
+Q
+Q
+q
+1 0 0 1 23 -3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (R10: read-only frame pointer to access stack) Tj T* ET
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 57.02362 504.6236 cm
+Q
+q
+1 0 0 1 57.02362 486.6236 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (R0 - R5 are scratch registers and BPF programs needs to spill/fill them if necessary across calls.) Tj T* ET
+Q
+Q
+ 
+endstream
+endobj
+18 0 obj
+<<
+/Nums [ 0 19 0 R ]
+>>
+endobj
+19 0 obj
+<<
+/S /D /St 1
+>>
+endobj
+xref
+0 20
+0000000000 65535 f 
+0000000073 00000 n 
+0000000134 00000 n 
+0000000241 00000 n 
+0000000350 00000 n 
+0000000462 00000 n 
+0000000630 00000 n 
+0000000796 00000 n 
+0000000964 00000 n 
+0000001130 00000 n 
+0000001235 00000 n 
+0000001477 00000 n 
+0000001583 00000 n 
+0000001841 00000 n 
+0000001915 00000 n 
+0000002332 00000 n 
+0000002628 00000 n 
+0000002689 00000 n 
+0000005995 00000 n 
+0000006036 00000 n 
+trailer
+<<
+/ID 
+[<dddbf992eca404ad88d3ac65ceeb83bd><dddbf992eca404ad88d3ac65ceeb83bd>]
+% ReportLab generated PDF document -- digest (http://www.reportlab.com)
+
+/Info 12 0 R
+/Root 11 0 R
+/Size 20
+>>
+startxref
+6070
+%%EOF
