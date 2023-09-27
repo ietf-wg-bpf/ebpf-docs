@@ -41,16 +41,20 @@ jobs:
     - name: Build PDF
       run: |
         rst2pdf rst/instruction-set.rst generated/instruction-set.pdf
+        rst2pdf rst/abi.rst generated/abi.pdf
 
-    - name: Build rfcxml
+    - name: Build xml files
       run: |
         wget https://github.com/dthaler/rst2rfcxml/releases/download/v0.8/Ubuntu.Release.rst2rfcxml.zip
         unzip Ubuntu.Release.rst2rfcxml.zip
         chmod 755 rst2rfcxml
         ./rst2rfcxml rst/instruction-set-skeleton.rst -o generated/draft-thaler-bpf-isa.xml
+        ./rst2rfcxml rst/abi-skeleton.rst -o generated/draft-thaler-bpf-abi.xml
         cd generated
         xml2rfc draft-thaler-bpf-isa.xml
         xml2rfc --html draft-thaler-bpf-isa.xml
+        xml2rfc draft-thaler-bpf-abi.xml
+        xml2rfc --html draft-thaler-bpf-abi.xml
 
     - name: Check in generated files
       if: github.event_name == 'push'
