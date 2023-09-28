@@ -155,9 +155,14 @@ opcode  src  imm   offset  description                                          
 0xb7    0x0  any   16      dst = (s64) (s16) imm                                `Arithmetic instructions`_
 0xb7    0x0  any   32      dst = (s64) (s32) imm                                `Arithmetic instructions`_
 0xbc    any  0x00  0       dst = (u32) src                                      `Arithmetic instructions`_
+0xbc    any  0x00  8       dst = (u32) (s32) (s8) src                           `Arithmetic instructions`_
+0xbc    any  0x00  16      dst = (u32) (s32) (s16) src                          `Arithmetic instructions`_
 0xbd    any  0x00  any     if dst <= src goto +offset                           `Jump instructions`_
 0xbe    any  0x00  any     if (u32)dst <= (u32)src goto +offset                 `Jump instructions`_
 0xbf    any  0x00  0       dst = src                                            `Arithmetic instructions`_
+0xbf    any  0x00  8       dst = (s64) (s8) src                                 `Arithmetic instructions`_
+0xbf    any  0x00  16      dst = (s64) (s16) src                                `Arithmetic instructions`_
+0xbf    any  0x00  32      dst = (s64) (s32) src                                `Arithmetic instructions`_
 0xc3    any  0x00  any     lock \*(u32 \*)(dst + offset) += src                 `Atomic operations`_
 0xc3    any  0x01  any     lock::                                               `Atomic operations`_
 
