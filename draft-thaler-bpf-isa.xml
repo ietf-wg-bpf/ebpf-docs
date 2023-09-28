@@ -7476,6 +7476,70 @@ BPF Instruction Set Specification, v1.0
      <tr>
       <td>
        <t>
+        0xbc
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        8
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32) (s32) (s8) src
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xbc
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        16
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (u32) (s32) (s16) src
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
         0xbd
        </t>
       </td>
@@ -7561,6 +7625,102 @@ BPF Instruction Set Specification, v1.0
       <td>
        <t>
         dst = src
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xbf
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        8
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (s64) (s8) src
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xbf
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        16
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (s64) (s16) src
+       </t>
+      </td>
+      <td>
+       <t>
+        <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+       </t>
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <t>
+        0xbf
+       </t>
+      </td>
+      <td>
+       <t>
+        any
+       </t>
+      </td>
+      <td>
+       <t>
+        0x00
+       </t>
+      </td>
+      <td>
+       <t>
+        32
+       </t>
+      </td>
+      <td>
+       <t>
+        dst = (s64) (s32) src
        </t>
       </td>
       <td>
