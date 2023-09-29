@@ -27,7 +27,7 @@
     requests 2.22.0
     setuptools 45.2.0
     six 1.14.0
-    wcwidth 0.2.6
+    wcwidth 0.2.7
 -->
 <link href="draft-thaler-bpf-isa.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -1207,7 +1207,7 @@ li > p:last-of-type:only-child {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Thaler</td>
-<td class="center">Expires 31 March 2024</td>
+<td class="center">Expires 1 April 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1220,12 +1220,12 @@ li > p:last-of-type:only-child {
 <dd class="internet-draft">draft-thaler-bpf-isa-02</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-09-28" class="published">28 September 2023</time>
+<time datetime="2023-09-29" class="published">29 September 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-03-31">31 March 2024</time></dd>
+<dd class="expires"><time datetime="2024-04-01">1 April 2024</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1261,7 +1261,7 @@ li > p:last-of-type:only-child {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 31 March 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 1 April 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -4923,7 +4923,7 @@ li > p:last-of-type:only-child {
 </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.43.5.1">
-        dst = (u32)((imm != 0) ? (dst / imm) : 0)<a href="#section-7-2.2.43.5.1" class="pilcrow">¶</a></p>
+        dst = (u32)((imm != 0) ? ((u32)dst / (u32)imm) : 0)<a href="#section-7-2.2.43.5.1" class="pilcrow">¶</a></p>
 </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.43.6.1">
@@ -4949,7 +4949,7 @@ li > p:last-of-type:only-child {
 </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.44.5.1">
-        dst = (u32)((imm != 0) ? (dst s/ imm) : 0)<a href="#section-7-2.2.44.5.1" class="pilcrow">¶</a></p>
+        dst = (u32)((imm != 0) ? ((s32)dst s/ imm) : 0)<a href="#section-7-2.2.44.5.1" class="pilcrow">¶</a></p>
 </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.44.6.1">
@@ -5027,7 +5027,7 @@ li > p:last-of-type:only-child {
 </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.47.5.1">
-        dst = (imm != 0) ? (dst / imm) : 0<a href="#section-7-2.2.47.5.1" class="pilcrow">¶</a></p>
+        dst = (imm != 0) ? (dst / (u32)imm) : 0<a href="#section-7-2.2.47.5.1" class="pilcrow">¶</a></p>
 </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.47.6.1">
@@ -5183,7 +5183,7 @@ li > p:last-of-type:only-child {
 </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.53.5.1">
-        dst = (u32)((imm != 0) ? (dst / src) : 0)<a href="#section-7-2.2.53.5.1" class="pilcrow">¶</a></p>
+        dst = (u32)((src != 0) ? ((u32)dst / (u32)src) : 0)<a href="#section-7-2.2.53.5.1" class="pilcrow">¶</a></p>
 </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.53.6.1">
@@ -5209,7 +5209,7 @@ li > p:last-of-type:only-child {
 </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.54.5.1">
-        dst = (u32)((imm != 0) ? (dst s/ src) : 0)<a href="#section-7-2.2.54.5.1" class="pilcrow">¶</a></p>
+        dst = (u32)((src != 0) ? ((s32)dst s/(s32)src) : 0)<a href="#section-7-2.2.54.5.1" class="pilcrow">¶</a></p>
 </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.54.6.1">
@@ -7029,7 +7029,7 @@ li > p:last-of-type:only-child {
 </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.124.5.1">
-        dst = (u32)((imm != 0) ? (dst % imm) : dst)<a href="#section-7-2.2.124.5.1" class="pilcrow">¶</a></p>
+        dst = (u32)((imm != 0)?((u32)dst % (u32)imm) : dst)<a href="#section-7-2.2.124.5.1" class="pilcrow">¶</a></p>
 </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.124.6.1">
@@ -7055,7 +7055,7 @@ li > p:last-of-type:only-child {
 </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.125.5.1">
-        dst = (u32)((imm != 0) ? (dst s% imm) : dst)<a href="#section-7-2.2.125.5.1" class="pilcrow">¶</a></p>
+        dst = (u32)((imm != 0) ? ((s32)dst s% imm) : dst)<a href="#section-7-2.2.125.5.1" class="pilcrow">¶</a></p>
 </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.125.6.1">
@@ -7107,7 +7107,7 @@ li > p:last-of-type:only-child {
 </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.127.5.1">
-        dst = (imm != 0) ? (dst % imm) : dst<a href="#section-7-2.2.127.5.1" class="pilcrow">¶</a></p>
+        dst = (imm != 0) ? (dst % (u32)imm) : dst<a href="#section-7-2.2.127.5.1" class="pilcrow">¶</a></p>
 </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.127.6.1">
@@ -7159,7 +7159,7 @@ li > p:last-of-type:only-child {
 </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.129.5.1">
-        dst = (u32)((src != 0) ? (dst % src) : dst)<a href="#section-7-2.2.129.5.1" class="pilcrow">¶</a></p>
+        dst = (u32)((src != 0)?((u32)dst % (u32)src) : dst)<a href="#section-7-2.2.129.5.1" class="pilcrow">¶</a></p>
 </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.129.6.1">
@@ -7185,7 +7185,7 @@ li > p:last-of-type:only-child {
 </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.130.5.1">
-        dst = (u32)((src != 0) ? (dst s% src) : dst)<a href="#section-7-2.2.130.5.1" class="pilcrow">¶</a></p>
+        dst = (u32)((src != 0)?((s32)dst s% (s32)src) :dst)<a href="#section-7-2.2.130.5.1" class="pilcrow">¶</a></p>
 </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.130.6.1">
