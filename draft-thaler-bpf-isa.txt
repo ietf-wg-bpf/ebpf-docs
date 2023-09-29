@@ -1747,8 +1747,8 @@ Internet-Draft                  eBPF ISA                  September 2023
    |      |   |    |      |                          | instructions  |
    |      |   |    |      |                          | (Section 3.1) |
    +------+---+----+------+--------------------------+---------------+
-   |0x85  |0x0|any |0     |call platform-agnostic    | Helper        |
-   |      |   |    |      |helper function imm       | functions     |
+   |0x85  |0x0|any |0     |call helper function by   | Helper        |
+   |      |   |    |      |address                   | functions     |
    |      |   |    |      |                          | (Section      |
    |      |   |    |      |                          | 3.3.1)        |
    +------+---+----+------+--------------------------+---------------+
@@ -1757,8 +1757,8 @@ Internet-Draft                  eBPF ISA                  September 2023
    |      |   |    |      |                          | (Section      |
    |      |   |    |      |                          | 3.3.2)        |
    +------+---+----+------+--------------------------+---------------+
-   |0x85  |0x2|any |0     |call platform-specific    | Helper        |
-   |      |   |    |      |helper function imm       | functions     |
+   |0x85  |0x2|any |0     |call helper function by   | Helper        |
+   |      |   |    |      |BTF ID                    | functions     |
    |      |   |    |      |                          | (Section      |
    |      |   |    |      |                          | 3.3.1)        |
    +------+---+----+------+--------------------------+---------------+
@@ -1866,7 +1866,7 @@ Internet-Draft                  eBPF ISA                  September 2023
    |      |   |    |      |+offset                   | instructions  |
    |      |   |    |      |                          | (Section 3.3) |
    +------+---+----+------+--------------------------+---------------+
-   |0xa6  |0x0|any |any   |if (u32)dst <= imm goto   | Jump          |
+   |0xb6  |0x0|any |any   |if (u32)dst <= imm goto   | Jump          |
    |      |   |    |      |+offset                   | instructions  |
    |      |   |    |      |                          | (Section 3.3) |
    +------+---+----+------+--------------------------+---------------+

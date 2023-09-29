@@ -6504,7 +6504,7 @@ BPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
-        call platform-agnostic helper function imm
+        call helper function by address
        </t>
       </td>
       <td>
@@ -6568,7 +6568,7 @@ BPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
-        call platform-specific helper function imm
+        call helper function by BTF ID
        </t>
       </td>
       <td>
@@ -7284,7 +7284,7 @@ BPF Instruction Set Specification, v1.0
      <tr>
       <td>
        <t>
-        0xa6
+        0xb6
        </t>
       </td>
       <td>

@@ -11,10 +11,10 @@
     This document specifies version 1.0 of the BPF instruction set.
        
     " name="description">
-<meta content="xml2rfc 3.18.0" name="generator">
+<meta content="xml2rfc 3.18.1" name="generator">
 <meta content="draft-thaler-bpf-isa-02" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.18.0
+  xml2rfc 3.18.1
     Python 3.8.10
     ConfigArgParse 1.7
     google-i18n-address 3.1.0
@@ -305,6 +305,9 @@ blockquote {
   border: 1px solid #ddd;
   border-radius: 3px;
   margin: 1em 0;
+}
+blockquote > *:last-child {
+  margin-bottom: 0;
 }
 cite {
   display: block;
@@ -6925,7 +6928,7 @@ li > p:last-of-type:only-child {
 </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.120.5.1">
-        call platform-agnostic helper function imm<a href="#section-7-2.2.120.5.1" class="pilcrow">¶</a></p>
+        call helper function by address<a href="#section-7-2.2.120.5.1" class="pilcrow">¶</a></p>
 </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.120.6.1">
@@ -6977,7 +6980,7 @@ li > p:last-of-type:only-child {
 </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.122.5.1">
-        call platform-specific helper function imm<a href="#section-7-2.2.122.5.1" class="pilcrow">¶</a></p>
+        call helper function by BTF ID<a href="#section-7-2.2.122.5.1" class="pilcrow">¶</a></p>
 </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.122.6.1">
@@ -7559,7 +7562,7 @@ li > p:last-of-type:only-child {
           <tr>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.145.1.1">
-        0xa6<a href="#section-7-2.2.145.1.1" class="pilcrow">¶</a></p>
+        0xb6<a href="#section-7-2.2.145.1.1" class="pilcrow">¶</a></p>
 </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.145.2.1">
