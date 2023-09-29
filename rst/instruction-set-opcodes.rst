@@ -124,9 +124,9 @@ opcode  src  imm   offset  description                                          
 0x7e    any  0x00  any     if (s32)dst s>= (s32)src goto +offset                `Jump instructions`_
 0x7f    any  0x00  0       dst >>= src                                          `Arithmetic instructions`_
 0x84    0x0  0x00  0       dst = (u32)-dst                                      `Arithmetic instructions`_
-0x85    0x0  any   0       call platform-agnostic helper function imm           `Helper functions`_
+0x85    0x0  any   0       call helper function by address                      `Helper functions`_
 0x85    0x1  any   0       call PC += imm                                       `Program-local functions`_
-0x85    0x2  any   0       call platform-specific helper function imm           `Helper functions`_
+0x85    0x2  any   0       call helper function by BTF ID                       `Helper functions`_
 0x87    0x0  0x00  0       dst = -dst                                           `Arithmetic instructions`_
 0x94    0x0  any   0       dst = (u32)((imm != 0)?((u32)dst % (u32)imm) : dst)  `Arithmetic instructions`_
 0x94    0x0  any   1       dst = (u32)((imm != 0) ? ((s32)dst s% imm) : dst)    `Arithmetic instructions`_
@@ -149,7 +149,7 @@ opcode  src  imm   offset  description                                          
 0xb4    0x0  any   8       dst = (u32) (s32) (s8) imm                           `Arithmetic instructions`_
 0xb4    0x0  any   16      dst = (u32) (s32) (s16) imm                          `Arithmetic instructions`_
 0xb5    0x0  any   any     if dst <= imm goto +offset                           `Jump instructions`_
-0xa6    0x0  any   any     if (u32)dst <= imm goto +offset                      `Jump instructions`_
+0xb6    0x0  any   any     if (u32)dst <= imm goto +offset                      `Jump instructions`_
 0xb7    0x0  any   0       dst = imm                                            `Arithmetic instructions`_
 0xb7    0x0  any   8       dst = (s64) (s8) imm                                 `Arithmetic instructions`_
 0xb7    0x0  any   16      dst = (s64) (s16) imm                                `Arithmetic instructions`_
