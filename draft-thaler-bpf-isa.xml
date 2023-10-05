@@ -8715,7 +8715,7 @@ BPF Instruction Set Specification, v1.0
        </t>
        <artwork>
      *(u64 *)(dst + offset) |= src
-     lock src = *(u64 *)(dst + offset)
+     src = *(u64 *)(dst + offset)
        </artwork>
       </td>
       <td>

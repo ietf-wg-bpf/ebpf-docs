@@ -4,8 +4,8 @@
 
 Network Working Group                                     D. Thaler, Ed.
 Internet-Draft                                                 Microsoft
-Intended status: Standards Track                       29 September 2023
-Expires: 1 April 2024
+Intended status: Standards Track                          5 October 2023
+Expires: 7 April 2024
 
 
                 BPF Instruction Set Specification, v1.0
@@ -30,7 +30,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 April 2024.
+   This Internet-Draft will expire on 7 April 2024.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Table of Contents
 
 
 
-Thaler                    Expires 1 April 2024                  [Page 1]
+Thaler                    Expires 7 April 2024                  [Page 1]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
      1.1.  Types . . . . . . . . . . . . . . . . . . . . . . . . . .   2
@@ -109,9 +109,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                  [Page 2]
+Thaler                    Expires 7 April 2024                  [Page 2]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
                             +=======+===========+
@@ -165,9 +165,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                  [Page 3]
+Thaler                    Expires 7 April 2024                  [Page 3]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    *  _bswap16_: Takes an unsigned 16-bit number in either big- or
@@ -221,9 +221,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                  [Page 4]
+Thaler                    Expires 7 April 2024                  [Page 4]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    *offset*  signed integer offset used with pointer arithmetic
@@ -277,9 +277,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                  [Page 5]
+Thaler                    Expires 7 April 2024                  [Page 5]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    where 'next_imm' refers to the imm value of the pseudo instruction
@@ -333,9 +333,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                  [Page 6]
+Thaler                    Expires 7 April 2024                  [Page 6]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
                +==============+========+===================+
@@ -389,9 +389,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                  [Page 7]
+Thaler                    Expires 7 April 2024                  [Page 7]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    +===========+=======+=========+=====================================+
@@ -445,9 +445,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                  [Page 8]
+Thaler                    Expires 7 April 2024                  [Page 8]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    Underflow and overflow are allowed during arithmetic operations,
@@ -501,9 +501,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                  [Page 9]
+Thaler                    Expires 7 April 2024                  [Page 9]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    Shift operations use a mask of 0x3F (63) for 64-bit operations and
@@ -557,9 +557,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                 [Page 10]
+Thaler                    Expires 7 April 2024                 [Page 10]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    BPF_ALU64 | BPF_TO_LE | BPF_END with imm = 16/32/64 means:
@@ -613,9 +613,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                 [Page 11]
+Thaler                    Expires 7 April 2024                 [Page 11]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    | BPF_CALL | 0x8   | 0x2 | call helper         | see Helper        |
@@ -669,9 +669,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                 [Page 12]
+Thaler                    Expires 7 April 2024                 [Page 12]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    Historically, each helper function was identified by an address
@@ -725,9 +725,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                 [Page 13]
+Thaler                    Expires 7 April 2024                 [Page 13]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
       +============+=======+==================+=====================+
@@ -781,9 +781,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                 [Page 14]
+Thaler                    Expires 7 April 2024                 [Page 14]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
 4.1.  Regular load and store operations
@@ -837,9 +837,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                 [Page 15]
+Thaler                    Expires 7 April 2024                 [Page 15]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    The 'imm' field is used to encode the actual atomic operation.
@@ -893,9 +893,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                 [Page 16]
+Thaler                    Expires 7 April 2024                 [Page 16]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    The BPF_XCHG operation atomically exchanges src with the value
@@ -949,9 +949,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                 [Page 17]
+Thaler                    Expires 7 April 2024                 [Page 17]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
     +============+======+===+========================+========+=======+
@@ -1005,9 +1005,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                 [Page 18]
+Thaler                    Expires 7 April 2024                 [Page 18]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    *  code_addr(imm) gets the address of the instruction at a specified
@@ -1061,9 +1061,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                 [Page 19]
+Thaler                    Expires 7 April 2024                 [Page 19]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    *  Syntax of registry entries: Each entry has the following fields:
@@ -1117,9 +1117,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                 [Page 20]
+Thaler                    Expires 7 April 2024                 [Page 20]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
 7.  Appendix
@@ -1173,9 +1173,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                 [Page 21]
+Thaler                    Expires 7 April 2024                 [Page 21]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    |      |   |    |      |                          | (Section 3.3) |
@@ -1229,9 +1229,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                 [Page 22]
+Thaler                    Expires 7 April 2024                 [Page 22]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    +------+---+----+------+--------------------------+---------------+
@@ -1285,9 +1285,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                 [Page 23]
+Thaler                    Expires 7 April 2024                 [Page 23]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    |      |   |    |      |                          | (Section 4.5) |
@@ -1341,9 +1341,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                 [Page 24]
+Thaler                    Expires 7 April 2024                 [Page 24]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    |0x33  |any|any |any   |(deprecated,              | Legacy BPF    |
@@ -1397,9 +1397,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                 [Page 25]
+Thaler                    Expires 7 April 2024                 [Page 25]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    +------+---+----+------+--------------------------+---------------+
@@ -1453,9 +1453,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                 [Page 26]
+Thaler                    Expires 7 April 2024                 [Page 26]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    +------+---+----+------+--------------------------+---------------+
@@ -1509,9 +1509,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                 [Page 27]
+Thaler                    Expires 7 April 2024                 [Page 27]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    +------+---+----+------+--------------------------+---------------+
@@ -1565,9 +1565,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                 [Page 28]
+Thaler                    Expires 7 April 2024                 [Page 28]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    |      |   |    |      |implementation-specific)  | Packet access |
@@ -1621,9 +1621,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                 [Page 29]
+Thaler                    Expires 7 April 2024                 [Page 29]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    |0x66  |0x0|any |any   |if (s32)dst s> (s32)imm   | Jump          |
@@ -1677,9 +1677,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                 [Page 30]
+Thaler                    Expires 7 April 2024                 [Page 30]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    +------+---+----+------+--------------------------+---------------+
@@ -1733,9 +1733,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                 [Page 31]
+Thaler                    Expires 7 April 2024                 [Page 31]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    +------+---+----+------+--------------------------+---------------+
@@ -1789,9 +1789,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                 [Page 32]
+Thaler                    Expires 7 April 2024                 [Page 32]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    |0x9c  |any|0x00|0     |dst = (u32)((src !=       | Arithmetic    |
@@ -1845,9 +1845,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                 [Page 33]
+Thaler                    Expires 7 April 2024                 [Page 33]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    |0xb4  |0x0|any |0     |dst = (u32) imm           | Arithmetic    |
@@ -1901,9 +1901,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                 [Page 34]
+Thaler                    Expires 7 April 2024                 [Page 34]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    |0xbd  |any|0x00|any   |if dst <= src goto        | Jump          |
@@ -1957,9 +1957,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                 [Page 35]
+Thaler                    Expires 7 April 2024                 [Page 35]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    |      |   |    |      |     *(u32 *)(dst + offset) &= src| (Section 4.3) |
@@ -2013,9 +2013,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                 [Page 36]
+Thaler                    Expires 7 April 2024                 [Page 36]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    +------+---+----+------+--------------------------+---------------+
@@ -2069,9 +2069,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                 [Page 37]
+Thaler                    Expires 7 April 2024                 [Page 37]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    |      |   |    |      |     src = *(u64 *)(dst + offset)|               |
@@ -2083,7 +2083,7 @@ Internet-Draft                  eBPF ISA                  September 2023
    |0xdb  |any|0x41|any   |lock:                     | Atomic        |
    |      |   |    |      |                          | operations    |
    |      |   |    |      |     *(u64 *)(dst + offset) |= src| (Section 4.3) |
-   |      |   |    |      |     lock src = *(u64 *)(dst + offset)|               |
+   |      |   |    |      |     src = *(u64 *)(dst + offset)|               |
    +------+---+----+------+--------------------------+---------------+
    |0xdb  |any|0x50|any   |*(u64 *)(dst + offset)    | Atomic        |
    |      |   |    |      |&= src                    | operations    |
@@ -2125,9 +2125,9 @@ Internet-Draft                  eBPF ISA                  September 2023
 
 
 
-Thaler                    Expires 1 April 2024                 [Page 38]
+Thaler                    Expires 7 April 2024                 [Page 38]
 
-Internet-Draft                  eBPF ISA                  September 2023
+Internet-Draft                  eBPF ISA                    October 2023
 
 
    |      |   |    |      |                          | (Section 3.2) |
@@ -2181,4 +2181,4 @@ Author's Address
 
 
 
-Thaler                    Expires 1 April 2024                 [Page 39]
+Thaler                    Expires 7 April 2024                 [Page 39]
