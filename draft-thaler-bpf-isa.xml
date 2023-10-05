@@ -2649,9 +2649,10 @@ BPF Instruction Set Specification, v1.0
    <t>
     This draft was generated from instruction-set.rst in the Linux
     kernel repository, to which a number of other individuals have authored contributions
-    over time, including Akhil Raj, Will Hawkins, Christoph Hellwig, Jose E. Marchesi, Kosuke Fujimoto,
-    Shahab Vahedi, Tiezhu Yang, and Zheng Yejian, with review and suggestions by many others including
-    Alan Jowett, Alexei Starovoitov, Andrii Nakryiko, Daniel Borkmann, David Vernet, Jim Harris,
+    over time, including Akhil Raj, Alexei Starovoitov, Brendan Jackman, Christoph Hellwig, Daniel Borkmann,
+    Ilya Leoshkevich, Jiong Wang, Jose E. Marchesi, Kosuke Fujimoto,
+    Shahab Vahedi, Tiezhu Yang, Will Hawkins, and Zheng Yejian, with review and suggestions by many others including
+    Alan Jowett, Andrii Nakryiko, David Vernet, Jim Harris,
     Quentin Monnet, Song Liu, Shung-Hsi Yu, Stanislav Fomichev, and Yonghong Song.
    </t>
   </section>
