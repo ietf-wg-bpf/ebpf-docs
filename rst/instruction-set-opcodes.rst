@@ -211,10 +211,10 @@ opcode  src  imm   offset  description                                          
 0xd7    0x0  0x20  0       dst = bswap32(dst)                                   `Byte swap instructions`_
 0xd7    0x0  0x40  0       dst = bswap64(dst)                                   `Byte swap instructions`_
 0xdb    any  0x00  any     lock \*(u64 \*)(dst + offset) += src                 `Atomic operations`_
-0xdb    any  0x01  any     lock::                                               `Atomic operations`_
-
-                                *(u64 *)(dst + offset) += src
-                                src = *(u64 *)(dst + offset)
+0xdb    any  0x01  any     lock                                                 `Atomic operations`_
+                           *(u64 *)(dst + offset) += src
+                           src = *(u64 *)(dst + offset)
+                           unlock
 0xdb    any  0x40  any     \*(u64 \*)(dst + offset) \|= src                     `Atomic operations`_
 0xdb    any  0x41  any     lock::                                               `Atomic operations`_
 
@@ -235,12 +235,12 @@ opcode  src  imm   offset  description                                          
                                 temp = *(u64 *)(dst + offset)
                                 *(u64 *)(dst + offset) = src
                                 src = temp
-0xdb    any  0xf1  any     lock::                                               `Atomic operations`_
-
-                                temp = *(u64 *)(dst + offset)
-                                if *(u64)(dst + offset) == R0
-                                   *(u64)(dst + offset) = src
-                                R0 = temp
+0xdb    any  0xf1  any     lock                                                 `Atomic operations`_
+                           temp = *(u64 *)(dst + offset)
+                           if *(u64)(dst + offset) == R0
+                              *(u64)(dst + offset) = src
+                           R0 = temp
+                           unlock
 0xdc    0x0  0x10  0       dst = htobe16(dst)                                   `Byte swap instructions`_
 0xdc    0x0  0x20  0       dst = htobe32(dst)                                   `Byte swap instructions`_
 0xdc    0x0  0x40  0       dst = htobe64(dst)                                   `Byte swap instructions`_
