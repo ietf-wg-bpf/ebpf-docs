@@ -219,7 +219,7 @@ opcode  src  imm   offset  description                                          
 0xdb    any  0x41  any     lock::                                               `Atomic operations`_
 
                                 *(u64 *)(dst + offset) |= src
-                                lock src = *(u64 *)(dst + offset)
+                                src = *(u64 *)(dst + offset)
 0xdb    any  0x50  any     \*(u64 \*)(dst + offset) &= src                      `Atomic operations`_
 0xdb    any  0x51  any     lock::                                               `Atomic operations`_
 
