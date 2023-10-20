@@ -4,8 +4,8 @@
 
 Network Working Group                                     D. Thaler, Ed.
 Internet-Draft                                                 Microsoft
-Intended status: Standards Track                          5 October 2023
-Expires: 7 April 2024
+Intended status: Standards Track                         20 October 2023
+Expires: 22 April 2024
 
 
                 BPF Instruction Set Specification, v1.0
@@ -30,7 +30,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 April 2024.
+   This Internet-Draft will expire on 22 April 2024.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Table of Contents
 
 
 
-Thaler                    Expires 7 April 2024                  [Page 1]
+Thaler                    Expires 22 April 2024                 [Page 1]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -67,7 +67,7 @@ Internet-Draft                  eBPF ISA                    October 2023
      3.1.  Arithmetic instructions . . . . . . . . . . . . . . . . .   7
      3.2.  Byte swap instructions  . . . . . . . . . . . . . . . . .  10
      3.3.  Jump instructions . . . . . . . . . . . . . . . . . . . .  11
-       3.3.1.  Helper functions  . . . . . . . . . . . . . . . . . .  12
+       3.3.1.  Helper functions  . . . . . . . . . . . . . . . . . .  13
        3.3.2.  Program-local functions . . . . . . . . . . . . . . .  13
    4.  Load and store instructions . . . . . . . . . . . . . . . . .  13
      4.1.  Regular load and store operations . . . . . . . . . . . .  15
@@ -109,7 +109,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                  [Page 2]
+Thaler                    Expires 22 April 2024                 [Page 2]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -165,7 +165,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                  [Page 3]
+Thaler                    Expires 22 April 2024                 [Page 3]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -221,7 +221,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                  [Page 4]
+Thaler                    Expires 22 April 2024                 [Page 4]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -277,7 +277,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                  [Page 5]
+Thaler                    Expires 22 April 2024                 [Page 5]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -333,7 +333,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                  [Page 6]
+Thaler                    Expires 22 April 2024                 [Page 6]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -389,7 +389,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                  [Page 7]
+Thaler                    Expires 22 April 2024                 [Page 7]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -445,7 +445,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                  [Page 8]
+Thaler                    Expires 22 April 2024                 [Page 8]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -492,19 +492,27 @@ Internet-Draft                  eBPF ISA                    October 2023
    sign extended (Section 1.3) from 32 to 64 bits, and then interpreted
    as a 64-bit signed value.
 
+   Note that there are varying definitions of the signed modulo
+   operation when the dividend or divisor are negative, where
+   implementations often vary by language such that Python, Ruby, etc.
+   differ from C, Go, Java, etc.  This specification requires that
+   signed modulo use truncated division (where -13 % 3 == -1) as
+   implemented in C, Go, etc.:
+
+
+
+Thaler                    Expires 22 April 2024                 [Page 9]
+
+Internet-Draft                  eBPF ISA                    October 2023
+
+
+   |  a % n = a - n * trunc(a / n)
+
    The BPF_MOVSX instruction does a move operation with sign extension.
    BPF_ALU | BPF_MOVSX sign extends (Section 1.3) 8-bit and 16-bit
    operands into 32 bit operands, and zeroes the remaining upper 32
    bits.  BPF_ALU64 | BPF_MOVSX sign extends (Section 1.3) 8-bit,
    16-bit, and 32-bit operands into 64 bit operands.
-
-
-
-
-Thaler                    Expires 7 April 2024                  [Page 9]
-
-Internet-Draft                  eBPF ISA                    October 2023
-
 
    Shift operations use a mask of 0x3F (63) for 64-bit operations and
    0x1F (31) for 32-bit operations.
@@ -544,6 +552,16 @@ Internet-Draft                  eBPF ISA                    October 2023
 
    BPF_ALU | BPF_TO_LE | BPF_END with imm = 16/32/64 means:
 
+
+
+
+
+
+Thaler                    Expires 22 April 2024                [Page 10]
+
+Internet-Draft                  eBPF ISA                    October 2023
+
+
      dst = htole16(dst)
      dst = htole32(dst)
      dst = htole64(dst)
@@ -553,14 +571,6 @@ Internet-Draft                  eBPF ISA                    October 2023
      dst = htobe16(dst)
      dst = htobe32(dst)
      dst = htobe64(dst)
-
-
-
-
-Thaler                    Expires 7 April 2024                 [Page 10]
-
-Internet-Draft                  eBPF ISA                    October 2023
-
 
    BPF_ALU64 | BPF_TO_LE | BPF_END with imm = 16/32/64 means:
 
@@ -600,6 +610,14 @@ Internet-Draft                  eBPF ISA                    October 2023
    |          |       |     | > src               |                   |
    +----------+-------+-----+---------------------+-------------------+
    | BPF_JSGE | 0x7   | any | PC += offset if dst | signed            |
+
+
+
+Thaler                    Expires 22 April 2024                [Page 11]
+
+Internet-Draft                  eBPF ISA                    October 2023
+
+
    |          |       |     | >= src              |                   |
    +----------+-------+-----+---------------------+-------------------+
    | BPF_CALL | 0x8   | 0x0 | call helper         | see Helper        |
@@ -610,14 +628,6 @@ Internet-Draft                  eBPF ISA                    October 2023
    |          |       |     |                     | functions         |
    |          |       |     |                     | (Section 3.3.2)   |
    +----------+-------+-----+---------------------+-------------------+
-
-
-
-Thaler                    Expires 7 April 2024                 [Page 11]
-
-Internet-Draft                  eBPF ISA                    October 2023
-
-
    | BPF_CALL | 0x8   | 0x2 | call helper         | see Helper        |
    |          |       |     | function by BTF ID  | functions         |
    |          |       |     |                     | (Section 3.3.1)   |
@@ -656,6 +666,14 @@ Internet-Draft                  eBPF ISA                    October 2023
 
    where 'imm' means the branch offset comes from insn 'imm' field.
 
+
+
+
+Thaler                    Expires 22 April 2024                [Page 12]
+
+Internet-Draft                  eBPF ISA                    October 2023
+
+
    Note that there are two flavors of BPF_JA instructions.  The BPF_JMP
    class permits a 16-bit jump offset specified by the 'offset' field,
    whereas the BPF_JMP32 class permits a 32-bit jump offset specified by
@@ -666,13 +684,6 @@ Internet-Draft                  eBPF ISA                    October 2023
 
    Helper functions are a concept whereby BPF programs can call into a
    set of function calls exposed by the underlying platform.
-
-
-
-Thaler                    Expires 7 April 2024                 [Page 12]
-
-Internet-Draft                  eBPF ISA                    October 2023
-
 
    Historically, each helper function was identified by an address
    encoded in the imm field.  The available helper functions may differ
@@ -714,18 +725,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-Thaler                    Expires 7 April 2024                 [Page 13]
+Thaler                    Expires 22 April 2024                [Page 13]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -781,7 +781,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                 [Page 14]
+Thaler                    Expires 22 April 2024                [Page 14]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -837,7 +837,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                 [Page 15]
+Thaler                    Expires 22 April 2024                [Page 15]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -893,7 +893,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                 [Page 16]
+Thaler                    Expires 22 April 2024                [Page 16]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -949,7 +949,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                 [Page 17]
+Thaler                    Expires 22 April 2024                [Page 17]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -1005,7 +1005,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                 [Page 18]
+Thaler                    Expires 22 April 2024                [Page 18]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -1061,7 +1061,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                 [Page 19]
+Thaler                    Expires 22 April 2024                [Page 19]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -1117,7 +1117,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                 [Page 20]
+Thaler                    Expires 22 April 2024                [Page 20]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -1173,7 +1173,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                 [Page 21]
+Thaler                    Expires 22 April 2024                [Page 21]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -1229,7 +1229,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                 [Page 22]
+Thaler                    Expires 22 April 2024                [Page 22]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -1285,7 +1285,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                 [Page 23]
+Thaler                    Expires 22 April 2024                [Page 23]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -1341,7 +1341,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                 [Page 24]
+Thaler                    Expires 22 April 2024                [Page 24]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -1397,7 +1397,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                 [Page 25]
+Thaler                    Expires 22 April 2024                [Page 25]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -1453,7 +1453,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                 [Page 26]
+Thaler                    Expires 22 April 2024                [Page 26]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -1509,7 +1509,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                 [Page 27]
+Thaler                    Expires 22 April 2024                [Page 27]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -1565,7 +1565,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                 [Page 28]
+Thaler                    Expires 22 April 2024                [Page 28]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -1621,7 +1621,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                 [Page 29]
+Thaler                    Expires 22 April 2024                [Page 29]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -1677,7 +1677,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                 [Page 30]
+Thaler                    Expires 22 April 2024                [Page 30]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -1733,7 +1733,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                 [Page 31]
+Thaler                    Expires 22 April 2024                [Page 31]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -1789,7 +1789,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                 [Page 32]
+Thaler                    Expires 22 April 2024                [Page 32]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -1845,7 +1845,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                 [Page 33]
+Thaler                    Expires 22 April 2024                [Page 33]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -1901,7 +1901,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                 [Page 34]
+Thaler                    Expires 22 April 2024                [Page 34]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -1957,7 +1957,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                 [Page 35]
+Thaler                    Expires 22 April 2024                [Page 35]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -2013,7 +2013,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                 [Page 36]
+Thaler                    Expires 22 April 2024                [Page 36]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -2069,7 +2069,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                 [Page 37]
+Thaler                    Expires 22 April 2024                [Page 37]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -2125,7 +2125,7 @@ Internet-Draft                  eBPF ISA                    October 2023
 
 
 
-Thaler                    Expires 7 April 2024                 [Page 38]
+Thaler                    Expires 22 April 2024                [Page 38]
 
 Internet-Draft                  eBPF ISA                    October 2023
 
@@ -2181,4 +2181,4 @@ Author's Address
 
 
 
-Thaler                    Expires 7 April 2024                 [Page 39]
+Thaler                    Expires 22 April 2024                [Page 39]

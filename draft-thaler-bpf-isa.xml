@@ -1107,6 +1107,16 @@ BPF Instruction Set Specification, v1.0
      interpreted as a 64-bit signed value.
     </t>
     <t>
+     Note that there are varying definitions of the signed modulo operation
+     when the dividend or divisor are negative, where implementations often
+     vary by language such that Python, Ruby, etc.  differ from C, Go, Java,
+     etc. This specification requires that signed modulo use truncated division
+     (where -13 % 3 == -1) as implemented in C, Go, etc.:
+    </t>
+    <blockquote>
+     a % n = a - n * trunc(a / n)
+    </blockquote>
+    <t>
      The <tt>BPF_MOVSX</tt> instruction does a move operation with sign extension.
      <tt>BPF_ALU | BPF_MOVSX</tt> <xref target="term-sign-extend">sign extends</xref> 8-bit and 16-bit operands into 32
      bit operands, and zeroes the remaining upper 32 bits.
