@@ -48,11 +48,11 @@ jobs:
         wget https://github.com/dthaler/rst2rfcxml/releases/download/v0.8/Ubuntu.Release.rst2rfcxml.zip
         unzip Ubuntu.Release.rst2rfcxml.zip
         chmod 755 rst2rfcxml
-        ./rst2rfcxml rst/instruction-set-skeleton.rst -o generated/draft-thaler-bpf-isa.xml
+        ./rst2rfcxml rst/instruction-set-skeleton.rst -o generated/draft-ietf-bpf-isa.xml
         ./rst2rfcxml rst/abi-skeleton.rst -o generated/draft-thaler-bpf-abi.xml
         cd generated
-        xml2rfc draft-thaler-bpf-isa.xml
-        xml2rfc --html draft-thaler-bpf-isa.xml
+        xml2rfc draft-ietf-bpf-isa.xml
+        xml2rfc --html draft-ietf-bpf-isa.xml
         xml2rfc draft-thaler-bpf-abi.xml
         xml2rfc --html draft-thaler-bpf-abi.xml
 

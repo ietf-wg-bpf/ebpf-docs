@@ -6,9 +6,9 @@ to be published by the [IETF BPF Working Group](https://datatracker.ietf.org/wg/
 Instruction Set Architecture:
 
 * [PDF generated from instruction-set.rst](https://github.com/ietf-wg-bpf/ebpf-docs/blob/generated/instruction-set.pdf).
-* [Most recent Internet-Draft submitted](https://datatracker.ietf.org/doc/html/draft-thaler-bpf-isa)
-* [Latest Internet-Draft working copy](https://htmlpreview.github.io/?https://raw.githubusercontent.com/ietf-wg-bpf/ebpf-docs/generated/draft-thaler-bpf-isa.html)
-* [Diff between latest and most recent submitted](https://author-tools.ietf.org/diff?doc_1=draft-thaler-bpf-isa&url_2=https://raw.githubusercontent.com/ietf-wg-bpf/ebpf-docs/generated/draft-thaler-bpf-isa.txt&wdiff=1)
+* [Most recent Internet-Draft submitted](https://datatracker.ietf.org/doc/html/draft-ietf-bpf-isa)
+* [Latest Internet-Draft working copy](https://htmlpreview.github.io/?https://raw.githubusercontent.com/ietf-wg-bpf/ebpf-docs/generated/draft-ietf-bpf-isa.html)
+* [Diff between latest and most recent submitted](https://author-tools.ietf.org/diff?doc_1=draft-ietf-bpf-isa&url_2=https://raw.githubusercontent.com/ietf-wg-bpf/ebpf-docs/generated/draft-ietf-bpf-isa.txt&wdiff=1)
 
 ABI:
 
