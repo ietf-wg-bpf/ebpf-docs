@@ -9,7 +9,7 @@ Expires: 22 April 2024
 
 
                 BPF Instruction Set Specification, v1.0
-                        draft-thaler-bpf-isa-02
+                         draft-ietf-bpf-isa-00
 
 Abstract
 
