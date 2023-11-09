@@ -240,8 +240,8 @@ BPF Instruction Set Specification, v1.0
       Sign extend an 8-bit number <tt>A</tt> to a 16-bit number <tt>B</tt> on a big-endian platform:
      </t>
      <artwork>
-    A:          10000110
-    B: 11111111 10000110
+A:          10000110
+B: 11111111 10000110
      </artwork>
     </aside>
    </section>
@@ -264,8 +264,8 @@ BPF Instruction Set Specification, v1.0
     following order:
    </t>
    <artwork>
-  opcode:8 src_reg:4 dst_reg:4 offset:16 imm:32 // In little-endian BPF.
-  opcode:8 dst_reg:4 src_reg:4 offset:16 imm:32 // In big-endian BPF.
+opcode:8 src_reg:4 dst_reg:4 offset:16 imm:32 // In little-endian BPF.
+opcode:8 dst_reg:4 src_reg:4 offset:16 imm:32 // In big-endian BPF.
    </artwork>
    <dl>
     <dt anchor="term---imm--">
@@ -319,11 +319,11 @@ BPF Instruction Set Specification, v1.0
     For example:
    </t>
    <artwork>
-  opcode                  offset imm          assembly
-         src_reg dst_reg
-  07     0       1        00 00  44 33 22 11  r1 += 0x11223344 // little
-         dst_reg src_reg
-  07     1       0        00 00  11 22 33 44  r1 += 0x11223344 // big
+opcode                  offset imm          assembly
+       src_reg dst_reg
+07     0       1        00 00  44 33 22 11  r1 += 0x11223344 // little
+       dst_reg src_reg
+07     1       0        00 00  11 22 33 44  r1 += 0x11223344 // big
    </artwork>
    <t>
     Note that most instructions do not use all of the fields.
@@ -340,13 +340,13 @@ BPF Instruction Set Specification, v1.0
     This is depicted in the following figure:
    </t>
    <artwork>
-        basic_instruction
-  .-----------------------------.
-  |                             |
-  code:8 regs:8 offset:16 imm:32 unused:32 imm:32
-                                 |              |
-                                 '--------------'
-                                pseudo instruction
+      basic_instruction
+.-----------------------------.
+|                             |
+code:8 regs:8 offset:16 imm:32 unused:32 imm:32
+                               |              |
+                               '--------------'
+                              pseudo instruction
    </artwork>
    <t>
     Thus the 64-bit immediate value is constructed as follows:
@@ -1064,7 +1064,7 @@ BPF Instruction Set Specification, v1.0
      <tt>BPF_ADD | BPF_X | BPF_ALU</tt> means:
     </t>
     <artwork>
-  dst = (u32) ((u32) dst + (u32) src)
+dst = (u32) ((u32) dst + (u32) src)
     </artwork>
     <t>
      where '(u32)' indicates that the upper 32 bits are zeroed.
@@ -1073,19 +1073,19 @@ BPF Instruction Set Specification, v1.0
      <tt>BPF_ADD | BPF_X | BPF_ALU64</tt> means:
     </t>
     <artwork>
-  dst = dst + src
+dst = dst + src
     </artwork>
     <t>
      <tt>BPF_XOR | BPF_K | BPF_ALU</tt> means:
     </t>
     <artwork>
-  dst = (u32) dst ^ (u32) imm32
+dst = (u32) dst ^ (u32) imm32
     </artwork>
     <t>
      <tt>BPF_XOR | BPF_K | BPF_ALU64</tt> means:
     </t>
     <artwork>
-  dst = dst ^ imm32
+dst = dst ^ imm32
     </artwork>
     <t>
      Note that most instructions have instruction offset of 0. Only three instructions
@@ -1232,25 +1232,25 @@ BPF Instruction Set Specification, v1.0
      <tt>BPF_ALU | BPF_TO_LE | BPF_END</tt> with imm = 16/32/64 means:
     </t>
     <artwork>
-  dst = htole16(dst)
-  dst = htole32(dst)
-  dst = htole64(dst)
+dst = htole16(dst)
+dst = htole32(dst)
+dst = htole64(dst)
     </artwork>
     <t>
      <tt>BPF_ALU | BPF_TO_BE | BPF_END</tt> with imm = 16/32/64 means:
     </t>
     <artwork>
-  dst = htobe16(dst)
-  dst = htobe32(dst)
-  dst = htobe64(dst)
+dst = htobe16(dst)
+dst = htobe32(dst)
+dst = htobe64(dst)
     </artwork>
     <t>
      <tt>BPF_ALU64 | BPF_TO_LE | BPF_END</tt> with imm = 16/32/64 means:
     </t>
     <artwork>
-  dst = bswap16(dst)
-  dst = bswap32(dst)
-  dst = bswap64(dst)
+dst = bswap16(dst)
+dst = bswap32(dst)
+dst = bswap64(dst)
     </artwork>
    </section>
    <section anchor="jump-instructions" title="Jump instructions">
@@ -1733,7 +1733,7 @@ BPF Instruction Set Specification, v1.0
      <tt>BPF_JSGE | BPF_X | BPF_JMP32</tt> (0x7e) means:
     </t>
     <artwork>
-  if (s32)dst s&gt;= (s32)src goto +offset
+if (s32)dst s&gt;= (s32)src goto +offset
     </artwork>
     <t>
      where 's&gt;=' indicates a signed '&gt;=' comparison.
@@ -1742,7 +1742,7 @@ BPF Instruction Set Specification, v1.0
      <tt>BPF_JA | BPF_K | BPF_JMP32</tt> (0x06) means:
     </t>
     <artwork>
-  gotol +imm
+gotol +imm
     </artwork>
     <t>
      where 'imm' means the branch offset comes from insn 'imm' field.
@@ -2052,19 +2052,19 @@ BPF Instruction Set Specification, v1.0
      <tt>BPF_MEM | &lt;size&gt; | BPF_STX</tt> means:
     </t>
     <artwork>
-  *(size *) (dst + offset) = src
+*(size *) (dst + offset) = src
     </artwork>
     <t>
      <tt>BPF_MEM | &lt;size&gt; | BPF_ST</tt> means:
     </t>
     <artwork>
-  *(size *) (dst + offset) = imm32
+*(size *) (dst + offset) = imm32
     </artwork>
     <t>
      <tt>BPF_MEM | &lt;size&gt; | BPF_LDX</tt> means:
     </t>
     <artwork>
-  dst = *(unsigned size *) (src + offset)
+dst = *(unsigned size *) (src + offset)
     </artwork>
     <t>
      Where size is one of: <tt>BPF_B</tt>, <tt>BPF_H</tt>, <tt>BPF_W</tt>, or <tt>BPF_DW</tt> and
@@ -2080,7 +2080,7 @@ BPF Instruction Set Specification, v1.0
      <tt>BPF_MEMSX | &lt;size&gt; | BPF_LDX</tt> means:
     </t>
     <artwork>
-  dst = *(signed size *) (src + offset)
+dst = *(signed size *) (src + offset)
     </artwork>
     <t>
      Where size is one of: <tt>BPF_B</tt>, <tt>BPF_H</tt> or <tt>BPF_W</tt>, and
@@ -2196,13 +2196,13 @@ BPF Instruction Set Specification, v1.0
      <tt>BPF_ATOMIC | BPF_W  | BPF_STX</tt> with 'imm' = BPF_ADD means:
     </t>
     <artwork>
-  *(u32 *)(dst + offset) += src
+*(u32 *)(dst + offset) += src
     </artwork>
     <t>
      <tt>BPF_ATOMIC | BPF_DW | BPF_STX</tt> with 'imm' = BPF ADD means:
     </t>
     <artwork>
-  *(u64 *)(dst + offset) += src
+*(u64 *)(dst + offset) += src
     </artwork>
     <t>
      In addition to the simple atomic operations, there also is a modifier and
@@ -2636,7 +2636,7 @@ BPF Instruction Set Specification, v1.0
      </ul>
     </li>
     <li>
-     Registration policy (see <xref target="RFC8126">RFC 8126 section 4</xref> for details):
+     Registration policy (see <xref target="RFC8126" section="4"/> for details):
      <ul>
       <li>
        Permanent: Standards action or IESG Review
@@ -7794,13 +7794,9 @@ BPF Instruction Set Specification, v1.0
        </t>
       </td>
       <td>
-       <t>
-        lock:
-       </t>
-       <artwork>
-     *(u32 *)(dst + offset) += src
-     src = *(u32 *)(dst + offset)
-       </artwork>
+lock<br/>
+*(u32 *)(dst + offset) += src<br/>
+src = *(u32 *)(dst + offset)<br/>
       </td>
       <td>
        <t>
@@ -7831,7 +7827,7 @@ BPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
-        *(u32 *)(dst + offset) |= src
+        lock *(u32 *)(dst + offset) |= src
        </t>
       </td>
       <td>
@@ -7862,13 +7858,9 @@ BPF Instruction Set Specification, v1.0
        </t>
       </td>
       <td>
-       <t>
-        lock:
-       </t>
-       <artwork>
-     *(u32 *)(dst + offset) |= src
-     src = *(u32 *)(dst + offset)
-       </artwork>
+lock<br/>
+*(u32 *)(dst + offset) |= src<br/>
+src = *(u32 *)(dst + offset)<br/>
       </td>
       <td>
        <t>
@@ -7899,7 +7891,7 @@ BPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
-        *(u32 *)(dst + offset) &amp;= src
+        lock *(u32 *)(dst + offset) &amp;= src
        </t>
       </td>
       <td>
@@ -7930,13 +7922,9 @@ BPF Instruction Set Specification, v1.0
        </t>
       </td>
       <td>
-       <t>
-        lock:
-       </t>
-       <artwork>
-     *(u32 *)(dst + offset) &amp;= src
-     src = *(u32 *)(dst + offset)
-       </artwork>
+lock<br/>
+*(u32 *)(dst + offset) &amp;= src<br/>
+src = *(u32 *)(dst + offset)<br/>
       </td>
       <td>
        <t>
@@ -7967,7 +7955,7 @@ BPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
-        *(u32 *)(dst + offset) ^= src
+        lock *(u32 *)(dst + offset) ^= src
        </t>
       </td>
       <td>
@@ -7998,13 +7986,9 @@ BPF Instruction Set Specification, v1.0
        </t>
       </td>
       <td>
-       <t>
-        lock:
-       </t>
-       <artwork>
-     *(u32 *)(dst + offset) ^= src
-     src = *(u32 *)(dst + offset)
-       </artwork>
+lock<br/>
+*(u32 *)(dst + offset) ^= src<br/>
+src = *(u32 *)(dst + offset)<br/>
       </td>
       <td>
        <t>
@@ -8034,14 +8018,10 @@ BPF Instruction Set Specification, v1.0
        </t>
       </td>
       <td>
-       <t>
-        lock:
-       </t>
-       <artwork>
-     temp = *(u32 *)(dst + offset)
-     *(u32 *)(dst + offset) = src
-     src = temp
-       </artwork>
+lock<br/>
+temp = *(u32 *)(dst + offset)<br/>
+*(u32 *)(dst + offset) = src<br/>
+src = temp<br/>
       </td>
       <td>
        <t>
@@ -8071,15 +8051,11 @@ BPF Instruction Set Specification, v1.0
        </t>
       </td>
       <td>
-       <t>
-        lock:
-       </t>
-       <artwork>
-     temp = *(u32 *)(dst + offset)
-     if *(u32)(dst + offset) == R0
-        *(u32)(dst + offset) = src
-     R0 = temp
-       </artwork>
+lock<br/>
+temp = *(u32 *)(dst + offset)<br/>
+if *(u32)(dst + offset) == R0<br/>
+   *(u32)(dst + offset) = src<br/>
+R0 = temp<br/>
       </td>
       <td>
        <t>
@@ -8653,13 +8629,9 @@ BPF Instruction Set Specification, v1.0
        </t>
       </td>
       <td>
-       <t>
-        lock:
-       </t>
-       <artwork>
-     *(u64 *)(dst + offset) += src
-     src = *(u64 *)(dst + offset)
-       </artwork>
+lock<br/>
+*(u64 *)(dst + offset) += src<br/>
+src = *(u64 *)(dst + offset)<br/>
       </td>
       <td>
        <t>
@@ -8690,7 +8662,7 @@ BPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
-        *(u64 *)(dst + offset) |= src
+        lock *(u64 *)(dst + offset) |= src
        </t>
       </td>
       <td>
@@ -8721,13 +8693,9 @@ BPF Instruction Set Specification, v1.0
        </t>
       </td>
       <td>
-       <t>
-        lock:
-       </t>
-       <artwork>
-     *(u64 *)(dst + offset) |= src
-     src = *(u64 *)(dst + offset)
-       </artwork>
+lock<br/>
+*(u64 *)(dst + offset) |= src<br/>
+src = *(u64 *)(dst + offset)<br/>
       </td>
       <td>
        <t>
@@ -8758,7 +8726,7 @@ BPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
-        *(u64 *)(dst + offset) &amp;= src
+        lock *(u64 *)(dst + offset) &amp;= src
        </t>
       </td>
       <td>
@@ -8789,13 +8757,9 @@ BPF Instruction Set Specification, v1.0
        </t>
       </td>
       <td>
-       <t>
-        lock:
-       </t>
-       <artwork>
-     *(u64 *)(dst + offset) &amp;= src
-     src = *(u64 *)(dst + offset)
-       </artwork>
+lock<br/>
+*(u64 *)(dst + offset) &amp;= src<br/>
+src = *(u64 *)(dst + offset)<br/>
       </td>
       <td>
        <t>
@@ -8826,7 +8790,7 @@ BPF Instruction Set Specification, v1.0
       </td>
       <td>
        <t>
-        *(u64 *)(dst + offset) ^= src
+        lock *(u64 *)(dst + offset) ^= src
        </t>
       </td>
       <td>
@@ -8857,13 +8821,9 @@ BPF Instruction Set Specification, v1.0
        </t>
       </td>
       <td>
-       <t>
-        lock:
-       </t>
-       <artwork>
-     *(u64 *)(dst + offset) ^= src
-     src = *(u64 *)(dst + offset)
-       </artwork>
+lock<br/>
+*(u64 *)(dst + offset) ^= src<br/>
+src = *(u64 *)(dst + offset)<br/>
       </td>
       <td>
        <t>
@@ -8893,14 +8853,10 @@ BPF Instruction Set Specification, v1.0
        </t>
       </td>
       <td>
-       <t>
-        lock:
-       </t>
-       <artwork>
-     temp = *(u64 *)(dst + offset)
-     *(u64 *)(dst + offset) = src
-     src = temp
-       </artwork>
+lock<br/>
+temp = *(u64 *)(dst + offset)<br/>
+*(u64 *)(dst + offset) = src<br/>
+src = temp<br/>
       </td>
       <td>
        <t>
@@ -8930,15 +8886,11 @@ BPF Instruction Set Specification, v1.0
        </t>
       </td>
       <td>
-       <t>
-        lock:
-       </t>
-       <artwork>
-     temp = *(u64 *)(dst + offset)
-     if *(u64)(dst + offset) == R0
-        *(u64)(dst + offset) = src
-     R0 = temp
-       </artwork>
+lock<br/>
+temp = *(u64 *)(dst + offset)<br/>
+if *(u64)(dst + offset) == R0<br/>
+   *(u64)(dst + offset) = src<br/>
+R0 = temp<br/>
       </td>
       <td>
        <t>
