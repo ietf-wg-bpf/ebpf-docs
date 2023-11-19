@@ -4361,7 +4361,7 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
-        any
+        0x00
        </t>
       </td>
       <td>
@@ -4393,7 +4393,7 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
-        any
+        0x00
        </t>
       </td>
       <td>
