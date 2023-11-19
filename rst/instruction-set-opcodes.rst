@@ -234,4 +234,4 @@ opcode  src  imm   offset  description                                          
 0xdc    0x0  0x40  0       dst = htobe64(dst)                                   `Byte swap instructions`_
 0xdd    any  0x00  any     if dst s<= src goto +offset                          `Jump instructions`_
 0xde    any  0x00  any     if (s32)dst s<= (s32)src goto +offset                `Jump instructions`_
-======  ===  ====  ===================================================  ========================================
+======  ===  ====  ======  ===================================================  ========================================
