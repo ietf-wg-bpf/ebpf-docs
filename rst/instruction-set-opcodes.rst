@@ -165,20 +165,24 @@ opcode  src  imm   offset  description                                          
 0xbf    any  0x00  32      dst = (s64) (s32) src                                `Arithmetic instructions`_
 0xc3    any  0x00  any     lock \*(u32 \*)(dst + offset) += src                 `Atomic operations`_
 0xc3    any  0x01  any     | lock                                               `Atomic operations`_
+                           | temp = \*(u32 \*)(dst + offset)
                            | \*(u32 \*)(dst + offset) += src
-                           | src = \*(u32 \*)(dst + offset)
+                           | src = temp
 0xc3    any  0x40  any     lock \*(u32 \*)(dst + offset) \|= src                `Atomic operations`_
 0xc3    any  0x41  any     | lock                                               `Atomic operations`_
+                           | temp = \*(u32 \*)(dst + offset)
                            | \*(u32 \*)(dst + offset) \|= src
-                           | src = \*(u32 \*)(dst + offset)
+                           | src = temp
 0xc3    any  0x50  any     lock \*(u32 \*)(dst + offset) &= src                 `Atomic operations`_
 0xc3    any  0x51  any     | lock                                               `Atomic operations`_
+                           | temp = \*(u32 \*)(dst + offset)
                            | \*(u32 \*)(dst + offset) &= src
-                           | src = \*(u32 \*)(dst + offset)
+                           | src = temp
 0xc3    any  0xa0  any     lock \*(u32 \*)(dst + offset) ^= src                 `Atomic operations`_
 0xc3    any  0xa1  any     | lock                                               `Atomic operations`_
+                           | temp = \*(u32 \*)(dst + offset)
                            | \*(u32 \*)(dst + offset) ^= src
-                           | src = \*(u32 \*)(dst + offset)
+                           | src = temp
 0xc3    any  0xe1  any     | lock                                               `Atomic operations`_
                            | temp = \*(u32 \*)(dst + offset)
                            | \*(u32 \*)(dst + offset) = src
@@ -206,20 +210,24 @@ opcode  src  imm   offset  description                                          
 0xd7    0x0  0x40  0       dst = bswap64(dst)                                   `Byte swap instructions`_
 0xdb    any  0x00  any     lock \*(u64 \*)(dst + offset) += src                 `Atomic operations`_
 0xdb    any  0x01  any     | lock                                               `Atomic operations`_
+                           | temp = \*(u64 \*)(dst + offset)
                            | \*(u64 \*)(dst + offset) += src
-                           | src = \*(u64 \*)(dst + offset)
+                           | src = temp
 0xdb    any  0x40  any     lock \*(u64 \*)(dst + offset) \|= src                `Atomic operations`_
 0xdb    any  0x41  any     | lock                                               `Atomic operations`_
+                           | temp = \*(u64 \*)(dst + offset)
                            | \*(u64 \*)(dst + offset) \|= src
-                           | src = \*(u64 \*)(dst + offset)
+                           | src = temp
 0xdb    any  0x50  any     lock \*(u64 \*)(dst + offset) &= src                 `Atomic operations`_
 0xdb    any  0x51  any     | lock                                               `Atomic operations`_
+                           | temp = \*(u64 \*)(dst + offset)
                            | \*(u64 \*)(dst + offset) &= src
-                           | src = \*(u64 \*)(dst + offset)
+                           | src = temp
 0xdb    any  0xa0  any     lock \*(u64 \*)(dst + offset) ^= src                 `Atomic operations`_
 0xdb    any  0xa1  any     | lock                                               `Atomic operations`_
+                           | temp = \*(u64 \*)(dst + offset)
                            | \*(u64 \*)(dst + offset) ^= src
-                           | src = \*(u64 \*)(dst + offset)
+                           | src = temp
 0xdb    any  0xe1  any     | lock                                               `Atomic operations`_
                            | temp = \*(u64 \*)(dst + offset)
                            | \*(u64 \*)(dst + offset) = src
