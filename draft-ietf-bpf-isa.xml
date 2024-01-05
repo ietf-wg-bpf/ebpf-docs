@@ -7795,8 +7795,9 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
 lock<br/>
+temp = *(u32 *)(dst + offset)<br/>
 *(u32 *)(dst + offset) += src<br/>
-src = *(u32 *)(dst + offset)<br/>
+src = temp<br/>
       </td>
       <td>
        <t>
@@ -7859,8 +7860,9 @@ src = *(u32 *)(dst + offset)<br/>
       </td>
       <td>
 lock<br/>
+temp = *(u32 *)(dst + offset)<br/>
 *(u32 *)(dst + offset) |= src<br/>
-src = *(u32 *)(dst + offset)<br/>
+src = temp<br/>
       </td>
       <td>
        <t>
@@ -7923,8 +7925,9 @@ src = *(u32 *)(dst + offset)<br/>
       </td>
       <td>
 lock<br/>
+temp = *(u32 *)(dst + offset)<br/>
 *(u32 *)(dst + offset) &amp;= src<br/>
-src = *(u32 *)(dst + offset)<br/>
+src = temp<br/>
       </td>
       <td>
        <t>
@@ -7987,8 +7990,9 @@ src = *(u32 *)(dst + offset)<br/>
       </td>
       <td>
 lock<br/>
+temp = *(u32 *)(dst + offset)<br/>
 *(u32 *)(dst + offset) ^= src<br/>
-src = *(u32 *)(dst + offset)<br/>
+src = temp<br/>
       </td>
       <td>
        <t>
@@ -8630,8 +8634,9 @@ R0 = temp<br/>
       </td>
       <td>
 lock<br/>
+temp = *(u64 *)(dst + offset)<br/>
 *(u64 *)(dst + offset) += src<br/>
-src = *(u64 *)(dst + offset)<br/>
+src = temp<br/>
       </td>
       <td>
        <t>
@@ -8694,8 +8699,9 @@ src = *(u64 *)(dst + offset)<br/>
       </td>
       <td>
 lock<br/>
+temp = *(u64 *)(dst + offset)<br/>
 *(u64 *)(dst + offset) |= src<br/>
-src = *(u64 *)(dst + offset)<br/>
+src = temp<br/>
       </td>
       <td>
        <t>
@@ -8758,8 +8764,9 @@ src = *(u64 *)(dst + offset)<br/>
       </td>
       <td>
 lock<br/>
+temp = *(u64 *)(dst + offset)<br/>
 *(u64 *)(dst + offset) &amp;= src<br/>
-src = *(u64 *)(dst + offset)<br/>
+src = temp<br/>
       </td>
       <td>
        <t>
@@ -8822,8 +8829,9 @@ src = *(u64 *)(dst + offset)<br/>
       </td>
       <td>
 lock<br/>
+temp = *(u64 *)(dst + offset)<br/>
 *(u64 *)(dst + offset) ^= src<br/>
-src = *(u64 *)(dst + offset)<br/>
+src = temp<br/>
       </td>
       <td>
        <t>

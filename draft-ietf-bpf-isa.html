@@ -11,23 +11,23 @@
     This document specifies version 1.0 of the BPF instruction set.
        
     " name="description">
-<meta content="xml2rfc 3.18.2" name="generator">
+<meta content="xml2rfc 3.19.0" name="generator">
 <meta content="draft-ietf-bpf-isa-00" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.18.2
+  xml2rfc 3.19.0
     Python 3.8.10
     ConfigArgParse 1.7
     google-i18n-address 3.1.0
     intervaltree 3.1.0
     Jinja2 3.1.2
-    lxml 4.9.3
-    platformdirs 4.0.0
-    pycountry 22.3.5
+    lxml 5.0.0
+    platformdirs 4.1.0
+    pycountry 23.12.11
     PyYAML 5.3.1
     requests 2.22.0
     setuptools 45.2.0
     six 1.14.0
-    wcwidth 0.2.10
+    wcwidth 0.2.12
 -->
 <link href="draft-ietf-bpf-isa.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -253,8 +253,7 @@ a[href]:hover {
   background-color: #f2f2f2;
 }
 figcaption a[href],
-a[href].selfRef,
-.iref + a[href].internal {
+a[href].selfRef {
   color: #222;
 }
 /* XXX probably not this:
@@ -1206,11 +1205,11 @@ li > p:last-of-type:only-child {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">eBPF ISA</td>
-<td class="right">November 2023</td>
+<td class="right">January 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Thaler</td>
-<td class="center">Expires 22 May 2024</td>
+<td class="center">Expires 8 July 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1223,12 +1222,12 @@ li > p:last-of-type:only-child {
 <dd class="internet-draft">draft-ietf-bpf-isa-00</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-11-19" class="published">19 November 2023</time>
+<time datetime="2024-01-05" class="published">5 January 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-05-22">22 May 2024</time></dd>
+<dd class="expires"><time datetime="2024-07-08">8 July 2024</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1264,7 +1263,7 @@ li > p:last-of-type:only-child {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 22 May 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 8 July 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1273,7 +1272,7 @@ li > p:last-of-type:only-child {
 <a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
         </h2>
 <p id="section-boilerplate.2-1">
-            Copyright (c) 2023 IETF Trust and the persons identified as the
+            Copyright (c) 2024 IETF Trust and the persons identified as the
             document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.2-2">
             This document is subject to BCP 78 and the IETF Trust's Legal
@@ -7978,8 +7977,9 @@ dst = *(signed size *) (src + offset)
 </td>
             <td class="text-left" rowspan="1" colspan="1">
 lock<br>
+temp = *(u32 *)(dst + offset)<br>
 *(u32 *)(dst + offset) += src<br>
-src = *(u32 *)(dst + offset)<br>
+src = temp<br>
             </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.160.6.1">
@@ -8031,8 +8031,9 @@ src = *(u32 *)(dst + offset)<br>
 </td>
             <td class="text-left" rowspan="1" colspan="1">
 lock<br>
+temp = *(u32 *)(dst + offset)<br>
 *(u32 *)(dst + offset) |= src<br>
-src = *(u32 *)(dst + offset)<br>
+src = temp<br>
             </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.162.6.1">
@@ -8084,8 +8085,9 @@ src = *(u32 *)(dst + offset)<br>
 </td>
             <td class="text-left" rowspan="1" colspan="1">
 lock<br>
+temp = *(u32 *)(dst + offset)<br>
 *(u32 *)(dst + offset) &amp;= src<br>
-src = *(u32 *)(dst + offset)<br>
+src = temp<br>
             </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.164.6.1">
@@ -8137,8 +8139,9 @@ src = *(u32 *)(dst + offset)<br>
 </td>
             <td class="text-left" rowspan="1" colspan="1">
 lock<br>
+temp = *(u32 *)(dst + offset)<br>
 *(u32 *)(dst + offset) ^= src<br>
-src = *(u32 *)(dst + offset)<br>
+src = temp<br>
             </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.166.6.1">
@@ -8663,8 +8666,9 @@ R0 = temp<br>
 </td>
             <td class="text-left" rowspan="1" colspan="1">
 lock<br>
+temp = *(u64 *)(dst + offset)<br>
 *(u64 *)(dst + offset) += src<br>
-src = *(u64 *)(dst + offset)<br>
+src = temp<br>
             </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.186.6.1">
@@ -8716,8 +8720,9 @@ src = *(u64 *)(dst + offset)<br>
 </td>
             <td class="text-left" rowspan="1" colspan="1">
 lock<br>
+temp = *(u64 *)(dst + offset)<br>
 *(u64 *)(dst + offset) |= src<br>
-src = *(u64 *)(dst + offset)<br>
+src = temp<br>
             </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.188.6.1">
@@ -8769,8 +8774,9 @@ src = *(u64 *)(dst + offset)<br>
 </td>
             <td class="text-left" rowspan="1" colspan="1">
 lock<br>
+temp = *(u64 *)(dst + offset)<br>
 *(u64 *)(dst + offset) &amp;= src<br>
-src = *(u64 *)(dst + offset)<br>
+src = temp<br>
             </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.190.6.1">
@@ -8822,8 +8828,9 @@ src = *(u64 *)(dst + offset)<br>
 </td>
             <td class="text-left" rowspan="1" colspan="1">
 lock<br>
+temp = *(u64 *)(dst + offset)<br>
 *(u64 *)(dst + offset) ^= src<br>
-src = *(u64 *)(dst + offset)<br>
+src = temp<br>
             </td>
             <td class="text-left" rowspan="1" colspan="1">
               <p id="section-7-2.2.192.6.1">
