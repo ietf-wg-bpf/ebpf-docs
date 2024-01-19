@@ -4,8 +4,8 @@
 
 Network Working Group                                     D. Thaler, Ed.
 Internet-Draft                                                 Microsoft
-Intended status: Standards Track                          5 January 2024
-Expires: 8 July 2024
+Intended status: Standards Track                         19 January 2024
+Expires: 22 July 2024
 
 
                 BPF Instruction Set Specification, v1.0
@@ -30,7 +30,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 July 2024.
+   This Internet-Draft will expire on 22 July 2024.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Table of Contents
 
 
 
-Thaler                     Expires 8 July 2024                  [Page 1]
+Thaler                    Expires 22 July 2024                  [Page 1]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -109,7 +109,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                  [Page 2]
+Thaler                    Expires 22 July 2024                  [Page 2]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -165,7 +165,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                  [Page 3]
+Thaler                    Expires 22 July 2024                  [Page 3]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -221,7 +221,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                  [Page 4]
+Thaler                    Expires 22 July 2024                  [Page 4]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -277,7 +277,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                  [Page 5]
+Thaler                    Expires 22 July 2024                  [Page 5]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -333,7 +333,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                  [Page 6]
+Thaler                    Expires 22 July 2024                  [Page 6]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -389,7 +389,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                  [Page 7]
+Thaler                    Expires 22 July 2024                  [Page 7]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -445,7 +445,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                  [Page 8]
+Thaler                    Expires 22 July 2024                  [Page 8]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -501,7 +501,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                  [Page 9]
+Thaler                    Expires 22 July 2024                  [Page 9]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -557,7 +557,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                 [Page 10]
+Thaler                    Expires 22 July 2024                 [Page 10]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -613,7 +613,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                 [Page 11]
+Thaler                    Expires 22 July 2024                 [Page 11]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -669,7 +669,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                 [Page 12]
+Thaler                    Expires 22 July 2024                 [Page 12]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -725,7 +725,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                 [Page 13]
+Thaler                    Expires 22 July 2024                 [Page 13]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -781,7 +781,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                 [Page 14]
+Thaler                    Expires 22 July 2024                 [Page 14]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -837,7 +837,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                 [Page 15]
+Thaler                    Expires 22 July 2024                 [Page 15]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -893,7 +893,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                 [Page 16]
+Thaler                    Expires 22 July 2024                 [Page 16]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -949,7 +949,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                 [Page 17]
+Thaler                    Expires 22 July 2024                 [Page 17]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -1005,7 +1005,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                 [Page 18]
+Thaler                    Expires 22 July 2024                 [Page 18]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -1061,7 +1061,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                 [Page 19]
+Thaler                    Expires 22 July 2024                 [Page 19]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -1117,7 +1117,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                 [Page 20]
+Thaler                    Expires 22 July 2024                 [Page 20]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -1173,7 +1173,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                 [Page 21]
+Thaler                    Expires 22 July 2024                 [Page 21]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -1229,7 +1229,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                 [Page 22]
+Thaler                    Expires 22 July 2024                 [Page 22]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -1285,7 +1285,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                 [Page 23]
+Thaler                    Expires 22 July 2024                 [Page 23]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -1341,7 +1341,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                 [Page 24]
+Thaler                    Expires 22 July 2024                 [Page 24]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -1397,7 +1397,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                 [Page 25]
+Thaler                    Expires 22 July 2024                 [Page 25]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -1453,7 +1453,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                 [Page 26]
+Thaler                    Expires 22 July 2024                 [Page 26]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -1509,7 +1509,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                 [Page 27]
+Thaler                    Expires 22 July 2024                 [Page 27]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -1565,7 +1565,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                 [Page 28]
+Thaler                    Expires 22 July 2024                 [Page 28]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -1621,7 +1621,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                 [Page 29]
+Thaler                    Expires 22 July 2024                 [Page 29]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -1677,7 +1677,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                 [Page 30]
+Thaler                    Expires 22 July 2024                 [Page 30]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -1733,7 +1733,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                 [Page 31]
+Thaler                    Expires 22 July 2024                 [Page 31]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -1789,7 +1789,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                 [Page 32]
+Thaler                    Expires 22 July 2024                 [Page 32]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -1845,21 +1845,13 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                     Expires 8 July 2024                 [Page 33]
+Thaler                    Expires 22 July 2024                 [Page 33]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
 
    |0xb4  |0x0|any |0     | dst = (u32) imm            | Arithmetic    |
    |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xb4  |0x0|any |8     | dst = (u32) (s32) (s8)     | Arithmetic    |
-   |      |   |    |      | imm                        | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xb4  |0x0|any |16    | dst = (u32) (s32) (s16)    | Arithmetic    |
-   |      |   |    |      | imm                        | instructions  |
    |      |   |    |      |                            | (Section 3.1) |
    +------+---+----+------+----------------------------+---------------+
    |0xb5  |0x0|any |any   | if dst <= imm goto         | Jump          |
@@ -1871,18 +1863,6 @@ Internet-Draft                  eBPF ISA                    January 2024
    |      |   |    |      |                            | (Section 3.3) |
    +------+---+----+------+----------------------------+---------------+
    |0xb7  |0x0|any |0     | dst = imm                  | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xb7  |0x0|any |8     | dst = (s64) (s8) imm       | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xb7  |0x0|any |16    | dst = (s64) (s16) imm      | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xb7  |0x0|any |32    | dst = (s64) (s32) imm      | Arithmetic    |
    |      |   |    |      |                            | instructions  |
    |      |   |    |      |                            | (Section 3.1) |
    +------+---+----+------+----------------------------+---------------+
@@ -1898,14 +1878,6 @@ Internet-Draft                  eBPF ISA                    January 2024
    |      |   |    |      | src                        | instructions  |
    |      |   |    |      |                            | (Section 3.1) |
    +------+---+----+------+----------------------------+---------------+
-
-
-
-Thaler                     Expires 8 July 2024                 [Page 34]
-
-Internet-Draft                  eBPF ISA                    January 2024
-
-
    |0xbd  |any|0x00|any   | if dst <= src goto         | Jump          |
    |      |   |    |      | +offset                    | instructions  |
    |      |   |    |      |                            | (Section 3.3) |
@@ -1926,6 +1898,14 @@ Internet-Draft                  eBPF ISA                    January 2024
    |      |   |    |      |                            | instructions  |
    |      |   |    |      |                            | (Section 3.1) |
    +------+---+----+------+----------------------------+---------------+
+
+
+
+Thaler                    Expires 22 July 2024                 [Page 34]
+
+Internet-Draft                  eBPF ISA                    January 2024
+
+
    |0xbf  |any|0x00|32    | dst = (s64) (s32) src      | Arithmetic    |
    |      |   |    |      |                            | instructions  |
    |      |   |    |      |                            | (Section 3.1) |
@@ -1954,14 +1934,6 @@ Internet-Draft                  eBPF ISA                    January 2024
    +------+---+----+------+----------------------------+---------------+
    |0xc3  |any|0x50|any   | lock *(u32 *)(dst +        | Atomic        |
    |      |   |    |      | offset) &= src             | operations    |
-
-
-
-Thaler                     Expires 8 July 2024                 [Page 35]
-
-Internet-Draft                  eBPF ISA                    January 2024
-
-
    |      |   |    |      |                            | (Section 4.3) |
    +------+---+----+------+----------------------------+---------------+
    |0xc3  |any|0x51|any   | lock                       | Atomic        |
@@ -1982,6 +1954,14 @@ Internet-Draft                  eBPF ISA                    January 2024
    |      |   |    |      | ^= src                     |               |
    |      |   |    |      | src = temp                 |               |
    +------+---+----+------+----------------------------+---------------+
+
+
+
+Thaler                    Expires 22 July 2024                 [Page 35]
+
+Internet-Draft                  eBPF ISA                    January 2024
+
+
    |0xc3  |any|0xe1|any   | lock                       | Atomic        |
    |      |   |    |      | temp = *(u32 *)(dst +      | operations    |
    |      |   |    |      | offset)                    | (Section 4.3) |
@@ -2010,14 +1990,6 @@ Internet-Draft                  eBPF ISA                    January 2024
    |      |   |    |      | goto +offset               | instructions  |
    |      |   |    |      |                            | (Section 3.3) |
    +------+---+----+------+----------------------------+---------------+
-
-
-
-Thaler                     Expires 8 July 2024                 [Page 36]
-
-Internet-Draft                  eBPF ISA                    January 2024
-
-
    |0xc7  |0x0|any |0     | dst s>>= imm               | Arithmetic    |
    |      |   |    |      |                            | instructions  |
    |      |   |    |      |                            | (Section 3.1) |
@@ -2038,6 +2010,14 @@ Internet-Draft                  eBPF ISA                    January 2024
    |      |   |    |      |                            | instructions  |
    |      |   |    |      |                            | (Section 3.1) |
    +------+---+----+------+----------------------------+---------------+
+
+
+
+Thaler                    Expires 22 July 2024                 [Page 36]
+
+Internet-Draft                  eBPF ISA                    January 2024
+
+
    |0xd4  |0x0|0x10|0     | dst = htole16(dst)         | Byte swap     |
    |      |   |    |      |                            | instructions  |
    |      |   |    |      |                            | (Section 3.2) |
@@ -2066,14 +2046,6 @@ Internet-Draft                  eBPF ISA                    January 2024
    |      |   |    |      |                            | instructions  |
    |      |   |    |      |                            | (Section 3.2) |
    +------+---+----+------+----------------------------+---------------+
-
-
-
-Thaler                     Expires 8 July 2024                 [Page 37]
-
-Internet-Draft                  eBPF ISA                    January 2024
-
-
    |0xd7  |0x0|0x40|0     | dst = bswap64(dst)         | Byte swap     |
    |      |   |    |      |                            | instructions  |
    |      |   |    |      |                            | (Section 3.2) |
@@ -2094,6 +2066,14 @@ Internet-Draft                  eBPF ISA                    January 2024
    |      |   |    |      |                            | (Section 4.3) |
    +------+---+----+------+----------------------------+---------------+
    |0xdb  |any|0x41|any   | lock                       | Atomic        |
+
+
+
+Thaler                    Expires 22 July 2024                 [Page 37]
+
+Internet-Draft                  eBPF ISA                    January 2024
+
+
    |      |   |    |      | temp = *(u64 *)(dst +      | operations    |
    |      |   |    |      | offset)                    | (Section 4.3) |
    |      |   |    |      | *(u64 *)(dst +             |               |
@@ -2122,14 +2102,6 @@ Internet-Draft                  eBPF ISA                    January 2024
    |      |   |    |      | ^= src                     |               |
    |      |   |    |      | src = temp                 |               |
    +------+---+----+------+----------------------------+---------------+
-
-
-
-Thaler                     Expires 8 July 2024                 [Page 38]
-
-Internet-Draft                  eBPF ISA                    January 2024
-
-
    |0xdb  |any|0xe1|any   | lock                       | Atomic        |
    |      |   |    |      | temp = *(u64 *)(dst +      | operations    |
    |      |   |    |      | offset)                    | (Section 4.3) |
@@ -2150,6 +2122,14 @@ Internet-Draft                  eBPF ISA                    January 2024
    |      |   |    |      |                            | instructions  |
    |      |   |    |      |                            | (Section 3.2) |
    +------+---+----+------+----------------------------+---------------+
+
+
+
+Thaler                    Expires 22 July 2024                 [Page 38]
+
+Internet-Draft                  eBPF ISA                    January 2024
+
+
    |0xdc  |0x0|0x20|0     | dst = htobe32(dst)         | Byte swap     |
    |      |   |    |      |                            | instructions  |
    |      |   |    |      |                            | (Section 3.2) |
@@ -2176,16 +2156,6 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 Author's Address
 
-
-
-
-
-
-Thaler                     Expires 8 July 2024                 [Page 39]
-
-Internet-Draft                  eBPF ISA                    January 2024
-
-
    Dave Thaler (editor)
    Microsoft
    Redmond, WA 98052
@@ -2211,30 +2181,4 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Thaler                     Expires 8 July 2024                 [Page 40]
+Thaler                    Expires 22 July 2024                 [Page 39]
