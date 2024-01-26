@@ -245,6 +245,31 @@ B: 11111111 10000110
      </artwork>
     </aside>
    </section>
+   <section anchor="conformance-groups" title="Conformance groups">
+    <t>
+     An implementation does not need to support all instructions specified in this
+     document (e.g., deprecated instructions).  Instead, a number of conformance
+     groups are specified.  An implementation must support the "basic" conformance
+     group and may support additional conformance groups, where supporting a
+     conformance group means it must support all instructions in that conformance
+     group.
+    </t>
+    <t>
+     The use of named conformance groups enables interoperability between a runtime
+     that executes instructions, and tools as such compilers that generate
+     instructions for the runtime.  Thus, capability discovery in terms of
+     conformance groups might be done manually by users or automatically by tools.
+    </t>
+    <t>
+     Each conformance group has a short ASCII label (e.g., "basic") that
+     corresponds to a set of instructions that are mandatory.  That is, each
+     instruction has one or more conformance groups of which it is a member.
+    </t>
+    <t>
+     The "basic" conformance group includes all instructions defined in this
+     specification unless otherwise noted.
+    </t>
+   </section>
   </section>
   <section anchor="instruction-encoding" title="Instruction encoding">
    <t>
@@ -341,12 +366,12 @@ opcode                  offset imm          assembly
    </t>
    <artwork>
       basic_instruction
-.-----------------------------.
-|                             |
-code:8 regs:8 offset:16 imm:32 unused:32 imm:32
-                               |              |
-                               '--------------'
-                              pseudo instruction
+.------------------------------.
+|                              |
+opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
+                                 |              |
+                                 '--------------'
+                                pseudo instruction
    </artwork>
    <t>
     Thus the 64-bit immediate value is constructed as follows:
@@ -1121,7 +1146,12 @@ dst = dst ^ imm32
      <tt>BPF_ALU | BPF_MOVSX</tt> <xref target="term-sign-extend">sign extends</xref> 8-bit and 16-bit operands into 32
      bit operands, and zeroes the remaining upper 32 bits.
      <tt>BPF_ALU64 | BPF_MOVSX</tt> <xref target="term-sign-extend">sign extends</xref> 8-bit, 16-bit, and 32-bit
-     operands into 64 bit operands.
+     operands into 64 bit operands.  Unlike other arithmetic instructions,
+     <tt>BPF_MOVSX</tt> is only defined for register source operands (<tt>BPF_X</tt>).
+    </t>
+    <t>
+     The <tt>BPF_NEG</tt> instruction is only defined when the source bit is clear
+     (<tt>BPF_K</tt>).
     </t>
     <t>
      Shift operations use a mask of 0x3F (63) for 64-bit operations and 0x1F (31)
@@ -1293,7 +1323,7 @@ dst = bswap64(dst)
        </td>
        <td>
         <t>
-         BPF_JMP class
+         BPF_JMP | BPF_K only
         </t>
        </td>
       </tr>
@@ -1320,7 +1350,7 @@ dst = bswap64(dst)
        </td>
        <td>
         <t>
-         BPF_JMP32 class
+         BPF_JMP32 | BPF_K only
         </t>
        </td>
       </tr>
@@ -1527,7 +1557,7 @@ dst = bswap64(dst)
        </td>
        <td>
         <t>
-         see <xref target="helper-functions">Helper functions</xref>
+         BPF_JMP | BPF_K only, see <xref target="helper-functions">Helper functions</xref>
         </t>
        </td>
       </tr>
@@ -1554,7 +1584,7 @@ dst = bswap64(dst)
        </td>
        <td>
         <t>
-         see <xref target="program-local-functions">Program-local functions</xref>
+         BPF_JMP | BPF_K only, see <xref target="program-local-functions">Program-local functions</xref>
         </t>
        </td>
       </tr>
@@ -1581,7 +1611,7 @@ dst = bswap64(dst)
        </td>
        <td>
         <t>
-         see <xref target="helper-functions">Helper functions</xref>
+         BPF_JMP | BPF_K only, see <xref target="helper-functions">Helper functions</xref>
         </t>
        </td>
       </tr>
@@ -1608,7 +1638,7 @@ dst = bswap64(dst)
        </td>
        <td>
         <t>
-         BPF_JMP only
+         BPF_JMP | BPF_K only
         </t>
        </td>
       </tr>
@@ -2591,7 +2621,9 @@ dst = *(signed size *) (src + offset)
     <t>
      BPF previously introduced special instructions for access to packet data that were
      carried over from classic BPF. However, these instructions are
-     deprecated and should no longer be used.
+     deprecated and should no longer be used.  All legacy packet access
+     instructions belong to the "legacy" conformance group instead of the "basic"
+     conformance group.
     </t>
    </section>
   </section>

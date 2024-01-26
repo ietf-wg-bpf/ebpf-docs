@@ -4,8 +4,8 @@
 
 Network Working Group                                     D. Thaler, Ed.
 Internet-Draft                                                 Microsoft
-Intended status: Standards Track                         19 January 2024
-Expires: 22 July 2024
+Intended status: Standards Track                         26 January 2024
+Expires: 29 July 2024
 
 
           BPF ABI Recommended Conventions and Guidelines v1.0
@@ -32,7 +32,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 July 2024.
+   This Internet-Draft will expire on 29 July 2024.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Thaler                    Expires 22 July 2024                  [Page 1]
+Thaler                    Expires 29 July 2024                  [Page 1]
 
 Internet-Draft                  eBPF ABI                    January 2024
 
@@ -109,4 +109,4 @@ Author's Address
 
 
 
-Thaler                    Expires 22 July 2024                  [Page 2]
+Thaler                    Expires 29 July 2024                  [Page 2]
