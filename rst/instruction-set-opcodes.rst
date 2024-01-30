@@ -28,35 +28,22 @@ opcode  src  imm   offset  description                                          
 0x1e    any  0x00  any     if (u32)dst == (u32)src goto +offset                 `Jump instructions`_
 0x1f    any  0x00  0       dst -= src                                           `Arithmetic instructions`_
 0x20    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
-0x21    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
-0x22    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
-0x23    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
 0x24    0x0  any   0       dst = (u32)(dst \* imm)                              `Arithmetic instructions`_
 0x25    0x0  any   any     if dst > imm goto +offset                            `Jump instructions`_
 0x26    0x0  any   any     if (u32)dst > imm goto +offset                       `Jump instructions`_
 0x27    0x0  any   0       dst \*= imm                                          `Arithmetic instructions`_
 0x28    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
-0x29    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
-0x2a    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
-0x2b    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
 0x2c    any  0x00  0       dst = (u32)(dst \* src)                              `Arithmetic instructions`_
 0x2d    any  0x00  any     if dst > src goto +offset                            `Jump instructions`_
 0x2e    any  0x00  any     if (u32)dst > (u32)src goto +offset                  `Jump instructions`_
 0x2f    any  0x00  0       dst \*= src                                          `Arithmetic instructions`_
 0x30    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
-0x31    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
-0x32    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
-0x33    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
 0x34    0x0  any   0       dst = (u32)((imm != 0) ? ((u32)dst / (u32)imm) : 0)  `Arithmetic instructions`_
 0x34    0x0  any   1       dst = (u32)((imm != 0) ? ((s32)dst s/ imm) : 0)      `Arithmetic instructions`_
 0x35    0x0  any   any     if dst >= imm goto +offset                           `Jump instructions`_
 0x36    0x0  any   any     if (u32)dst >= imm goto +offset                      `Jump instructions`_
 0x37    0x0  any   0       dst = (imm != 0) ? (dst / (u32)imm) : 0              `Arithmetic instructions`_
 0x37    0x0  any   1       dst = (imm != 0) ? (dst s/ imm) : 0                  `Arithmetic instructions`_
-0x38    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
-0x39    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
-0x3a    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
-0x3b    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
 0x3c    any  0x00  0       dst = (u32)((src != 0) ? ((u32)dst / (u32)src) : 0)  `Arithmetic instructions`_
 0x3c    any  0x00  1       dst = (u32)((src != 0) ? ((s32)dst s/(s32)src) : 0)  `Arithmetic instructions`_
 0x3d    any  0x00  any     if dst >= src goto +offset                           `Jump instructions`_
@@ -64,33 +51,20 @@ opcode  src  imm   offset  description                                          
 0x3f    any  0x00  0       dst = (src != 0) ? (dst / src) : 0                   `Arithmetic instructions`_
 0x3f    any  0x00  1       dst = (src != 0) ? (dst s/ src) : 0                  `Arithmetic instructions`_
 0x40    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
-0x41    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
-0x42    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
-0x43    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
 0x44    0x0  any   0       dst = (u32)(dst \| imm)                              `Arithmetic instructions`_
 0x45    0x0  any   any     if dst & imm goto +offset                            `Jump instructions`_
 0x46    0x0  any   any     if (u32)dst & imm goto +offset                       `Jump instructions`_
 0x47    0x0  any   0       dst \|= imm                                          `Arithmetic instructions`_
 0x48    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
-0x49    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
-0x4a    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
-0x4b    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
 0x4c    any  0x00  0       dst = (u32)(dst \| src)                              `Arithmetic instructions`_
 0x4d    any  0x00  any     if dst & src goto +offset                            `Jump instructions`_
 0x4e    any  0x00  any     if (u32)dst & (u32)src goto +offset                  `Jump instructions`_
 0x4f    any  0x00  0       dst \|= src                                          `Arithmetic instructions`_
 0x50    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
-0x51    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
-0x52    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
-0x53    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
 0x54    0x0  any   0       dst = (u32)(dst & imm)                               `Arithmetic instructions`_
 0x55    0x0  any   any     if dst != imm goto +offset                           `Jump instructions`_
 0x56    0x0  any   any     if (u32)dst != imm goto +offset                      `Jump instructions`_
 0x57    0x0  any   0       dst &= imm                                           `Arithmetic instructions`_
-0x58    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
-0x59    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
-0x5a    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
-0x5b    any  any   any     (deprecated, implementation-specific)                `Legacy BPF Packet access instructions`_
 0x5c    any  0x00  0       dst = (u32)(dst & src)                               `Arithmetic instructions`_
 0x5d    any  0x00  any     if dst != src goto +offset                           `Jump instructions`_
 0x5e    any  0x00  any     if (u32)dst != (u32)src goto +offset                 `Jump instructions`_
