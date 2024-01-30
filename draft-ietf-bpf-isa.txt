@@ -4,8 +4,8 @@
 
 Network Working Group                                     D. Thaler, Ed.
 Internet-Draft                                                 Microsoft
-Intended status: Standards Track                         26 January 2024
-Expires: 29 July 2024
+Intended status: Standards Track                         30 January 2024
+Expires: 2 August 2024
 
 
                 BPF Instruction Set Specification, v1.0
@@ -30,7 +30,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 29 July 2024.
+   This Internet-Draft will expire on 2 August 2024.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Table of Contents
 
 
 
-Thaler                    Expires 29 July 2024                  [Page 1]
+Thaler                    Expires 2 August 2024                 [Page 1]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -81,8 +81,8 @@ Internet-Draft                  eBPF ISA                    January 2024
    5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  20
    6.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  21
    7.  Appendix  . . . . . . . . . . . . . . . . . . . . . . . . . .  22
-   8.  Normative References  . . . . . . . . . . . . . . . . . . . .  40
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  40
+   8.  Normative References  . . . . . . . . . . . . . . . . . . . .  37
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  37
 
 1.  Documentation conventions
 
@@ -109,7 +109,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 29 July 2024                  [Page 2]
+Thaler                    Expires 2 August 2024                 [Page 2]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -165,7 +165,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 29 July 2024                  [Page 3]
+Thaler                    Expires 2 August 2024                 [Page 3]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -221,7 +221,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 29 July 2024                  [Page 4]
+Thaler                    Expires 2 August 2024                 [Page 4]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -277,7 +277,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 29 July 2024                  [Page 5]
+Thaler                    Expires 2 August 2024                 [Page 5]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -333,7 +333,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 29 July 2024                  [Page 6]
+Thaler                    Expires 2 August 2024                 [Page 6]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -389,7 +389,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 29 July 2024                  [Page 7]
+Thaler                    Expires 2 August 2024                 [Page 7]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -445,7 +445,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 29 July 2024                  [Page 8]
+Thaler                    Expires 2 August 2024                 [Page 8]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -501,7 +501,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 29 July 2024                  [Page 9]
+Thaler                    Expires 2 August 2024                 [Page 9]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -557,7 +557,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 29 July 2024                 [Page 10]
+Thaler                    Expires 2 August 2024                [Page 10]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -613,7 +613,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 29 July 2024                 [Page 11]
+Thaler                    Expires 2 August 2024                [Page 11]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -669,7 +669,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 29 July 2024                 [Page 12]
+Thaler                    Expires 2 August 2024                [Page 12]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -725,7 +725,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 29 July 2024                 [Page 13]
+Thaler                    Expires 2 August 2024                [Page 13]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -781,7 +781,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 29 July 2024                 [Page 14]
+Thaler                    Expires 2 August 2024                [Page 14]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -837,7 +837,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 29 July 2024                 [Page 15]
+Thaler                    Expires 2 August 2024                [Page 15]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -893,7 +893,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 29 July 2024                 [Page 16]
+Thaler                    Expires 2 August 2024                [Page 16]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -949,7 +949,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 29 July 2024                 [Page 17]
+Thaler                    Expires 2 August 2024                [Page 17]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -1005,7 +1005,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 29 July 2024                 [Page 18]
+Thaler                    Expires 2 August 2024                [Page 18]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -1061,7 +1061,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 29 July 2024                 [Page 19]
+Thaler                    Expires 2 August 2024                [Page 19]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -1117,7 +1117,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 29 July 2024                 [Page 20]
+Thaler                    Expires 2 August 2024                [Page 20]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -1173,7 +1173,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 29 July 2024                 [Page 21]
+Thaler                    Expires 2 August 2024                [Page 21]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -1229,7 +1229,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 29 July 2024                 [Page 22]
+Thaler                    Expires 2 August 2024                [Page 22]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -1285,7 +1285,7 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 29 July 2024                 [Page 23]
+Thaler                    Expires 2 August 2024                [Page 23]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
@@ -1300,21 +1300,6 @@ Internet-Draft                  eBPF ISA                    January 2024
    |      |   |    |      |                            | (Section 3.1) |
    +------+---+----+------+----------------------------+---------------+
    |0x20  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x21  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x22  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x23  |any|any |any   | (deprecated,               | Legacy BPF    |
    |      |   |    |      | implementation-specific)   | Packet access |
    |      |   |    |      |                            | instructions  |
    |      |   |    |      |                            | (Section 4.5) |
@@ -1338,29 +1323,6 @@ Internet-Draft                  eBPF ISA                    January 2024
    |0x28  |any|any |any   | (deprecated,               | Legacy BPF    |
    |      |   |    |      | implementation-specific)   | Packet access |
    |      |   |    |      |                            | instructions  |
-
-
-
-Thaler                    Expires 29 July 2024                 [Page 24]
-
-Internet-Draft                  eBPF ISA                    January 2024
-
-
-   |      |   |    |      |                            | (Section 4.5) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x29  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x2a  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x2b  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
    |      |   |    |      |                            | (Section 4.5) |
    +------+---+----+------+----------------------------+---------------+
    |0x2c  |any|0x00|0     | dst = (u32)(dst * src)     | Arithmetic    |
@@ -1376,33 +1338,18 @@ Internet-Draft                  eBPF ISA                    January 2024
    |      |   |    |      |                            | (Section 3.3) |
    +------+---+----+------+----------------------------+---------------+
    |0x2f  |any|0x00|0     | dst *= src                 | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x30  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x31  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x32  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
-   +------+---+----+------+----------------------------+---------------+
 
 
 
-Thaler                    Expires 29 July 2024                 [Page 25]
+Thaler                    Expires 2 August 2024                [Page 24]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
 
-   |0x33  |any|any |any   | (deprecated,               | Legacy BPF    |
+   |      |   |    |      |                            | instructions  |
+   |      |   |    |      |                            | (Section 3.1) |
+   +------+---+----+------+----------------------------+---------------+
+   |0x30  |any|any |any   | (deprecated,               | Legacy BPF    |
    |      |   |    |      | implementation-specific)   | Packet access |
    |      |   |    |      |                            | instructions  |
    |      |   |    |      |                            | (Section 4.5) |
@@ -1431,34 +1378,6 @@ Internet-Draft                  eBPF ISA                    January 2024
    |      |   |    |      | s/ imm) : 0                | instructions  |
    |      |   |    |      |                            | (Section 3.1) |
    +------+---+----+------+----------------------------+---------------+
-   |0x38  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x39  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x3a  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x3b  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
-
-
-
-Thaler                    Expires 29 July 2024                 [Page 26]
-
-Internet-Draft                  eBPF ISA                    January 2024
-
-
-   +------+---+----+------+----------------------------+---------------+
    |0x3c  |any|0x00|0     | dst = (u32)((src != 0) ?   | Arithmetic    |
    |      |   |    |      | ((u32)dst / (u32)src) :    | instructions  |
    |      |   |    |      | 0)                         | (Section 3.1) |
@@ -1475,6 +1394,14 @@ Internet-Draft                  eBPF ISA                    January 2024
    |      |   |    |      | goto +offset               | instructions  |
    |      |   |    |      |                            | (Section 3.3) |
    +------+---+----+------+----------------------------+---------------+
+
+
+
+Thaler                    Expires 2 August 2024                [Page 25]
+
+Internet-Draft                  eBPF ISA                    January 2024
+
+
    |0x3f  |any|0x00|0     | dst = (src != 0) ? (dst    | Arithmetic    |
    |      |   |    |      | / src) : 0                 | instructions  |
    |      |   |    |      |                            | (Section 3.1) |
@@ -1488,32 +1415,9 @@ Internet-Draft                  eBPF ISA                    January 2024
    |      |   |    |      |                            | instructions  |
    |      |   |    |      |                            | (Section 4.5) |
    +------+---+----+------+----------------------------+---------------+
-   |0x41  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x42  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x43  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
-   +------+---+----+------+----------------------------+---------------+
    |0x44  |0x0|any |0     | dst = (u32)(dst | imm)     | Arithmetic    |
    |      |   |    |      |                            | instructions  |
    |      |   |    |      |                            | (Section 3.1) |
-
-
-
-Thaler                    Expires 29 July 2024                 [Page 27]
-
-Internet-Draft                  eBPF ISA                    January 2024
-
-
    +------+---+----+------+----------------------------+---------------+
    |0x45  |0x0|any |any   | if dst & imm goto          | Jump          |
    |      |   |    |      | +offset                    | instructions  |
@@ -1532,21 +1436,6 @@ Internet-Draft                  eBPF ISA                    January 2024
    |      |   |    |      |                            | instructions  |
    |      |   |    |      |                            | (Section 4.5) |
    +------+---+----+------+----------------------------+---------------+
-   |0x49  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x4a  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x4b  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
-   +------+---+----+------+----------------------------+---------------+
    |0x4c  |any|0x00|0     | dst = (u32)(dst | src)     | Arithmetic    |
    |      |   |    |      |                            | instructions  |
    |      |   |    |      |                            | (Section 3.1) |
@@ -1561,32 +1450,17 @@ Internet-Draft                  eBPF ISA                    January 2024
    +------+---+----+------+----------------------------+---------------+
    |0x4f  |any|0x00|0     | dst |= src                 | Arithmetic    |
    |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
 
 
 
-Thaler                    Expires 29 July 2024                 [Page 28]
+Thaler                    Expires 2 August 2024                [Page 26]
 
 Internet-Draft                  eBPF ISA                    January 2024
 
 
+   |      |   |    |      |                            | (Section 3.1) |
    +------+---+----+------+----------------------------+---------------+
    |0x50  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x51  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x52  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x53  |any|any |any   | (deprecated,               | Legacy BPF    |
    |      |   |    |      | implementation-specific)   | Packet access |
    |      |   |    |      |                            | instructions  |
    |      |   |    |      |                            | (Section 4.5) |
@@ -1606,34 +1480,6 @@ Internet-Draft                  eBPF ISA                    January 2024
    |0x57  |0x0|any |0     | dst &= imm                 | Arithmetic    |
    |      |   |    |      |                            | instructions  |
    |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x58  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x59  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x5a  |any|any |any   | (deprecated,               | Legacy BPF    |
-
-
-
-Thaler                    Expires 29 July 2024                 [Page 29]
-
-Internet-Draft                  eBPF ISA                    January 2024
-
-
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x5b  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
    +------+---+----+------+----------------------------+---------------+
    |0x5c  |any|0x00|0     | dst = (u32)(dst & src)     | Arithmetic    |
    |      |   |    |      |                            | instructions  |
@@ -1660,6 +1506,14 @@ Internet-Draft                  eBPF ISA                    January 2024
    |      |   |    |      | imm                        | store         |
    |      |   |    |      |                            | instructions  |
    |      |   |    |      |                            | (Section 4)   |
+
+
+
+Thaler                    Expires 2 August 2024                [Page 27]
+
+Internet-Draft                  eBPF ISA                    January 2024
+
+
    +------+---+----+------+----------------------------+---------------+
    |0x63  |any|0x00|any   | *(u32 *)(dst + offset) =   | Load and      |
    |      |   |    |      | src                        | store         |
@@ -1674,14 +1528,6 @@ Internet-Draft                  eBPF ISA                    January 2024
    |      |   |    |      | +offset                    | instructions  |
    |      |   |    |      |                            | (Section 3.3) |
    +------+---+----+------+----------------------------+---------------+
-
-
-
-Thaler                    Expires 29 July 2024                 [Page 30]
-
-Internet-Draft                  eBPF ISA                    January 2024
-
-
    |0x66  |0x0|any |any   | if (s32)dst s> (s32)imm    | Jump          |
    |      |   |    |      | goto +offset               | instructions  |
    |      |   |    |      |                            | (Section 3.3) |
@@ -1716,6 +1562,14 @@ Internet-Draft                  eBPF ISA                    January 2024
    |0x6e  |any|0x00|any   | if (s32)dst s> (s32)src    | Jump          |
    |      |   |    |      | goto +offset               | instructions  |
    |      |   |    |      |                            | (Section 3.3) |
+
+
+
+Thaler                    Expires 2 August 2024                [Page 28]
+
+Internet-Draft                  eBPF ISA                    January 2024
+
+
    +------+---+----+------+----------------------------+---------------+
    |0x6f  |any|0x00|0     | dst <<= src                | Arithmetic    |
    |      |   |    |      |                            | instructions  |
@@ -1730,14 +1584,6 @@ Internet-Draft                  eBPF ISA                    January 2024
    |      |   |    |      | imm                        | store         |
    |      |   |    |      |                            | instructions  |
    |      |   |    |      |                            | (Section 4)   |
-
-
-
-Thaler                    Expires 29 July 2024                 [Page 31]
-
-Internet-Draft                  eBPF ISA                    January 2024
-
-
    +------+---+----+------+----------------------------+---------------+
    |0x73  |any|0x00|any   | *(u8 *)(dst + offset) =    | Load and      |
    |      |   |    |      | src                        | store         |
@@ -1772,6 +1618,14 @@ Internet-Draft                  eBPF ISA                    January 2024
    +------+---+----+------+----------------------------+---------------+
    |0x7b  |any|0x00|any   | *(u64 *)(dst + offset) =   | Load and      |
    |      |   |    |      | src                        | store         |
+
+
+
+Thaler                    Expires 2 August 2024                [Page 29]
+
+Internet-Draft                  eBPF ISA                    January 2024
+
+
    |      |   |    |      |                            | instructions  |
    |      |   |    |      |                            | (Section 4)   |
    +------+---+----+------+----------------------------+---------------+
@@ -1786,14 +1640,6 @@ Internet-Draft                  eBPF ISA                    January 2024
    |0x7e  |any|0x00|any   | if (s32)dst s>= (s32)src   | Jump          |
    |      |   |    |      | goto +offset               | instructions  |
    |      |   |    |      |                            | (Section 3.3) |
-
-
-
-Thaler                    Expires 29 July 2024                 [Page 32]
-
-Internet-Draft                  eBPF ISA                    January 2024
-
-
    +------+---+----+------+----------------------------+---------------+
    |0x7f  |any|0x00|0     | dst >>= src                | Arithmetic    |
    |      |   |    |      |                            | instructions  |
@@ -1828,6 +1674,14 @@ Internet-Draft                  eBPF ISA                    January 2024
    +------+---+----+------+----------------------------+---------------+
    |0x94  |0x0|any |1     | dst = (u32)((imm != 0) ?   | Arithmetic    |
    |      |   |    |      | ((s32)dst s% imm) : dst)   | instructions  |
+
+
+
+Thaler                    Expires 2 August 2024                [Page 30]
+
+Internet-Draft                  eBPF ISA                    January 2024
+
+
    |      |   |    |      |                            | (Section 3.1) |
    +------+---+----+------+----------------------------+---------------+
    |0x95  |0x0|0x00|0     | return                     | Jump          |
@@ -1842,14 +1696,6 @@ Internet-Draft                  eBPF ISA                    January 2024
    |      |   |    |      | s% imm) : dst              | instructions  |
    |      |   |    |      |                            | (Section 3.1) |
    +------+---+----+------+----------------------------+---------------+
-
-
-
-Thaler                    Expires 29 July 2024                 [Page 33]
-
-Internet-Draft                  eBPF ISA                    January 2024
-
-
    |0x9c  |any|0x00|0     | dst = (u32)((src !=        | Arithmetic    |
    |      |   |    |      | 0)?((u32)dst % (u32)src)   | instructions  |
    |      |   |    |      | : dst)                     | (Section 3.1) |
@@ -1884,6 +1730,14 @@ Internet-Draft                  eBPF ISA                    January 2024
    +------+---+----+------+----------------------------+---------------+
    |0xac  |any|0x00|0     | dst = (u32)(dst ^ src)     | Arithmetic    |
    |      |   |    |      |                            | instructions  |
+
+
+
+Thaler                    Expires 2 August 2024                [Page 31]
+
+Internet-Draft                  eBPF ISA                    January 2024
+
+
    |      |   |    |      |                            | (Section 3.1) |
    +------+---+----+------+----------------------------+---------------+
    |0xad  |any|0x00|any   | if dst < src goto          | Jump          |
@@ -1898,14 +1752,6 @@ Internet-Draft                  eBPF ISA                    January 2024
    |      |   |    |      |                            | instructions  |
    |      |   |    |      |                            | (Section 3.1) |
    +------+---+----+------+----------------------------+---------------+
-
-
-
-Thaler                    Expires 29 July 2024                 [Page 34]
-
-Internet-Draft                  eBPF ISA                    January 2024
-
-
    |0xb4  |0x0|any |0     | dst = (u32) imm            | Arithmetic    |
    |      |   |    |      |                            | instructions  |
    |      |   |    |      |                            | (Section 3.1) |
@@ -1940,6 +1786,14 @@ Internet-Draft                  eBPF ISA                    January 2024
    +------+---+----+------+----------------------------+---------------+
    |0xbe  |any|0x00|any   | if (u32)dst <= (u32)src    | Jump          |
    |      |   |    |      | goto +offset               | instructions  |
+
+
+
+Thaler                    Expires 2 August 2024                [Page 32]
+
+Internet-Draft                  eBPF ISA                    January 2024
+
+
    |      |   |    |      |                            | (Section 3.3) |
    +------+---+----+------+----------------------------+---------------+
    |0xbf  |any|0x00|0     | dst = src                  | Arithmetic    |
@@ -1954,14 +1808,6 @@ Internet-Draft                  eBPF ISA                    January 2024
    |      |   |    |      |                            | instructions  |
    |      |   |    |      |                            | (Section 3.1) |
    +------+---+----+------+----------------------------+---------------+
-
-
-
-Thaler                    Expires 29 July 2024                 [Page 35]
-
-Internet-Draft                  eBPF ISA                    January 2024
-
-
    |0xbf  |any|0x00|32    | dst = (s64) (s32) src      | Arithmetic    |
    |      |   |    |      |                            | instructions  |
    |      |   |    |      |                            | (Section 3.1) |
@@ -1996,6 +1842,14 @@ Internet-Draft                  eBPF ISA                    January 2024
    |      |   |    |      | temp = *(u32 *)(dst +      | operations    |
    |      |   |    |      | offset)                    | (Section 4.3) |
    |      |   |    |      | *(u32 *)(dst + offset)     |               |
+
+
+
+Thaler                    Expires 2 August 2024                [Page 33]
+
+Internet-Draft                  eBPF ISA                    January 2024
+
+
    |      |   |    |      | &= src                     |               |
    |      |   |    |      | src = temp                 |               |
    +------+---+----+------+----------------------------+---------------+
@@ -2010,14 +1864,6 @@ Internet-Draft                  eBPF ISA                    January 2024
    |      |   |    |      | ^= src                     |               |
    |      |   |    |      | src = temp                 |               |
    +------+---+----+------+----------------------------+---------------+
-
-
-
-Thaler                    Expires 29 July 2024                 [Page 36]
-
-Internet-Draft                  eBPF ISA                    January 2024
-
-
    |0xc3  |any|0xe1|any   | lock                       | Atomic        |
    |      |   |    |      | temp = *(u32 *)(dst +      | operations    |
    |      |   |    |      | offset)                    | (Section 4.3) |
@@ -2052,6 +1898,14 @@ Internet-Draft                  eBPF ISA                    January 2024
    +------+---+----+------+----------------------------+---------------+
    |0xcc  |any|0x00|0     | dst = (u32)(dst s>> src)   | Arithmetic    |
    |      |   |    |      |                            | instructions  |
+
+
+
+Thaler                    Expires 2 August 2024                [Page 34]
+
+Internet-Draft                  eBPF ISA                    January 2024
+
+
    |      |   |    |      |                            | (Section 3.1) |
    +------+---+----+------+----------------------------+---------------+
    |0xcd  |any|0x00|any   | if dst s< src goto         | Jump          |
@@ -2066,14 +1920,6 @@ Internet-Draft                  eBPF ISA                    January 2024
    |      |   |    |      |                            | instructions  |
    |      |   |    |      |                            | (Section 3.1) |
    +------+---+----+------+----------------------------+---------------+
-
-
-
-Thaler                    Expires 29 July 2024                 [Page 37]
-
-Internet-Draft                  eBPF ISA                    January 2024
-
-
    |0xd4  |0x0|0x10|0     | dst = htole16(dst)         | Byte swap     |
    |      |   |    |      |                            | instructions  |
    |      |   |    |      |                            | (Section 3.2) |
@@ -2108,6 +1954,14 @@ Internet-Draft                  eBPF ISA                    January 2024
    +------+---+----+------+----------------------------+---------------+
    |0xdb  |any|0x00|any   | lock *(u64 *)(dst +        | Atomic        |
    |      |   |    |      | offset) += src             | operations    |
+
+
+
+Thaler                    Expires 2 August 2024                [Page 35]
+
+Internet-Draft                  eBPF ISA                    January 2024
+
+
    |      |   |    |      |                            | (Section 4.3) |
    +------+---+----+------+----------------------------+---------------+
    |0xdb  |any|0x01|any   | lock                       | Atomic        |
@@ -2122,14 +1976,6 @@ Internet-Draft                  eBPF ISA                    January 2024
    |      |   |    |      |                            | (Section 4.3) |
    +------+---+----+------+----------------------------+---------------+
    |0xdb  |any|0x41|any   | lock                       | Atomic        |
-
-
-
-Thaler                    Expires 29 July 2024                 [Page 38]
-
-Internet-Draft                  eBPF ISA                    January 2024
-
-
    |      |   |    |      | temp = *(u64 *)(dst +      | operations    |
    |      |   |    |      | offset)                    | (Section 4.3) |
    |      |   |    |      | *(u64 *)(dst +             |               |
@@ -2164,6 +2010,14 @@ Internet-Draft                  eBPF ISA                    January 2024
    |      |   |    |      | *(u64 *)(dst + offset) =   |               |
    |      |   |    |      | src                        |               |
    |      |   |    |      | src = temp                 |               |
+
+
+
+Thaler                    Expires 2 August 2024                [Page 36]
+
+Internet-Draft                  eBPF ISA                    January 2024
+
+
    +------+---+----+------+----------------------------+---------------+
    |0xdb  |any|0xf1|any   | lock                       | Atomic        |
    |      |   |    |      | temp = *(u64 *)(dst +      | operations    |
@@ -2178,14 +2032,6 @@ Internet-Draft                  eBPF ISA                    January 2024
    |      |   |    |      |                            | instructions  |
    |      |   |    |      |                            | (Section 3.2) |
    +------+---+----+------+----------------------------+---------------+
-
-
-
-Thaler                    Expires 29 July 2024                 [Page 39]
-
-Internet-Draft                  eBPF ISA                    January 2024
-
-
    |0xdc  |0x0|0x20|0     | dst = htobe32(dst)         | Byte swap     |
    |      |   |    |      |                            | instructions  |
    |      |   |    |      |                            | (Section 3.2) |
@@ -2223,18 +2069,4 @@ Author's Address
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Thaler                    Expires 29 July 2024                 [Page 40]
+Thaler                    Expires 2 August 2024                [Page 37]
