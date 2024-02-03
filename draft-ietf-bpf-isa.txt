@@ -4,8 +4,8 @@
 
 Network Working Group                                     D. Thaler, Ed.
 Internet-Draft                                                 Microsoft
-Intended status: Standards Track                         30 January 2024
-Expires: 2 August 2024
+Intended status: Standards Track                         3 February 2024
+Expires: 6 August 2024
 
 
                 BPF Instruction Set Specification, v1.0
@@ -30,7 +30,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 August 2024.
+   This Internet-Draft will expire on 6 August 2024.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Table of Contents
 
 
 
-Thaler                    Expires 2 August 2024                 [Page 1]
+Thaler                    Expires 6 August 2024                 [Page 1]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
      1.1.  Types . . . . . . . . . . . . . . . . . . . . . . . . . .   2
@@ -81,8 +81,8 @@ Internet-Draft                  eBPF ISA                    January 2024
    5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  20
    6.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  21
    7.  Appendix  . . . . . . . . . . . . . . . . . . . . . . . . . .  22
-   8.  Normative References  . . . . . . . . . . . . . . . . . . . .  37
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  37
+   8.  Normative References  . . . . . . . . . . . . . . . . . . . .  36
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  36
 
 1.  Documentation conventions
 
@@ -109,9 +109,9 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 2 August 2024                 [Page 2]
+Thaler                    Expires 6 August 2024                 [Page 2]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
                               +=====+==========+
@@ -165,9 +165,9 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 2 August 2024                 [Page 3]
+Thaler                    Expires 6 August 2024                 [Page 3]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
    *  _htole16_: Takes an unsigned 16-bit number in host-endian format
@@ -221,9 +221,9 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 2 August 2024                 [Page 4]
+Thaler                    Expires 6 August 2024                 [Page 4]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
 1.4.  Conformance groups
@@ -277,9 +277,9 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 2 August 2024                 [Page 5]
+Thaler                    Expires 6 August 2024                 [Page 5]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
    *dst_reg*  destination register number (0-10)
@@ -333,9 +333,9 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 2 August 2024                 [Page 6]
+Thaler                    Expires 6 August 2024                 [Page 6]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
    +===========+=======+====================+==========================+
@@ -389,9 +389,9 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 2 August 2024                 [Page 7]
+Thaler                    Expires 6 August 2024                 [Page 7]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
    *code*  the operation code, whose meaning varies by instruction class
@@ -445,9 +445,9 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 2 August 2024                 [Page 8]
+Thaler                    Expires 6 August 2024                 [Page 8]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
    +===========+=======+=========+=====================================+
@@ -501,9 +501,9 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 2 August 2024                 [Page 9]
+Thaler                    Expires 6 August 2024                 [Page 9]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
    Underflow and overflow are allowed during arithmetic operations,
@@ -557,9 +557,9 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 2 August 2024                [Page 10]
+Thaler                    Expires 6 August 2024                [Page 10]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
    |  a % n = a - n * trunc(a / n)
@@ -613,9 +613,9 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 2 August 2024                [Page 11]
+Thaler                    Expires 6 August 2024                [Page 11]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
    BPF_ALU | BPF_TO_LE | BPF_END with imm = 16/32/64 means:
@@ -669,9 +669,9 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 2 August 2024                [Page 12]
+Thaler                    Expires 6 August 2024                [Page 12]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
    | BPF_JNE  | 0x5   | any | PC +=       |                           |
@@ -725,9 +725,9 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 2 August 2024                [Page 13]
+Thaler                    Expires 6 August 2024                [Page 13]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
    Example:
@@ -781,9 +781,9 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 2 August 2024                [Page 14]
+Thaler                    Expires 6 August 2024                [Page 14]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
                +==============+========+===================+
@@ -837,9 +837,9 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 2 August 2024                [Page 15]
+Thaler                    Expires 6 August 2024                [Page 15]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
              +===============+=======+=======================+
@@ -893,9 +893,9 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 2 August 2024                [Page 16]
+Thaler                    Expires 6 August 2024                [Page 16]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
 4.3.  Atomic operations
@@ -949,9 +949,9 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 2 August 2024                [Page 17]
+Thaler                    Expires 6 August 2024                [Page 17]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
      +=============+==================+=============================+
@@ -1005,9 +1005,9 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 2 August 2024                [Page 18]
+Thaler                    Expires 6 August 2024                [Page 18]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
     +============+======+===+========================+========+=======+
@@ -1061,9 +1061,9 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 2 August 2024                [Page 19]
+Thaler                    Expires 6 August 2024                [Page 19]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
    *  code_addr(imm) gets the address of the instruction at a specified
@@ -1117,9 +1117,9 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 2 August 2024                [Page 20]
+Thaler                    Expires 6 August 2024                [Page 20]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
    *  Required information for registrations: The values to appear in
@@ -1173,9 +1173,9 @@ Internet-Draft                  eBPF ISA                    January 2024
 
 
 
-Thaler                    Expires 2 August 2024                [Page 21]
+Thaler                    Expires 6 August 2024                [Page 21]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
 7.  Appendix
@@ -1184,870 +1184,822 @@ Internet-Draft                  eBPF ISA                    January 2024
    descriptions in this table are informative.  In case of any
    discrepancy, the reference is authoritative.
 
-   +======+===+====+======+============================+===============+
-   |opcode|src|imm |offset| description                | reference     |
-   +======+===+====+======+============================+===============+
-   |0x00  |0x0|any |0     | (additional immediate      | 64-bit        |
-   |      |   |    |      | value)                     | immediate     |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.4) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x04  |0x0|any |0     | dst = (u32)((u32)dst +     | Arithmetic    |
-   |      |   |    |      | (u32)imm)                  | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x05  |0x0|0x00|any   | goto +offset               | Jump          |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x06  |0x0|any |0     | goto +imm                  | Jump          |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x07  |0x0|any |0     | dst += imm                 | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x0c  |any|0x00|0     | dst = (u32)((u32)dst +     | Arithmetic    |
-   |      |   |    |      | (u32)src)                  | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x0f  |any|0x00|0     | dst += src                 | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x14  |0x0|any |0     | dst = (u32)((u32)dst -     | Arithmetic    |
-   |      |   |    |      | (u32)imm)                  | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x15  |0x0|any |any   | if dst == imm goto         | Jump          |
-   |      |   |    |      | +offset                    | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x16  |0x0|any |any   | if (u32)dst == imm goto    | Jump          |
-   |      |   |    |      | +offset                    | instructions  |
+    +======+===+====+======+==========================+===============+
+    |opcode|src|imm |offset| description              | reference     |
+    +======+===+====+======+==========================+===============+
+    |0x00  |0x0|any |0     | (additional immediate    | 64-bit        |
+    |      |   |    |      | value)                   | immediate     |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 4.4) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x04  |0x0|any |0     | dst = (u32)((u32)dst +   | Arithmetic    |
+    |      |   |    |      | (u32)imm)                | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x05  |0x0|0x00|any   | goto +offset             | Jump          |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x06  |0x0|any |0     | goto +imm                | Jump          |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x07  |0x0|any |0     | dst += imm               | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x0c  |any|0x00|0     | dst = (u32)((u32)dst +   | Arithmetic    |
+    |      |   |    |      | (u32)src)                | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x0f  |any|0x00|0     | dst += src               | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x14  |0x0|any |0     | dst = (u32)((u32)dst -   | Arithmetic    |
+    |      |   |    |      | (u32)imm)                | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x15  |0x0|any |any   | if dst == imm goto       | Jump          |
+    |      |   |    |      | +offset                  | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x16  |0x0|any |any   | if (u32)dst == imm goto  | Jump          |
+    |      |   |    |      | +offset                  | instructions  |
 
 
 
-Thaler                    Expires 2 August 2024                [Page 22]
+Thaler                    Expires 6 August 2024                [Page 22]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x17  |0x0|any |0     | dst -= imm                 | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x18  |0x0|any |0     | dst = imm64                | 64-bit        |
-   |      |   |    |      |                            | immediate     |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.4) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x18  |0x1|any |0     | dst = map_by_fd(imm)       | 64-bit        |
-   |      |   |    |      |                            | immediate     |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.4) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x18  |0x2|any |0     | dst =                      | 64-bit        |
-   |      |   |    |      | mva(map_by_fd(imm)) +      | immediate     |
-   |      |   |    |      | next_imm                   | instructions  |
-   |      |   |    |      |                            | (Section 4.4) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x18  |0x3|any |0     | dst = variable_addr(imm)   | 64-bit        |
-   |      |   |    |      |                            | immediate     |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.4) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x18  |0x4|any |0     | dst = code_addr(imm)       | 64-bit        |
-   |      |   |    |      |                            | immediate     |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.4) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x18  |0x5|any |0     | dst = map_by_idx(imm)      | 64-bit        |
-   |      |   |    |      |                            | immediate     |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.4) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x18  |0x6|any |0     | dst =                      | 64-bit        |
-   |      |   |    |      | mva(map_by_idx(imm)) +     | immediate     |
-   |      |   |    |      | next_imm                   | instructions  |
-   |      |   |    |      |                            | (Section 4.4) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x1c  |any|0x00|0     | dst = (u32)((u32)dst -     | Arithmetic    |
-   |      |   |    |      | (u32)src)                  | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x1d  |any|0x00|any   | if dst == src goto         | Jump          |
-   |      |   |    |      | +offset                    | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x17  |0x0|any |0     | dst -= imm               | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x18  |0x0|any |0     | dst = imm64              | 64-bit        |
+    |      |   |    |      |                          | immediate     |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 4.4) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x18  |0x1|any |0     | dst = map_by_fd(imm)     | 64-bit        |
+    |      |   |    |      |                          | immediate     |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 4.4) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x18  |0x2|any |0     | dst =                    | 64-bit        |
+    |      |   |    |      | mva(map_by_fd(imm)) +    | immediate     |
+    |      |   |    |      | next_imm                 | instructions  |
+    |      |   |    |      |                          | (Section 4.4) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x18  |0x3|any |0     | dst = variable_addr(imm) | 64-bit        |
+    |      |   |    |      |                          | immediate     |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 4.4) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x18  |0x4|any |0     | dst = code_addr(imm)     | 64-bit        |
+    |      |   |    |      |                          | immediate     |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 4.4) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x18  |0x5|any |0     | dst = map_by_idx(imm)    | 64-bit        |
+    |      |   |    |      |                          | immediate     |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 4.4) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x18  |0x6|any |0     | dst =                    | 64-bit        |
+    |      |   |    |      | mva(map_by_idx(imm)) +   | immediate     |
+    |      |   |    |      | next_imm                 | instructions  |
+    |      |   |    |      |                          | (Section 4.4) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x1c  |any|0x00|0     | dst = (u32)((u32)dst -   | Arithmetic    |
+    |      |   |    |      | (u32)src)                | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x1d  |any|0x00|any   | if dst == src goto       | Jump          |
+    |      |   |    |      | +offset                  | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
 
 
 
-Thaler                    Expires 2 August 2024                [Page 23]
+Thaler                    Expires 6 August 2024                [Page 23]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
-   +------+---+----+------+----------------------------+---------------+
-   |0x1e  |any|0x00|any   | if (u32)dst == (u32)src    | Jump          |
-   |      |   |    |      | goto +offset               | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x1f  |any|0x00|0     | dst -= src                 | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x20  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x24  |0x0|any |0     | dst = (u32)(dst * imm)     | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x25  |0x0|any |any   | if dst > imm goto          | Jump          |
-   |      |   |    |      | +offset                    | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x26  |0x0|any |any   | if (u32)dst > imm goto     | Jump          |
-   |      |   |    |      | +offset                    | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x27  |0x0|any |0     | dst *= imm                 | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x28  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x2c  |any|0x00|0     | dst = (u32)(dst * src)     | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x2d  |any|0x00|any   | if dst > src goto          | Jump          |
-   |      |   |    |      | +offset                    | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x2e  |any|0x00|any   | if (u32)dst > (u32)src     | Jump          |
-   |      |   |    |      | goto +offset               | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x2f  |any|0x00|0     | dst *= src                 | Arithmetic    |
+    +------+---+----+------+--------------------------+---------------+
+    |0x1e  |any|0x00|any   | if (u32)dst == (u32)src  | Jump          |
+    |      |   |    |      | goto +offset             | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x1f  |any|0x00|0     | dst -= src               | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x20  |any|any |any   | (deprecated,             | Legacy BPF    |
+    |      |   |    |      | implementation-specific) | Packet access |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 4.5) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x24  |0x0|any |0     | dst = (u32)(dst * imm)   | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x25  |0x0|any |any   | if dst > imm goto        | Jump          |
+    |      |   |    |      | +offset                  | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x26  |0x0|any |any   | if (u32)dst > imm goto   | Jump          |
+    |      |   |    |      | +offset                  | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x27  |0x0|any |0     | dst *= imm               | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x28  |any|any |any   | (deprecated,             | Legacy BPF    |
+    |      |   |    |      | implementation-specific) | Packet access |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 4.5) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x2c  |any|0x00|0     | dst = (u32)(dst * src)   | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x2d  |any|0x00|any   | if dst > src goto        | Jump          |
+    |      |   |    |      | +offset                  | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x2e  |any|0x00|any   | if (u32)dst > (u32)src   | Jump          |
+    |      |   |    |      | goto +offset             | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x2f  |any|0x00|0     | dst *= src               | Arithmetic    |
 
 
 
-Thaler                    Expires 2 August 2024                [Page 24]
+Thaler                    Expires 6 August 2024                [Page 24]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x30  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x34  |0x0|any |0     | dst = (u32)((imm != 0) ?   | Arithmetic    |
-   |      |   |    |      | ((u32)dst / (u32)imm) :    | instructions  |
-   |      |   |    |      | 0)                         | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x34  |0x0|any |1     | dst = (u32)((imm != 0) ?   | Arithmetic    |
-   |      |   |    |      | ((s32)dst s/ imm) : 0)     | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x35  |0x0|any |any   | if dst >= imm goto         | Jump          |
-   |      |   |    |      | +offset                    | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x36  |0x0|any |any   | if (u32)dst >= imm goto    | Jump          |
-   |      |   |    |      | +offset                    | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x37  |0x0|any |0     | dst = (imm != 0) ? (dst    | Arithmetic    |
-   |      |   |    |      | / (u32)imm) : 0            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x37  |0x0|any |1     | dst = (imm != 0) ? (dst    | Arithmetic    |
-   |      |   |    |      | s/ imm) : 0                | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x3c  |any|0x00|0     | dst = (u32)((src != 0) ?   | Arithmetic    |
-   |      |   |    |      | ((u32)dst / (u32)src) :    | instructions  |
-   |      |   |    |      | 0)                         | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x3c  |any|0x00|1     | dst = (u32)((src != 0) ?   | Arithmetic    |
-   |      |   |    |      | ((s32)dst s/(s32)src) :    | instructions  |
-   |      |   |    |      | 0)                         | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x3d  |any|0x00|any   | if dst >= src goto         | Jump          |
-   |      |   |    |      | +offset                    | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x3e  |any|0x00|any   | if (u32)dst >= (u32)src    | Jump          |
-   |      |   |    |      | goto +offset               | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x30  |any|any |any   | (deprecated,             | Legacy BPF    |
+    |      |   |    |      | implementation-specific) | Packet access |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 4.5) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x34  |0x0|any |0     | dst = (u32)((imm != 0) ? | Arithmetic    |
+    |      |   |    |      | ((u32)dst / (u32)imm) :  | instructions  |
+    |      |   |    |      | 0)                       | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x34  |0x0|any |1     | dst = (u32)((imm != 0) ? | Arithmetic    |
+    |      |   |    |      | ((s32)dst s/ imm) : 0)   | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x35  |0x0|any |any   | if dst >= imm goto       | Jump          |
+    |      |   |    |      | +offset                  | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x36  |0x0|any |any   | if (u32)dst >= imm goto  | Jump          |
+    |      |   |    |      | +offset                  | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x37  |0x0|any |0     | dst = (imm != 0) ? (dst  | Arithmetic    |
+    |      |   |    |      | / (u32)imm) : 0          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x37  |0x0|any |1     | dst = (imm != 0) ? (dst  | Arithmetic    |
+    |      |   |    |      | s/ imm) : 0              | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x3c  |any|0x00|0     | dst = (u32)((src != 0) ? | Arithmetic    |
+    |      |   |    |      | ((u32)dst / (u32)src) :  | instructions  |
+    |      |   |    |      | 0)                       | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x3c  |any|0x00|1     | dst = (u32)((src != 0) ? | Arithmetic    |
+    |      |   |    |      | ((s32)dst s/(s32)src) :  | instructions  |
+    |      |   |    |      | 0)                       | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x3d  |any|0x00|any   | if dst >= src goto       | Jump          |
+    |      |   |    |      | +offset                  | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x3e  |any|0x00|any   | if (u32)dst >= (u32)src  | Jump          |
+    |      |   |    |      | goto +offset             | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
 
 
 
-Thaler                    Expires 2 August 2024                [Page 25]
+Thaler                    Expires 6 August 2024                [Page 25]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
-   |0x3f  |any|0x00|0     | dst = (src != 0) ? (dst    | Arithmetic    |
-   |      |   |    |      | / src) : 0                 | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x3f  |any|0x00|1     | dst = (src != 0) ? (dst    | Arithmetic    |
-   |      |   |    |      | s/ src) : 0                | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x40  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x44  |0x0|any |0     | dst = (u32)(dst | imm)     | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x45  |0x0|any |any   | if dst & imm goto          | Jump          |
-   |      |   |    |      | +offset                    | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x46  |0x0|any |any   | if (u32)dst & imm goto     | Jump          |
-   |      |   |    |      | +offset                    | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x47  |0x0|any |0     | dst |= imm                 | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x48  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x4c  |any|0x00|0     | dst = (u32)(dst | src)     | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x4d  |any|0x00|any   | if dst & src goto          | Jump          |
-   |      |   |    |      | +offset                    | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x4e  |any|0x00|any   | if (u32)dst & (u32)src     | Jump          |
-   |      |   |    |      | goto +offset               | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x4f  |any|0x00|0     | dst |= src                 | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
+    |0x3f  |any|0x00|0     | dst = (src != 0) ? (dst  | Arithmetic    |
+    |      |   |    |      | / src) : 0               | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x3f  |any|0x00|1     | dst = (src != 0) ? (dst  | Arithmetic    |
+    |      |   |    |      | s/ src) : 0              | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x40  |any|any |any   | (deprecated,             | Legacy BPF    |
+    |      |   |    |      | implementation-specific) | Packet access |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 4.5) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x44  |0x0|any |0     | dst = (u32)(dst | imm)   | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x45  |0x0|any |any   | if dst & imm goto        | Jump          |
+    |      |   |    |      | +offset                  | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x46  |0x0|any |any   | if (u32)dst & imm goto   | Jump          |
+    |      |   |    |      | +offset                  | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x47  |0x0|any |0     | dst |= imm               | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x48  |any|any |any   | (deprecated,             | Legacy BPF    |
+    |      |   |    |      | implementation-specific) | Packet access |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 4.5) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x4c  |any|0x00|0     | dst = (u32)(dst | src)   | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x4d  |any|0x00|any   | if dst & src goto        | Jump          |
+    |      |   |    |      | +offset                  | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x4e  |any|0x00|any   | if (u32)dst & (u32)src   | Jump          |
+    |      |   |    |      | goto +offset             | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x4f  |any|0x00|0     | dst |= src               | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
 
 
 
-Thaler                    Expires 2 August 2024                [Page 26]
+Thaler                    Expires 6 August 2024                [Page 26]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x50  |any|any |any   | (deprecated,               | Legacy BPF    |
-   |      |   |    |      | implementation-specific)   | Packet access |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4.5) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x54  |0x0|any |0     | dst = (u32)(dst & imm)     | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x55  |0x0|any |any   | if dst != imm goto         | Jump          |
-   |      |   |    |      | +offset                    | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x56  |0x0|any |any   | if (u32)dst != imm goto    | Jump          |
-   |      |   |    |      | +offset                    | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x57  |0x0|any |0     | dst &= imm                 | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x5c  |any|0x00|0     | dst = (u32)(dst & src)     | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x5d  |any|0x00|any   | if dst != src goto         | Jump          |
-   |      |   |    |      | +offset                    | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x5e  |any|0x00|any   | if (u32)dst != (u32)src    | Jump          |
-   |      |   |    |      | goto +offset               | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x5f  |any|0x00|0     | dst &= src                 | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x61  |any|0x00|any   | dst = *(u32 *)(src +       | Load and      |
-   |      |   |    |      | offset)                    | store         |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4)   |
-   +------+---+----+------+----------------------------+---------------+
-   |0x62  |0x0|any |any   | *(u32 *)(dst + offset) =   | Load and      |
-   |      |   |    |      | imm                        | store         |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4)   |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x50  |any|any |any   | (deprecated,             | Legacy BPF    |
+    |      |   |    |      | implementation-specific) | Packet access |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 4.5) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x54  |0x0|any |0     | dst = (u32)(dst & imm)   | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x55  |0x0|any |any   | if dst != imm goto       | Jump          |
+    |      |   |    |      | +offset                  | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x56  |0x0|any |any   | if (u32)dst != imm goto  | Jump          |
+    |      |   |    |      | +offset                  | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x57  |0x0|any |0     | dst &= imm               | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x5c  |any|0x00|0     | dst = (u32)(dst & src)   | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x5d  |any|0x00|any   | if dst != src goto       | Jump          |
+    |      |   |    |      | +offset                  | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x5e  |any|0x00|any   | if (u32)dst != (u32)src  | Jump          |
+    |      |   |    |      | goto +offset             | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x5f  |any|0x00|0     | dst &= src               | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x61  |any|0x00|any   | dst = *(u32 *)(src +     | Load and      |
+    |      |   |    |      | offset)                  | store         |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 4)   |
+    +------+---+----+------+--------------------------+---------------+
+    |0x62  |0x0|any |any   | *(u32 *)(dst + offset) = | Load and      |
+    |      |   |    |      | imm                      | store         |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 4)   |
 
 
 
-Thaler                    Expires 2 August 2024                [Page 27]
+Thaler                    Expires 6 August 2024                [Page 27]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
-   +------+---+----+------+----------------------------+---------------+
-   |0x63  |any|0x00|any   | *(u32 *)(dst + offset) =   | Load and      |
-   |      |   |    |      | src                        | store         |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4)   |
-   +------+---+----+------+----------------------------+---------------+
-   |0x64  |0x0|any |0     | dst = (u32)(dst << imm)    | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x65  |0x0|any |any   | if dst s> imm goto         | Jump          |
-   |      |   |    |      | +offset                    | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x66  |0x0|any |any   | if (s32)dst s> (s32)imm    | Jump          |
-   |      |   |    |      | goto +offset               | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x67  |0x0|any |0     | dst <<= imm                | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x69  |any|0x00|any   | dst = *(u16 *)(src +       | Load and      |
-   |      |   |    |      | offset)                    | store         |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4)   |
-   +------+---+----+------+----------------------------+---------------+
-   |0x6a  |0x0|any |any   | *(u16 *)(dst + offset) =   | Load and      |
-   |      |   |    |      | imm                        | store         |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4)   |
-   +------+---+----+------+----------------------------+---------------+
-   |0x6b  |any|0x00|any   | *(u16 *)(dst + offset) =   | Load and      |
-   |      |   |    |      | src                        | store         |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4)   |
-   +------+---+----+------+----------------------------+---------------+
-   |0x6c  |any|0x00|0     | dst = (u32)(dst << src)    | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x6d  |any|0x00|any   | if dst s> src goto         | Jump          |
-   |      |   |    |      | +offset                    | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x6e  |any|0x00|any   | if (s32)dst s> (s32)src    | Jump          |
-   |      |   |    |      | goto +offset               | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x63  |any|0x00|any   | *(u32 *)(dst + offset) = | Load and      |
+    |      |   |    |      | src                      | store         |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 4)   |
+    +------+---+----+------+--------------------------+---------------+
+    |0x64  |0x0|any |0     | dst = (u32)(dst << imm)  | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x65  |0x0|any |any   | if dst s> imm goto       | Jump          |
+    |      |   |    |      | +offset                  | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x66  |0x0|any |any   | if (s32)dst s> (s32)imm  | Jump          |
+    |      |   |    |      | goto +offset             | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x67  |0x0|any |0     | dst <<= imm              | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x69  |any|0x00|any   | dst = *(u16 *)(src +     | Load and      |
+    |      |   |    |      | offset)                  | store         |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 4)   |
+    +------+---+----+------+--------------------------+---------------+
+    |0x6a  |0x0|any |any   | *(u16 *)(dst + offset) = | Load and      |
+    |      |   |    |      | imm                      | store         |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 4)   |
+    +------+---+----+------+--------------------------+---------------+
+    |0x6b  |any|0x00|any   | *(u16 *)(dst + offset) = | Load and      |
+    |      |   |    |      | src                      | store         |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 4)   |
+    +------+---+----+------+--------------------------+---------------+
+    |0x6c  |any|0x00|0     | dst = (u32)(dst << src)  | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x6d  |any|0x00|any   | if dst s> src goto       | Jump          |
+    |      |   |    |      | +offset                  | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x6e  |any|0x00|any   | if (s32)dst s> (s32)src  | Jump          |
+    |      |   |    |      | goto +offset             | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
 
 
 
-Thaler                    Expires 2 August 2024                [Page 28]
+Thaler                    Expires 6 August 2024                [Page 28]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
-   +------+---+----+------+----------------------------+---------------+
-   |0x6f  |any|0x00|0     | dst <<= src                | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x71  |any|0x00|any   | dst = *(u8 *)(src +        | Load and      |
-   |      |   |    |      | offset)                    | store         |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4)   |
-   +------+---+----+------+----------------------------+---------------+
-   |0x72  |0x0|any |any   | *(u8 *)(dst + offset) =    | Load and      |
-   |      |   |    |      | imm                        | store         |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4)   |
-   +------+---+----+------+----------------------------+---------------+
-   |0x73  |any|0x00|any   | *(u8 *)(dst + offset) =    | Load and      |
-   |      |   |    |      | src                        | store         |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4)   |
-   +------+---+----+------+----------------------------+---------------+
-   |0x74  |0x0|any |0     | dst = (u32)(dst >> imm)    | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x75  |0x0|any |any   | if dst s>= imm goto        | Jump          |
-   |      |   |    |      | +offset                    | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x76  |0x0|any |any   | if (s32)dst s>= (s32)imm   | Jump          |
-   |      |   |    |      | goto +offset               | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x77  |0x0|any |0     | dst >>= imm                | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x79  |any|0x00|any   | dst = *(u64 *)(src +       | Load and      |
-   |      |   |    |      | offset)                    | store         |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4)   |
-   +------+---+----+------+----------------------------+---------------+
-   |0x7a  |0x0|any |any   | *(u64 *)(dst + offset) =   | Load and      |
-   |      |   |    |      | imm                        | store         |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4)   |
-   +------+---+----+------+----------------------------+---------------+
-   |0x7b  |any|0x00|any   | *(u64 *)(dst + offset) =   | Load and      |
-   |      |   |    |      | src                        | store         |
+    +------+---+----+------+--------------------------+---------------+
+    |0x6f  |any|0x00|0     | dst <<= src              | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x71  |any|0x00|any   | dst = *(u8 *)(src +      | Load and      |
+    |      |   |    |      | offset)                  | store         |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 4)   |
+    +------+---+----+------+--------------------------+---------------+
+    |0x72  |0x0|any |any   | *(u8 *)(dst + offset) =  | Load and      |
+    |      |   |    |      | imm                      | store         |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 4)   |
+    +------+---+----+------+--------------------------+---------------+
+    |0x73  |any|0x00|any   | *(u8 *)(dst + offset) =  | Load and      |
+    |      |   |    |      | src                      | store         |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 4)   |
+    +------+---+----+------+--------------------------+---------------+
+    |0x74  |0x0|any |0     | dst = (u32)(dst >> imm)  | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x75  |0x0|any |any   | if dst s>= imm goto      | Jump          |
+    |      |   |    |      | +offset                  | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x76  |0x0|any |any   | if (s32)dst s>= (s32)imm | Jump          |
+    |      |   |    |      | goto +offset             | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x77  |0x0|any |0     | dst >>= imm              | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x79  |any|0x00|any   | dst = *(u64 *)(src +     | Load and      |
+    |      |   |    |      | offset)                  | store         |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 4)   |
+    +------+---+----+------+--------------------------+---------------+
+    |0x7a  |0x0|any |any   | *(u64 *)(dst + offset) = | Load and      |
+    |      |   |    |      | imm                      | store         |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 4)   |
+    +------+---+----+------+--------------------------+---------------+
+    |0x7b  |any|0x00|any   | *(u64 *)(dst + offset) = | Load and      |
+    |      |   |    |      | src                      | store         |
 
 
 
-Thaler                    Expires 2 August 2024                [Page 29]
+Thaler                    Expires 6 August 2024                [Page 29]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 4)   |
-   +------+---+----+------+----------------------------+---------------+
-   |0x7c  |any|0x00|0     | dst = (u32)(dst >> src)    | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x7d  |any|0x00|any   | if dst s>= src goto        | Jump          |
-   |      |   |    |      | +offset                    | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x7e  |any|0x00|any   | if (s32)dst s>= (s32)src   | Jump          |
-   |      |   |    |      | goto +offset               | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x7f  |any|0x00|0     | dst >>= src                | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x84  |0x0|0x00|0     | dst = (u32)-dst            | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x85  |0x0|any |0     | call helper function by    | Helper        |
-   |      |   |    |      | address                    | functions     |
-   |      |   |    |      |                            | (Section      |
-   |      |   |    |      |                            | 3.3.1)        |
-   +------+---+----+------+----------------------------+---------------+
-   |0x85  |0x1|any |0     | call PC += imm             | Program-local |
-   |      |   |    |      |                            | functions     |
-   |      |   |    |      |                            | (Section      |
-   |      |   |    |      |                            | 3.3.2)        |
-   +------+---+----+------+----------------------------+---------------+
-   |0x85  |0x2|any |0     | call helper function by    | Helper        |
-   |      |   |    |      | BTF ID                     | functions     |
-   |      |   |    |      |                            | (Section      |
-   |      |   |    |      |                            | 3.3.1)        |
-   +------+---+----+------+----------------------------+---------------+
-   |0x87  |0x0|0x00|0     | dst = -dst                 | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x94  |0x0|any |0     | dst = (u32)((imm !=        | Arithmetic    |
-   |      |   |    |      | 0)?((u32)dst % (u32)imm)   | instructions  |
-   |      |   |    |      | : dst)                     | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x94  |0x0|any |1     | dst = (u32)((imm != 0) ?   | Arithmetic    |
-   |      |   |    |      | ((s32)dst s% imm) : dst)   | instructions  |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 4)   |
+    +------+---+----+------+--------------------------+---------------+
+    |0x7c  |any|0x00|0     | dst = (u32)(dst >> src)  | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x7d  |any|0x00|any   | if dst s>= src goto      | Jump          |
+    |      |   |    |      | +offset                  | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x7e  |any|0x00|any   | if (s32)dst s>= (s32)src | Jump          |
+    |      |   |    |      | goto +offset             | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x7f  |any|0x00|0     | dst >>= src              | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x84  |0x0|0x00|0     | dst = (u32)-dst          | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x85  |0x0|any |0     | call helper function by  | Helper        |
+    |      |   |    |      | address                  | functions     |
+    |      |   |    |      |                          | (Section      |
+    |      |   |    |      |                          | 3.3.1)        |
+    +------+---+----+------+--------------------------+---------------+
+    |0x85  |0x1|any |0     | call PC += imm           | Program-local |
+    |      |   |    |      |                          | functions     |
+    |      |   |    |      |                          | (Section      |
+    |      |   |    |      |                          | 3.3.2)        |
+    +------+---+----+------+--------------------------+---------------+
+    |0x85  |0x2|any |0     | call helper function by  | Helper        |
+    |      |   |    |      | BTF ID                   | functions     |
+    |      |   |    |      |                          | (Section      |
+    |      |   |    |      |                          | 3.3.1)        |
+    +------+---+----+------+--------------------------+---------------+
+    |0x87  |0x0|0x00|0     | dst = -dst               | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x94  |0x0|any |0     | dst = (u32)((imm !=      | Arithmetic    |
+    |      |   |    |      | 0)?((u32)dst % (u32)imm) | instructions  |
+    |      |   |    |      | : dst)                   | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x94  |0x0|any |1     | dst = (u32)((imm != 0) ? | Arithmetic    |
+    |      |   |    |      | ((s32)dst s% imm) : dst) | instructions  |
 
 
 
-Thaler                    Expires 2 August 2024                [Page 30]
+Thaler                    Expires 6 August 2024                [Page 30]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x95  |0x0|0x00|0     | return                     | Jump          |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x97  |0x0|any |0     | dst = (imm != 0) ? (dst    | Arithmetic    |
-   |      |   |    |      | % (u32)imm) : dst          | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x97  |0x0|any |1     | dst = (imm != 0) ? (dst    | Arithmetic    |
-   |      |   |    |      | s% imm) : dst              | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x9c  |any|0x00|0     | dst = (u32)((src !=        | Arithmetic    |
-   |      |   |    |      | 0)?((u32)dst % (u32)src)   | instructions  |
-   |      |   |    |      | : dst)                     | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x9c  |any|0x00|1     | dst = (u32)((src !=        | Arithmetic    |
-   |      |   |    |      | 0)?((s32)dst s%            | instructions  |
-   |      |   |    |      | (s32)src) :dst)            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x9f  |any|0x00|0     | dst = (src != 0) ? (dst    | Arithmetic    |
-   |      |   |    |      | % src) : dst               | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0x9f  |any|0x00|1     | dst = (src != 0) ? (dst    | Arithmetic    |
-   |      |   |    |      | s% src) : dst              | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xa4  |0x0|any |0     | dst = (u32)(dst ^ imm)     | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xa5  |0x0|any |any   | if dst < imm goto          | Jump          |
-   |      |   |    |      | +offset                    | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xa6  |0x0|any |any   | if (u32)dst < imm goto     | Jump          |
-   |      |   |    |      | +offset                    | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xa7  |0x0|any |0     | dst ^= imm                 | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xac  |any|0x00|0     | dst = (u32)(dst ^ src)     | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x95  |0x0|0x00|0     | return                   | Jump          |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x97  |0x0|any |0     | dst = (imm != 0) ? (dst  | Arithmetic    |
+    |      |   |    |      | % (u32)imm) : dst        | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x97  |0x0|any |1     | dst = (imm != 0) ? (dst  | Arithmetic    |
+    |      |   |    |      | s% imm) : dst            | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x9c  |any|0x00|0     | dst = (u32)((src !=      | Arithmetic    |
+    |      |   |    |      | 0)?((u32)dst % (u32)src) | instructions  |
+    |      |   |    |      | : dst)                   | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x9c  |any|0x00|1     | dst = (u32)((src !=      | Arithmetic    |
+    |      |   |    |      | 0)?((s32)dst s%          | instructions  |
+    |      |   |    |      | (s32)src) :dst)          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x9f  |any|0x00|0     | dst = (src != 0) ? (dst  | Arithmetic    |
+    |      |   |    |      | % src) : dst             | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0x9f  |any|0x00|1     | dst = (src != 0) ? (dst  | Arithmetic    |
+    |      |   |    |      | s% src) : dst            | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xa4  |0x0|any |0     | dst = (u32)(dst ^ imm)   | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xa5  |0x0|any |any   | if dst < imm goto        | Jump          |
+    |      |   |    |      | +offset                  | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xa6  |0x0|any |any   | if (u32)dst < imm goto   | Jump          |
+    |      |   |    |      | +offset                  | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xa7  |0x0|any |0     | dst ^= imm               | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xac  |any|0x00|0     | dst = (u32)(dst ^ src)   | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
 
 
 
-Thaler                    Expires 2 August 2024                [Page 31]
+Thaler                    Expires 6 August 2024                [Page 31]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xad  |any|0x00|any   | if dst < src goto          | Jump          |
-   |      |   |    |      | +offset                    | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xae  |any|0x00|any   | if (u32)dst < (u32)src     | Jump          |
-   |      |   |    |      | goto +offset               | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xaf  |any|0x00|0     | dst ^= src                 | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xb4  |0x0|any |0     | dst = (u32) imm            | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xb5  |0x0|any |any   | if dst <= imm goto         | Jump          |
-   |      |   |    |      | +offset                    | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xb6  |0x0|any |any   | if (u32)dst <= imm goto    | Jump          |
-   |      |   |    |      | +offset                    | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xb7  |0x0|any |0     | dst = imm                  | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xbc  |any|0x00|0     | dst = (u32) src            | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xbc  |any|0x00|8     | dst = (u32) (s32) (s8)     | Arithmetic    |
-   |      |   |    |      | src                        | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xbc  |any|0x00|16    | dst = (u32) (s32) (s16)    | Arithmetic    |
-   |      |   |    |      | src                        | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xbd  |any|0x00|any   | if dst <= src goto         | Jump          |
-   |      |   |    |      | +offset                    | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xbe  |any|0x00|any   | if (u32)dst <= (u32)src    | Jump          |
-   |      |   |    |      | goto +offset               | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xad  |any|0x00|any   | if dst < src goto        | Jump          |
+    |      |   |    |      | +offset                  | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xae  |any|0x00|any   | if (u32)dst < (u32)src   | Jump          |
+    |      |   |    |      | goto +offset             | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xaf  |any|0x00|0     | dst ^= src               | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xb4  |0x0|any |0     | dst = (u32) imm          | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xb5  |0x0|any |any   | if dst <= imm goto       | Jump          |
+    |      |   |    |      | +offset                  | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xb6  |0x0|any |any   | if (u32)dst <= imm goto  | Jump          |
+    |      |   |    |      | +offset                  | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xb7  |0x0|any |0     | dst = imm                | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xbc  |any|0x00|0     | dst = (u32) src          | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xbc  |any|0x00|8     | dst = (u32) (s32) (s8)   | Arithmetic    |
+    |      |   |    |      | src                      | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xbc  |any|0x00|16    | dst = (u32) (s32) (s16)  | Arithmetic    |
+    |      |   |    |      | src                      | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xbd  |any|0x00|any   | if dst <= src goto       | Jump          |
+    |      |   |    |      | +offset                  | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xbe  |any|0x00|any   | if (u32)dst <= (u32)src  | Jump          |
+    |      |   |    |      | goto +offset             | instructions  |
 
 
 
-Thaler                    Expires 2 August 2024                [Page 32]
+Thaler                    Expires 6 August 2024                [Page 32]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xbf  |any|0x00|0     | dst = src                  | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xbf  |any|0x00|8     | dst = (s64) (s8) src       | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xbf  |any|0x00|16    | dst = (s64) (s16) src      | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xbf  |any|0x00|32    | dst = (s64) (s32) src      | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xc3  |any|0x00|any   | lock *(u32 *)(dst +        | Atomic        |
-   |      |   |    |      | offset) += src             | operations    |
-   |      |   |    |      |                            | (Section 4.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xc3  |any|0x01|any   | lock                       | Atomic        |
-   |      |   |    |      | temp = *(u32 *)(dst +      | operations    |
-   |      |   |    |      | offset)                    | (Section 4.3) |
-   |      |   |    |      | *(u32 *)(dst + offset)     |               |
-   |      |   |    |      | += src                     |               |
-   |      |   |    |      | src = temp                 |               |
-   +------+---+----+------+----------------------------+---------------+
-   |0xc3  |any|0x40|any   | lock *(u32 *)(dst +        | Atomic        |
-   |      |   |    |      | offset) |= src             | operations    |
-   |      |   |    |      |                            | (Section 4.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xc3  |any|0x41|any   | lock                       | Atomic        |
-   |      |   |    |      | temp = *(u32 *)(dst +      | operations    |
-   |      |   |    |      | offset)                    | (Section 4.3) |
-   |      |   |    |      | *(u32 *)(dst +             |               |
-   |      |   |    |      | offset) |= src             |               |
-   |      |   |    |      | src = temp                 |               |
-   +------+---+----+------+----------------------------+---------------+
-   |0xc3  |any|0x50|any   | lock *(u32 *)(dst +        | Atomic        |
-   |      |   |    |      | offset) &= src             | operations    |
-   |      |   |    |      |                            | (Section 4.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xc3  |any|0x51|any   | lock                       | Atomic        |
-   |      |   |    |      | temp = *(u32 *)(dst +      | operations    |
-   |      |   |    |      | offset)                    | (Section 4.3) |
-   |      |   |    |      | *(u32 *)(dst + offset)     |               |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xbf  |any|0x00|0     | dst = src                | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xbf  |any|0x00|8     | dst = (s64) (s8) src     | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xbf  |any|0x00|16    | dst = (s64) (s16) src    | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xbf  |any|0x00|32    | dst = (s64) (s32) src    | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xc3  |any|0x00|any   | lock *(u32 *)(dst +      | Atomic        |
+    |      |   |    |      | offset) += src           | operations    |
+    |      |   |    |      |                          | (Section 4.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xc3  |any|0x01|any   | src =                    | Atomic        |
+    |      |   |    |      | atomic_fetch_add_32((u32 | operations    |
+    |      |   |    |      | *)(dst + offset), src)   | (Section 4.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xc3  |any|0x40|any   | lock *(u32 *)(dst +      | Atomic        |
+    |      |   |    |      | offset) |= src           | operations    |
+    |      |   |    |      |                          | (Section 4.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xc3  |any|0x41|any   | src =                    | Atomic        |
+    |      |   |    |      | atomic_fetch_or_32((u32  | operations    |
+    |      |   |    |      | *)(dst + offset), src)   | (Section 4.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xc3  |any|0x50|any   | lock *(u32 *)(dst +      | Atomic        |
+    |      |   |    |      | offset) &= src           | operations    |
+    |      |   |    |      |                          | (Section 4.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xc3  |any|0x51|any   | src =                    | Atomic        |
+    |      |   |    |      | atomic_fetch_and_32((u32 | operations    |
+    |      |   |    |      | *)(dst + offset), src)   | (Section 4.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xc3  |any|0xa0|any   | lock *(u32 *)(dst +      | Atomic        |
+    |      |   |    |      | offset) ^= src           | operations    |
+    |      |   |    |      |                          | (Section 4.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xc3  |any|0xa1|any   | src =                    | Atomic        |
+    |      |   |    |      | atomic_fetch_xor_32((u32 | operations    |
 
 
 
-Thaler                    Expires 2 August 2024                [Page 33]
+Thaler                    Expires 6 August 2024                [Page 33]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
-   |      |   |    |      | &= src                     |               |
-   |      |   |    |      | src = temp                 |               |
-   +------+---+----+------+----------------------------+---------------+
-   |0xc3  |any|0xa0|any   | lock *(u32 *)(dst +        | Atomic        |
-   |      |   |    |      | offset) ^= src             | operations    |
-   |      |   |    |      |                            | (Section 4.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xc3  |any|0xa1|any   | lock                       | Atomic        |
-   |      |   |    |      | temp = *(u32 *)(dst +      | operations    |
-   |      |   |    |      | offset)                    | (Section 4.3) |
-   |      |   |    |      | *(u32 *)(dst + offset)     |               |
-   |      |   |    |      | ^= src                     |               |
-   |      |   |    |      | src = temp                 |               |
-   +------+---+----+------+----------------------------+---------------+
-   |0xc3  |any|0xe1|any   | lock                       | Atomic        |
-   |      |   |    |      | temp = *(u32 *)(dst +      | operations    |
-   |      |   |    |      | offset)                    | (Section 4.3) |
-   |      |   |    |      | *(u32 *)(dst + offset) =   |               |
-   |      |   |    |      | src                        |               |
-   |      |   |    |      | src = temp                 |               |
-   +------+---+----+------+----------------------------+---------------+
-   |0xc3  |any|0xf1|any   | lock                       | Atomic        |
-   |      |   |    |      | temp = *(u32 *)(dst +      | operations    |
-   |      |   |    |      | offset)                    | (Section 4.3) |
-   |      |   |    |      | if *(u32)(dst + offset)    |               |
-   |      |   |    |      | == R0                      |               |
-   |      |   |    |      | *(u32)(dst + offset) =     |               |
-   |      |   |    |      | src                        |               |
-   |      |   |    |      | R0 = temp                  |               |
-   +------+---+----+------+----------------------------+---------------+
-   |0xc4  |0x0|any |0     | dst = (u32)(dst s>> imm)   | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xc5  |0x0|any |any   | if dst s< imm goto         | Jump          |
-   |      |   |    |      | +offset                    | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xc6  |0x0|any |any   | if (s32)dst s< (s32)imm    | Jump          |
-   |      |   |    |      | goto +offset               | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xc7  |0x0|any |0     | dst s>>= imm               | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xcc  |any|0x00|0     | dst = (u32)(dst s>> src)   | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
+    |      |   |    |      | *)(dst + offset), src)   | (Section 4.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xc3  |any|0xe1|any   | src = xchg_32((u32       | Atomic        |
+    |      |   |    |      | *)(dst + offset), src)   | operations    |
+    |      |   |    |      |                          | (Section 4.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xc3  |any|0xf1|any   | r0 = cmpxchg_32((u32     | Atomic        |
+    |      |   |    |      | *)(dst + offset), r0,    | operations    |
+    |      |   |    |      | src)                     | (Section 4.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xc4  |0x0|any |0     | dst = (u32)(dst s>> imm) | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xc5  |0x0|any |any   | if dst s< imm goto       | Jump          |
+    |      |   |    |      | +offset                  | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xc6  |0x0|any |any   | if (s32)dst s< (s32)imm  | Jump          |
+    |      |   |    |      | goto +offset             | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xc7  |0x0|any |0     | dst s>>= imm             | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xcc  |any|0x00|0     | dst = (u32)(dst s>> src) | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xcd  |any|0x00|any   | if dst s< src goto       | Jump          |
+    |      |   |    |      | +offset                  | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xce  |any|0x00|any   | if (s32)dst s< (s32)src  | Jump          |
+    |      |   |    |      | goto +offset             | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xcf  |any|0x00|0     | dst s>>= src             | Arithmetic    |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.1) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xd4  |0x0|0x10|0     | dst = htole16(dst)       | Byte swap     |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.2) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xd4  |0x0|0x20|0     | dst = htole32(dst)       | Byte swap     |
+    |      |   |    |      |                          | instructions  |
 
 
 
-Thaler                    Expires 2 August 2024                [Page 34]
+Thaler                    Expires 6 August 2024                [Page 34]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xcd  |any|0x00|any   | if dst s< src goto         | Jump          |
-   |      |   |    |      | +offset                    | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xce  |any|0x00|any   | if (s32)dst s< (s32)src    | Jump          |
-   |      |   |    |      | goto +offset               | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xcf  |any|0x00|0     | dst s>>= src               | Arithmetic    |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.1) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xd4  |0x0|0x10|0     | dst = htole16(dst)         | Byte swap     |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.2) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xd4  |0x0|0x20|0     | dst = htole32(dst)         | Byte swap     |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.2) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xd4  |0x0|0x40|0     | dst = htole64(dst)         | Byte swap     |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.2) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xd5  |0x0|any |any   | if dst s<= imm goto        | Jump          |
-   |      |   |    |      | +offset                    | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xd6  |0x0|any |any   | if (s32)dst s<= (s32)imm   | Jump          |
-   |      |   |    |      | goto +offset               | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xd7  |0x0|0x10|0     | dst = bswap16(dst)         | Byte swap     |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.2) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xd7  |0x0|0x20|0     | dst = bswap32(dst)         | Byte swap     |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.2) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xd7  |0x0|0x40|0     | dst = bswap64(dst)         | Byte swap     |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.2) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xdb  |any|0x00|any   | lock *(u64 *)(dst +        | Atomic        |
-   |      |   |    |      | offset) += src             | operations    |
+    |      |   |    |      |                          | (Section 3.2) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xd4  |0x0|0x40|0     | dst = htole64(dst)       | Byte swap     |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.2) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xd5  |0x0|any |any   | if dst s<= imm goto      | Jump          |
+    |      |   |    |      | +offset                  | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xd6  |0x0|any |any   | if (s32)dst s<= (s32)imm | Jump          |
+    |      |   |    |      | goto +offset             | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xd7  |0x0|0x10|0     | dst = bswap16(dst)       | Byte swap     |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.2) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xd7  |0x0|0x20|0     | dst = bswap32(dst)       | Byte swap     |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.2) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xd7  |0x0|0x40|0     | dst = bswap64(dst)       | Byte swap     |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.2) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xdb  |any|0x00|any   | lock *(u64 *)(dst +      | Atomic        |
+    |      |   |    |      | offset) += src           | operations    |
+    |      |   |    |      |                          | (Section 4.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xdb  |any|0x01|any   | src =                    | Atomic        |
+    |      |   |    |      | atomic_fetch_add_64((u64 | operations    |
+    |      |   |    |      | *)(dst + offset), src)   | (Section 4.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xdb  |any|0x40|any   | lock *(u64 *)(dst +      | Atomic        |
+    |      |   |    |      | offset) |= src           | operations    |
+    |      |   |    |      |                          | (Section 4.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xdb  |any|0x41|any   | src =                    | Atomic        |
+    |      |   |    |      | atomic_fetch_or_64((u64  | operations    |
+    |      |   |    |      | *)(dst + offset), src)   | (Section 4.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xdb  |any|0x50|any   | lock *(u64 *)(dst +      | Atomic        |
+    |      |   |    |      | offset) &= src           | operations    |
+    |      |   |    |      |                          | (Section 4.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xdb  |any|0x51|any   | src =                    | Atomic        |
+    |      |   |    |      | atomic_fetch_and_64((u64 | operations    |
 
 
 
-Thaler                    Expires 2 August 2024                [Page 35]
+Thaler                    Expires 6 August 2024                [Page 35]
 
-Internet-Draft                  eBPF ISA                    January 2024
+Internet-Draft                  eBPF ISA                   February 2024
 
 
-   |      |   |    |      |                            | (Section 4.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xdb  |any|0x01|any   | lock                       | Atomic        |
-   |      |   |    |      | temp = *(u64 *)(dst +      | operations    |
-   |      |   |    |      | offset)                    | (Section 4.3) |
-   |      |   |    |      | *(u64 *)(dst + offset)     |               |
-   |      |   |    |      | += src                     |               |
-   |      |   |    |      | src = temp                 |               |
-   +------+---+----+------+----------------------------+---------------+
-   |0xdb  |any|0x40|any   | lock *(u64 *)(dst +        | Atomic        |
-   |      |   |    |      | offset) |= src             | operations    |
-   |      |   |    |      |                            | (Section 4.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xdb  |any|0x41|any   | lock                       | Atomic        |
-   |      |   |    |      | temp = *(u64 *)(dst +      | operations    |
-   |      |   |    |      | offset)                    | (Section 4.3) |
-   |      |   |    |      | *(u64 *)(dst +             |               |
-   |      |   |    |      | offset) |= src             |               |
-   |      |   |    |      | src = temp                 |               |
-   +------+---+----+------+----------------------------+---------------+
-   |0xdb  |any|0x50|any   | lock *(u64 *)(dst +        | Atomic        |
-   |      |   |    |      | offset) &= src             | operations    |
-   |      |   |    |      |                            | (Section 4.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xdb  |any|0x51|any   | lock                       | Atomic        |
-   |      |   |    |      | temp = *(u64 *)(dst +      | operations    |
-   |      |   |    |      | offset)                    | (Section 4.3) |
-   |      |   |    |      | *(u64 *)(dst + offset)     |               |
-   |      |   |    |      | &= src                     |               |
-   |      |   |    |      | src = temp                 |               |
-   +------+---+----+------+----------------------------+---------------+
-   |0xdb  |any|0xa0|any   | lock *(u64 *)(dst +        | Atomic        |
-   |      |   |    |      | offset) ^= src             | operations    |
-   |      |   |    |      |                            | (Section 4.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xdb  |any|0xa1|any   | lock                       | Atomic        |
-   |      |   |    |      | temp = *(u64 *)(dst +      | operations    |
-   |      |   |    |      | offset)                    | (Section 4.3) |
-   |      |   |    |      | *(u64 *)(dst + offset)     |               |
-   |      |   |    |      | ^= src                     |               |
-   |      |   |    |      | src = temp                 |               |
-   +------+---+----+------+----------------------------+---------------+
-   |0xdb  |any|0xe1|any   | lock                       | Atomic        |
-   |      |   |    |      | temp = *(u64 *)(dst +      | operations    |
-   |      |   |    |      | offset)                    | (Section 4.3) |
-   |      |   |    |      | *(u64 *)(dst + offset) =   |               |
-   |      |   |    |      | src                        |               |
-   |      |   |    |      | src = temp                 |               |
-
-
-
-Thaler                    Expires 2 August 2024                [Page 36]
-
-Internet-Draft                  eBPF ISA                    January 2024
-
-
-   +------+---+----+------+----------------------------+---------------+
-   |0xdb  |any|0xf1|any   | lock                       | Atomic        |
-   |      |   |    |      | temp = *(u64 *)(dst +      | operations    |
-   |      |   |    |      | offset)                    | (Section 4.3) |
-   |      |   |    |      | if *(u64)(dst + offset)    |               |
-   |      |   |    |      | == R0                      |               |
-   |      |   |    |      | *(u64)(dst + offset) =     |               |
-   |      |   |    |      | src                        |               |
-   |      |   |    |      | R0 = temp                  |               |
-   +------+---+----+------+----------------------------+---------------+
-   |0xdc  |0x0|0x10|0     | dst = htobe16(dst)         | Byte swap     |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.2) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xdc  |0x0|0x20|0     | dst = htobe32(dst)         | Byte swap     |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.2) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xdc  |0x0|0x40|0     | dst = htobe64(dst)         | Byte swap     |
-   |      |   |    |      |                            | instructions  |
-   |      |   |    |      |                            | (Section 3.2) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xdd  |any|0x00|any   | if dst s<= src goto        | Jump          |
-   |      |   |    |      | +offset                    | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
-   |0xde  |any|0x00|any   | if (s32)dst s<= (s32)src   | Jump          |
-   |      |   |    |      | goto +offset               | instructions  |
-   |      |   |    |      |                            | (Section 3.3) |
-   +------+---+----+------+----------------------------+---------------+
+    |      |   |    |      | *)(dst + offset), src)   | (Section 4.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xdb  |any|0xa0|any   | lock *(u64 *)(dst +      | Atomic        |
+    |      |   |    |      | offset) ^= src           | operations    |
+    |      |   |    |      |                          | (Section 4.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xdb  |any|0xa1|any   | src =                    | Atomic        |
+    |      |   |    |      | atomic_fetch_xor_64((u64 | operations    |
+    |      |   |    |      | *)(dst + offset), src)   | (Section 4.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xdb  |any|0xe1|any   | src = xchg_64((u64       | Atomic        |
+    |      |   |    |      | *)(dst + offset), src)   | operations    |
+    |      |   |    |      |                          | (Section 4.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xdb  |any|0xf1|any   | r0 = cmpxchg_64((u64     | Atomic        |
+    |      |   |    |      | *)(dst + offset), r0,    | operations    |
+    |      |   |    |      | src)                     | (Section 4.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xdc  |0x0|0x10|0     | dst = htobe16(dst)       | Byte swap     |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.2) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xdc  |0x0|0x20|0     | dst = htobe32(dst)       | Byte swap     |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.2) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xdc  |0x0|0x40|0     | dst = htobe64(dst)       | Byte swap     |
+    |      |   |    |      |                          | instructions  |
+    |      |   |    |      |                          | (Section 3.2) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xdd  |any|0x00|any   | if dst s<= src goto      | Jump          |
+    |      |   |    |      | +offset                  | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
+    |0xde  |any|0x00|any   | if (s32)dst s<= (s32)src | Jump          |
+    |      |   |    |      | goto +offset             | instructions  |
+    |      |   |    |      |                          | (Section 3.3) |
+    +------+---+----+------+--------------------------+---------------+
 
                                   Table 15
 
@@ -2057,6 +2009,14 @@ Internet-Draft                  eBPF ISA                    January 2024
               RFCs", RFC 8126, <https://www.rfc-editor.org/rfc/rfc8126>.
 
 Author's Address
+
+
+
+
+Thaler                    Expires 6 August 2024                [Page 36]
+
+Internet-Draft                  eBPF ISA                   February 2024
+
 
    Dave Thaler (editor)
    Microsoft
@@ -2069,4 +2029,44 @@ Author's Address
 
 
 
-Thaler                    Expires 2 August 2024                [Page 37]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thaler                    Expires 6 August 2024                [Page 37]

@@ -6834,10 +6834,9 @@ dst = *(signed size *) (src + offset)
        </t>
       </td>
       <td>
-lock<br/>
-temp = *(u32 *)(dst + offset)<br/>
-*(u32 *)(dst + offset) += src<br/>
-src = temp<br/>
+       <t>
+        src = atomic_fetch_add_32((u32 *)(dst + offset), src)
+       </t>
       </td>
       <td>
        <t>
@@ -6899,10 +6898,9 @@ src = temp<br/>
        </t>
       </td>
       <td>
-lock<br/>
-temp = *(u32 *)(dst + offset)<br/>
-*(u32 *)(dst + offset) |= src<br/>
-src = temp<br/>
+       <t>
+        src = atomic_fetch_or_32((u32 *)(dst + offset), src)
+       </t>
       </td>
       <td>
        <t>
@@ -6964,10 +6962,9 @@ src = temp<br/>
        </t>
       </td>
       <td>
-lock<br/>
-temp = *(u32 *)(dst + offset)<br/>
-*(u32 *)(dst + offset) &amp;= src<br/>
-src = temp<br/>
+       <t>
+        src = atomic_fetch_and_32((u32 *)(dst + offset), src)
+       </t>
       </td>
       <td>
        <t>
@@ -7029,10 +7026,9 @@ src = temp<br/>
        </t>
       </td>
       <td>
-lock<br/>
-temp = *(u32 *)(dst + offset)<br/>
-*(u32 *)(dst + offset) ^= src<br/>
-src = temp<br/>
+       <t>
+        src = atomic_fetch_xor_32((u32 *)(dst + offset), src)
+       </t>
       </td>
       <td>
        <t>
@@ -7062,10 +7058,9 @@ src = temp<br/>
        </t>
       </td>
       <td>
-lock<br/>
-temp = *(u32 *)(dst + offset)<br/>
-*(u32 *)(dst + offset) = src<br/>
-src = temp<br/>
+       <t>
+        src = xchg_32((u32 *)(dst + offset), src)
+       </t>
       </td>
       <td>
        <t>
@@ -7095,11 +7090,9 @@ src = temp<br/>
        </t>
       </td>
       <td>
-lock<br/>
-temp = *(u32 *)(dst + offset)<br/>
-if *(u32)(dst + offset) == R0<br/>
-   *(u32)(dst + offset) = src<br/>
-R0 = temp<br/>
+       <t>
+        r0 = cmpxchg_32((u32 *)(dst + offset), r0, src)
+       </t>
       </td>
       <td>
        <t>
@@ -7673,10 +7666,9 @@ R0 = temp<br/>
        </t>
       </td>
       <td>
-lock<br/>
-temp = *(u64 *)(dst + offset)<br/>
-*(u64 *)(dst + offset) += src<br/>
-src = temp<br/>
+       <t>
+        src = atomic_fetch_add_64((u64 *)(dst + offset), src)
+       </t>
       </td>
       <td>
        <t>
@@ -7738,10 +7730,9 @@ src = temp<br/>
        </t>
       </td>
       <td>
-lock<br/>
-temp = *(u64 *)(dst + offset)<br/>
-*(u64 *)(dst + offset) |= src<br/>
-src = temp<br/>
+       <t>
+        src = atomic_fetch_or_64((u64 *)(dst + offset), src)
+       </t>
       </td>
       <td>
        <t>
@@ -7803,10 +7794,9 @@ src = temp<br/>
        </t>
       </td>
       <td>
-lock<br/>
-temp = *(u64 *)(dst + offset)<br/>
-*(u64 *)(dst + offset) &amp;= src<br/>
-src = temp<br/>
+       <t>
+        src = atomic_fetch_and_64((u64 *)(dst + offset), src)
+       </t>
       </td>
       <td>
        <t>
@@ -7868,10 +7858,9 @@ src = temp<br/>
        </t>
       </td>
       <td>
-lock<br/>
-temp = *(u64 *)(dst + offset)<br/>
-*(u64 *)(dst + offset) ^= src<br/>
-src = temp<br/>
+       <t>
+        src = atomic_fetch_xor_64((u64 *)(dst + offset), src)
+       </t>
       </td>
       <td>
        <t>
@@ -7901,10 +7890,9 @@ src = temp<br/>
        </t>
       </td>
       <td>
-lock<br/>
-temp = *(u64 *)(dst + offset)<br/>
-*(u64 *)(dst + offset) = src<br/>
-src = temp<br/>
+       <t>
+        src = xchg_64((u64 *)(dst + offset), src)
+       </t>
       </td>
       <td>
        <t>
@@ -7934,11 +7922,9 @@ src = temp<br/>
        </t>
       </td>
       <td>
-lock<br/>
-temp = *(u64 *)(dst + offset)<br/>
-if *(u64)(dst + offset) == R0<br/>
-   *(u64)(dst + offset) = src<br/>
-R0 = temp<br/>
+       <t>
+        r0 = cmpxchg_64((u64 *)(dst + offset), r0, src)
+       </t>
       </td>
       <td>
        <t>
