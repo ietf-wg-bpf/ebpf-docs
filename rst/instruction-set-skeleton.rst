@@ -115,12 +115,8 @@ This document proposes a new IANA registry for BPF instructions, as follows:
   * description: description of what the instruction does, typically in pseudocode
   * groups: a list of one or more comma-separated conformance groups to which the instruction belongs
   * reference: a reference to the defining specification
-  * status: Permanent, Provisional, or Historical
-* Registration policy (see `RFC 8126 section 4 <https://www.rfc-editor.org/rfc/rfc8126.html#section-4>`_ for details):
-
-  * Permanent: Standards action or IESG Review
-  * Provisional: Specification required
-  * Historical: Specification required
+* Registration policy: New instructions require a new entry in the conformance group
+  sub-registry and the same registration policies apply.
 * Initial registrations: See the Appendix. Instructions other than those listed
   as deprecated are Permanent. Any listed as deprecated are Historical.
 
