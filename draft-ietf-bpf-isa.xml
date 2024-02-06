@@ -2629,63 +2629,464 @@ dst = *(signed size *) (src + offset)
   </section>
   <section anchor="iana-considerations" title="IANA Considerations">
    <t>
-    This document proposes a new IANA registry for BPF instructions, as follows:
+    This document defines two sub-registries.
    </t>
-   <ul>
-    <li>
-     Name of the registry: BPF Instruction Set
-    </li>
-    <li>
-     Name of the registry group: same as registry name
-    </li>
-    <li>
-     Required information for registrations: The values to appear in the entry fields.
-    </li>
-    <li>
-     Syntax of registry entries: Each entry has the following fields:
-     <ul>
-      <li>
-       opcode: a 1-byte value in hex format indicating the value of the opcode field
-      </li>
-      <li>
-       src: either a value indicating the value of the src field, or "any"
-      </li>
-      <li>
-       imm: either a value indicating the value of the imm field, or "any"
-      </li>
-      <li>
-       offset: either a value indicating the value of the offset field, or "any"
-      </li>
-      <li>
-       description: description of what the instruction does, typically in pseudocode
-      </li>
-      <li>
-       reference: a reference to the defining specification
-      </li>
-      <li>
-       status: Permanent, Provisional, or Historical
-      </li>
-     </ul>
-    </li>
-    <li>
-     Registration policy (see <xref target="RFC8126" section="4"/> for details):
-     <ul>
-      <li>
-       Permanent: Standards action or IESG Review
-      </li>
-      <li>
-       Provisional: Specification required
-      </li>
-      <li>
-       Historical: Specification required
-      </li>
-     </ul>
-    </li>
-    <li>
-     Initial registrations: See the Appendix. Instructions other than those listed
-     as deprecated are Permanent. Any listed as deprecated are Historical.
-    </li>
-   </ul>
+   <section anchor="bpf-instruction-conformance-group-registry" title="BPF Instruction Conformance Group Registry">
+    <t>
+     This document defines a IANA sub-registry for BPF instruction conformance groups, as follows:
+    </t>
+    <ul>
+     <li>
+      Name of the registry: BPF Instruction Conformance Groups
+     </li>
+     <li>
+      Name of the registry group: BPF Instructions
+     </li>
+     <li>
+      Required information for registrations: The values to appear in the entry fields.
+     </li>
+     <li>
+      Syntax of registry entries: Each entry has the following fields:
+      <ul>
+       <li>
+        name: alphanumeric label indicating the name of the conformance group
+       </li>
+       <li>
+        description: brief description of the conformance group
+       </li>
+       <li>
+        includes: any other conformance groups that are included from this group
+       </li>
+       <li>
+        excludes: any other conformance groups that are excluded from this group.
+       </li>
+       <li>
+        status: Permanent, Provisional, or Historical
+       </li>
+       <li>
+        reference: a reference to the defining specification
+       </li>
+      </ul>
+     </li>
+     <li>
+      Registration policy (see <xref target="RFC8126" section="4"/> for details):
+      <ul>
+       <li>
+        Permanent: Standards action or IESG Review
+       </li>
+       <li>
+        Provisional: Specification required
+       </li>
+       <li>
+        Historical: Specification required
+       </li>
+      </ul>
+     </li>
+    </ul>
+    <t>
+     Initial entries in this sub-registry are as follows:
+    </t>
+    <table>
+     <thead>
+      <tr>
+       <th>name</th>
+       <th>description</th>
+       <th>includes</th>
+       <th>excludes</th>
+       <th>status</th>
+       <th>reference</th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td>
+        <t>
+         atom32
+        </t>
+       </td>
+       <td>
+        <t>
+         32-bit atomic instructions
+        </t>
+       </td>
+       <td>
+        <t>
+         -
+        </t>
+       </td>
+       <td>
+        <t>
+         -
+        </t>
+       </td>
+       <td>
+        <t>
+         Permanent
+        </t>
+       </td>
+       <td>
+        <t>
+         RFCXXX <xref target="atomic-operations">Atomic operations</xref>
+        </t>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <t>
+         atom64
+        </t>
+       </td>
+       <td>
+        <t>
+         64-bit atomic instructions
+        </t>
+       </td>
+       <td>
+        <t>
+         atom32
+        </t>
+       </td>
+       <td>
+        <t>
+         -
+        </t>
+       </td>
+       <td>
+        <t>
+         Permanent
+        </t>
+       </td>
+       <td>
+        <t>
+         RFCXXX <xref target="atomic-operations">Atomic operations</xref>
+        </t>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <t>
+         base32
+        </t>
+       </td>
+       <td>
+        <t>
+         32-bit base instructions
+        </t>
+       </td>
+       <td>
+        <t>
+         -
+        </t>
+       </td>
+       <td>
+        <t>
+         -
+        </t>
+       </td>
+       <td>
+        <t>
+         Permanent
+        </t>
+       </td>
+       <td>
+        <t>
+         RFCXXX
+        </t>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <t>
+         base64
+        </t>
+       </td>
+       <td>
+        <t>
+         64-bit base instructions
+        </t>
+       </td>
+       <td>
+        <t>
+         base32
+        </t>
+       </td>
+       <td>
+        <t>
+         -
+        </t>
+       </td>
+       <td>
+        <t>
+         Permanent
+        </t>
+       </td>
+       <td>
+        <t>
+         RFCXXX
+        </t>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <t>
+         div32
+        </t>
+       </td>
+       <td>
+        <t>
+         32-bit division and modulo
+        </t>
+       </td>
+       <td>
+        <t>
+         -
+        </t>
+       </td>
+       <td>
+        <t>
+         -
+        </t>
+       </td>
+       <td>
+        <t>
+         Permanent
+        </t>
+       </td>
+       <td>
+        <t>
+         RFCXXX <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+        </t>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <t>
+         div64
+        </t>
+       </td>
+       <td>
+        <t>
+         64-bit division and modulo
+        </t>
+       </td>
+       <td>
+        <t>
+         div32
+        </t>
+       </td>
+       <td>
+        <t>
+         -
+        </t>
+       </td>
+       <td>
+        <t>
+         Permanent
+        </t>
+       </td>
+       <td>
+        <t>
+         RFCXXX <xref target="arithmetic-instructions">Arithmetic instructions</xref>
+        </t>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <t>
+         legacy
+        </t>
+       </td>
+       <td>
+        <t>
+         Legacy packet instructions
+        </t>
+       </td>
+       <td>
+        <t>
+         -
+        </t>
+       </td>
+       <td>
+        <t>
+         -
+        </t>
+       </td>
+       <td>
+        <t>
+         Historical
+        </t>
+       </td>
+       <td>
+        <t>
+         RFCXXX <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+        </t>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <t>
+     NOTE TO RFC-EDITOR: Upon publication, please replace RFCXXX above with reference to this document.
+    </t>
+    <section anchor="adding-instructions" title="Adding instructions">
+     <t>
+      A specification may add additional instructions to the BPF Instruction Set registry.
+      Once a conformance group is registered with a set of instructions,
+      no further instructions can be added to that conformance group. A specification
+      should instead create a new conformance group that includes the original conformance group,
+      plus any newly added instructions.  Inclusion of the original conformance group is done
+      via the "includes" column of the BPF Instruction Conformance Group Registry, and inclusion
+      of newly added instructions is done via the "groups" column of the BPF Instruction Set Registry.
+     </t>
+    </section>
+    <section anchor="deprecating-instructions" title="Deprecating instructions">
+     <t>
+      Deprecating instructions that are part of an existing conformance group can be done by defining a
+      new conformance group for the newly deprecated instructions, and the defining a new conformance group
+      to supercede the existing conformance group containing the instructions, where the new conformance
+      group includes the existing one and excludes the deprecated instruction group.
+     </t>
+     <t>
+      For example, if deprecating an instruction in an existing hypothetical group called "example", two new groups
+      might be registered:
+     </t>
+     <table>
+      <thead>
+       <tr>
+        <th>name</th>
+        <th>description</th>
+        <th>includes</th>
+        <th>excludes</th>
+        <th>status</th>
+        <th>reference</th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr>
+        <td>
+         <t>
+          legacyexample
+         </t>
+        </td>
+        <td>
+         <t>
+          Legacy example instructions
+         </t>
+        </td>
+        <td>
+         <t>
+          -
+         </t>
+        </td>
+        <td>
+         <t>
+          -
+         </t>
+        </td>
+        <td>
+         <t>
+          Historical
+         </t>
+        </td>
+        <td>
+         <t>
+          (reference)
+         </t>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         <t>
+          examplev2
+         </t>
+        </td>
+        <td>
+         <t>
+          Example instructions
+         </t>
+        </td>
+        <td>
+         <t>
+          example
+         </t>
+        </td>
+        <td>
+         <t>
+          legacyexample
+         </t>
+        </td>
+        <td>
+         <t>
+          Permanent
+         </t>
+        </td>
+        <td>
+         <t>
+          (reference)
+         </t>
+        </td>
+       </tr>
+      </tbody>
+     </table>
+     <t>
+      The BPF Instruction Set entries for the deprecated instructions would then be updated
+      to add "legacyexample" to the set of groups for those instructions.
+     </t>
+     <t>
+      Finally, updated implementations that dropped support for the deprecated instructions
+      would then be able to claim conformance to "examplev2" rather than "example".
+     </t>
+    </section>
+   </section>
+   <section anchor="bpf-instruction-set-registry" title="BPF Instruction Set Registry">
+    <t>
+     This document proposes a new IANA registry for BPF instructions, as follows:
+    </t>
+    <ul>
+     <li>
+      Name of the registry: BPF Instruction Set
+     </li>
+     <li>
+      Name of the registry group: BPF Instructions
+     </li>
+     <li>
+      Required information for registrations: The values to appear in the entry fields.
+     </li>
+     <li>
+      Syntax of registry entries: Each entry has the following fields:
+      <ul>
+       <li>
+        opcode: a 1-byte value in hex format indicating the value of the opcode field
+       </li>
+       <li>
+        src: either a value indicating the value of the src field, or "any"
+       </li>
+       <li>
+        imm: either a value indicating the value of the imm field, or "any"
+       </li>
+       <li>
+        offset: either a value indicating the value of the offset field, or "any"
+       </li>
+       <li>
+        description: description of what the instruction does, typically in pseudocode
+       </li>
+       <li>
+        groups: a list of one or more comma-separated conformance groups to which the instruction belongs
+       </li>
+       <li>
+        reference: a reference to the defining specification
+       </li>
+      </ul>
+     </li>
+     <li>
+      Registration policy: New instructions require a new entry in the conformance group
+      sub-registry and the same registration policies apply.
+     </li>
+     <li>
+      Initial registrations: See the Appendix. Instructions other than those listed
+      as deprecated are Permanent. Any listed as deprecated are Historical.
+     </li>
+    </ul>
+   </section>
   </section>
   <section anchor="acknowledgements" title="Acknowledgements">
    <t>
@@ -2700,7 +3101,7 @@ dst = *(signed size *) (src + offset)
   </section>
   <section anchor="appendix" title="Appendix">
    <t>
-    Initial values for the BPF Instruction registry are given below.
+    Initial values for the BPF Instruction sub-registry are given below.
     The descriptions in this table are informative. In case of any discrepancy, the reference
     is authoritative.
    </t>
@@ -2712,6 +3113,7 @@ dst = *(signed size *) (src + offset)
       <th>imm</th>
       <th>offset</th>
       <th>description</th>
+      <th>groups</th>
       <th>reference</th>
      </tr>
     </thead>
@@ -2740,6 +3142,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         (additional immediate value)
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -2776,6 +3183,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -2804,6 +3216,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        base32
        </t>
       </td>
       <td>
@@ -2840,6 +3257,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="jump-instructions">Jump instructions</xref>
        </t>
       </td>
@@ -2868,6 +3290,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst += imm
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -2904,6 +3331,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -2932,6 +3364,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst += src
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -2968,6 +3405,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -2996,6 +3438,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         if dst == imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -3032,6 +3479,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="jump-instructions">Jump instructions</xref>
        </t>
       </td>
@@ -3060,6 +3512,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst -= imm
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -3096,6 +3553,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref>
        </t>
       </td>
@@ -3124,6 +3586,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst = map_by_fd(imm)
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -3160,6 +3627,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref>
        </t>
       </td>
@@ -3188,6 +3660,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst = variable_addr(imm)
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -3224,6 +3701,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref>
        </t>
       </td>
@@ -3252,6 +3734,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst = map_by_idx(imm)
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -3288,6 +3775,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref>
        </t>
       </td>
@@ -3316,6 +3808,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst = (u32)((u32)dst - (u32)src)
+       </t>
+      </td>
+      <td>
+       <t>
+        base32
        </t>
       </td>
       <td>
@@ -3352,6 +3849,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="jump-instructions">Jump instructions</xref>
        </t>
       </td>
@@ -3380,6 +3882,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         if (u32)dst == (u32)src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        base32
        </t>
       </td>
       <td>
@@ -3416,6 +3923,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -3444,6 +3956,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        legacy
        </t>
       </td>
       <td>
@@ -3480,6 +3997,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        divmul32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -3508,6 +4030,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         if dst &gt; imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -3544,6 +4071,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="jump-instructions">Jump instructions</xref>
        </t>
       </td>
@@ -3572,6 +4104,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst *= imm
+       </t>
+      </td>
+      <td>
+       <t>
+        divmul64
        </t>
       </td>
       <td>
@@ -3608,6 +4145,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        legacy
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
        </t>
       </td>
@@ -3636,6 +4178,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst = (u32)(dst * src)
+       </t>
+      </td>
+      <td>
+       <t>
+        divmul32
        </t>
       </td>
       <td>
@@ -3672,6 +4219,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="jump-instructions">Jump instructions</xref>
        </t>
       </td>
@@ -3700,6 +4252,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         if (u32)dst &gt; (u32)src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        base32
        </t>
       </td>
       <td>
@@ -3736,6 +4293,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        divmul64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -3764,6 +4326,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        legacy
        </t>
       </td>
       <td>
@@ -3800,6 +4367,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        divmul32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -3828,6 +4400,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst = (u32)((imm != 0) ? ((s32)dst s/ imm) : 0)
+       </t>
+      </td>
+      <td>
+       <t>
+        divmul32
        </t>
       </td>
       <td>
@@ -3864,6 +4441,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="jump-instructions">Jump instructions</xref>
        </t>
       </td>
@@ -3892,6 +4474,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         if (u32)dst &gt;= imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        base32
        </t>
       </td>
       <td>
@@ -3928,6 +4515,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        divmul64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -3956,6 +4548,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst = (imm != 0) ? (dst s/ imm) : 0
+       </t>
+      </td>
+      <td>
+       <t>
+        divmul64
        </t>
       </td>
       <td>
@@ -3992,6 +4589,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        divmul32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -4020,6 +4622,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst = (u32)((src != 0) ? ((s32)dst s/(s32)src) : 0)
+       </t>
+      </td>
+      <td>
+       <t>
+        divmul32
        </t>
       </td>
       <td>
@@ -4056,6 +4663,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="jump-instructions">Jump instructions</xref>
        </t>
       </td>
@@ -4084,6 +4696,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         if (u32)dst &gt;= (u32)src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        base32
        </t>
       </td>
       <td>
@@ -4120,6 +4737,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        divmul64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -4152,6 +4774,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        divmul64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -4180,6 +4807,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        legacy
        </t>
       </td>
       <td>
@@ -4216,6 +4848,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -4244,6 +4881,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         if dst &amp; imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -4280,6 +4922,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="jump-instructions">Jump instructions</xref>
        </t>
       </td>
@@ -4308,6 +4955,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst |= imm
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -4344,6 +4996,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        legacy
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
        </t>
       </td>
@@ -4372,6 +5029,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst = (u32)(dst | src)
+       </t>
+      </td>
+      <td>
+       <t>
+        base32
        </t>
       </td>
       <td>
@@ -4408,6 +5070,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="jump-instructions">Jump instructions</xref>
        </t>
       </td>
@@ -4436,6 +5103,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         if (u32)dst &amp; (u32)src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        base32
        </t>
       </td>
       <td>
@@ -4472,6 +5144,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -4500,6 +5177,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         (deprecated, implementation-specific)
+       </t>
+      </td>
+      <td>
+       <t>
+        legacy
        </t>
       </td>
       <td>
@@ -4536,6 +5218,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -4564,6 +5251,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         if dst != imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -4600,6 +5292,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="jump-instructions">Jump instructions</xref>
        </t>
       </td>
@@ -4628,6 +5325,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst &amp;= imm
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -4664,6 +5366,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -4692,6 +5399,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         if dst != src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -4728,6 +5440,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="jump-instructions">Jump instructions</xref>
        </t>
       </td>
@@ -4756,6 +5473,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst &amp;= src
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -4792,6 +5514,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="load-and-store-instructions">Load and store instructions</xref>
        </t>
       </td>
@@ -4820,6 +5547,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         *(u32 *)(dst + offset) = imm
+       </t>
+      </td>
+      <td>
+       <t>
+        base32
        </t>
       </td>
       <td>
@@ -4856,6 +5588,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="load-and-store-instructions">Load and store instructions</xref>
        </t>
       </td>
@@ -4884,6 +5621,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst = (u32)(dst &lt;&lt; imm)
+       </t>
+      </td>
+      <td>
+       <t>
+        base32
        </t>
       </td>
       <td>
@@ -4920,6 +5662,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="jump-instructions">Jump instructions</xref>
        </t>
       </td>
@@ -4948,6 +5695,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         if (s32)dst s&gt; (s32)imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        base32
        </t>
       </td>
       <td>
@@ -4984,6 +5736,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -5012,6 +5769,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst = *(u16 *)(src + offset)
+       </t>
+      </td>
+      <td>
+       <t>
+        base32
        </t>
       </td>
       <td>
@@ -5048,6 +5810,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="load-and-store-instructions">Load and store instructions</xref>
        </t>
       </td>
@@ -5076,6 +5843,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         *(u16 *)(dst + offset) = src
+       </t>
+      </td>
+      <td>
+       <t>
+        base32
        </t>
       </td>
       <td>
@@ -5112,6 +5884,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -5140,6 +5917,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         if dst s&gt; src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -5176,6 +5958,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="jump-instructions">Jump instructions</xref>
        </t>
       </td>
@@ -5204,6 +5991,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst &lt;&lt;= src
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -5240,6 +6032,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="load-and-store-instructions">Load and store instructions</xref>
        </t>
       </td>
@@ -5268,6 +6065,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         *(u8 *)(dst + offset) = imm
+       </t>
+      </td>
+      <td>
+       <t>
+        base32
        </t>
       </td>
       <td>
@@ -5304,6 +6106,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="load-and-store-instructions">Load and store instructions</xref>
        </t>
       </td>
@@ -5332,6 +6139,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst = (u32)(dst &gt;&gt; imm)
+       </t>
+      </td>
+      <td>
+       <t>
+        base32
        </t>
       </td>
       <td>
@@ -5368,6 +6180,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="jump-instructions">Jump instructions</xref>
        </t>
       </td>
@@ -5396,6 +6213,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         if (s32)dst s&gt;= (s32)imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        base32
        </t>
       </td>
       <td>
@@ -5432,6 +6254,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -5460,6 +6287,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst = *(u64 *)(src + offset)
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -5496,6 +6328,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="load-and-store-instructions">Load and store instructions</xref>
        </t>
       </td>
@@ -5524,6 +6361,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         *(u64 *)(dst + offset) = src
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -5560,6 +6402,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -5588,6 +6435,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         if dst s&gt;= src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -5624,6 +6476,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="jump-instructions">Jump instructions</xref>
        </t>
       </td>
@@ -5652,6 +6509,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst &gt;&gt;= src
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -5688,6 +6550,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -5716,6 +6583,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         call helper function by address
+       </t>
+      </td>
+      <td>
+       <t>
+        base32
        </t>
       </td>
       <td>
@@ -5752,6 +6624,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="program-local-functions">Program-local functions</xref>
        </t>
       </td>
@@ -5780,6 +6657,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         call helper function by BTF ID
+       </t>
+      </td>
+      <td>
+       <t>
+        base32
        </t>
       </td>
       <td>
@@ -5816,6 +6698,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -5844,6 +6731,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst = (u32)((imm != 0)?((u32)dst % (u32)imm) : dst)
+       </t>
+      </td>
+      <td>
+       <t>
+        divmul32
        </t>
       </td>
       <td>
@@ -5880,6 +6772,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        divmul32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -5908,6 +6805,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         return
+       </t>
+      </td>
+      <td>
+       <t>
+        base32
        </t>
       </td>
       <td>
@@ -5944,6 +6846,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        divmul64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -5972,6 +6879,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst = (imm != 0) ? (dst s% imm) : dst
+       </t>
+      </td>
+      <td>
+       <t>
+        divmul64
        </t>
       </td>
       <td>
@@ -6008,6 +6920,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        divmul32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -6036,6 +6953,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst = (u32)((src != 0)?((s32)dst s% (s32)src) :dst)
+       </t>
+      </td>
+      <td>
+       <t>
+        divmul32
        </t>
       </td>
       <td>
@@ -6072,6 +6994,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        divmul64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -6100,6 +7027,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst = (src != 0) ? (dst s% src) : dst
+       </t>
+      </td>
+      <td>
+       <t>
+        divmul64
        </t>
       </td>
       <td>
@@ -6136,6 +7068,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -6164,6 +7101,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         if dst &lt; imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -6200,6 +7142,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="jump-instructions">Jump instructions</xref>
        </t>
       </td>
@@ -6228,6 +7175,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst ^= imm
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -6264,6 +7216,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -6292,6 +7249,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         if dst &lt; src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -6328,6 +7290,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="jump-instructions">Jump instructions</xref>
        </t>
       </td>
@@ -6356,6 +7323,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst ^= src
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -6392,6 +7364,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -6420,6 +7397,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         if dst &lt;= imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -6456,6 +7438,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="jump-instructions">Jump instructions</xref>
        </t>
       </td>
@@ -6484,6 +7471,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst = imm
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -6520,6 +7512,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -6548,6 +7545,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst = (u32) (s32) (s8) src
+       </t>
+      </td>
+      <td>
+       <t>
+        base32
        </t>
       </td>
       <td>
@@ -6584,6 +7586,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -6612,6 +7619,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         if dst &lt;= src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -6648,6 +7660,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="jump-instructions">Jump instructions</xref>
        </t>
       </td>
@@ -6676,6 +7693,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst = src
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -6712,6 +7734,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -6740,6 +7767,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst = (s64) (s16) src
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -6776,6 +7808,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -6804,6 +7841,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         lock *(u32 *)(dst + offset) += src
+       </t>
+      </td>
+      <td>
+       <t>
+        atomic32
        </t>
       </td>
       <td>
@@ -6840,6 +7882,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        atomic32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="atomic-operations">Atomic operations</xref>
        </t>
       </td>
@@ -6868,6 +7915,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         lock *(u32 *)(dst + offset) |= src
+       </t>
+      </td>
+      <td>
+       <t>
+        atomic32
        </t>
       </td>
       <td>
@@ -6904,6 +7956,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        atomic32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="atomic-operations">Atomic operations</xref>
        </t>
       </td>
@@ -6932,6 +7989,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         lock *(u32 *)(dst + offset) &amp;= src
+       </t>
+      </td>
+      <td>
+       <t>
+        atomic32
        </t>
       </td>
       <td>
@@ -6968,6 +8030,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        atomic32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="atomic-operations">Atomic operations</xref>
        </t>
       </td>
@@ -6996,6 +8063,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         lock *(u32 *)(dst + offset) ^= src
+       </t>
+      </td>
+      <td>
+       <t>
+        atomic32
        </t>
       </td>
       <td>
@@ -7032,6 +8104,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        atomic32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="atomic-operations">Atomic operations</xref>
        </t>
       </td>
@@ -7060,6 +8137,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         src = xchg_32((u32 *)(dst + offset), src)
+       </t>
+      </td>
+      <td>
+       <t>
+        atomic32
        </t>
       </td>
       <td>
@@ -7096,6 +8178,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        atomic32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="atomic-operations">Atomic operations</xref>
        </t>
       </td>
@@ -7124,6 +8211,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst = (u32)(dst s&gt;&gt; imm)
+       </t>
+      </td>
+      <td>
+       <t>
+        base32
        </t>
       </td>
       <td>
@@ -7160,6 +8252,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="jump-instructions">Jump instructions</xref>
        </t>
       </td>
@@ -7188,6 +8285,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         if (s32)dst s&lt; (s32)imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        base32
        </t>
       </td>
       <td>
@@ -7224,6 +8326,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -7252,6 +8359,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst = (u32)(dst s&gt;&gt; src)
+       </t>
+      </td>
+      <td>
+       <t>
+        base32
        </t>
       </td>
       <td>
@@ -7288,6 +8400,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="jump-instructions">Jump instructions</xref>
        </t>
       </td>
@@ -7316,6 +8433,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         if (s32)dst s&lt; (s32)src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        base32
        </t>
       </td>
       <td>
@@ -7352,6 +8474,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="arithmetic-instructions">Arithmetic instructions</xref>
        </t>
       </td>
@@ -7380,6 +8507,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst = htole16(dst)
+       </t>
+      </td>
+      <td>
+       <t>
+        base32
        </t>
       </td>
       <td>
@@ -7416,6 +8548,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="byte-swap-instructions">Byte swap instructions</xref>
        </t>
       </td>
@@ -7444,6 +8581,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst = htole64(dst)
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -7480,6 +8622,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="jump-instructions">Jump instructions</xref>
        </t>
       </td>
@@ -7508,6 +8655,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         if (s32)dst s&lt;= (s32)imm goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        base32
        </t>
       </td>
       <td>
@@ -7544,6 +8696,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="byte-swap-instructions">Byte swap instructions</xref>
        </t>
       </td>
@@ -7572,6 +8729,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst = bswap32(dst)
+       </t>
+      </td>
+      <td>
+       <t>
+        base32
        </t>
       </td>
       <td>
@@ -7608,6 +8770,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="byte-swap-instructions">Byte swap instructions</xref>
        </t>
       </td>
@@ -7636,6 +8803,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         lock *(u64 *)(dst + offset) += src
+       </t>
+      </td>
+      <td>
+       <t>
+        atomic64
        </t>
       </td>
       <td>
@@ -7672,6 +8844,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        atomic64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="atomic-operations">Atomic operations</xref>
        </t>
       </td>
@@ -7700,6 +8877,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         lock *(u64 *)(dst + offset) |= src
+       </t>
+      </td>
+      <td>
+       <t>
+        atomic64
        </t>
       </td>
       <td>
@@ -7736,6 +8918,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        atomic64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="atomic-operations">Atomic operations</xref>
        </t>
       </td>
@@ -7764,6 +8951,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         lock *(u64 *)(dst + offset) &amp;= src
+       </t>
+      </td>
+      <td>
+       <t>
+        atomic64
        </t>
       </td>
       <td>
@@ -7800,6 +8992,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        atomic64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="atomic-operations">Atomic operations</xref>
        </t>
       </td>
@@ -7828,6 +9025,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         lock *(u64 *)(dst + offset) ^= src
+       </t>
+      </td>
+      <td>
+       <t>
+        atomic64
        </t>
       </td>
       <td>
@@ -7864,6 +9066,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        atomic64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="atomic-operations">Atomic operations</xref>
        </t>
       </td>
@@ -7892,6 +9099,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         src = xchg_64((u64 *)(dst + offset), src)
+       </t>
+      </td>
+      <td>
+       <t>
+        atomic64
        </t>
       </td>
       <td>
@@ -7928,6 +9140,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        atomic64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="atomic-operations">Atomic operations</xref>
        </t>
       </td>
@@ -7956,6 +9173,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst = htobe16(dst)
+       </t>
+      </td>
+      <td>
+       <t>
+        base32
        </t>
       </td>
       <td>
@@ -7992,6 +9214,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base32
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="byte-swap-instructions">Byte swap instructions</xref>
        </t>
       </td>
@@ -8020,6 +9247,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         dst = htobe64(dst)
+       </t>
+      </td>
+      <td>
+       <t>
+        base64
        </t>
       </td>
       <td>
@@ -8056,6 +9288,11 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
+        base64
+       </t>
+      </td>
+      <td>
+       <t>
         <xref target="jump-instructions">Jump instructions</xref>
        </t>
       </td>
@@ -8084,6 +9321,11 @@ dst = *(signed size *) (src + offset)
       <td>
        <t>
         if (s32)dst s&lt;= (s32)src goto +offset
+       </t>
+      </td>
+      <td>
+       <t>
+        base32
        </t>
       </td>
       <td>
