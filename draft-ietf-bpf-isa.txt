@@ -1525,11 +1525,11 @@ Internet-Draft                  eBPF ISA                   February 2024
    |      |   |    |      |                        |        |(Section 4.4)|
    +------+---+----+------+------------------------+--------+-------------+
    |0x18  |0x2|any |0     |dst =                   |base64  |64-bit       |
-   |      |   |    |      |mva(map_by_fd(imm)) +   |        |immediate    |
-   |      |   |    |      |next_imm                |        |instructions |
+   |      |   |    |      |map_val(map_by_fd(imm)) |        |immediate    |
+   |      |   |    |      |+ next_imm              |        |instructions |
    |      |   |    |      |                        |        |(Section 4.4)|
    +------+---+----+------+------------------------+--------+-------------+
-   |0x18  |0x3|any |0     |dst = variable_addr(imm)|base64  |64-bit       |
+   |0x18  |0x3|any |0     |dst = var_addr(imm)     |base64  |64-bit       |
    |      |   |    |      |                        |        |immediate    |
    |      |   |    |      |                        |        |instructions |
    |      |   |    |      |                        |        |(Section 4.4)|
@@ -1545,8 +1545,8 @@ Internet-Draft                  eBPF ISA                   February 2024
    |      |   |    |      |                        |        |(Section 4.4)|
    +------+---+----+------+------------------------+--------+-------------+
    |0x18  |0x6|any |0     |dst =                   |base64  |64-bit       |
-   |      |   |    |      |mva(map_by_idx(imm)) +  |        |immediate    |
-   |      |   |    |      |next_imm                |        |instructions |
+   |      |   |    |      |map_val(map_by_idx(imm))|        |immediate    |
+   |      |   |    |      |+ next_imm              |        |instructions |
    |      |   |    |      |                        |        |(Section 4.4)|
    +------+---+----+------+------------------------+--------+-------------+
    |0x1c  |any|0x00|0     |dst = (u32)((u32)dst -  |base32  |Arithmetic   |

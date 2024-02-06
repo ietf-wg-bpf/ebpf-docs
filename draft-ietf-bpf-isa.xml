@@ -3659,7 +3659,7 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
-        dst = mva(map_by_fd(imm)) + next_imm
+        dst = map_val(map_by_fd(imm)) + next_imm
        </t>
       </td>
       <td>
@@ -3696,7 +3696,7 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
-        dst = variable_addr(imm)
+        dst = var_addr(imm)
        </t>
       </td>
       <td>
@@ -3807,7 +3807,7 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
-        dst = mva(map_by_idx(imm)) + next_imm
+        dst = map_val(map_by_idx(imm)) + next_imm
        </t>
       </td>
       <td>
