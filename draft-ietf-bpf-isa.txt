@@ -63,30 +63,30 @@ Internet-Draft                  eBPF ISA                   February 2024
      1.3.  Definitions . . . . . . . . . . . . . . . . . . . . . . .   4
      1.4.  Conformance groups  . . . . . . . . . . . . . . . . . . .   5
    2.  Instruction encoding  . . . . . . . . . . . . . . . . . . . .   5
-     2.1.  Instruction classes . . . . . . . . . . . . . . . . . . .   6
-   3.  Arithmetic and jump instructions  . . . . . . . . . . . . . .   7
-     3.1.  Arithmetic instructions . . . . . . . . . . . . . . . . .   8
-     3.2.  Byte swap instructions  . . . . . . . . . . . . . . . . .  11
-     3.3.  Jump instructions . . . . . . . . . . . . . . . . . . . .  12
-       3.3.1.  Helper functions  . . . . . . . . . . . . . . . . . .  14
-       3.3.2.  Program-local functions . . . . . . . . . . . . . . .  14
-   4.  Load and store instructions . . . . . . . . . . . . . . . . .  14
-     4.1.  Regular load and store operations . . . . . . . . . . . .  16
-     4.2.  Sign-extension load operations  . . . . . . . . . . . . .  16
-     4.3.  Atomic operations . . . . . . . . . . . . . . . . . . . .  17
-     4.4.  64-bit immediate instructions . . . . . . . . . . . . . .  18
-       4.4.1.  Maps  . . . . . . . . . . . . . . . . . . . . . . . .  20
-       4.4.2.  Platform Variables  . . . . . . . . . . . . . . . . .  20
-     4.5.  Legacy BPF Packet access instructions . . . . . . . . . .  20
-   5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  20
-     5.1.  BPF Instruction Conformance Group Registry  . . . . . . .  20
-       5.1.1.  Adding instructions . . . . . . . . . . . . . . . . .  22
-       5.1.2.  Deprecating instructions  . . . . . . . . . . . . . .  23
-     5.2.  BPF Instruction Set Registry  . . . . . . . . . . . . . .  23
-   6.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  24
-   7.  Appendix  . . . . . . . . . . . . . . . . . . . . . . . . . .  24
-   8.  Normative References  . . . . . . . . . . . . . . . . . . . .  39
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  39
+     2.1.  Instruction classes . . . . . . . . . . . . . . . . . . .   7
+   3.  Arithmetic and jump instructions  . . . . . . . . . . . . . .   8
+     3.1.  Arithmetic instructions . . . . . . . . . . . . . . . . .   9
+     3.2.  Byte swap instructions  . . . . . . . . . . . . . . . . .  12
+     3.3.  Jump instructions . . . . . . . . . . . . . . . . . . . .  13
+       3.3.1.  Helper functions  . . . . . . . . . . . . . . . . . .  15
+       3.3.2.  Program-local functions . . . . . . . . . . . . . . .  16
+   4.  Load and store instructions . . . . . . . . . . . . . . . . .  16
+     4.1.  Regular load and store operations . . . . . . . . . . . .  18
+     4.2.  Sign-extension load operations  . . . . . . . . . . . . .  18
+     4.3.  Atomic operations . . . . . . . . . . . . . . . . . . . .  18
+     4.4.  64-bit immediate instructions . . . . . . . . . . . . . .  20
+       4.4.1.  Maps  . . . . . . . . . . . . . . . . . . . . . . . .  22
+       4.4.2.  Platform Variables  . . . . . . . . . . . . . . . . .  22
+     4.5.  Legacy BPF Packet access instructions . . . . . . . . . .  22
+   5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  22
+     5.1.  BPF Instruction Conformance Group Registry  . . . . . . .  22
+       5.1.1.  Adding instructions . . . . . . . . . . . . . . . . .  24
+       5.1.2.  Deprecating instructions  . . . . . . . . . . . . . .  25
+     5.2.  BPF Instruction Set Registry  . . . . . . . . . . . . . .  25
+   6.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  26
+   7.  Appendix  . . . . . . . . . . . . . . . . . . . . . . . . . .  26
+   8.  Normative References  . . . . . . . . . . . . . . . . . . . .  41
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  41
 
 1.  Documentation conventions
 
@@ -231,7 +231,7 @@ Internet-Draft                  eBPF ISA                   February 2024
    An implementation does not need to support all instructions specified
    in this document (e.g., deprecated instructions).  Instead, a number
    of conformance groups are specified.  An implementation must support
-   the "basic" conformance group and may support additional conformance
+   the base32 conformance group and may support additional conformance
    groups, where supporting a conformance group means it must support
    all instructions in that conformance group.
 
@@ -241,13 +241,32 @@ Internet-Draft                  eBPF ISA                   February 2024
    discovery in terms of conformance groups might be done manually by
    users or automatically by tools.
 
-   Each conformance group has a short ASCII label (e.g., "basic") that
+   Each conformance group has a short ASCII label (e.g., "base32") that
    corresponds to a set of instructions that are mandatory.  That is,
    each instruction has one or more conformance groups of which it is a
    member.
 
-   The "basic" conformance group includes all instructions defined in
-   this specification unless otherwise noted.
+   This document defines the following conformance groups:
+
+   *  base32: includes all instructions defined in this specification
+      unless otherwise noted.
+
+   *  base64: includes base32, plus instructions explicitly noted as
+      being in the base64 conformance group.
+
+   *  atomic32: includes 32-bit atomic operation instructions (see
+      Atomic operations (Section 4.3)).
+
+   *  atomic64: includes atomic32, plus 64-bit atomic operation
+      instructions.
+
+   *  divmul32: includes 32-bit division, multiplication, and modulo
+      instructions.
+
+   *  divmul64: includes divmul32, plus 64-bit division, multiplication,
+      and modulo instructions.
+
+   *  legacy: deprecated packet access instructions.
 
 2.  Instruction encoding
 
@@ -255,6 +274,13 @@ Internet-Draft                  eBPF ISA                   February 2024
 
    *  the basic instruction encoding, which uses 64 bits to encode an
       instruction
+
+
+
+Thaler                    Expires 9 August 2024                 [Page 5]
+
+Internet-Draft                  eBPF ISA                   February 2024
+
 
    *  the wide instruction encoding, which appends a second 64-bit
       immediate (i.e., constant) value after the basic instruction for a
@@ -273,14 +299,6 @@ Internet-Draft                  eBPF ISA                   February 2024
    *src_reg*  the source register number (0-10), except where otherwise
       specified (64-bit immediate instructions (Section 4.4) reuse this
       field for other purposes)
-
-
-
-
-Thaler                    Expires 9 August 2024                 [Page 5]
-
-Internet-Draft                  eBPF ISA                   February 2024
-
 
    *dst_reg*  destination register number (0-10)
 
@@ -302,13 +320,23 @@ Internet-Draft                  eBPF ISA                   February 2024
    fields shall be cleared to zero.
 
    As discussed below in 64-bit immediate instructions (Section 4.4), a
-   64-bit immediate instruction uses a 64-bit immediate value that is
-   constructed as follows.  The 64 bits following the basic instruction
-   contain a pseudo instruction using the same format but with opcode,
-   dst_reg, src_reg, and offset all set to zero, and imm containing the
-   high 32 bits of the immediate value.
+   64-bit immediate instruction uses two 32-bit immediate values that
+   are constructed as follows.  The 64 bits following the basic
+   instruction contain a pseudo instruction using the same format but
+   with opcode, dst_reg, src_reg, and offset all set to zero, and imm
+   containing the high 32 bits of the immediate value.
 
    This is depicted in the following figure:
+
+
+
+
+
+
+Thaler                    Expires 9 August 2024                 [Page 6]
+
+Internet-Draft                  eBPF ISA                   February 2024
+
 
          basic_instruction
    .------------------------------.
@@ -318,13 +346,9 @@ Internet-Draft                  eBPF ISA                   February 2024
                                     '--------------'
                                    pseudo instruction
 
-   Thus the 64-bit immediate value is constructed as follows:
-
-   |  imm64 = (next_imm << 32) | imm
-
-   where 'next_imm' refers to the imm value of the pseudo instruction
-   following the basic instruction.  The unused bytes in the pseudo
-   instruction are reserved and shall be cleared to zero.
+   Here, the imm value of the pseudo instruction is called 'next_imm'.
+   The unused bytes in the pseudo instruction are reserved and shall be
+   cleared to zero.
 
 2.1.  Instruction classes
 
@@ -333,7 +357,39 @@ Internet-Draft                  eBPF ISA                   February 2024
 
 
 
-Thaler                    Expires 9 August 2024                 [Page 6]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thaler                    Expires 9 August 2024                 [Page 7]
 
 Internet-Draft                  eBPF ISA                   February 2024
 
@@ -389,7 +445,7 @@ Internet-Draft                  eBPF ISA                   February 2024
 
 
 
-Thaler                    Expires 9 August 2024                 [Page 7]
+Thaler                    Expires 9 August 2024                 [Page 8]
 
 Internet-Draft                  eBPF ISA                   February 2024
 
@@ -415,9 +471,11 @@ Internet-Draft                  eBPF ISA                   February 2024
 3.1.  Arithmetic instructions
 
    BPF_ALU uses 32-bit wide operands while BPF_ALU64 uses 64-bit wide
-   operands for otherwise identical operations.  The 'code' field
-   encodes the operation as below, where 'src' and 'dst' refer to the
-   values of the source and destination registers, respectively.
+   operands for otherwise identical operations.  BPF_ALU64 instructions
+   belong to the base64 conformance group unless noted otherwise.  The
+   'code' field encodes the operation as below, where 'src' and 'dst'
+   refer to the values of the source and destination registers,
+   respectively.
 
 
 
@@ -443,9 +501,7 @@ Internet-Draft                  eBPF ISA                   February 2024
 
 
 
-
-
-Thaler                    Expires 9 August 2024                 [Page 8]
+Thaler                    Expires 9 August 2024                 [Page 9]
 
 Internet-Draft                  eBPF ISA                   February 2024
 
@@ -501,7 +557,7 @@ Internet-Draft                  eBPF ISA                   February 2024
 
 
 
-Thaler                    Expires 9 August 2024                 [Page 9]
+Thaler                    Expires 9 August 2024                [Page 10]
 
 Internet-Draft                  eBPF ISA                   February 2024
 
@@ -535,8 +591,11 @@ Internet-Draft                  eBPF ISA                   February 2024
    Note that most instructions have instruction offset of 0.  Only three
    instructions (BPF_SDIV, BPF_SMOD, BPF_MOVSX) have a non-zero offset.
 
-   The division and modulo operations support both unsigned and signed
-   flavors.
+   Division, multiplication, and modulo operations for BPF_ALU are part
+   of the "divmul32" conformance group, and division, multiplication,
+   and modulo operations for BPF_ALU64 are part of the "divmul64"
+   conformance group.  The division and modulo operations support both
+   unsigned and signed flavors.
 
    For unsigned operations (BPF_DIV and BPF_MOD), for BPF_ALU, 'imm' is
    interpreted as a 32-bit unsigned value.  For BPF_ALU64, 'imm' is
@@ -551,16 +610,17 @@ Internet-Draft                  eBPF ISA                   February 2024
    Note that there are varying definitions of the signed modulo
    operation when the dividend or divisor are negative, where
    implementations often vary by language such that Python, Ruby, etc.
-   differ from C, Go, Java, etc.  This specification requires that
-   signed modulo use truncated division (where -13 % 3 == -1) as
-   implemented in C, Go, etc.:
 
 
 
-Thaler                    Expires 9 August 2024                [Page 10]
+Thaler                    Expires 9 August 2024                [Page 11]
 
 Internet-Draft                  eBPF ISA                   February 2024
 
+
+   differ from C, Go, Java, etc.  This specification requires that
+   signed modulo use truncated division (where -13 % 3 == -1) as
+   implemented in C, Go, etc.:
 
    |  a % n = a - n * trunc(a / n)
 
@@ -606,17 +666,20 @@ Internet-Draft                  eBPF ISA                   February 2024
 
                                   Table 7
 
-   The 'imm' field encodes the width of the swap operations.  The
-   following widths are supported: 16, 32 and 64.
-
-   Examples:
 
 
 
-Thaler                    Expires 9 August 2024                [Page 11]
+Thaler                    Expires 9 August 2024                [Page 12]
 
 Internet-Draft                  eBPF ISA                   February 2024
 
+
+   The 'imm' field encodes the width of the swap operations.  The
+   following widths are supported: 16, 32 and 64.  Width 64 operations
+   belong to the base64 conformance group and other swap operations
+   belong to the base32 conformance group.
+
+   Examples:
 
    BPF_ALU | BPF_TO_LE | BPF_END with imm = 16/32/64 means:
 
@@ -638,9 +701,11 @@ Internet-Draft                  eBPF ISA                   February 2024
 
 3.3.  Jump instructions
 
-   BPF_JMP32 uses 32-bit wide operands while BPF_JMP uses 64-bit wide
-   operands for otherwise identical operations.  The 'code' field
-   encodes the operation as below:
+   BPF_JMP32 uses 32-bit wide operands and indicates the base32
+   conformance group, while BPF_JMP uses 64-bit wide operands for
+   otherwise identical operations, and indicates the base64 conformance
+   group unless otherwise specified.  The 'code' field encodes the
+   operation as below:
 
    +==========+=======+=====+=============+===========================+
    | code     | value | src | description | notes                     |
@@ -657,6 +722,14 @@ Internet-Draft                  eBPF ISA                   February 2024
    | BPF_JGT  | 0x2   | any | PC +=       | unsigned                  |
    |          |       |     | offset if   |                           |
    |          |       |     | dst > src   |                           |
+
+
+
+Thaler                    Expires 9 August 2024                [Page 13]
+
+Internet-Draft                  eBPF ISA                   February 2024
+
+
    +----------+-------+-----+-------------+---------------------------+
    | BPF_JGE  | 0x3   | any | PC +=       | unsigned                  |
    |          |       |     | offset if   |                           |
@@ -666,14 +739,6 @@ Internet-Draft                  eBPF ISA                   February 2024
    |          |       |     | offset if   |                           |
    |          |       |     | dst & src   |                           |
    +----------+-------+-----+-------------+---------------------------+
-
-
-
-Thaler                    Expires 9 August 2024                [Page 12]
-
-Internet-Draft                  eBPF ISA                   February 2024
-
-
    | BPF_JNE  | 0x5   | any | PC +=       |                           |
    |          |       |     | offset if   |                           |
    |          |       |     | dst != src  |                           |
@@ -713,6 +778,14 @@ Internet-Draft                  eBPF ISA                   February 2024
    |          |       |     | dst < src   |                           |
    +----------+-------+-----+-------------+---------------------------+
    | BPF_JSLE | 0xd   | any | PC +=       | signed                    |
+
+
+
+Thaler                    Expires 9 August 2024                [Page 14]
+
+Internet-Draft                  eBPF ISA                   February 2024
+
+
    |          |       |     | offset if   |                           |
    |          |       |     | dst <= src  |                           |
    +----------+-------+-----+-------------+---------------------------+
@@ -721,14 +794,6 @@ Internet-Draft                  eBPF ISA                   February 2024
 
    The BPF program needs to store the return value into register R0
    before doing a BPF_EXIT.
-
-
-
-
-Thaler                    Expires 9 August 2024                [Page 13]
-
-Internet-Draft                  eBPF ISA                   February 2024
-
 
    Example:
 
@@ -750,6 +815,9 @@ Internet-Draft                  eBPF ISA                   February 2024
    the 'imm' field.  A > 16-bit conditional jump may be converted to a <
    16-bit conditional jump plus a 32-bit unconditional jump.
 
+   All BPF_CALL and BPF_JA instructions belong to the base32 conformance
+   group.
+
 3.3.1.  Helper functions
 
    Helper functions are a concept whereby BPF programs can call into a
@@ -764,6 +832,16 @@ Internet-Draft                  eBPF ISA                   February 2024
    a helper function by a BTF ID encoded in the imm field, where the BTF
    ID identifies the helper name and type.
 
+
+
+
+
+
+Thaler                    Expires 9 August 2024                [Page 15]
+
+Internet-Draft                  eBPF ISA                   February 2024
+
+
 3.3.2.  Program-local functions
 
    Program-local functions are functions exposed by the same BPF program
@@ -777,15 +855,6 @@ Internet-Draft                  eBPF ISA                   February 2024
    For load and store instructions (BPF_LD, BPF_LDX, BPF_ST, and
    BPF_STX), the 8-bit 'opcode' field is divided as:
 
-
-
-
-
-Thaler                    Expires 9 August 2024                [Page 14]
-
-Internet-Draft                  eBPF ISA                   February 2024
-
-
                +==============+========+===================+
                | 3 bits (MSB) | 2 bits | 3 bits (LSB)      |
                +==============+========+===================+
@@ -795,6 +864,39 @@ Internet-Draft                  eBPF ISA                   February 2024
                                   Table 9
 
    The mode modifier is one of:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thaler                    Expires 9 August 2024                [Page 16]
+
+Internet-Draft                  eBPF ISA                   February 2024
+
 
       +============+=======+==================+=====================+
       | mode       | value | description      | reference           |
@@ -828,20 +930,6 @@ Internet-Draft                  eBPF ISA                   February 2024
 
    The size modifier is one of:
 
-
-
-
-
-
-
-
-
-
-Thaler                    Expires 9 August 2024                [Page 15]
-
-Internet-Draft                  eBPF ISA                   February 2024
-
-
              +===============+=======+=======================+
              | size modifier | value | description           |
              +===============+=======+=======================+
@@ -855,6 +943,16 @@ Internet-Draft                  eBPF ISA                   February 2024
              +---------------+-------+-----------------------+
 
                                   Table 11
+
+   Instructions using BPF_DW belong to the base64 conformance group.
+
+
+
+
+Thaler                    Expires 9 August 2024                [Page 17]
+
+Internet-Draft                  eBPF ISA                   February 2024
+
 
 4.1.  Regular load and store operations
 
@@ -889,15 +987,6 @@ Internet-Draft                  eBPF ISA                   February 2024
    Where size is one of: BPF_B, BPF_H or BPF_W, and 'signed size' is one
    of s8, s16 or s32.
 
-
-
-
-
-Thaler                    Expires 9 August 2024                [Page 16]
-
-Internet-Draft                  eBPF ISA                   February 2024
-
-
 4.3.  Atomic operations
 
    Atomic operations are operations that operate on memory and can not
@@ -907,9 +996,19 @@ Internet-Draft                  eBPF ISA                   February 2024
    All atomic operations supported by BPF are encoded as store
    operations that use the BPF_ATOMIC mode modifier as follows:
 
-   *  BPF_ATOMIC | BPF_W | BPF_STX for 32-bit operations
+   *  BPF_ATOMIC | BPF_W | BPF_STX for 32-bit operations, which are part
+      of the "atomic32" conformance group.
 
-   *  BPF_ATOMIC | BPF_DW | BPF_STX for 64-bit operations
+   *  BPF_ATOMIC | BPF_DW | BPF_STX for 64-bit operations, which are
+      part of the "atomic64" conformance group.
+
+
+
+
+Thaler                    Expires 9 August 2024                [Page 18]
+
+Internet-Draft                  eBPF ISA                   February 2024
+
 
    *  8-bit and 16-bit wide atomic operations are not supported.
 
@@ -943,17 +1042,6 @@ Internet-Draft                  eBPF ISA                   February 2024
    In addition to the simple atomic operations, there also is a modifier
    and two complex atomic operations:
 
-
-
-
-
-
-
-Thaler                    Expires 9 August 2024                [Page 17]
-
-Internet-Draft                  eBPF ISA                   February 2024
-
-
      +=============+==================+=============================+
      | imm         | value            | description                 |
      +=============+==================+=============================+
@@ -970,6 +1058,13 @@ Internet-Draft                  eBPF ISA                   February 2024
    always set for the complex atomic operations.  If the BPF_FETCH flag
    is set, then the operation also overwrites src with the value that
    was in memory before it was modified.
+
+
+
+Thaler                    Expires 9 August 2024                [Page 19]
+
+Internet-Draft                  eBPF ISA                   February 2024
+
 
    The BPF_XCHG operation atomically exchanges src with the value
    addressed by dst + offset.
@@ -1005,7 +1100,24 @@ Internet-Draft                  eBPF ISA                   February 2024
 
 
 
-Thaler                    Expires 9 August 2024                [Page 18]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thaler                    Expires 9 August 2024                [Page 20]
 
 Internet-Draft                  eBPF ISA                   February 2024
 
@@ -1014,8 +1126,8 @@ Internet-Draft                  eBPF ISA                   February 2024
     |opcode      |opcode|src|pseudocode              |imm type|dst    |
     |construction|      |   |                        |        |type   |
     +============+======+===+========================+========+=======+
-    |BPF_IMM |   |0x18  |0x0|dst = imm64             |integer |integer|
-    |BPF_DW |    |      |   |                        |        |       |
+    |BPF_IMM |   |0x18  |0x0|dst = (next_imm << 32) ||integer |integer|
+    |BPF_DW |    |      |   |imm                     |        |       |
     |BPF_LD      |      |   |                        |        |       |
     +------------+------+---+------------------------+--------+-------+
     |BPF_IMM |   |0x18  |0x1|dst = map_by_fd(imm)    |map fd  |map    |
@@ -1061,7 +1173,7 @@ Internet-Draft                  eBPF ISA                   February 2024
 
 
 
-Thaler                    Expires 9 August 2024                [Page 19]
+Thaler                    Expires 9 August 2024                [Page 21]
 
 Internet-Draft                  eBPF ISA                   February 2024
 
@@ -1099,10 +1211,11 @@ Internet-Draft                  eBPF ISA                   February 2024
 4.5.  Legacy BPF Packet access instructions
 
    BPF previously introduced special instructions for access to packet
-   data that were carried over from classic BPF.  However, these
+   data that were carried over from classic BPF.  These instructions
+   used an instruction class of BPF_LD, a size modifier of BPF_W, BPF_H,
+   or BPF_B, and a mode modifier of BPF_ABS or BPF_IND.  However, these
    instructions are deprecated and should no longer be used.  All legacy
-   packet access instructions belong to the "legacy" conformance group
-   instead of the "basic" conformance group.
+   packet access instructions belong to the "legacy" conformance group.
 
 5.  IANA Considerations
 
@@ -1113,14 +1226,15 @@ Internet-Draft                  eBPF ISA                   February 2024
    This document defines a IANA sub-registry for BPF instruction
    conformance groups, as follows:
 
-   *  Name of the registry: BPF Instruction Conformance Groups
 
 
 
-Thaler                    Expires 9 August 2024                [Page 20]
+Thaler                    Expires 9 August 2024                [Page 22]
 
 Internet-Draft                  eBPF ISA                   February 2024
 
+
+   *  Name of the registry: BPF Instruction Conformance Groups
 
    *  Name of the registry group: BPF Instructions
 
@@ -1171,9 +1285,7 @@ Internet-Draft                  eBPF ISA                   February 2024
 
 
 
-
-
-Thaler                    Expires 9 August 2024                [Page 21]
+Thaler                    Expires 9 August 2024                [Page 23]
 
 Internet-Draft                  eBPF ISA                   February 2024
 
@@ -1229,7 +1341,7 @@ Internet-Draft                  eBPF ISA                   February 2024
 
 
 
-Thaler                    Expires 9 August 2024                [Page 22]
+Thaler                    Expires 9 August 2024                [Page 24]
 
 Internet-Draft                  eBPF ISA                   February 2024
 
@@ -1285,7 +1397,7 @@ Internet-Draft                  eBPF ISA                   February 2024
 
 
 
-Thaler                    Expires 9 August 2024                [Page 23]
+Thaler                    Expires 9 August 2024                [Page 25]
 
 Internet-Draft                  eBPF ISA                   February 2024
 
@@ -1341,7 +1453,7 @@ Internet-Draft                  eBPF ISA                   February 2024
 
 
 
-Thaler                    Expires 9 August 2024                [Page 24]
+Thaler                    Expires 9 August 2024                [Page 26]
 
 Internet-Draft                  eBPF ISA                   February 2024
 
@@ -1397,7 +1509,7 @@ Internet-Draft                  eBPF ISA                   February 2024
 
 
 
-Thaler                    Expires 9 August 2024                [Page 25]
+Thaler                    Expires 9 August 2024                [Page 27]
 
 Internet-Draft                  eBPF ISA                   February 2024
 
@@ -1453,7 +1565,7 @@ Internet-Draft                  eBPF ISA                   February 2024
 
 
 
-Thaler                    Expires 9 August 2024                [Page 26]
+Thaler                    Expires 9 August 2024                [Page 28]
 
 Internet-Draft                  eBPF ISA                   February 2024
 
@@ -1509,7 +1621,7 @@ Internet-Draft                  eBPF ISA                   February 2024
 
 
 
-Thaler                    Expires 9 August 2024                [Page 27]
+Thaler                    Expires 9 August 2024                [Page 29]
 
 Internet-Draft                  eBPF ISA                   February 2024
 
@@ -1565,7 +1677,7 @@ Internet-Draft                  eBPF ISA                   February 2024
 
 
 
-Thaler                    Expires 9 August 2024                [Page 28]
+Thaler                    Expires 9 August 2024                [Page 30]
 
 Internet-Draft                  eBPF ISA                   February 2024
 
@@ -1621,7 +1733,7 @@ Internet-Draft                  eBPF ISA                   February 2024
 
 
 
-Thaler                    Expires 9 August 2024                [Page 29]
+Thaler                    Expires 9 August 2024                [Page 31]
 
 Internet-Draft                  eBPF ISA                   February 2024
 
@@ -1677,7 +1789,7 @@ Internet-Draft                  eBPF ISA                   February 2024
 
 
 
-Thaler                    Expires 9 August 2024                [Page 30]
+Thaler                    Expires 9 August 2024                [Page 32]
 
 Internet-Draft                  eBPF ISA                   February 2024
 
@@ -1733,7 +1845,7 @@ Internet-Draft                  eBPF ISA                   February 2024
 
 
 
-Thaler                    Expires 9 August 2024                [Page 31]
+Thaler                    Expires 9 August 2024                [Page 33]
 
 Internet-Draft                  eBPF ISA                   February 2024
 
@@ -1789,7 +1901,7 @@ Internet-Draft                  eBPF ISA                   February 2024
 
 
 
-Thaler                    Expires 9 August 2024                [Page 32]
+Thaler                    Expires 9 August 2024                [Page 34]
 
 Internet-Draft                  eBPF ISA                   February 2024
 
@@ -1845,7 +1957,7 @@ Internet-Draft                  eBPF ISA                   February 2024
 
 
 
-Thaler                    Expires 9 August 2024                [Page 33]
+Thaler                    Expires 9 August 2024                [Page 35]
 
 Internet-Draft                  eBPF ISA                   February 2024
 
@@ -1901,7 +2013,7 @@ Internet-Draft                  eBPF ISA                   February 2024
 
 
 
-Thaler                    Expires 9 August 2024                [Page 34]
+Thaler                    Expires 9 August 2024                [Page 36]
 
 Internet-Draft                  eBPF ISA                   February 2024
 
@@ -1957,7 +2069,7 @@ Internet-Draft                  eBPF ISA                   February 2024
 
 
 
-Thaler                    Expires 9 August 2024                [Page 35]
+Thaler                    Expires 9 August 2024                [Page 37]
 
 Internet-Draft                  eBPF ISA                   February 2024
 
@@ -2013,7 +2125,7 @@ Internet-Draft                  eBPF ISA                   February 2024
 
 
 
-Thaler                    Expires 9 August 2024                [Page 36]
+Thaler                    Expires 9 August 2024                [Page 38]
 
 Internet-Draft                  eBPF ISA                   February 2024
 
@@ -2069,7 +2181,7 @@ Internet-Draft                  eBPF ISA                   February 2024
 
 
 
-Thaler                    Expires 9 August 2024                [Page 37]
+Thaler                    Expires 9 August 2024                [Page 39]
 
 Internet-Draft                  eBPF ISA                   February 2024
 
@@ -2125,7 +2237,7 @@ Internet-Draft                  eBPF ISA                   February 2024
 
 
 
-Thaler                    Expires 9 August 2024                [Page 38]
+Thaler                    Expires 9 August 2024                [Page 40]
 
 Internet-Draft                  eBPF ISA                   February 2024
 
@@ -2181,4 +2293,4 @@ Author's Address
 
 
 
-Thaler                    Expires 9 August 2024                [Page 39]
+Thaler                    Expires 9 August 2024                [Page 41]

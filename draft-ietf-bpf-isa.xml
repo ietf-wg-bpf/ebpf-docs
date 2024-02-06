@@ -249,7 +249,7 @@ B: 11111111 10000110
     <t>
      An implementation does not need to support all instructions specified in this
      document (e.g., deprecated instructions).  Instead, a number of conformance
-     groups are specified.  An implementation must support the "basic" conformance
+     groups are specified.  An implementation must support the base32 conformance
      group and may support additional conformance groups, where supporting a
      conformance group means it must support all instructions in that conformance
      group.
@@ -261,13 +261,38 @@ B: 11111111 10000110
      conformance groups might be done manually by users or automatically by tools.
     </t>
     <t>
-     Each conformance group has a short ASCII label (e.g., "basic") that
+     Each conformance group has a short ASCII label (e.g., "base32") that
      corresponds to a set of instructions that are mandatory.  That is, each
      instruction has one or more conformance groups of which it is a member.
     </t>
     <t>
-     The "basic" conformance group includes all instructions defined in this
-     specification unless otherwise noted.
+     This document defines the following conformance groups:
+     <ul>
+      <li>
+       base32: includes all instructions defined in this
+       specification unless otherwise noted.
+      </li>
+      <li>
+       base64: includes base32, plus instructions explicitly noted
+       as being in the base64 conformance group.
+      </li>
+      <li>
+       atomic32: includes 32-bit atomic operation instructions (see <xref target="atomic-operations">Atomic operations</xref>).
+      </li>
+      <li>
+       atomic64: includes atomic32, plus 64-bit atomic operation instructions.
+      </li>
+      <li>
+       divmul32: includes 32-bit division, multiplication, and modulo instructions.
+      </li>
+      <li>
+       divmul64: includes divmul32, plus 64-bit division, multiplication,
+       and modulo instructions.
+      </li>
+      <li>
+       legacy: deprecated packet access instructions.
+      </li>
+     </ul>
     </t>
    </section>
   </section>
@@ -356,7 +381,7 @@ opcode                  offset imm          assembly
    </t>
    <t>
     As discussed below in <xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref>, a 64-bit immediate
-    instruction uses a 64-bit immediate value that is constructed as follows.
+    instruction uses two 32-bit immediate values that are constructed as follows.
     The 64 bits following the basic instruction contain a pseudo instruction
     using the same format but with opcode, dst_reg, src_reg, and offset all set to zero,
     and imm containing the high 32 bits of the immediate value.
@@ -374,15 +399,8 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
                                 pseudo instruction
    </artwork>
    <t>
-    Thus the 64-bit immediate value is constructed as follows:
-   </t>
-   <blockquote>
-    imm64 = (next_imm &lt;&lt; 32) | imm
-   </blockquote>
-   <t>
-    where 'next_imm' refers to the imm value of the pseudo instruction
-    following the basic instruction.  The unused bytes in the pseudo
-    instruction are reserved and shall be cleared to zero.
+    Here, the imm value of the pseudo instruction is called 'next_imm'. The unused
+    bytes in the pseudo instruction are reserved and shall be cleared to zero.
    </t>
    <section anchor="instruction-classes" title="Instruction classes">
     <t>
@@ -687,7 +705,8 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
    <section anchor="arithmetic-instructions" title="Arithmetic instructions">
     <t>
      <tt>BPF_ALU</tt> uses 32-bit wide operands while <tt>BPF_ALU64</tt> uses 64-bit wide operands for
-     otherwise identical operations.
+     otherwise identical operations. <tt>BPF_ALU64</tt> instructions belong to the
+     base64 conformance group unless noted otherwise.
      The 'code' field encodes the operation as below, where 'src' and 'dst' refer
      to the values of the source and destination registers, respectively.
     </t>
@@ -1117,6 +1136,10 @@ dst = dst ^ imm32
      (<tt>BPF_SDIV</tt>, <tt>BPF_SMOD</tt>, <tt>BPF_MOVSX</tt>) have a non-zero offset.
     </t>
     <t>
+     Division, multiplication, and modulo operations for <tt>BPF_ALU</tt> are part
+     of the "divmul32" conformance group, and division, multiplication, and
+     modulo operations for <tt>BPF_ALU64</tt> are part of the "divmul64" conformance
+     group.
      The division and modulo operations support both unsigned and signed flavors.
     </t>
     <t>
@@ -1253,7 +1276,9 @@ dst = dst ^ imm32
     </table>
     <t>
      The 'imm' field encodes the width of the swap operations.  The following widths
-     are supported: 16, 32 and 64.
+     are supported: 16, 32 and 64.  Width 64 operations belong to the base64
+     conformance group and other swap operations belong to the base32
+     conformance group.
     </t>
     <t>
      Examples:
@@ -1285,8 +1310,10 @@ dst = bswap64(dst)
    </section>
    <section anchor="jump-instructions" title="Jump instructions">
     <t>
-     <tt>BPF_JMP32</tt> uses 32-bit wide operands while <tt>BPF_JMP</tt> uses 64-bit wide operands for
-     otherwise identical operations.
+     <tt>BPF_JMP32</tt> uses 32-bit wide operands and indicates the base32
+     conformance group, while <tt>BPF_JMP</tt> uses 64-bit wide operands for
+     otherwise identical operations, and indicates the base64 conformance
+     group unless otherwise specified.
      The 'code' field encodes the operation as below:
     </t>
     <table>
@@ -1785,6 +1812,10 @@ gotol +imm
      converted to a &lt; 16-bit conditional jump plus a 32-bit unconditional
      jump.
     </t>
+    <t>
+     All <tt>BPF_CALL</tt> and <tt>BPF_JA</tt> instructions belong to the
+     base32 conformance group.
+    </t>
     <section anchor="helper-functions" title="Helper functions">
      <t>
       Helper functions are a concept whereby BPF programs can call into a
@@ -2073,6 +2104,9 @@ gotol +imm
      </tr>
     </tbody>
    </table>
+   <t>
+    Instructions using <tt>BPF_DW</tt> belong to the base64 conformance group.
+   </t>
    <section anchor="regular-load-and-store-operations" title="Regular load and store operations">
     <t>
      The <tt>BPF_MEM</tt> mode modifier is used to encode regular load and store
@@ -2129,10 +2163,12 @@ dst = *(signed size *) (src + offset)
     </t>
     <ul>
      <li>
-      <tt>BPF_ATOMIC | BPF_W | BPF_STX</tt> for 32-bit operations
+      <tt>BPF_ATOMIC | BPF_W | BPF_STX</tt> for 32-bit operations, which are
+      part of the "atomic32" conformance group.
      </li>
      <li>
-      <tt>BPF_ATOMIC | BPF_DW | BPF_STX</tt> for 64-bit operations
+      <tt>BPF_ATOMIC | BPF_DW | BPF_STX</tt> for 64-bit operations, which are
+      part of the "atomic64" conformance group.
      </li>
      <li>
       8-bit and 16-bit wide atomic operations are not supported.
@@ -2359,7 +2395,7 @@ dst = *(signed size *) (src + offset)
        </td>
        <td>
         <t>
-         dst = imm64
+         dst = (next_imm &lt;&lt; 32) | imm
         </t>
        </td>
        <td>
@@ -2620,10 +2656,11 @@ dst = *(signed size *) (src + offset)
    <section anchor="legacy-bpf-packet-access-instructions" title="Legacy BPF Packet access instructions">
     <t>
      BPF previously introduced special instructions for access to packet data that were
-     carried over from classic BPF. However, these instructions are
+     carried over from classic BPF. These instructions used an instruction
+     class of BPF_LD, a size modifier of BPF_W, BPF_H, or BPF_B, and a
+     mode modifier of BPF_ABS or BPF_IND.  However, these instructions are
      deprecated and should no longer be used.  All legacy packet access
-     instructions belong to the "legacy" conformance group instead of the "basic"
-     conformance group.
+     instructions belong to the "legacy" conformance group.
     </t>
    </section>
   </section>
