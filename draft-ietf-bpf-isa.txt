@@ -582,11 +582,11 @@ Internet-Draft                  eBPF ISA                   February 2024
 
    BPF_XOR | BPF_K | BPF_ALU means:
 
-   dst = (u32) dst ^ (u32) imm32
+   dst = (u32) dst ^ (u32) imm
 
    BPF_XOR | BPF_K | BPF_ALU64 means:
 
-   dst = dst ^ imm32
+   dst = dst ^ imm
 
    Note that most instructions have instruction offset of 0.  Only three
    instructions (BPF_SDIV, BPF_SMOD, BPF_MOVSX) have a non-zero offset.
@@ -965,7 +965,7 @@ Internet-Draft                  eBPF ISA                   February 2024
 
    BPF_MEM | <size> | BPF_ST means:
 
-   *(size *) (dst + offset) = imm32
+   *(size *) (dst + offset) = imm
 
    BPF_MEM | <size> | BPF_LDX means:
 

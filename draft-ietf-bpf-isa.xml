@@ -267,33 +267,33 @@ B: 11111111 10000110
     </t>
     <t>
      This document defines the following conformance groups:
-     <ul>
-      <li>
-       base32: includes all instructions defined in this
-       specification unless otherwise noted.
-      </li>
-      <li>
-       base64: includes base32, plus instructions explicitly noted
-       as being in the base64 conformance group.
-      </li>
-      <li>
-       atomic32: includes 32-bit atomic operation instructions (see <xref target="atomic-operations">Atomic operations</xref>).
-      </li>
-      <li>
-       atomic64: includes atomic32, plus 64-bit atomic operation instructions.
-      </li>
-      <li>
-       divmul32: includes 32-bit division, multiplication, and modulo instructions.
-      </li>
-      <li>
-       divmul64: includes divmul32, plus 64-bit division, multiplication,
-       and modulo instructions.
-      </li>
-      <li>
-       legacy: deprecated packet access instructions.
-      </li>
-     </ul>
     </t>
+    <ul>
+     <li>
+      base32: includes all instructions defined in this
+      specification unless otherwise noted.
+     </li>
+     <li>
+      base64: includes base32, plus instructions explicitly noted
+      as being in the base64 conformance group.
+     </li>
+     <li>
+      atomic32: includes 32-bit atomic operation instructions (see <xref target="atomic-operations">Atomic operations</xref>).
+     </li>
+     <li>
+      atomic64: includes atomic32, plus 64-bit atomic operation instructions.
+     </li>
+     <li>
+      divmul32: includes 32-bit division, multiplication, and modulo instructions.
+     </li>
+     <li>
+      divmul64: includes divmul32, plus 64-bit division, multiplication,
+      and modulo instructions.
+     </li>
+     <li>
+      legacy: deprecated packet access instructions.
+     </li>
+    </ul>
    </section>
   </section>
   <section anchor="instruction-encoding" title="Instruction encoding">
@@ -1123,13 +1123,13 @@ dst = dst + src
      <tt>BPF_XOR | BPF_K | BPF_ALU</tt> means:
     </t>
     <artwork>
-dst = (u32) dst ^ (u32) imm32
+dst = (u32) dst ^ (u32) imm
     </artwork>
     <t>
      <tt>BPF_XOR | BPF_K | BPF_ALU64</tt> means:
     </t>
     <artwork>
-dst = dst ^ imm32
+dst = dst ^ imm
     </artwork>
     <t>
      Note that most instructions have instruction offset of 0. Only three instructions
@@ -2122,7 +2122,7 @@ gotol +imm
      <tt>BPF_MEM | &lt;size&gt; | BPF_ST</tt> means:
     </t>
     <artwork>
-*(size *) (dst + offset) = imm32
+*(size *) (dst + offset) = imm
     </artwork>
     <t>
      <tt>BPF_MEM | &lt;size&gt; | BPF_LDX</tt> means:

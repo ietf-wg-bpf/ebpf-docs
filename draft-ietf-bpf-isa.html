@@ -1647,28 +1647,28 @@ B: 11111111 10000110
      This document defines the following conformance groups:<a href="#section-1.4-4" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-1.4-5.1">
-       base32: includes all instructions defined in this
-       specification unless otherwise noted.<a href="#section-1.4-5.1" class="pilcrow">¶</a>
+      base32: includes all instructions defined in this
+      specification unless otherwise noted.<a href="#section-1.4-5.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-1.4-5.2">
-       base64: includes base32, plus instructions explicitly noted
-       as being in the base64 conformance group.<a href="#section-1.4-5.2" class="pilcrow">¶</a>
+      base64: includes base32, plus instructions explicitly noted
+      as being in the base64 conformance group.<a href="#section-1.4-5.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-1.4-5.3">
-       atomic32: includes 32-bit atomic operation instructions (see <span><a href="#atomic-operations" class="internal xref">Atomic operations</a> (<a href="#atomic-operations" class="auto internal xref">Section 4.3</a>)</span>).<a href="#section-1.4-5.3" class="pilcrow">¶</a>
+      atomic32: includes 32-bit atomic operation instructions (see <span><a href="#atomic-operations" class="internal xref">Atomic operations</a> (<a href="#atomic-operations" class="auto internal xref">Section 4.3</a>)</span>).<a href="#section-1.4-5.3" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-1.4-5.4">
-       atomic64: includes atomic32, plus 64-bit atomic operation instructions.<a href="#section-1.4-5.4" class="pilcrow">¶</a>
+      atomic64: includes atomic32, plus 64-bit atomic operation instructions.<a href="#section-1.4-5.4" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-1.4-5.5">
-       divmul32: includes 32-bit division, multiplication, and modulo instructions.<a href="#section-1.4-5.5" class="pilcrow">¶</a>
+      divmul32: includes 32-bit division, multiplication, and modulo instructions.<a href="#section-1.4-5.5" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-1.4-5.6">
-       divmul64: includes divmul32, plus 64-bit division, multiplication,
-       and modulo instructions.<a href="#section-1.4-5.6" class="pilcrow">¶</a>
+      divmul64: includes divmul32, plus 64-bit division, multiplication,
+      and modulo instructions.<a href="#section-1.4-5.6" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-1.4-5.7">
-       legacy: deprecated packet access instructions.<a href="#section-1.4-5.7" class="pilcrow">¶</a>
+      legacy: deprecated packet access instructions.<a href="#section-1.4-5.7" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
@@ -2426,14 +2426,14 @@ dst = dst + src
      <code>BPF_XOR | BPF_K | BPF_ALU</code> means:<a href="#section-3.1-9" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-3.1-10">
 <pre>
-dst = (u32) dst ^ (u32) imm32
+dst = (u32) dst ^ (u32) imm
 </pre><a href="#section-3.1-10" class="pilcrow">¶</a>
 </div>
 <p id="section-3.1-11">
      <code>BPF_XOR | BPF_K | BPF_ALU64</code> means:<a href="#section-3.1-11" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-3.1-12">
 <pre>
-dst = dst ^ imm32
+dst = dst ^ imm
 </pre><a href="#section-3.1-12" class="pilcrow">¶</a>
 </div>
 <p id="section-3.1-13">
@@ -3306,7 +3306,7 @@ gotol +imm
      <code>BPF_MEM | &lt;size&gt; | BPF_ST</code> means:<a href="#section-4.1-4" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-4.1-5">
 <pre>
-*(size *) (dst + offset) = imm32
+*(size *) (dst + offset) = imm
 </pre><a href="#section-4.1-5" class="pilcrow">¶</a>
 </div>
 <p id="section-4.1-6">

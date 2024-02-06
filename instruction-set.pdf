@@ -511,7 +511,7 @@ endobj
 endobj
 90 0 obj
 <<
-/Author () /CreationDate (D:20240206043657+00'00') /Creator (\(unspecified\)) /Keywords () /ModDate (D:20240206043657+00'00') /Producer (ReportLab PDF Library - www.reportlab.com) 
+/Author () /CreationDate (D:20240206161416+00'00') /Creator (\(unspecified\)) /Keywords () /ModDate (D:20240206161416+00'00') /Producer (ReportLab PDF Library - www.reportlab.com) 
   /Subject (\(unspecified\)) /Title () /Trapped /False
 >>
 endobj
@@ -1540,7 +1540,7 @@ endstream
 endobj
 117 0 obj
 <<
-/Length 8018
+/Length 8057
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -1562,8 +1562,11 @@ q
 1 0 0 1 57.02362 681.0236 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (This document defines the following conformance groups: * base32: includes all instructions defined in this) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (This document defines the following conformance groups:) Tj T* ET
 Q
+Q
+q
+1 0 0 1 57.02362 675.0236 cm
 Q
 q
 1 0 0 1 57.02362 675.0236 cm
@@ -1573,23 +1576,23 @@ q
 q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
-BT 1 0 0 1 0 2 Tm  T* ET
 q
-1 0 0 1 20 0 cm
+1 0 0 1 6 -3 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (specification unless otherwise noted.) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F5 10 Tf 12 TL 8 0 Td (\177) Tj T* -8 0 Td ET
+Q
+Q
+q
+1 0 0 1 23 -3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (base32: includes all instructions defined in this specification unless otherwise noted.) Tj T* ET
 Q
 Q
 q
 Q
 Q
-Q
-q
-1 0 0 1 57.02362 663.0236 cm
-Q
-q
-1 0 0 1 57.02362 657.0236 cm
 Q
 q
 1 0 0 1 57.02362 657.0236 cm
@@ -3216,7 +3219,7 @@ endstream
 endobj
 120 0 obj
 <<
-/Length 7952
+/Length 7948
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -3359,7 +3362,7 @@ n -6 -6 480.0283 24 re B*
 Q
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F5 10 Tf 12 TL (dst = \(u32\) dst ^ \(u32\) imm32) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F5 10 Tf 12 TL (dst = \(u32\) dst ^ \(u32\) imm) Tj T* ET
 Q
 Q
 Q
@@ -3386,7 +3389,7 @@ n -6 -6 480.0283 24 re B*
 Q
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F5 10 Tf 12 TL (dst = dst ^ imm32) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F5 10 Tf 12 TL (dst = dst ^ imm) Tj T* ET
 Q
 Q
 Q
@@ -4924,7 +4927,7 @@ endstream
 endobj
 124 0 obj
 <<
-/Length 8928
+/Length 8926
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -5229,7 +5232,7 @@ n -6 -6 480.0283 24 re B*
 Q
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F5 10 Tf 12 TL (*\(size *\) \(dst + offset\) = imm32) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F5 10 Tf 12 TL (*\(size *\) \(dst + offset\) = imm) Tj T* ET
 Q
 Q
 Q
@@ -6642,32 +6645,32 @@ xref
 0000022410 00000 n 
 0000030799 00000 n 
 0000039277 00000 n 
-0000047348 00000 n 
-0000056522 00000 n 
-0000067677 00000 n 
-0000075682 00000 n 
-0000083699 00000 n 
-0000093264 00000 n 
-0000102159 00000 n 
-0000111140 00000 n 
-0000122399 00000 n 
-0000130882 00000 n 
-0000131043 00000 n 
-0000131078 00000 n 
-0000131113 00000 n 
-0000131148 00000 n 
-0000131183 00000 n 
-0000131218 00000 n 
-0000131253 00000 n 
-0000131288 00000 n 
-0000131323 00000 n 
-0000131358 00000 n 
-0000131394 00000 n 
-0000131430 00000 n 
+0000047387 00000 n 
+0000056561 00000 n 
+0000067716 00000 n 
+0000075717 00000 n 
+0000083734 00000 n 
+0000093299 00000 n 
+0000102194 00000 n 
+0000111173 00000 n 
+0000122432 00000 n 
+0000130915 00000 n 
+0000131076 00000 n 
+0000131111 00000 n 
+0000131146 00000 n 
+0000131181 00000 n 
+0000131216 00000 n 
+0000131251 00000 n 
+0000131286 00000 n 
+0000131321 00000 n 
+0000131356 00000 n 
+0000131391 00000 n 
+0000131427 00000 n 
+0000131463 00000 n 
 trailer
 <<
 /ID 
-[<6ed69933885f983a7810d4ba9b2e6c56><6ed69933885f983a7810d4ba9b2e6c56>]
+[<6645a91e0ac5394ad08ca44f5870228c><6645a91e0ac5394ad08ca44f5870228c>]
 % ReportLab generated PDF document -- digest (http://www.reportlab.com)
 
 /Info 90 0 R
@@ -6675,5 +6678,5 @@ trailer
 /Size 140
 >>
 startxref
-131466
+131499
 %%EOF
