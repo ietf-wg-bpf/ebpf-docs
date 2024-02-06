@@ -16,7 +16,7 @@ opcode  src  imm   offset  description                                          
 0x15    0x0  any   any     if dst == imm goto +offset                              base64    `Jump instructions`_
 0x16    0x0  any   any     if (u32)dst == imm goto +offset                         base32    `Jump instructions`_
 0x17    0x0  any   0       dst -= imm                                              base64    `Arithmetic instructions`_
-0x18    0x0  any   0       dst = imm64                                             base64    `64-bit immediate instructions`_
+0x18    0x0  any   0       dst = (next_imm << 32) | imm                            base64    `64-bit immediate instructions`_
 0x18    0x1  any   0       dst = map_by_fd(imm)                                    base64    `64-bit immediate instructions`_
 0x18    0x2  any   0       dst = mva(map_by_fd(imm)) + next_imm                    base64    `64-bit immediate instructions`_
 0x18    0x3  any   0       dst = variable_addr(imm)                                base64    `64-bit immediate instructions`_
