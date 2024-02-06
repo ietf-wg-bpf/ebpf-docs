@@ -1514,8 +1514,8 @@ Thaler                    Expires 9 August 2024                [Page 27]
 Internet-Draft                  eBPF ISA                   February 2024
 
 
-   |0x18  |0x0|any |0     |dst = imm64             |base64  |64-bit       |
-   |      |   |    |      |                        |        |immediate    |
+   |0x18  |0x0|any |0     |dst = (next_imm << 32) ||base64  |64-bit       |
+   |      |   |    |      |imm                     |        |immediate    |
    |      |   |    |      |                        |        |instructions |
    |      |   |    |      |                        |        |(Section 4.4)|
    +------+---+----+------+------------------------+--------+-------------+

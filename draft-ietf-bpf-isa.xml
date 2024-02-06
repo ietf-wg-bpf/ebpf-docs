@@ -3585,7 +3585,7 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
-        dst = imm64
+        dst = (next_imm &lt;&lt; 32) | imm
        </t>
       </td>
       <td>
