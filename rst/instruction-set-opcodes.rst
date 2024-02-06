@@ -98,10 +98,13 @@ opcode  src  imm   offset  description                                          
 0x7e    any  0x00  any     if (s32)dst s>= (s32)src goto +offset                   base32    `Jump instructions`_
 0x7f    any  0x00  0       dst >>= src                                             base64    `Arithmetic instructions`_
 0x84    0x0  0x00  0       dst = (u32)-dst                                         base32    `Arithmetic instructions`_
-0x85    0x0  any   0       call helper function by address                         base32    `Helper functions`_
+0x85    0x0  any   0       call_by_address(imm)                                    base32    `Helper functions`_
 0x85    0x1  any   0       call PC += imm                                          base32    `Program-local functions`_
-0x85    0x2  any   0       call helper function by BTF ID                          base32    `Helper functions`_
+0x85    0x2  any   0       call_by_btfid(imm)                                      base32    `Helper functions`_
 0x87    0x0  0x00  0       dst = -dst                                              base32    `Arithmetic instructions`_
+0x8d    0x0  any   0       call_by_address(reg_val(imm))                           callx     `Helper functions`_
+0x8d    0x1  any   0       call PC += src                                          callx     `Program-local functions`_
+0x8d    0x2  any   0       call_by_btfid(reg_val(imm))                             callx     `Helper functions`_
 0x94    0x0  any   0       dst = (u32)((imm != 0)?((u32)dst % (u32)imm) : dst)     divmul32  `Arithmetic instructions`_
 0x94    0x0  any   1       dst = (u32)((imm != 0) ? ((s32)dst s% imm) : dst)       divmul32  `Arithmetic instructions`_
 0x95    0x0  0x00  0       return                                                  base32    `Jump instructions`_
