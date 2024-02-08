@@ -27,17 +27,17 @@ opcode  src  imm   offset  description                                          
 0x1d    any  0x00  any     if dst == src goto +offset                              base64    `Jump instructions`_
 0x1e    any  0x00  any     if (u32)dst == (u32)src goto +offset                    base32    `Jump instructions`_
 0x1f    any  0x00  0       dst -= src                                              base64    `Arithmetic instructions`_
-0x20    any  any   any     (deprecated, implementation-specific)                   legacy    `Legacy BPF Packet access instructions`_
+0x20    any  any   any     (deprecated, implementation-specific)                   packet    `Legacy BPF Packet access instructions`_
 0x24    0x0  any   0       dst = (u32)(dst \* imm)                                 divmul32  `Arithmetic instructions`_
 0x25    0x0  any   any     if dst > imm goto +offset                               base64    `Jump instructions`_
 0x26    0x0  any   any     if (u32)dst > imm goto +offset                          base32    `Jump instructions`_
 0x27    0x0  any   0       dst \*= imm                                             divmul64  `Arithmetic instructions`_
-0x28    any  any   any     (deprecated, implementation-specific)                   legacy    `Legacy BPF Packet access instructions`_
+0x28    any  any   any     (deprecated, implementation-specific)                   packet    `Legacy BPF Packet access instructions`_
 0x2c    any  0x00  0       dst = (u32)(dst \* src)                                 divmul32  `Arithmetic instructions`_
 0x2d    any  0x00  any     if dst > src goto +offset                               base64    `Jump instructions`_
 0x2e    any  0x00  any     if (u32)dst > (u32)src goto +offset                     base32    `Jump instructions`_
 0x2f    any  0x00  0       dst \*= src                                             divmul64  `Arithmetic instructions`_
-0x30    any  any   any     (deprecated, implementation-specific)                   legacy    `Legacy BPF Packet access instructions`_
+0x30    any  any   any     (deprecated, implementation-specific)                   packet    `Legacy BPF Packet access instructions`_
 0x34    0x0  any   0       dst = (u32)((imm != 0) ? ((u32)dst / (u32)imm) : 0)     divmul32  `Arithmetic instructions`_
 0x34    0x0  any   1       dst = (u32)((imm != 0) ? ((s32)dst s/ imm) : 0)         divmul32  `Arithmetic instructions`_
 0x35    0x0  any   any     if dst >= imm goto +offset                              base64    `Jump instructions`_
@@ -50,17 +50,17 @@ opcode  src  imm   offset  description                                          
 0x3e    any  0x00  any     if (u32)dst >= (u32)src goto +offset                    base32    `Jump instructions`_
 0x3f    any  0x00  0       dst = (src != 0) ? (dst / src) : 0                      divmul64  `Arithmetic instructions`_
 0x3f    any  0x00  1       dst = (src != 0) ? (dst s/ src) : 0                     divmul64  `Arithmetic instructions`_
-0x40    any  any   any     (deprecated, implementation-specific)                   legacy    `Legacy BPF Packet access instructions`_
+0x40    any  any   any     (deprecated, implementation-specific)                   packet    `Legacy BPF Packet access instructions`_
 0x44    0x0  any   0       dst = (u32)(dst \| imm)                                 base32    `Arithmetic instructions`_
 0x45    0x0  any   any     if dst & imm goto +offset                               base64    `Jump instructions`_
 0x46    0x0  any   any     if (u32)dst & imm goto +offset                          base32    `Jump instructions`_
 0x47    0x0  any   0       dst \|= imm                                             base64    `Arithmetic instructions`_
-0x48    any  any   any     (deprecated, implementation-specific)                   legacy    `Legacy BPF Packet access instructions`_
+0x48    any  any   any     (deprecated, implementation-specific)                   packet    `Legacy BPF Packet access instructions`_
 0x4c    any  0x00  0       dst = (u32)(dst \| src)                                 base32    `Arithmetic instructions`_
 0x4d    any  0x00  any     if dst & src goto +offset                               base64    `Jump instructions`_
 0x4e    any  0x00  any     if (u32)dst & (u32)src goto +offset                     base32    `Jump instructions`_
 0x4f    any  0x00  0       dst \|= src                                             base64    `Arithmetic instructions`_
-0x50    any  any   any     (deprecated, implementation-specific)                   legacy    `Legacy BPF Packet access instructions`_
+0x50    any  any   any     (deprecated, implementation-specific)                   packet    `Legacy BPF Packet access instructions`_
 0x54    0x0  any   0       dst = (u32)(dst & imm)                                  base32    `Arithmetic instructions`_
 0x55    0x0  any   any     if dst != imm goto +offset                              base64    `Jump instructions`_
 0x56    0x0  any   any     if (u32)dst != imm goto +offset                         base32    `Jump instructions`_
@@ -103,7 +103,7 @@ opcode  src  imm   offset  description                                          
 0x85    0x2  any   0       call_by_btfid(imm)                                      base32    `Helper functions`_
 0x87    0x0  0x00  0       dst = -dst                                              base32    `Arithmetic instructions`_
 0x8d    0x0  any   0       call_by_address(reg_val(imm))                           callx     `Helper functions`_
-0x8d    0x1  any   0       call PC += src                                          callx     `Program-local functions`_
+0x8d    0x1  any   0       call PC += reg_val(imm)                                 callx     `Program-local functions`_
 0x8d    0x2  any   0       call_by_btfid(reg_val(imm))                             callx     `Helper functions`_
 0x94    0x0  any   0       dst = (u32)((imm != 0)?((u32)dst % (u32)imm) : dst)     divmul32  `Arithmetic instructions`_
 0x94    0x0  any   1       dst = (u32)((imm != 0) ? ((s32)dst s% imm) : dst)       divmul32  `Arithmetic instructions`_
