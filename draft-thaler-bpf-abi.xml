@@ -22,7 +22,6 @@
 BPF ABI Recommended Conventions and Guidelines v1.0
   </title>
   <author initials="D." surname="Thaler" fullname="Dave Thaler" role="editor">
-    <organization>Microsoft</organization>
    <address>
     <postal>
     <city>Redmond</city>
@@ -30,7 +29,7 @@ BPF ABI Recommended Conventions and Guidelines v1.0
     <country>USA</country>
     <region>WA</region>
     </postal>
-    <email>dthaler@microsoft.com</email>
+    <email>dave.thaler.ietf@gmail.com</email>
    </address>
   </author>
   <abstract>

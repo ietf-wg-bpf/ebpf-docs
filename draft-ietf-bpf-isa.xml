@@ -16,13 +16,12 @@
 <?rfc text-list-symbols="-o*+"?>
 <?rfc docmapping="yes"?>
 
-<rfc ipr="trust200902" docName="draft-ietf-bpf-isa-00" category="std" submissionType="IETF">
+<rfc ipr="trust200902" docName="draft-ietf-bpf-isa-01" category="std" submissionType="IETF">
  <front>
-  <title abbrev="eBPF ISA">
+  <title abbrev="(e)BPF ISA">
 BPF Instruction Set Specification, v1.0
   </title>
   <author initials="D." surname="Thaler" fullname="Dave Thaler" role="editor">
-    <organization>Microsoft</organization>
    <address>
     <postal>
     <city>Redmond</city>
