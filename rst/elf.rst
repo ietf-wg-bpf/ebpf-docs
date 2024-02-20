@@ -5,19 +5,21 @@
 eBPF ELF Profile Specification
 ==============================
 
-The Executable and Linking Format (ELF) is specified in Chapter 4 of the
-"System V Application Binary Interface", June 2013, http://www.sco.com/developers/gabi/latest/contents.html.
-
-This document specifies the eBPF profile for ELF files.
+The Executable and Linking Format (ELF) is specified in Chapter 4 of
+the System V Application Binary Interface.  This document specifies
+the eBPF profile for ELF files.
 
 Documentation conventions
 =========================
 
-As this specification is a extension to the ELF specification, the same data representation
-convention is used as specified in 
-http://www.sco.com/developers/gabi/latest/ch4.intro.html#data_representation
-where structures are represented in a C-style format with types such as ``Elf64_Word`` for an
-unsigned 64-bit integer.
+This specification is a extension to the ELF file format as specified in Chapter 4 of the
+`System V Application Binary Interface <>`_. As
+such, the same data representation convention is used as specified in
+http://www.sco.com/developers/gabi/latest/ch4.intro.html#data_representation where
+structures are represented in a C-style format with types such as
+``Elf64_Word`` for an unsigned 64-bit integer.
+
+NOTE: Some content in this draft will eventually move to a separate BTF draft.
 
 ELF Header
 =============
@@ -133,8 +135,8 @@ A runtime can optionally restrict what program types and/or helper functions
 can be used based on what license the eBPF program is under.  This information
 can be placed into the ELF file in a section named "license" whose contents
 is a null-terminated SPDX license expression as specified in Annex D of
-ISO/IEC 5962:2021, "Information technology -- SPDX® Specification V2.",
-https://www.iso.org/standard/81870.html.
+`ISO/IEC 5962:2021, "Information technology -- SPDX® Specification V22.1"
+<https://www.iso.org/standard/81870.html>`_.
 
 Runtime Version restriction
 ---------------------------
@@ -147,7 +149,7 @@ a 4-byte version identifier whose use is runtime-specific.
 Type and String Data
 --------------------
 
-The optional ".BTF" section contains type and string data. 
+The optional ".BTF" section contains type and string data.
 The format of this section is the same as specified in
 `BTF Type and String Encoding <btf.rst#2-btf-type-and-string-encoding>`_.
 
