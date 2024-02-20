@@ -1,14 +1,14 @@
 .. contents::
 .. sectnum::
 
-====================================
-eBPF ELF Profile Specification, v0.1
-====================================
+==============================
+eBPF ELF Profile Specification
+==============================
 
 The Executable and Linking Format (ELF) is specified in Chapter 4 of the
 "System V Application Binary Interface", June 2013, http://www.sco.com/developers/gabi/latest/contents.html.
 
-This document specifies version 0.1 of the eBPF profile for ELF files.
+This document specifies the eBPF profile for ELF files.
 
 Documentation conventions
 =========================
