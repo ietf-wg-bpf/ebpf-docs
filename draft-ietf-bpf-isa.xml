@@ -3145,7 +3145,7 @@ dst = *(signed size *) (src + offset)
     <thead>
      <tr>
       <th>opcode</th>
-      <th>src</th>
+      <th>src_reg</th>
       <th>offset</th>
       <th>imm</th>
       <th>description</th>
