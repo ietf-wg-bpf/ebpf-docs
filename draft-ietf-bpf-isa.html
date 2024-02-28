@@ -4,17 +4,17 @@
 <meta charset="utf-8">
 <meta content="Common,Latin" name="scripts">
 <meta content="initial-scale=1.0" name="viewport">
-<title>BPF Instruction Set Specification, v1.0</title>
+<title>BPF Instruction Set Architecture (ISA)</title>
 <meta content="Dave Thaler" name="author">
 <meta content="
        
-    This document specifies version 1.0 of the BPF instruction set.
+    This document specifies the BPF instruction set architecture (ISA).
        
     " name="description">
-<meta content="xml2rfc 3.19.4" name="generator">
+<meta content="xml2rfc 3.20.0" name="generator">
 <meta content="draft-ietf-bpf-isa-01" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.19.4
+  xml2rfc 3.20.0
     Python 3.8.10
     ConfigArgParse 1.7
     google-i18n-address 3.1.0
@@ -454,6 +454,10 @@ nav.toc li {
 }
 
 .refInstance {
+  margin-bottom: 1.25em;
+}
+
+.refSubseries {
   margin-bottom: 1.25em;
 }
 
@@ -1209,7 +1213,7 @@ li > p:last-of-type:only-child {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Thaler</td>
-<td class="center">Expires 24 August 2024</td>
+<td class="center">Expires 31 August 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1222,12 +1226,12 @@ li > p:last-of-type:only-child {
 <dd class="internet-draft">draft-ietf-bpf-isa-01</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-02-21" class="published">21 February 2024</time>
+<time datetime="2024-02-28" class="published">28 February 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-08-24">24 August 2024</time></dd>
+<dd class="expires"><time datetime="2024-08-31">31 August 2024</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1237,11 +1241,11 @@ li > p:last-of-type:only-child {
 </dd>
 </dl>
 </div>
-<h1 id="title">BPF Instruction Set Specification, v1.0</h1>
+<h1 id="title">BPF Instruction Set Architecture (ISA)</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">
-    This document specifies version 1.0 of the BPF instruction set.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+    This document specifies the BPF instruction set architecture (ISA).<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -1262,7 +1266,7 @@ li > p:last-of-type:only-child {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 24 August 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 31 August 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1774,8 +1778,8 @@ opcode                  offset imm          assembly
     As discussed below in <span><a href="#_4-bit-immediate-instructions" class="internal xref">64-bit immediate instructions</a> (<a href="#_4-bit-immediate-instructions" class="auto internal xref">Section 4.4</a>)</span>, a 64-bit immediate
     instruction uses two 32-bit immediate values that are constructed as follows.
     The 64 bits following the basic instruction contain a pseudo instruction
-    using the same format but with opcode, dst_reg, src_reg, and offset all set to zero,
-    and imm containing the high 32 bits of the immediate value.<a href="#section-2-10" class="pilcrow">¶</a></p>
+    using the same format but with 'opcode', 'dst_reg', 'src_reg', and 'offset' all
+    set to zero, and imm containing the high 32 bits of the immediate value.<a href="#section-2-10" class="pilcrow">¶</a></p>
 <p id="section-2-11">
     This is depicted in the following figure:<a href="#section-2-11" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-2-12">
@@ -2614,7 +2618,7 @@ dst = bswap64(dst)
             <tr>
               <th class="text-left" rowspan="1" colspan="1">code</th>
               <th class="text-left" rowspan="1" colspan="1">value</th>
-              <th class="text-left" rowspan="1" colspan="1">src</th>
+              <th class="text-left" rowspan="1" colspan="1">src_reg</th>
               <th class="text-left" rowspan="1" colspan="1">description</th>
               <th class="text-left" rowspan="1" colspan="1">notes</th>
             </tr>
@@ -3445,7 +3449,7 @@ dst = *(signed size *) (src + offset)
 </pre><a href="#section-4.3-7" class="pilcrow">¶</a>
 </div>
 <p id="section-4.3-8">
-     <code>BPF_ATOMIC | BPF_DW | BPF_STX</code> with 'imm' = BPF ADD means:<a href="#section-4.3-8" class="pilcrow">¶</a></p>
+     <code>BPF_ATOMIC | BPF_DW | BPF_STX</code> with 'imm' = BPF_ADD means:<a href="#section-4.3-8" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-4.3-9">
 <pre>
 *(u64 *)(dst + offset) += src
@@ -3531,11 +3535,11 @@ dst = *(signed size *) (src + offset)
         </h3>
 <p id="section-4.4-1">
      Instructions with the <code>BPF_IMM</code> 'mode' modifier use the wide instruction
-     encoding defined in <span><a href="#instruction-encoding" class="internal xref">Instruction encoding</a> (<a href="#instruction-encoding" class="auto internal xref">Section 2</a>)</span>, and use the 'src' field of the
+     encoding defined in <span><a href="#instruction-encoding" class="internal xref">Instruction encoding</a> (<a href="#instruction-encoding" class="auto internal xref">Section 2</a>)</span>, and use the 'src_reg' field of the
      basic instruction to hold an opcode subtype.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
 <p id="section-4.4-2">
      The following table defines a set of <code>BPF_IMM | BPF_DW | BPF_LD</code> instructions
-     with opcode subtypes in the 'src' field, using new terms such as "map"
+     with opcode subtypes in the 'src_reg' field, using new terms such as "map"
      defined further below:<a href="#section-4.4-2" class="pilcrow">¶</a></p>
 <table class="center" id="table-14">
           <caption><a href="#table-14" class="selfRef">Table 14</a></caption>
@@ -3543,7 +3547,7 @@ dst = *(signed size *) (src + offset)
             <tr>
               <th class="text-left" rowspan="1" colspan="1">opcode construction</th>
               <th class="text-left" rowspan="1" colspan="1">opcode</th>
-              <th class="text-left" rowspan="1" colspan="1">src</th>
+              <th class="text-left" rowspan="1" colspan="1">src_reg</th>
               <th class="text-left" rowspan="1" colspan="1">pseudocode</th>
               <th class="text-left" rowspan="1" colspan="1">imm type</th>
               <th class="text-left" rowspan="1" colspan="1">dst type</th>
@@ -3800,9 +3804,10 @@ dst = *(signed size *) (src + offset)
      BPF previously introduced special instructions for access to packet data that were
      carried over from classic BPF. These instructions used an instruction
      class of BPF_LD, a size modifier of BPF_W, BPF_H, or BPF_B, and a
-     mode modifier of BPF_ABS or BPF_IND.  However, these instructions are
-     deprecated and should no longer be used.  All legacy packet access
-     instructions belong to the "legacy" conformance group.<a href="#section-4.5-1" class="pilcrow">¶</a></p>
+     mode modifier of BPF_ABS or BPF_IND.  The 'dst_reg' and 'offset' fields were
+     set to zero, and 'src_reg' was set to zero for BPF_ABS.  However, these
+     instructions are deprecated and should no longer be used.  All legacy packet
+     access instructions belong to the "legacy" conformance group.<a href="#section-4.5-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>

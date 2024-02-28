@@ -19,7 +19,7 @@
 <rfc ipr="trust200902" docName="draft-ietf-bpf-isa-01" category="std" submissionType="IETF">
  <front>
   <title abbrev="(e)BPF ISA">
-BPF Instruction Set Specification, v1.0
+BPF Instruction Set Architecture (ISA)
   </title>
   <author initials="D." surname="Thaler" fullname="Dave Thaler" role="editor">
    <address>
@@ -34,7 +34,7 @@ BPF Instruction Set Specification, v1.0
   </author>
   <abstract>
    <t>
-    This document specifies version 1.0 of the BPF instruction set.
+    This document specifies the BPF instruction set architecture (ISA).
    </t>
   </abstract>
  </front>
@@ -382,8 +382,8 @@ opcode                  offset imm          assembly
     As discussed below in <xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref>, a 64-bit immediate
     instruction uses two 32-bit immediate values that are constructed as follows.
     The 64 bits following the basic instruction contain a pseudo instruction
-    using the same format but with opcode, dst_reg, src_reg, and offset all set to zero,
-    and imm containing the high 32 bits of the immediate value.
+    using the same format but with 'opcode', 'dst_reg', 'src_reg', and 'offset' all
+    set to zero, and imm containing the high 32 bits of the immediate value.
    </t>
    <t>
     This is depicted in the following figure:
@@ -1320,7 +1320,7 @@ dst = bswap64(dst)
       <tr>
        <th>code</th>
        <th>value</th>
-       <th>src</th>
+       <th>src_reg</th>
        <th>description</th>
        <th>notes</th>
       </tr>
@@ -2264,7 +2264,7 @@ dst = *(signed size *) (src + offset)
 *(u32 *)(dst + offset) += src
     </artwork>
     <t>
-     <tt>BPF_ATOMIC | BPF_DW | BPF_STX</tt> with 'imm' = BPF ADD means:
+     <tt>BPF_ATOMIC | BPF_DW | BPF_STX</tt> with 'imm' = BPF_ADD means:
     </t>
     <artwork>
 *(u64 *)(dst + offset) += src
@@ -2356,12 +2356,12 @@ dst = *(signed size *) (src + offset)
    <section anchor="-4-bit-immediate-instructions" title="64-bit immediate instructions">
     <t>
      Instructions with the <tt>BPF_IMM</tt> 'mode' modifier use the wide instruction
-     encoding defined in <xref target="instruction-encoding">Instruction encoding</xref>, and use the 'src' field of the
+     encoding defined in <xref target="instruction-encoding">Instruction encoding</xref>, and use the 'src_reg' field of the
      basic instruction to hold an opcode subtype.
     </t>
     <t>
      The following table defines a set of <tt>BPF_IMM | BPF_DW | BPF_LD</tt> instructions
-     with opcode subtypes in the 'src' field, using new terms such as "map"
+     with opcode subtypes in the 'src_reg' field, using new terms such as "map"
      defined further below:
     </t>
     <table>
@@ -2369,7 +2369,7 @@ dst = *(signed size *) (src + offset)
       <tr>
        <th>opcode construction</th>
        <th>opcode</th>
-       <th>src</th>
+       <th>src_reg</th>
        <th>pseudocode</th>
        <th>imm type</th>
        <th>dst type</th>
@@ -2657,9 +2657,10 @@ dst = *(signed size *) (src + offset)
      BPF previously introduced special instructions for access to packet data that were
      carried over from classic BPF. These instructions used an instruction
      class of BPF_LD, a size modifier of BPF_W, BPF_H, or BPF_B, and a
-     mode modifier of BPF_ABS or BPF_IND.  However, these instructions are
-     deprecated and should no longer be used.  All legacy packet access
-     instructions belong to the "legacy" conformance group.
+     mode modifier of BPF_ABS or BPF_IND.  The 'dst_reg' and 'offset' fields were
+     set to zero, and 'src_reg' was set to zero for BPF_ABS.  However, these
+     instructions are deprecated and should no longer be used.  All legacy packet
+     access instructions belong to the "legacy" conformance group.
     </t>
    </section>
   </section>
