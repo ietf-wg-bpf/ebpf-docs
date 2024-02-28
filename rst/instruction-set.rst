@@ -324,21 +324,21 @@ If execution would result in modulo by zero, for ``ALU64`` the value of
 the destination register is unchanged whereas for ``ALU`` the upper
 32 bits of the destination register are zeroed.
 
-``(ADD, X, ALU)``, where 'code'=``ADD``, 'source'=``X``, and 'class'=``ALU``, means::
+``{ADD, X, ALU}``, where 'code'=``ADD``, 'source'=``X``, and 'class'=``ALU``, means::
 
   dst = (u32) ((u32) dst + (u32) src)
 
 where '(u32)' indicates that the upper 32 bits are zeroed.
 
-``(ADD, X, ALU64)`` means::
+``{ADD, X, ALU64}`` means::
 
   dst = dst + src
 
-``(XOR, K, ALU)`` means::
+``{XOR, K, ALU}`` means::
 
   dst = (u32) dst ^ (u32) imm
 
-``(XOR, K, ALU64)`` means::
+``{XOR, K, ALU64}`` means::
 
   dst = dst ^ imm
 
@@ -370,9 +370,9 @@ etc. This specification requires that signed modulo use truncated division
    a % n = a - n * trunc(a / n)
 
 The ``MOVSX`` instruction does a move operation with sign extension.
-``(MOVSX, X, ALU)`` :term:`sign extends<Sign Extend>` 8-bit and 16-bit operands into 32
+``{MOVSX, X, ALU}`` :term:`sign extends<Sign Extend>` 8-bit and 16-bit operands into 32
 bit operands, and zeroes the remaining upper 32 bits.
-``(MOVSX, X, ALU64)`` :term:`sign extends<Sign Extend>` 8-bit, 16-bit, and 32-bit
+``{MOVSX, X, ALU64}`` :term:`sign extends<Sign Extend>` 8-bit, 16-bit, and 32-bit
 operands into 64 bit operands.  Unlike other arithmetic instructions,
 ``MOVSX`` is only defined for register source operands (``X``).
 
@@ -411,19 +411,19 @@ conformance group.
 
 Examples:
 
-``(END, TO_LE, ALU)`` with imm = 16/32/64 means::
+``{END, TO_LE, ALU}`` with imm = 16/32/64 means::
 
   dst = htole16(dst)
   dst = htole32(dst)
   dst = htole64(dst)
 
-``(END, TO_BE, ALU)`` with imm = 16/32/64 means::
+``{END, TO_BE, ALU}`` with imm = 16/32/64 means::
 
   dst = htobe16(dst)
   dst = htobe32(dst)
   dst = htobe64(dst)
 
-``(END, TO_LE, ALU64)`` with imm = 16/32/64 means::
+``{END, TO_LE, ALU64}`` with imm = 16/32/64 means::
 
   dst = bswap16(dst)
   dst = bswap32(dst)
@@ -441,8 +441,8 @@ The 'code' field encodes the operation as below:
 ========  =====  =======  ===============================  ===================================================
 code      value  src_reg  description                      notes
 ========  =====  =======  ===============================  ===================================================
-JA        0x0    0x0      PC += offset                     (JA, K, JMP) only
-JA        0x0    0x0      PC += imm                        (JA, K, JMP32) only
+JA        0x0    0x0      PC += offset                     {JA, K, JMP} only
+JA        0x0    0x0      PC += imm                        {JA, K, JMP32} only
 JEQ       0x1    any      PC += offset if dst == src
 JGT       0x2    any      PC += offset if dst > src        unsigned
 JGE       0x3    any      PC += offset if dst >= src       unsigned
@@ -450,10 +450,10 @@ JSET      0x4    any      PC += offset if dst & src
 JNE       0x5    any      PC += offset if dst != src
 JSGT      0x6    any      PC += offset if dst > src        signed
 JSGE      0x7    any      PC += offset if dst >= src       signed
-CALL      0x8    0x0      call helper function by address  (CALL, K, JMP) only, see `Helper functions`_
-CALL      0x8    0x1      call PC += imm                   (CALL, K, JMP) only, see `Program-local functions`_
-CALL      0x8    0x2      call helper function by BTF ID   (CALL, K, JMP) only, see `Helper functions`_
-EXIT      0x9    0x0      return                           (CALL, K, JMP) only
+CALL      0x8    0x0      call helper function by address  {CALL, K, JMP} only, see `Helper functions`_
+CALL      0x8    0x1      call PC += imm                   {CALL, K, JMP} only, see `Program-local functions`_
+CALL      0x8    0x2      call helper function by BTF ID   {CALL, K, JMP} only, see `Helper functions`_
+EXIT      0x9    0x0      return                           {CALL, K, JMP} only
 JLT       0xa    any      PC += offset if dst < src        unsigned
 JLE       0xb    any      PC += offset if dst <= src       unsigned
 JSLT      0xc    any      PC += offset if dst < src        signed
@@ -465,13 +465,13 @@ The BPF program needs to store the return value into register R0 before doing an
 
 Example:
 
-``(JSGE, X, JMP32)`` means::
+``{JSGE, X, JMP32}`` means::
 
   if (s32)dst s>= (s32)src goto +offset
 
 where 's>=' indicates a signed '>=' comparison.
 
-``(JA, K, JMP32)`` means::
+``{JA, K, JMP32}`` means::
 
   gotol +imm
 
@@ -555,15 +555,15 @@ Regular load and store operations
 The ``MEM`` mode modifier is used to encode regular load and store
 instructions that transfer data between a register and memory.
 
-``(MEM, <size>, STX)`` means::
+``{MEM, <size>, STX}`` means::
 
   *(size *) (dst + offset) = src
 
-``(MEM, <size>, ST)`` means::
+``{MEM, <size>, ST}`` means::
 
   *(size *) (dst + offset) = imm
 
-``(MEM, <size>, LDX)`` means::
+``{MEM, <size>, LDX}`` means::
 
   dst = *(unsigned size *) (src + offset)
 
@@ -576,7 +576,7 @@ Sign-extension load operations
 The ``MEMSX`` mode modifier is used to encode :term:`sign-extension<Sign Extend>` load
 instructions that transfer data between a register and memory.
 
-``(MEMSX, <size>, LDX)`` means::
+``{MEMSX, <size>, LDX}`` means::
 
   dst = *(signed size *) (src + offset)
 
@@ -593,9 +593,9 @@ by other BPF programs or means outside of this specification.
 All atomic operations supported by BPF are encoded as store operations
 that use the ``ATOMIC`` mode modifier as follows:
 
-* ``(ATOMIC, W, STX)`` for 32-bit operations, which are
+* ``{ATOMIC, W, STX}`` for 32-bit operations, which are
   part of the "atomic32" conformance group.
-* ``(ATOMIC, DW, STX)`` for 64-bit operations, which are
+* ``{ATOMIC, DW, STX}`` for 64-bit operations, which are
   part of the "atomic64" conformance group.
 * 8-bit and 16-bit wide atomic operations are not supported.
 
@@ -613,11 +613,11 @@ XOR       0xa0   atomic xor
 ========  =====  ===========
 
 
-``(ATOMIC, W, STX)`` with 'imm' = ADD means::
+``{ATOMIC, W, STX}`` with 'imm' = ADD means::
 
   *(u32 *)(dst + offset) += src
 
-``(ATOMIC, DW, STX)`` with 'imm' = ADD means::
+``{ATOMIC, DW, STX}`` with 'imm' = ADD means::
 
   *(u64 *)(dst + offset) += src
 
@@ -653,21 +653,21 @@ Instructions with the ``IMM`` 'mode' modifier use the wide instruction
 encoding defined in `Instruction encoding`_, and use the 'src_reg' field of the
 basic instruction to hold an opcode subtype.
 
-The following table defines a set of ``(IMM, DW, LD)`` instructions
+The following table defines a set of ``{IMM, DW, LD}`` instructions
 with opcode subtypes in the 'src_reg' field, using new terms such as "map"
 defined further below:
 
-=====================  ======  =======  =========================================  ===========  ==============
-opcode construction    opcode  src_reg  pseudocode                                 imm type     dst type
-=====================  ======  =======  =========================================  ===========  ==============
-(IMM, DW, LD)          0x18    0x0      dst = (next_imm << 32) | imm               integer      integer
-(IMM, DW, LD)          0x18    0x1      dst = map_by_fd(imm)                       map fd       map
-(IMM, DW, LD)          0x18    0x2      dst = map_val(map_by_fd(imm)) + next_imm   map fd       data pointer
-(IMM, DW, LD)          0x18    0x3      dst = var_addr(imm)                        variable id  data pointer
-(IMM, DW, LD)          0x18    0x4      dst = code_addr(imm)                       integer      code pointer
-(IMM, DW, LD)          0x18    0x5      dst = map_by_idx(imm)                      map index    map
-(IMM, DW, LD)          0x18    0x6      dst = map_val(map_by_idx(imm)) + next_imm  map index    data pointer
-=====================  ======  =======  =========================================  ===========  ==============
+=======  =========================================  ===========  ==============
+src_reg  pseudocode                                 imm type     dst type
+=======  =========================================  ===========  ==============
+0x0      dst = (next_imm << 32) | imm               integer      integer
+0x1      dst = map_by_fd(imm)                       map fd       map
+0x2      dst = map_val(map_by_fd(imm)) + next_imm   map fd       data pointer
+0x3      dst = var_addr(imm)                        variable id  data pointer
+0x4      dst = code_addr(imm)                       integer      code pointer
+0x5      dst = map_by_idx(imm)                      map index    map
+0x6      dst = map_val(map_by_idx(imm)) + next_imm  map index    data pointer
+=======  =========================================  ===========  ==============
 
 where
 
