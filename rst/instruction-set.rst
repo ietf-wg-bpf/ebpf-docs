@@ -250,14 +250,14 @@ The three least significant bits of the 'opcode' field store the instruction cla
 =====  =====  ===============================  ===================================
 class  value  description                      reference
 =====  =====  ===============================  ===================================
-LD      0x0   non-standard load operations     `Load and store instructions`_
-LDX     0x1   load into register operations    `Load and store instructions`_
-ST      0x2   store from immediate operations  `Load and store instructions`_
-STX     0x3   store from register operations   `Load and store instructions`_
-ALU     0x4   32-bit arithmetic operations     `Arithmetic and jump instructions`_
-JMP     0x5   64-bit jump operations           `Arithmetic and jump instructions`_
-JMP32   0x6   32-bit jump operations           `Arithmetic and jump instructions`_
-ALU64   0x7   64-bit arithmetic operations     `Arithmetic and jump instructions`_
+LD     0x0    non-standard load operations     `Load and store instructions`_
+LDX    0x1    load into register operations    `Load and store instructions`_
+ST     0x2    store from immediate operations  `Load and store instructions`_
+STX    0x3    store from register operations   `Load and store instructions`_
+ALU    0x4    32-bit arithmetic operations     `Arithmetic and jump instructions`_
+JMP    0x5    64-bit jump operations           `Arithmetic and jump instructions`_
+JMP32  0x6    32-bit jump operations           `Arithmetic and jump instructions`_
+ALU64  0x7    64-bit arithmetic operations     `Arithmetic and jump instructions`_
 =====  =====  ===============================  ===================================
 
 Arithmetic and jump instructions
@@ -279,8 +279,8 @@ For arithmetic and jump instructions (``ALU``, ``ALU64``, ``JMP`` and
   ======  =====  ==============================================
   source  value  description
   ======  =====  ==============================================
-    K       0    use 32-bit 'imm' value as source operand
-    X       1    use 'src_reg' register value as source operand
+  K       0      use 32-bit 'imm' value as source operand
+  X       1      use 'src_reg' register value as source operand
   ======  =====  ==============================================
 
 **instruction class**
@@ -399,9 +399,9 @@ and must be set to 0.
 =====  ========  =====  =================================================
 class  source    value  description
 =====  ========  =====  =================================================
-ALU    TO_LE       0    convert between host byte order and little endian
-ALU    TO_BE       1    convert between host byte order and big endian
-ALU64  Reserved    0    do byte swap unconditionally
+ALU    TO_LE     0      convert between host byte order and little endian
+ALU    TO_BE     1      convert between host byte order and big endian
+ALU64  Reserved  0      do byte swap unconditionally
 =====  ========  =====  =================================================
 
 The 'imm' field encodes the width of the swap operations.  The following widths
@@ -524,12 +524,12 @@ For load and store instructions (``LD``, ``LDX``, ``ST``, and ``STX``), the
     =============  =====  ====================================  =============
     mode modifier  value  description                           reference
     =============  =====  ====================================  =============
-    IMM              0    64-bit immediate instructions         `64-bit immediate instructions`_
-    ABS              1    legacy BPF packet access (absolute)   `Legacy BPF Packet access instructions`_
-    IND              2    legacy BPF packet access (indirect)   `Legacy BPF Packet access instructions`_
-    MEM              3    regular load and store operations     `Regular load and store operations`_
-    MEMSX            4    sign-extension load operations        `Sign-extension load operations`_
-    ATOMIC           6    atomic operations                     `Atomic operations`_
+    IMM            0      64-bit immediate instructions         `64-bit immediate instructions`_
+    ABS            1      legacy BPF packet access (absolute)   `Legacy BPF Packet access instructions`_
+    IND            2      legacy BPF packet access (indirect)   `Legacy BPF Packet access instructions`_
+    MEM            3      regular load and store operations     `Regular load and store operations`_
+    MEMSX          4      sign-extension load operations        `Sign-extension load operations`_
+    ATOMIC         6      atomic operations                     `Atomic operations`_
     =============  =====  ====================================  =============
 
 **sz (size)**
@@ -538,10 +538,10 @@ For load and store instructions (``LD``, ``LDX``, ``ST``, and ``STX``), the
     ====  =====  =====================
     size  value  description
     ====  =====  =====================
-     W      0    word        (4 bytes)
-     H      1    half word   (2 bytes)
-     B      2    byte
-     DW     3    double word (8 bytes)
+    W     0      word        (4 bytes)
+    H     1      half word   (2 bytes)
+    B     2      byte
+    DW    3      double word (8 bytes)
     ====  =====  =====================
 
   Instructions using ``DW`` belong to the base64 conformance group.
