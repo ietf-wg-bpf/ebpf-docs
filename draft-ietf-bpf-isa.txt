@@ -1573,7 +1573,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 3.1)|
    +------+-------+------+----+------------------------+--------+-------------+
-   |0x20  |any    |any   |any |(deprecated,            |legacy  |Legacy BPF   |
+   |0x20  |0x0    |0     |any |(deprecated,            |legacy  |Legacy BPF   |
    |      |       |      |    |implementation-specific)|        |Packet access|
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 4.5)|
@@ -1594,7 +1594,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 3.1)|
    +------+-------+------+----+------------------------+--------+-------------+
-   |0x28  |any    |any   |any |(deprecated,            |legacy  |Legacy BPF   |
+   |0x28  |0x0    |0     |any |(deprecated,            |legacy  |Legacy BPF   |
    |      |       |      |    |implementation-specific)|        |Packet access|
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 4.5)|
@@ -1615,7 +1615,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 3.1)|
    +------+-------+------+----+------------------------+--------+-------------+
-   |0x30  |any    |any   |any |(deprecated,            |legacy  |Legacy BPF   |
+   |0x30  |0x0    |0     |any |(deprecated,            |legacy  |Legacy BPF   |
    |      |       |      |    |implementation-specific)|        |Packet access|
    |      |       |      |    |                        |        |instructions |
 
@@ -1684,7 +1684,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
    |      |       |      |    |                        |        |(Section 3.1)|
    +------+-------+------+----+------------------------+--------+-------------+
-   |0x40  |any    |any   |any |(deprecated,            |legacy  |Legacy BPF   |
+   |0x40  |any    |0     |any |(deprecated,            |legacy  |Legacy BPF   |
    |      |       |      |    |implementation-specific)|        |Packet access|
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 4.5)|
@@ -1705,7 +1705,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 3.1)|
    +------+-------+------+----+------------------------+--------+-------------+
-   |0x48  |any    |any   |any |(deprecated,            |legacy  |Legacy BPF   |
+   |0x48  |any    |0     |any |(deprecated,            |legacy  |Legacy BPF   |
    |      |       |      |    |implementation-specific)|        |Packet access|
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 4.5)|
@@ -1726,7 +1726,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 3.1)|
    +------+-------+------+----+------------------------+--------+-------------+
-   |0x50  |any    |any   |any |(deprecated,            |legacy  |Legacy BPF   |
+   |0x50  |any    |0     |any |(deprecated,            |legacy  |Legacy BPF   |
    |      |       |      |    |implementation-specific)|        |Packet access|
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 4.5)|

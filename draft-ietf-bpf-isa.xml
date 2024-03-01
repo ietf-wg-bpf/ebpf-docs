@@ -3977,12 +3977,12 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
-        any
+        0x0
        </t>
       </td>
       <td>
        <t>
-        any
+        0
        </t>
       </td>
       <td>
@@ -4162,12 +4162,12 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
-        any
+        0x0
        </t>
       </td>
       <td>
        <t>
-        any
+        0
        </t>
       </td>
       <td>
@@ -4347,12 +4347,12 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
-        any
+        0x0
        </t>
       </td>
       <td>
        <t>
-        any
+        0
        </t>
       </td>
       <td>
@@ -4833,7 +4833,7 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
-        any
+        0
        </t>
       </td>
       <td>
@@ -5018,7 +5018,7 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
-        any
+        0
        </t>
       </td>
       <td>
@@ -5203,7 +5203,7 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
-        any
+        0
        </t>
       </td>
       <td>
