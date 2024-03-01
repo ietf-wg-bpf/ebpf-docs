@@ -30,7 +30,7 @@
     wcwidth 0.2.13
     weasyprint 61.0
 -->
-<link href="/usr/src/app/tmp/8ba8c64c-e3dd-4ab1-8ac9-a11690429a54/draft-ietf-bpf-isa.xml" rel="alternate" type="application/rfc+xml">
+<link href="/usr/src/app/tmp/6a362552-577b-4101-b3d9-b08c9ccfe2f7/draft-ietf-bpf-isa.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
 <style type="text/css">/*
 
@@ -1724,17 +1724,33 @@ B: 11111111 10000110
        operation to perform, encoded as follows:<a href="#section-2.1-3.2.1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-2.1-3.2.2">
 <pre>
-  +-+-+-+-+-+-+-+-+
-  |specific |class|
-  +-+-+-+-+-+-+-+-+
-
-**specific**
-  The format of these bits varies by instruction class
-
-**class**
-  The instruction class (see `Instruction classes`_)
++-+-+-+-+-+-+-+-+
+|specific |class|
++-+-+-+-+-+-+-+-+
 </pre><a href="#section-2.1-3.2.2" class="pilcrow">¶</a>
 </div>
+<span class="break"></span><dl class="dlParallel" id="section-2.1-3.2.3">
+              <dt id="section-2.1-3.2.3.1">
+<div id="term---specific--">
+        <strong>specific</strong>
+              </div>
+              </dt>
+<dd style="margin-left: 1.5em" id="section-2.1-3.2.3.2">
+                <p id="section-2.1-3.2.3.2.1">
+         The format of these bits varies by instruction class<a href="#section-2.1-3.2.3.2.1" class="pilcrow">¶</a></p>
+</dd>
+              <dd class="break"></dd>
+<dt id="section-2.1-3.2.3.3">
+<div id="term---class--">
+        <strong>class</strong>
+              </div>
+              </dt>
+<dd style="margin-left: 1.5em" id="section-2.1-3.2.3.4">
+                <p id="section-2.1-3.2.3.4.1">
+         The instruction class (see <span><a href="#instruction-classes" class="internal xref">Instruction classes</a> (<a href="#instruction-classes" class="auto internal xref">Section 2.3</a>)</span>)<a href="#section-2.1-3.2.3.4.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+</dl>
 </dd>
           <dd class="break"></dd>
 <dt id="section-2.1-3.3">
@@ -1748,24 +1764,43 @@ B: 11111111 10000110
        on a little-endian host:<a href="#section-2.1-3.4.1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-2.1-3.4.2">
 <pre>
-  +-+-+-+-+-+-+-+-+
-  |src_reg|dst_reg|
-  +-+-+-+-+-+-+-+-+
-
-and as follows on a big-endian host::
-
-  +-+-+-+-+-+-+-+-+
-  |dst_reg|src_reg|
-  +-+-+-+-+-+-+-+-+
-
-**src_reg**
-  the source register number (0-10), except where otherwise specified
-  (`64-bit immediate instructions`_ reuse this field for other purposes)
-
-**dst_reg**
-  destination register number (0-10)
++-+-+-+-+-+-+-+-+
+|src_reg|dst_reg|
++-+-+-+-+-+-+-+-+
 </pre><a href="#section-2.1-3.4.2" class="pilcrow">¶</a>
 </div>
+<p id="section-2.1-3.4.3">
+       and as follows on a big-endian host:<a href="#section-2.1-3.4.3" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-2.1-3.4.4">
+<pre>
++-+-+-+-+-+-+-+-+
+|dst_reg|src_reg|
++-+-+-+-+-+-+-+-+
+</pre><a href="#section-2.1-3.4.4" class="pilcrow">¶</a>
+</div>
+<span class="break"></span><dl class="dlParallel" id="section-2.1-3.4.5">
+              <dt id="section-2.1-3.4.5.1">
+<div id="term---src_reg--">
+        <strong>src_reg</strong>
+              </div>
+              </dt>
+<dd style="margin-left: 1.5em" id="section-2.1-3.4.5.2">
+                <p id="section-2.1-3.4.5.2.1">
+         the source register number (0-10), except where otherwise specified
+         (<span><a href="#_4-bit-immediate-instructions" class="internal xref">64-bit immediate instructions</a> (<a href="#_4-bit-immediate-instructions" class="auto internal xref">Section 4.4</a>)</span> reuse this field for other purposes)<a href="#section-2.1-3.4.5.2.1" class="pilcrow">¶</a></p>
+</dd>
+              <dd class="break"></dd>
+<dt id="section-2.1-3.4.5.3">
+<div id="term---dst_reg--">
+        <strong>dst_reg</strong>
+              </div>
+              </dt>
+<dd style="margin-left: 1.5em" id="section-2.1-3.4.5.4">
+                <p id="section-2.1-3.4.5.4.1">
+         destination register number (0-10)<a href="#section-2.1-3.4.5.4.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+</dl>
 </dd>
           <dd class="break"></dd>
 <dt id="section-2.1-3.5">
@@ -3377,7 +3412,7 @@ gotol +imm
 </blockquote>
 <span class="break"></span><dl class="dlParallel" id="section-4-8">
         <dt id="section-4-8.1">
-<div id="term---class--">
+<div id="term---class---">
      <strong>class</strong>
         </div>
         </dt>

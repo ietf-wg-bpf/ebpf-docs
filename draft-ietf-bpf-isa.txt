@@ -297,39 +297,39 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
    *opcode*  operation to perform, encoded as follows:
 
-        +-+-+-+-+-+-+-+-+
-        |specific |class|
-        +-+-+-+-+-+-+-+-+
+      +-+-+-+-+-+-+-+-+
+      |specific |class|
+      +-+-+-+-+-+-+-+-+
 
-      **specific**
-        The format of these bits varies by instruction class
+      *specific*  The format of these bits varies by instruction class
 
-      **class**
-        The instruction class (see `Instruction classes`_)
+      *class*  The instruction class (see Instruction classes
+         (Section 2.3))
 
    *regs*  The source and destination register numbers, encoded as
       follows on a little-endian host:
 
-        +-+-+-+-+-+-+-+-+
-        |src_reg|dst_reg|
-        +-+-+-+-+-+-+-+-+
+      +-+-+-+-+-+-+-+-+
+      |src_reg|dst_reg|
+      +-+-+-+-+-+-+-+-+
 
-      and as follows on a big-endian host::
+      and as follows on a big-endian host:
 
-        +-+-+-+-+-+-+-+-+
-        |dst_reg|src_reg|
-        +-+-+-+-+-+-+-+-+
+      +-+-+-+-+-+-+-+-+
+      |dst_reg|src_reg|
+      +-+-+-+-+-+-+-+-+
 
-      **src_reg**
-        the source register number (0-10), except where otherwise specified
-        (`64-bit immediate instructions`_ reuse this field for other purposes)
+      *src_reg*  the source register number (0-10), except where
+         otherwise specified (64-bit immediate instructions
+         (Section 4.4) reuse this field for other purposes)
 
-      **dst_reg**
-        destination register number (0-10)
+      *dst_reg*  destination register number (0-10)
 
    *offset*  signed integer offset used with pointer arithmetic
 
    *imm*  signed integer immediate value
+
+
 
 
 
