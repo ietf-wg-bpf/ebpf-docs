@@ -24,22 +24,22 @@ a type's signedness (`S`) and bit width (`N`), respectively.
 .. table:: Meaning of signedness notation.
 
   ==== =========
-  `S`  Meaning
+  S    Meaning
   ==== =========
-  `u`  unsigned
-  `s`  signed
+  u    unsigned
+  s    signed
   ==== =========
 
 .. table:: Meaning of bit-width notation.
 
   ===== =========
-  `N`   Bit width
+  N     Bit width
   ===== =========
-  `8`   8 bits
-  `16`  16 bits
-  `32`  32 bits
-  `64`  64 bits
-  `128` 128 bits
+  8     8 bits
+  16    16 bits
+  32    32 bits
+  64    64 bits
+  128   128 bits
   ===== =========
 
 For example, `u32` is a type whose valid values are all the 32-bit unsigned
@@ -48,31 +48,31 @@ numbers.
 
 Functions
 ---------
-* `htobe16`: Takes an unsigned 16-bit number in host-endian format and
+* htobe16: Takes an unsigned 16-bit number in host-endian format and
   returns the equivalent number as an unsigned 16-bit number in big-endian
   format.
-* `htobe32`: Takes an unsigned 32-bit number in host-endian format and
+* htobe32: Takes an unsigned 32-bit number in host-endian format and
   returns the equivalent number as an unsigned 32-bit number in big-endian
   format.
-* `htobe64`: Takes an unsigned 64-bit number in host-endian format and
+* htobe64: Takes an unsigned 64-bit number in host-endian format and
   returns the equivalent number as an unsigned 64-bit number in big-endian
   format.
-* `htole16`: Takes an unsigned 16-bit number in host-endian format and
+* htole16: Takes an unsigned 16-bit number in host-endian format and
   returns the equivalent number as an unsigned 16-bit number in little-endian
   format.
-* `htole32`: Takes an unsigned 32-bit number in host-endian format and
+* htole32: Takes an unsigned 32-bit number in host-endian format and
   returns the equivalent number as an unsigned 32-bit number in little-endian
   format.
-* `htole64`: Takes an unsigned 64-bit number in host-endian format and
+* htole64: Takes an unsigned 64-bit number in host-endian format and
   returns the equivalent number as an unsigned 64-bit number in little-endian
   format.
-* `bswap16`: Takes an unsigned 16-bit number in either big- or little-endian
+* bswap16: Takes an unsigned 16-bit number in either big- or little-endian
   format and returns the equivalent number with the same bit width but
   opposite endianness.
-* `bswap32`: Takes an unsigned 32-bit number in either big- or little-endian
+* bswap32: Takes an unsigned 32-bit number in either big- or little-endian
   format and returns the equivalent number with the same bit width but
   opposite endianness.
-* `bswap64`: Takes an unsigned 64-bit number in either big- or little-endian
+* bswap64: Takes an unsigned 64-bit number in either big- or little-endian
   format and returns the equivalent number with the same bit width but
   opposite endianness.
 

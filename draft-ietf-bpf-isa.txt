@@ -114,30 +114,30 @@ Thaler                  Expires 2 September 2024                [Page 2]
 Internet-Draft                 (e)BPF ISA                     March 2024
 
 
-                              +=====+==========+
-                              | _S_ | Meaning  |
-                              +=====+==========+
-                              | _u_ | unsigned |
-                              +-----+----------+
-                              | _s_ | signed   |
-                              +-----+----------+
+                               +===+==========+
+                               | S | Meaning  |
+                               +===+==========+
+                               | u | unsigned |
+                               +---+----------+
+                               | s | signed   |
+                               +---+----------+
 
                              Table 1: Meaning of
                              signedness notation.
 
-                            +=======+===========+
-                            | _N_   | Bit width |
-                            +=======+===========+
-                            | _8_   | 8 bits    |
-                            +-------+-----------+
-                            | _16_  | 16 bits   |
-                            +-------+-----------+
-                            | _32_  | 32 bits   |
-                            +-------+-----------+
-                            | _64_  | 64 bits   |
-                            +-------+-----------+
-                            | _128_ | 128 bits  |
-                            +-------+-----------+
+                             +=====+===========+
+                             | N   | Bit width |
+                             +=====+===========+
+                             | 8   | 8 bits    |
+                             +-----+-----------+
+                             | 16  | 16 bits   |
+                             +-----+-----------+
+                             | 32  | 32 bits   |
+                             +-----+-----------+
+                             | 64  | 64 bits   |
+                             +-----+-----------+
+                             | 128 | 128 bits  |
+                             +-----+-----------+
 
                              Table 2: Meaning of
                              bit-width notation.
@@ -148,17 +148,17 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 1.2.  Functions
 
-   *  _htobe16_: Takes an unsigned 16-bit number in host-endian format
-      and returns the equivalent number as an unsigned 16-bit number in
-      big-endian format.
+   *  htobe16: Takes an unsigned 16-bit number in host-endian format and
+      returns the equivalent number as an unsigned 16-bit number in big-
+      endian format.
 
-   *  _htobe32_: Takes an unsigned 32-bit number in host-endian format
-      and returns the equivalent number as an unsigned 32-bit number in
-      big-endian format.
+   *  htobe32: Takes an unsigned 32-bit number in host-endian format and
+      returns the equivalent number as an unsigned 32-bit number in big-
+      endian format.
 
-   *  _htobe64_: Takes an unsigned 64-bit number in host-endian format
-      and returns the equivalent number as an unsigned 64-bit number in
-      big-endian format.
+   *  htobe64: Takes an unsigned 64-bit number in host-endian format and
+      returns the equivalent number as an unsigned 64-bit number in big-
+      endian format.
 
 
 
@@ -170,29 +170,29 @@ Thaler                  Expires 2 September 2024                [Page 3]
 Internet-Draft                 (e)BPF ISA                     March 2024
 
 
-   *  _htole16_: Takes an unsigned 16-bit number in host-endian format
-      and returns the equivalent number as an unsigned 16-bit number in
+   *  htole16: Takes an unsigned 16-bit number in host-endian format and
+      returns the equivalent number as an unsigned 16-bit number in
       little-endian format.
 
-   *  _htole32_: Takes an unsigned 32-bit number in host-endian format
-      and returns the equivalent number as an unsigned 32-bit number in
+   *  htole32: Takes an unsigned 32-bit number in host-endian format and
+      returns the equivalent number as an unsigned 32-bit number in
       little-endian format.
 
-   *  _htole64_: Takes an unsigned 64-bit number in host-endian format
-      and returns the equivalent number as an unsigned 64-bit number in
+   *  htole64: Takes an unsigned 64-bit number in host-endian format and
+      returns the equivalent number as an unsigned 64-bit number in
       little-endian format.
 
-   *  _bswap16_: Takes an unsigned 16-bit number in either big- or
-      little-endian format and returns the equivalent number with the
-      same bit width but opposite endianness.
+   *  bswap16: Takes an unsigned 16-bit number in either big- or little-
+      endian format and returns the equivalent number with the same bit
+      width but opposite endianness.
 
-   *  _bswap32_: Takes an unsigned 32-bit number in either big- or
-      little-endian format and returns the equivalent number with the
-      same bit width but opposite endianness.
+   *  bswap32: Takes an unsigned 32-bit number in either big- or little-
+      endian format and returns the equivalent number with the same bit
+      width but opposite endianness.
 
-   *  _bswap64_: Takes an unsigned 64-bit number in either big- or
-      little-endian format and returns the equivalent number with the
-      same bit width but opposite endianness.
+   *  bswap64: Takes an unsigned 64-bit number in either big- or little-
+      endian format and returns the equivalent number with the same bit
+      width but opposite endianness.
 
 1.3.  Definitions
 
