@@ -3997,7 +3997,7 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
-        legacy
+        packet
        </t>
       </td>
       <td>
@@ -4182,7 +4182,7 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
-        legacy
+        packet
        </t>
       </td>
       <td>
@@ -4367,7 +4367,7 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
-        legacy
+        packet
        </t>
       </td>
       <td>
@@ -4848,7 +4848,7 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
-        legacy
+        packet
        </t>
       </td>
       <td>
@@ -5033,7 +5033,7 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
-        legacy
+        packet
        </t>
       </td>
       <td>
@@ -5218,7 +5218,7 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
-        legacy
+        packet
        </t>
       </td>
       <td>

@@ -3,9 +3,9 @@
 
 
 Network Working Group                                     D. Thaler, Ed.
-Internet-Draft                                              1 March 2024
+Internet-Draft                                              4 March 2024
 Intended status: Standards Track                                        
-Expires: 2 September 2024
+Expires: 5 September 2024
 
 
                  BPF Instruction Set Architecture (ISA)
@@ -30,7 +30,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 September 2024.
+   This Internet-Draft will expire on 5 September 2024.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Table of Contents
 
 
 
-Thaler                  Expires 2 September 2024                [Page 1]
+Thaler                  Expires 5 September 2024                [Page 1]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -109,7 +109,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024                [Page 2]
+Thaler                  Expires 5 September 2024                [Page 2]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -165,7 +165,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024                [Page 3]
+Thaler                  Expires 5 September 2024                [Page 3]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -221,7 +221,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024                [Page 4]
+Thaler                  Expires 5 September 2024                [Page 4]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -277,7 +277,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024                [Page 5]
+Thaler                  Expires 5 September 2024                [Page 5]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -333,7 +333,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024                [Page 6]
+Thaler                  Expires 5 September 2024                [Page 6]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -389,7 +389,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024                [Page 7]
+Thaler                  Expires 5 September 2024                [Page 7]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -445,7 +445,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024                [Page 8]
+Thaler                  Expires 5 September 2024                [Page 8]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -501,7 +501,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024                [Page 9]
+Thaler                  Expires 5 September 2024                [Page 9]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -557,7 +557,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024               [Page 10]
+Thaler                  Expires 5 September 2024               [Page 10]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -613,7 +613,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024               [Page 11]
+Thaler                  Expires 5 September 2024               [Page 11]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -669,7 +669,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024               [Page 12]
+Thaler                  Expires 5 September 2024               [Page 12]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -725,7 +725,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024               [Page 13]
+Thaler                  Expires 5 September 2024               [Page 13]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -781,7 +781,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024               [Page 14]
+Thaler                  Expires 5 September 2024               [Page 14]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -837,7 +837,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024               [Page 15]
+Thaler                  Expires 5 September 2024               [Page 15]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -893,7 +893,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024               [Page 16]
+Thaler                  Expires 5 September 2024               [Page 16]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -949,7 +949,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024               [Page 17]
+Thaler                  Expires 5 September 2024               [Page 17]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -1005,7 +1005,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024               [Page 18]
+Thaler                  Expires 5 September 2024               [Page 18]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -1061,7 +1061,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024               [Page 19]
+Thaler                  Expires 5 September 2024               [Page 19]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -1117,7 +1117,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024               [Page 20]
+Thaler                  Expires 5 September 2024               [Page 20]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -1173,7 +1173,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024               [Page 21]
+Thaler                  Expires 5 September 2024               [Page 21]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -1229,7 +1229,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024               [Page 22]
+Thaler                  Expires 5 September 2024               [Page 22]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -1285,7 +1285,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024               [Page 23]
+Thaler                  Expires 5 September 2024               [Page 23]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -1341,7 +1341,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024               [Page 24]
+Thaler                  Expires 5 September 2024               [Page 24]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -1397,7 +1397,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024               [Page 25]
+Thaler                  Expires 5 September 2024               [Page 25]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -1453,7 +1453,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024               [Page 26]
+Thaler                  Expires 5 September 2024               [Page 26]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -1509,7 +1509,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024               [Page 27]
+Thaler                  Expires 5 September 2024               [Page 27]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -1565,7 +1565,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024               [Page 28]
+Thaler                  Expires 5 September 2024               [Page 28]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -1573,7 +1573,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 3.1)|
    +------+-------+------+----+------------------------+--------+-------------+
-   |0x20  |0x0    |0     |any |(deprecated,            |legacy  |Legacy BPF   |
+   |0x20  |0x0    |0     |any |(deprecated,            |packet  |Legacy BPF   |
    |      |       |      |    |implementation-specific)|        |Packet access|
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 4.5)|
@@ -1594,7 +1594,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 3.1)|
    +------+-------+------+----+------------------------+--------+-------------+
-   |0x28  |0x0    |0     |any |(deprecated,            |legacy  |Legacy BPF   |
+   |0x28  |0x0    |0     |any |(deprecated,            |packet  |Legacy BPF   |
    |      |       |      |    |implementation-specific)|        |Packet access|
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 4.5)|
@@ -1615,13 +1615,13 @@ Internet-Draft                 (e)BPF ISA                     March 2024
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 3.1)|
    +------+-------+------+----+------------------------+--------+-------------+
-   |0x30  |0x0    |0     |any |(deprecated,            |legacy  |Legacy BPF   |
+   |0x30  |0x0    |0     |any |(deprecated,            |packet  |Legacy BPF   |
    |      |       |      |    |implementation-specific)|        |Packet access|
    |      |       |      |    |                        |        |instructions |
 
 
 
-Thaler                  Expires 2 September 2024               [Page 29]
+Thaler                  Expires 5 September 2024               [Page 29]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -1677,14 +1677,14 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024               [Page 30]
+Thaler                  Expires 5 September 2024               [Page 30]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
 
    |      |       |      |    |                        |        |(Section 3.1)|
    +------+-------+------+----+------------------------+--------+-------------+
-   |0x40  |any    |0     |any |(deprecated,            |legacy  |Legacy BPF   |
+   |0x40  |any    |0     |any |(deprecated,            |packet  |Legacy BPF   |
    |      |       |      |    |implementation-specific)|        |Packet access|
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 4.5)|
@@ -1705,7 +1705,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 3.1)|
    +------+-------+------+----+------------------------+--------+-------------+
-   |0x48  |any    |0     |any |(deprecated,            |legacy  |Legacy BPF   |
+   |0x48  |any    |0     |any |(deprecated,            |packet  |Legacy BPF   |
    |      |       |      |    |implementation-specific)|        |Packet access|
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 4.5)|
@@ -1726,14 +1726,14 @@ Internet-Draft                 (e)BPF ISA                     March 2024
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 3.1)|
    +------+-------+------+----+------------------------+--------+-------------+
-   |0x50  |any    |0     |any |(deprecated,            |legacy  |Legacy BPF   |
+   |0x50  |any    |0     |any |(deprecated,            |packet  |Legacy BPF   |
    |      |       |      |    |implementation-specific)|        |Packet access|
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 4.5)|
 
 
 
-Thaler                  Expires 2 September 2024               [Page 31]
+Thaler                  Expires 5 September 2024               [Page 31]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -1789,7 +1789,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024               [Page 32]
+Thaler                  Expires 5 September 2024               [Page 32]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -1845,7 +1845,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024               [Page 33]
+Thaler                  Expires 5 September 2024               [Page 33]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -1901,7 +1901,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024               [Page 34]
+Thaler                  Expires 5 September 2024               [Page 34]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -1957,7 +1957,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024               [Page 35]
+Thaler                  Expires 5 September 2024               [Page 35]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -2013,7 +2013,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024               [Page 36]
+Thaler                  Expires 5 September 2024               [Page 36]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -2069,7 +2069,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024               [Page 37]
+Thaler                  Expires 5 September 2024               [Page 37]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -2125,7 +2125,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024               [Page 38]
+Thaler                  Expires 5 September 2024               [Page 38]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -2181,7 +2181,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024               [Page 39]
+Thaler                  Expires 5 September 2024               [Page 39]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -2237,7 +2237,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 2 September 2024               [Page 40]
+Thaler                  Expires 5 September 2024               [Page 40]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -2293,4 +2293,4 @@ Author's Address
 
 
 
-Thaler                  Expires 2 September 2024               [Page 41]
+Thaler                  Expires 5 September 2024               [Page 41]
