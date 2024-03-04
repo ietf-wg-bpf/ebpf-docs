@@ -63,30 +63,32 @@ Internet-Draft                 (e)BPF ISA                     March 2024
      1.3.  Definitions . . . . . . . . . . . . . . . . . . . . . . .   4
      1.4.  Conformance groups  . . . . . . . . . . . . . . . . . . .   5
    2.  Instruction encoding  . . . . . . . . . . . . . . . . . . . .   5
-     2.1.  Instruction classes . . . . . . . . . . . . . . . . . . .   7
+     2.1.  Basic instruction encoding  . . . . . . . . . . . . . . .   6
+     2.2.  Wide instruction encoding . . . . . . . . . . . . . . . .   7
+     2.3.  Instruction classes . . . . . . . . . . . . . . . . . . .   8
    3.  Arithmetic and jump instructions  . . . . . . . . . . . . . .   8
      3.1.  Arithmetic instructions . . . . . . . . . . . . . . . . .   9
      3.2.  Byte swap instructions  . . . . . . . . . . . . . . . . .  12
      3.3.  Jump instructions . . . . . . . . . . . . . . . . . . . .  13
        3.3.1.  Helper functions  . . . . . . . . . . . . . . . . . .  15
-       3.3.2.  Program-local functions . . . . . . . . . . . . . . .  16
-   4.  Load and store instructions . . . . . . . . . . . . . . . . .  16
-     4.1.  Regular load and store operations . . . . . . . . . . . .  18
-     4.2.  Sign-extension load operations  . . . . . . . . . . . . .  18
-     4.3.  Atomic operations . . . . . . . . . . . . . . . . . . . .  18
-     4.4.  64-bit immediate instructions . . . . . . . . . . . . . .  20
-       4.4.1.  Maps  . . . . . . . . . . . . . . . . . . . . . . . .  22
-       4.4.2.  Platform Variables  . . . . . . . . . . . . . . . . .  22
-     4.5.  Legacy BPF Packet access instructions . . . . . . . . . .  22
-   5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  22
-     5.1.  BPF Instruction Conformance Group Registry  . . . . . . .  23
-       5.1.1.  Adding instructions . . . . . . . . . . . . . . . . .  24
-       5.1.2.  Deprecating instructions  . . . . . . . . . . . . . .  25
-     5.2.  BPF Instruction Set Registry  . . . . . . . . . . . . . .  25
-   6.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  26
-   7.  Appendix  . . . . . . . . . . . . . . . . . . . . . . . . . .  26
-   8.  Normative References  . . . . . . . . . . . . . . . . . . . .  41
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  41
+       3.3.2.  Program-local functions . . . . . . . . . . . . . . .  15
+   4.  Load and store instructions . . . . . . . . . . . . . . . . .  15
+     4.1.  Regular load and store operations . . . . . . . . . . . .  17
+     4.2.  Sign-extension load operations  . . . . . . . . . . . . .  17
+     4.3.  Atomic operations . . . . . . . . . . . . . . . . . . . .  17
+     4.4.  64-bit immediate instructions . . . . . . . . . . . . . .  19
+       4.4.1.  Maps  . . . . . . . . . . . . . . . . . . . . . . . .  21
+       4.4.2.  Platform Variables  . . . . . . . . . . . . . . . . .  21
+     4.5.  Legacy BPF Packet access instructions . . . . . . . . . .  21
+   5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  21
+     5.1.  BPF Instruction Conformance Group Registry  . . . . . . .  21
+       5.1.1.  Adding instructions . . . . . . . . . . . . . . . . .  23
+       5.1.2.  Deprecating instructions  . . . . . . . . . . . . . .  24
+     5.2.  BPF Instruction Set Registry  . . . . . . . . . . . . . .  24
+   6.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  25
+   7.  Appendix  . . . . . . . . . . . . . . . . . . . . . . . . . .  25
+   8.  Normative References  . . . . . . . . . . . . . . . . . . . .  40
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  40
 
 1.  Documentation conventions
 
@@ -107,37 +109,35 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-
-
 Thaler                  Expires 5 September 2024                [Page 2]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
 
-                              +=====+==========+
-                              | _S_ | Meaning  |
-                              +=====+==========+
-                              | _u_ | unsigned |
-                              +-----+----------+
-                              | _s_ | signed   |
-                              +-----+----------+
+                               +===+==========+
+                               | S | Meaning  |
+                               +===+==========+
+                               | u | unsigned |
+                               +---+----------+
+                               | s | signed   |
+                               +---+----------+
 
                              Table 1: Meaning of
                              signedness notation.
 
-                            +=======+===========+
-                            | _N_   | Bit width |
-                            +=======+===========+
-                            | _8_   | 8 bits    |
-                            +-------+-----------+
-                            | _16_  | 16 bits   |
-                            +-------+-----------+
-                            | _32_  | 32 bits   |
-                            +-------+-----------+
-                            | _64_  | 64 bits   |
-                            +-------+-----------+
-                            | _128_ | 128 bits  |
-                            +-------+-----------+
+                             +=====+===========+
+                             | N   | Bit width |
+                             +=====+===========+
+                             | 8   | 8 bits    |
+                             +-----+-----------+
+                             | 16  | 16 bits   |
+                             +-----+-----------+
+                             | 32  | 32 bits   |
+                             +-----+-----------+
+                             | 64  | 64 bits   |
+                             +-----+-----------+
+                             | 128 | 128 bits  |
+                             +-----+-----------+
 
                              Table 2: Meaning of
                              bit-width notation.
@@ -148,17 +148,17 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 1.2.  Functions
 
-   *  _htobe16_: Takes an unsigned 16-bit number in host-endian format
-      and returns the equivalent number as an unsigned 16-bit number in
-      big-endian format.
+   *  htobe16: Takes an unsigned 16-bit number in host-endian format and
+      returns the equivalent number as an unsigned 16-bit number in big-
+      endian format.
 
-   *  _htobe32_: Takes an unsigned 32-bit number in host-endian format
-      and returns the equivalent number as an unsigned 32-bit number in
-      big-endian format.
+   *  htobe32: Takes an unsigned 32-bit number in host-endian format and
+      returns the equivalent number as an unsigned 32-bit number in big-
+      endian format.
 
-   *  _htobe64_: Takes an unsigned 64-bit number in host-endian format
-      and returns the equivalent number as an unsigned 64-bit number in
-      big-endian format.
+   *  htobe64: Takes an unsigned 64-bit number in host-endian format and
+      returns the equivalent number as an unsigned 64-bit number in big-
+      endian format.
 
 
 
@@ -170,29 +170,29 @@ Thaler                  Expires 5 September 2024                [Page 3]
 Internet-Draft                 (e)BPF ISA                     March 2024
 
 
-   *  _htole16_: Takes an unsigned 16-bit number in host-endian format
-      and returns the equivalent number as an unsigned 16-bit number in
+   *  htole16: Takes an unsigned 16-bit number in host-endian format and
+      returns the equivalent number as an unsigned 16-bit number in
       little-endian format.
 
-   *  _htole32_: Takes an unsigned 32-bit number in host-endian format
-      and returns the equivalent number as an unsigned 32-bit number in
+   *  htole32: Takes an unsigned 32-bit number in host-endian format and
+      returns the equivalent number as an unsigned 32-bit number in
       little-endian format.
 
-   *  _htole64_: Takes an unsigned 64-bit number in host-endian format
-      and returns the equivalent number as an unsigned 64-bit number in
+   *  htole64: Takes an unsigned 64-bit number in host-endian format and
+      returns the equivalent number as an unsigned 64-bit number in
       little-endian format.
 
-   *  _bswap16_: Takes an unsigned 16-bit number in either big- or
-      little-endian format and returns the equivalent number with the
-      same bit width but opposite endianness.
+   *  bswap16: Takes an unsigned 16-bit number in either big- or little-
+      endian format and returns the equivalent number with the same bit
+      width but opposite endianness.
 
-   *  _bswap32_: Takes an unsigned 32-bit number in either big- or
-      little-endian format and returns the equivalent number with the
-      same bit width but opposite endianness.
+   *  bswap32: Takes an unsigned 32-bit number in either big- or little-
+      endian format and returns the equivalent number with the same bit
+      width but opposite endianness.
 
-   *  _bswap64_: Takes an unsigned 64-bit number in either big- or
-      little-endian format and returns the equivalent number with the
-      same bit width but opposite endianness.
+   *  bswap64: Takes an unsigned 64-bit number in either big- or little-
+      endian format and returns the equivalent number with the same bit
+      width but opposite endianness.
 
 1.3.  Definitions
 
@@ -266,7 +266,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
    *  divmul64: includes divmul32, plus 64-bit division, multiplication,
       and modulo instructions.
 
-   *  legacy: deprecated packet access instructions.
+   *  packet: deprecated packet access instructions.
 
 2.  Instruction encoding
 
@@ -282,31 +282,65 @@ Thaler                  Expires 5 September 2024                [Page 5]
 Internet-Draft                 (e)BPF ISA                     March 2024
 
 
-   *  the wide instruction encoding, which appends a second 64-bit
-      immediate (i.e., constant) value after the basic instruction for a
-      total of 128 bits.
+   *  the wide instruction encoding, which appends a second 64 bits
+      after the basic instruction for a total of 128 bits.
 
-   The fields conforming an encoded basic instruction are stored in the
-   following order:
+2.1.  Basic instruction encoding
 
-  opcode:8 src_reg:4 dst_reg:4 offset:16 imm:32 // In little-endian BPF.
-  opcode:8 dst_reg:4 src_reg:4 offset:16 imm:32 // In big-endian BPF.
+   A basic instruction is encoded as follows:
 
-   *imm*  signed integer immediate value
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |    opcode     |     regs      |            offset             |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                              imm                              |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+   *opcode*  operation to perform, encoded as follows:
+
+      +-+-+-+-+-+-+-+-+
+      |specific |class|
+      +-+-+-+-+-+-+-+-+
+
+      *specific*  The format of these bits varies by instruction class
+
+      *class*  The instruction class (see Instruction classes
+         (Section 2.3))
+
+   *regs*  The source and destination register numbers, encoded as
+      follows on a little-endian host:
+
+      +-+-+-+-+-+-+-+-+
+      |src_reg|dst_reg|
+      +-+-+-+-+-+-+-+-+
+
+      and as follows on a big-endian host:
+
+      +-+-+-+-+-+-+-+-+
+      |dst_reg|src_reg|
+      +-+-+-+-+-+-+-+-+
+
+      *src_reg*  the source register number (0-10), except where
+         otherwise specified (64-bit immediate instructions
+         (Section 4.4) reuse this field for other purposes)
+
+      *dst_reg*  destination register number (0-10)
 
    *offset*  signed integer offset used with pointer arithmetic
 
-   *src_reg*  the source register number (0-10), except where otherwise
-      specified (64-bit immediate instructions (Section 4.4) reuse this
-      field for other purposes)
+   *imm*  signed integer immediate value
 
-   *dst_reg*  destination register number (0-10)
 
-   *opcode*  operation to perform
 
-   Note that the contents of multi-byte fields ('imm' and 'offset') are
-   stored using big-endian byte ordering in big-endian BPF and little-
-   endian byte ordering in little-endian BPF.
+
+
+Thaler                  Expires 5 September 2024                [Page 6]
+
+Internet-Draft                 (e)BPF ISA                     March 2024
+
+
+   Note that the contents of multi-byte fields ('offset' and 'imm') are
+   stored using big-endian byte ordering on big-endian hosts and little-
+   endian byte ordering on little-endian hosts.
 
    For example:
 
@@ -319,71 +353,37 @@ Internet-Draft                 (e)BPF ISA                     March 2024
    Note that most instructions do not use all of the fields.  Unused
    fields shall be cleared to zero.
 
-   As discussed below in 64-bit immediate instructions (Section 4.4), a
-   64-bit immediate instruction uses two 32-bit immediate values that
-   are constructed as follows.  The 64 bits following the basic
-   instruction contain a pseudo instruction using the same format but
-   with 'opcode', 'dst_reg', 'src_reg', and 'offset' all set to zero,
-   and imm containing the high 32 bits of the immediate value.
+2.2.  Wide instruction encoding
+
+   Some instructions are defined to use the wide instruction encoding,
+   which uses two 32-bit immediate values.  The 64 bits following the
+   basic instruction format contain a pseudo instruction with 'opcode',
+   'dst_reg', 'src_reg', and 'offset' all set to zero.
 
    This is depicted in the following figure:
 
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |    opcode     |     regs      |            offset             |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                              imm                              |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                           reserved                            |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                           next_imm                            |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
+   *opcode*  operation to perform, encoded as explained above
 
+   *regs*  The source and destination register numbers, encoded as
+      explained above
 
+   *offset*  signed integer offset used with pointer arithmetic
 
+   *imm*  signed integer immediate value
 
-Thaler                  Expires 5 September 2024                [Page 6]
-
-Internet-Draft                 (e)BPF ISA                     March 2024
+   *reserved*  unused, set to zero
 
-
-         basic_instruction
-   .------------------------------.
-   |                              |
-   opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
-                                    |              |
-                                    '--------------'
-                                   pseudo instruction
-
-   Here, the imm value of the pseudo instruction is called 'next_imm'.
-   The unused bytes in the pseudo instruction are reserved and shall be
-   cleared to zero.
-
-2.1.  Instruction classes
-
-   The three LSB bits of the 'opcode' field store the instruction class:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   *next_imm*  second signed integer immediate value
 
 
 
@@ -394,54 +394,54 @@ Thaler                  Expires 5 September 2024                [Page 7]
 Internet-Draft                 (e)BPF ISA                     March 2024
 
 
-   +===========+=======+====================+==========================+
-   | class     | value | description        | reference                |
-   +===========+=======+====================+==========================+
-   | BPF_LD    | 0x00  | non-standard       | Load and store           |
-   |           |       | load operations    | instructions (Section 4) |
-   +-----------+-------+--------------------+--------------------------+
-   | BPF_LDX   | 0x01  | load into          | Load and store           |
-   |           |       | register           | instructions (Section 4) |
-   |           |       | operations         |                          |
-   +-----------+-------+--------------------+--------------------------+
-   | BPF_ST    | 0x02  | store from         | Load and store           |
-   |           |       | immediate          | instructions (Section 4) |
-   |           |       | operations         |                          |
-   +-----------+-------+--------------------+--------------------------+
-   | BPF_STX   | 0x03  | store from         | Load and store           |
-   |           |       | register           | instructions (Section 4) |
-   |           |       | operations         |                          |
-   +-----------+-------+--------------------+--------------------------+
-   | BPF_ALU   | 0x04  | 32-bit             | Arithmetic and jump      |
-   |           |       | arithmetic         | instructions (Section 3) |
-   |           |       | operations         |                          |
-   +-----------+-------+--------------------+--------------------------+
-   | BPF_JMP   | 0x05  | 64-bit jump        | Arithmetic and jump      |
-   |           |       | operations         | instructions (Section 3) |
-   +-----------+-------+--------------------+--------------------------+
-   | BPF_JMP32 | 0x06  | 32-bit jump        | Arithmetic and jump      |
-   |           |       | operations         | instructions (Section 3) |
-   +-----------+-------+--------------------+--------------------------+
-   | BPF_ALU64 | 0x07  | 64-bit             | Arithmetic and jump      |
-   |           |       | arithmetic         | instructions (Section 3) |
-   |           |       | operations         |                          |
-   +-----------+-------+--------------------+--------------------------+
+2.3.  Instruction classes
+
+   The three least significant bits of the 'opcode' field store the
+   instruction class:
+
+    +=======+=======+======================+==========================+
+    | class | value | description          | reference                |
+    +=======+=======+======================+==========================+
+    | LD    | 0x0   | non-standard load    | Load and store           |
+    |       |       | operations           | instructions (Section 4) |
+    +-------+-------+----------------------+--------------------------+
+    | LDX   | 0x1   | load into register   | Load and store           |
+    |       |       | operations           | instructions (Section 4) |
+    +-------+-------+----------------------+--------------------------+
+    | ST    | 0x2   | store from immediate | Load and store           |
+    |       |       | operations           | instructions (Section 4) |
+    +-------+-------+----------------------+--------------------------+
+    | STX   | 0x3   | store from register  | Load and store           |
+    |       |       | operations           | instructions (Section 4) |
+    +-------+-------+----------------------+--------------------------+
+    | ALU   | 0x4   | 32-bit arithmetic    | Arithmetic and jump      |
+    |       |       | operations           | instructions (Section 3) |
+    +-------+-------+----------------------+--------------------------+
+    | JMP   | 0x5   | 64-bit jump          | Arithmetic and jump      |
+    |       |       | operations           | instructions (Section 3) |
+    +-------+-------+----------------------+--------------------------+
+    | JMP32 | 0x6   | 32-bit jump          | Arithmetic and jump      |
+    |       |       | operations           | instructions (Section 3) |
+    +-------+-------+----------------------+--------------------------+
+    | ALU64 | 0x7   | 64-bit arithmetic    | Arithmetic and jump      |
+    |       |       | operations           | instructions (Section 3) |
+    +-------+-------+----------------------+--------------------------+
 
                                   Table 3
 
 3.  Arithmetic and jump instructions
 
-   For arithmetic and jump instructions (BPF_ALU, BPF_ALU64, BPF_JMP and
-   BPF_JMP32), the 8-bit 'opcode' field is divided into three parts:
+   For arithmetic and jump instructions (ALU, ALU64, JMP and JMP32), the
+   8-bit 'opcode' field is divided into three parts:
 
-               +==============+========+===================+
-               | 4 bits (MSB) | 1 bit  | 3 bits (LSB)      |
-               +==============+========+===================+
-               | code         | source | instruction class |
-               +--------------+--------+-------------------+
+   +-+-+-+-+-+-+-+-+
+   |  code |s|class|
+   +-+-+-+-+-+-+-+-+
 
-                                  Table 4
+   *code*  the operation code, whose meaning varies by instruction class
 
+   *s (source)*  the source operand location, which unless otherwise
+      specified is one of:
 
 
 
@@ -450,32 +450,32 @@ Thaler                  Expires 5 September 2024                [Page 8]
 Internet-Draft                 (e)BPF ISA                     March 2024
 
 
-   *code*  the operation code, whose meaning varies by instruction class
-
-   *source*  the source operand location, which unless otherwise
-      specified is one of:
-
     +========+=======+================================================+
     | source | value | description                                    |
     +========+=======+================================================+
-    | BPF_K  | 0x00  | use 32-bit 'imm' value as source operand       |
+    | K      | 0     | use 32-bit 'imm' value as source operand       |
     +--------+-------+------------------------------------------------+
-    | BPF_X  | 0x08  | use 'src_reg' register value as source operand |
+    | X      | 1     | use 'src_reg' register value as source operand |
     +--------+-------+------------------------------------------------+
 
-                                  Table 5
+                                  Table 4
 
    *instruction class*  the instruction class (see Instruction classes
-      (Section 2.1))
+      (Section 2.3))
 
 3.1.  Arithmetic instructions
 
-   BPF_ALU uses 32-bit wide operands while BPF_ALU64 uses 64-bit wide
-   operands for otherwise identical operations.  BPF_ALU64 instructions
-   belong to the base64 conformance group unless noted otherwise.  The
-   'code' field encodes the operation as below, where 'src' and 'dst'
-   refer to the values of the source and destination registers,
-   respectively.
+   ALU uses 32-bit wide operands while ALU64 uses 64-bit wide operands
+   for otherwise identical operations.  ALU64 instructions belong to the
+   base64 conformance group unless noted otherwise.  The 'code' field
+   encodes the operation as below, where 'src' and 'dst' refer to the
+   values of the source and destination registers, respectively.
+
+
+
+
+
+
 
 
 
@@ -506,54 +506,54 @@ Thaler                  Expires 5 September 2024                [Page 9]
 Internet-Draft                 (e)BPF ISA                     March 2024
 
 
-   +===========+=======+=========+=====================================+
-   | code      | value | offset  | description                         |
-   +===========+=======+=========+=====================================+
-   | BPF_ADD   | 0x00  | 0       | dst += src                          |
-   +-----------+-------+---------+-------------------------------------+
-   | BPF_SUB   | 0x10  | 0       | dst -= src                          |
-   +-----------+-------+---------+-------------------------------------+
-   | BPF_MUL   | 0x20  | 0       | dst *= src                          |
-   +-----------+-------+---------+-------------------------------------+
-   | BPF_DIV   | 0x30  | 0       | dst = (src != 0) ? (dst /           |
-   |           |       |         | src) : 0                            |
-   +-----------+-------+---------+-------------------------------------+
-   | BPF_SDIV  | 0x30  | 1       | dst = (src != 0) ? (dst s/          |
-   |           |       |         | src) : 0                            |
-   +-----------+-------+---------+-------------------------------------+
-   | BPF_OR    | 0x40  | 0       | dst |= src                          |
-   +-----------+-------+---------+-------------------------------------+
-   | BPF_AND   | 0x50  | 0       | dst &= src                          |
-   +-----------+-------+---------+-------------------------------------+
-   | BPF_LSH   | 0x60  | 0       | dst <<= (src & mask)                |
-   +-----------+-------+---------+-------------------------------------+
-   | BPF_RSH   | 0x70  | 0       | dst >>= (src & mask)                |
-   +-----------+-------+---------+-------------------------------------+
-   | BPF_NEG   | 0x80  | 0       | dst = -dst                          |
-   +-----------+-------+---------+-------------------------------------+
-   | BPF_MOD   | 0x90  | 0       | dst = (src != 0) ? (dst %           |
-   |           |       |         | src) : dst                          |
-   +-----------+-------+---------+-------------------------------------+
-   | BPF_SMOD  | 0x90  | 1       | dst = (src != 0) ? (dst s%          |
-   |           |       |         | src) : dst                          |
-   +-----------+-------+---------+-------------------------------------+
-   | BPF_XOR   | 0xa0  | 0       | dst ^= src                          |
-   +-----------+-------+---------+-------------------------------------+
-   | BPF_MOV   | 0xb0  | 0       | dst = src                           |
-   +-----------+-------+---------+-------------------------------------+
-   | BPF_MOVSX | 0xb0  | 8/16/32 | dst = (s8,s16,s32)src               |
-   +-----------+-------+---------+-------------------------------------+
-   | BPF_ARSH  | 0xc0  | 0       | sign extending (Section 1.3)        |
-   |           |       |         | dst >>= (src & mask)                |
-   +-----------+-------+---------+-------------------------------------+
-   | BPF_END   | 0xd0  | 0       | byte swap operations (see           |
-   |           |       |         | Byte swap instructions              |
-   |           |       |         | (Section 3.2) below)                |
-   +-----------+-------+---------+-------------------------------------+
+    +=======+======+=========+=======================================+
+    | name  | code | offset  | description                           |
+    +=======+======+=========+=======================================+
+    | ADD   | 0x0  | 0       | dst += src                            |
+    +-------+------+---------+---------------------------------------+
+    | SUB   | 0x1  | 0       | dst -= src                            |
+    +-------+------+---------+---------------------------------------+
+    | MUL   | 0x2  | 0       | dst *= src                            |
+    +-------+------+---------+---------------------------------------+
+    | DIV   | 0x3  | 0       | dst = (src != 0) ? (dst / src) : 0    |
+    +-------+------+---------+---------------------------------------+
+    | SDIV  | 0x3  | 1       | dst = (src != 0) ? (dst s/ src) : 0   |
+    +-------+------+---------+---------------------------------------+
+    | OR    | 0x4  | 0       | dst |= src                            |
+    +-------+------+---------+---------------------------------------+
+    | AND   | 0x5  | 0       | dst &= src                            |
+    +-------+------+---------+---------------------------------------+
+    | LSH   | 0x6  | 0       | dst <<= (src & mask)                  |
+    +-------+------+---------+---------------------------------------+
+    | RSH   | 0x7  | 0       | dst >>= (src & mask)                  |
+    +-------+------+---------+---------------------------------------+
+    | NEG   | 0x8  | 0       | dst = -dst                            |
+    +-------+------+---------+---------------------------------------+
+    | MOD   | 0x9  | 0       | dst = (src != 0) ? (dst % src) : dst  |
+    +-------+------+---------+---------------------------------------+
+    | SMOD  | 0x9  | 1       | dst = (src != 0) ? (dst s% src) : dst |
+    +-------+------+---------+---------------------------------------+
+    | XOR   | 0xa  | 0       | dst ^= src                            |
+    +-------+------+---------+---------------------------------------+
+    | MOV   | 0xb  | 0       | dst = src                             |
+    +-------+------+---------+---------------------------------------+
+    | MOVSX | 0xb  | 8/16/32 | dst = (s8,s16,s32)src                 |
+    +-------+------+---------+---------------------------------------+
+    | ARSH  | 0xc  | 0       | sign extending (Section 1.3) dst >>=  |
+    |       |      |         | (src & mask)                          |
+    +-------+------+---------+---------------------------------------+
+    | END   | 0xd  | 0       | byte swap operations (see Byte swap   |
+    |       |      |         | instructions (Section 3.2) below)     |
+    +-------+------+---------+---------------------------------------+
 
-                                  Table 6
+                                 Table 5
 
-
+   Underflow and overflow are allowed during arithmetic operations,
+   meaning the 64-bit or 32-bit value will wrap.  If BPF program
+   execution would result in division by zero, the destination register
+   is instead set to zero.  If execution would result in modulo by zero,
+   for ALU64 the value of the destination register is unchanged whereas
+   for ALU the upper 32 bits of the destination register are zeroed.
 
 
 
@@ -562,54 +562,54 @@ Thaler                  Expires 5 September 2024               [Page 10]
 Internet-Draft                 (e)BPF ISA                     March 2024
 
 
-   Underflow and overflow are allowed during arithmetic operations,
-   meaning the 64-bit or 32-bit value will wrap.  If BPF program
-   execution would result in division by zero, the destination register
-   is instead set to zero.  If execution would result in modulo by zero,
-   for BPF_ALU64 the value of the destination register is unchanged
-   whereas for BPF_ALU the upper 32 bits of the destination register are
-   zeroed.
-
-   BPF_ADD | BPF_X | BPF_ALU means:
+   {ADD, X, ALU}, where 'code' = ADD, 'source' = X, and 'class' = ALU,
+   means:
 
    dst = (u32) ((u32) dst + (u32) src)
 
    where '(u32)' indicates that the upper 32 bits are zeroed.
 
-   BPF_ADD | BPF_X | BPF_ALU64 means:
+   {ADD, X, ALU64} means:
 
    dst = dst + src
 
-   BPF_XOR | BPF_K | BPF_ALU means:
+   {XOR, K, ALU} means:
 
    dst = (u32) dst ^ (u32) imm
 
-   BPF_XOR | BPF_K | BPF_ALU64 means:
+   {XOR, K, ALU64} means:
 
    dst = dst ^ imm
 
    Note that most instructions have instruction offset of 0.  Only three
-   instructions (BPF_SDIV, BPF_SMOD, BPF_MOVSX) have a non-zero offset.
+   instructions (SDIV, SMOD, MOVSX) have a non-zero offset.
 
-   Division, multiplication, and modulo operations for BPF_ALU are part
-   of the "divmul32" conformance group, and division, multiplication,
-   and modulo operations for BPF_ALU64 are part of the "divmul64"
-   conformance group.  The division and modulo operations support both
-   unsigned and signed flavors.
+   Division, multiplication, and modulo operations for ALU are part of
+   the "divmul32" conformance group, and division, multiplication, and
+   modulo operations for ALU64 are part of the "divmul64" conformance
+   group.  The division and modulo operations support both unsigned and
+   signed flavors.
 
-   For unsigned operations (BPF_DIV and BPF_MOD), for BPF_ALU, 'imm' is
-   interpreted as a 32-bit unsigned value.  For BPF_ALU64, 'imm' is
-   first sign extended (Section 1.3) from 32 to 64 bits, and then
-   interpreted as a 64-bit unsigned value.
+   For unsigned operations (DIV and MOD), for ALU, 'imm' is interpreted
+   as a 32-bit unsigned value.  For ALU64, 'imm' is first sign extended
+   (Section 1.3) from 32 to 64 bits, and then interpreted as a 64-bit
+   unsigned value.
 
-   For signed operations (BPF_SDIV and BPF_SMOD), for BPF_ALU, 'imm' is
-   interpreted as a 32-bit signed value.  For BPF_ALU64, 'imm' is first
-   sign extended (Section 1.3) from 32 to 64 bits, and then interpreted
-   as a 64-bit signed value.
+   For signed operations (SDIV and SMOD), for ALU, 'imm' is interpreted
+   as a 32-bit signed value.  For ALU64, 'imm' is first sign extended
+   (Section 1.3) from 32 to 64 bits, and then interpreted as a 64-bit
+   signed value.
 
    Note that there are varying definitions of the signed modulo
    operation when the dividend or divisor are negative, where
    implementations often vary by language such that Python, Ruby, etc.
+   differ from C, Go, Java, etc.  This specification requires that
+   signed modulo use truncated division (where -13 % 3 == -1) as
+   implemented in C, Go, etc.:
+
+   |  a % n = a - n * trunc(a / n)
+
+
 
 
 
@@ -618,61 +618,45 @@ Thaler                  Expires 5 September 2024               [Page 11]
 Internet-Draft                 (e)BPF ISA                     March 2024
 
 
-   differ from C, Go, Java, etc.  This specification requires that
-   signed modulo use truncated division (where -13 % 3 == -1) as
-   implemented in C, Go, etc.:
+   The MOVSX instruction does a move operation with sign extension.
+   {MOVSX, X, ALU} sign extends (Section 1.3) 8-bit and 16-bit operands
+   into 32 bit operands, and zeroes the remaining upper 32 bits.
+   {MOVSX, X, ALU64} sign extends (Section 1.3) 8-bit, 16-bit, and
+   32-bit operands into 64 bit operands.  Unlike other arithmetic
+   instructions, MOVSX is only defined for register source operands (X).
 
-   |  a % n = a - n * trunc(a / n)
-
-   The BPF_MOVSX instruction does a move operation with sign extension.
-   BPF_ALU | BPF_MOVSX sign extends (Section 1.3) 8-bit and 16-bit
-   operands into 32 bit operands, and zeroes the remaining upper 32
-   bits.  BPF_ALU64 | BPF_MOVSX sign extends (Section 1.3) 8-bit,
-   16-bit, and 32-bit operands into 64 bit operands.  Unlike other
-   arithmetic instructions, BPF_MOVSX is only defined for register
-   source operands (BPF_X).
-
-   The BPF_NEG instruction is only defined when the source bit is clear
-   (BPF_K).
+   The NEG instruction is only defined when the source bit is clear (K).
 
    Shift operations use a mask of 0x3F (63) for 64-bit operations and
    0x1F (31) for 32-bit operations.
 
 3.2.  Byte swap instructions
 
-   The byte swap instructions use instruction classes of BPF_ALU and
-   BPF_ALU64 and a 4-bit 'code' field of BPF_END.
+   The byte swap instructions use instruction classes of ALU and ALU64
+   and a 4-bit 'code' field of END.
 
    The byte swap instructions operate on the destination register only
    and do not use a separate source register or immediate value.
 
-   For BPF_ALU, the 1-bit source operand field in the opcode is used to
-   select what byte order the operation converts from or to.  For
-   BPF_ALU64, the 1-bit source operand field in the opcode is reserved
-   and must be set to 0.
+   For ALU, the 1-bit source operand field in the opcode is used to
+   select what byte order the operation converts from or to.  For ALU64,
+   the 1-bit source operand field in the opcode is reserved and must be
+   set to 0.
 
-       +===========+===========+=======+===========================+
-       | class     | source    | value | description               |
-       +===========+===========+=======+===========================+
-       | BPF_ALU   | BPF_TO_LE | 0x00  | convert between host byte |
-       |           |           |       | order and little endian   |
-       +-----------+-----------+-------+---------------------------+
-       | BPF_ALU   | BPF_TO_BE | 0x08  | convert between host byte |
-       |           |           |       | order and big endian      |
-       +-----------+-----------+-------+---------------------------+
-       | BPF_ALU64 | Reserved  | 0x00  | do byte swap              |
-       |           |           |       | unconditionally           |
-       +-----------+-----------+-------+---------------------------+
+         +=======+==========+=======+===========================+
+         | class | source   | value | description               |
+         +=======+==========+=======+===========================+
+         | ALU   | TO_LE    | 0     | convert between host byte |
+         |       |          |       | order and little endian   |
+         +-------+----------+-------+---------------------------+
+         | ALU   | TO_BE    | 1     | convert between host byte |
+         |       |          |       | order and big endian      |
+         +-------+----------+-------+---------------------------+
+         | ALU64 | Reserved | 0     | do byte swap              |
+         |       |          |       | unconditionally           |
+         +-------+----------+-------+---------------------------+
 
-                                  Table 7
-
-
-
-
-Thaler                  Expires 5 September 2024               [Page 12]
-
-Internet-Draft                 (e)BPF ISA                     March 2024
-
+                                 Table 6
 
    The 'imm' field encodes the width of the swap operations.  The
    following widths are supported: 16, 32 and 64.  Width 64 operations
@@ -681,19 +665,26 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
    Examples:
 
-   BPF_ALU | BPF_TO_LE | BPF_END with imm = 16/32/64 means:
+   {END, TO_LE, ALU} with imm = 16/32/64 means:
+
+
+
+Thaler                  Expires 5 September 2024               [Page 12]
+
+Internet-Draft                 (e)BPF ISA                     March 2024
+
 
    dst = htole16(dst)
    dst = htole32(dst)
    dst = htole64(dst)
 
-   BPF_ALU | BPF_TO_BE | BPF_END with imm = 16/32/64 means:
+   {END, TO_BE, ALU} with imm = 16/32/64 means:
 
    dst = htobe16(dst)
    dst = htobe32(dst)
    dst = htobe64(dst)
 
-   BPF_ALU64 | BPF_TO_LE | BPF_END with imm = 16/32/64 means:
+   {END, TO_LE, ALU64} with imm = 16/32/64 means:
 
    dst = bswap16(dst)
    dst = bswap32(dst)
@@ -701,27 +692,36 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 3.3.  Jump instructions
 
-   BPF_JMP32 uses 32-bit wide operands and indicates the base32
-   conformance group, while BPF_JMP uses 64-bit wide operands for
-   otherwise identical operations, and indicates the base64 conformance
-   group unless otherwise specified.  The 'code' field encodes the
-   operation as below:
+   JMP32 uses 32-bit wide operands and indicates the base32 conformance
+   group, while JMP uses 64-bit wide operands for otherwise identical
+   operations, and indicates the base64 conformance group unless
+   otherwise specified.  The 'code' field encodes the operation as
+   below:
 
-   +==========+=======+=========+=============+=======================+
-   | code     | value | src_reg | description | notes                 |
-   +==========+=======+=========+=============+=======================+
-   | BPF_JA   | 0x0   | 0x0     | PC +=       | BPF_JMP | BPF_K only  |
-   |          |       |         | offset      |                       |
-   +----------+-------+---------+-------------+-----------------------+
-   | BPF_JA   | 0x0   | 0x0     | PC += imm   | BPF_JMP32 | BPF_K     |
-   |          |       |         |             | only                  |
-   +----------+-------+---------+-------------+-----------------------+
-   | BPF_JEQ  | 0x1   | any     | PC +=       |                       |
-   |          |       |         | offset if   |                       |
-   |          |       |         | dst == src  |                       |
-   +----------+-------+---------+-------------+-----------------------+
-   | BPF_JGT  | 0x2   | any     | PC +=       | unsigned              |
-   |          |       |         | offset if   |                       |
+   +======+=======+=========+===============+==========================+
+   | code | value | src_reg | description   | notes                    |
+   +======+=======+=========+===============+==========================+
+   | JA   | 0x0   | 0x0     | PC +=         | {JA, K, JMP} only        |
+   |      |       |         | offset        |                          |
+   +------+-------+---------+---------------+--------------------------+
+   | JA   | 0x0   | 0x0     | PC += imm     | {JA, K, JMP32} only      |
+   +------+-------+---------+---------------+--------------------------+
+   | JEQ  | 0x1   | any     | PC +=         |                          |
+   |      |       |         | offset if     |                          |
+   |      |       |         | dst == src    |                          |
+   +------+-------+---------+---------------+--------------------------+
+   | JGT  | 0x2   | any     | PC +=         | unsigned                 |
+   |      |       |         | offset if     |                          |
+   |      |       |         | dst > src     |                          |
+   +------+-------+---------+---------------+--------------------------+
+   | JGE  | 0x3   | any     | PC +=         | unsigned                 |
+   |      |       |         | offset if     |                          |
+   |      |       |         | dst >= src    |                          |
+   +------+-------+---------+---------------+--------------------------+
+   | JSET | 0x4   | any     | PC +=         |                          |
+   |      |       |         | offset if     |                          |
+   |      |       |         | dst & src     |                          |
+   +------+-------+---------+---------------+--------------------------+
 
 
 
@@ -730,54 +730,54 @@ Thaler                  Expires 5 September 2024               [Page 13]
 Internet-Draft                 (e)BPF ISA                     March 2024
 
 
-   |          |       |         | dst > src   |                       |
-   +----------+-------+---------+-------------+-----------------------+
-   | BPF_JGE  | 0x3   | any     | PC +=       | unsigned              |
-   |          |       |         | offset if   |                       |
-   |          |       |         | dst >= src  |                       |
-   +----------+-------+---------+-------------+-----------------------+
-   | BPF_JSET | 0x4   | any     | PC +=       |                       |
-   |          |       |         | offset if   |                       |
-   |          |       |         | dst & src   |                       |
-   +----------+-------+---------+-------------+-----------------------+
-   | BPF_JNE  | 0x5   | any     | PC +=       |                       |
-   |          |       |         | offset if   |                       |
-   |          |       |         | dst != src  |                       |
-   +----------+-------+---------+-------------+-----------------------+
-   | BPF_JSGT | 0x6   | any     | PC +=       | signed                |
-   |          |       |         | offset if   |                       |
-   |          |       |         | dst > src   |                       |
-   +----------+-------+---------+-------------+-----------------------+
-   | BPF_JSGE | 0x7   | any     | PC +=       | signed                |
-   |          |       |         | offset if   |                       |
-   |          |       |         | dst >= src  |                       |
-   +----------+-------+---------+-------------+-----------------------+
-   | BPF_CALL | 0x8   | 0x0     | call helper | BPF_JMP | BPF_K only, |
-   |          |       |         | function by | see Helper functions  |
-   |          |       |         | address     | (Section 3.3.1)       |
-   +----------+-------+---------+-------------+-----------------------+
-   | BPF_CALL | 0x8   | 0x1     | call PC +=  | BPF_JMP | BPF_K only, |
-   |          |       |         | imm         | see Program-local     |
-   |          |       |         |             | functions             |
-   |          |       |         |             | (Section 3.3.2)       |
-   +----------+-------+---------+-------------+-----------------------+
-   | BPF_CALL | 0x8   | 0x2     | call helper | BPF_JMP | BPF_K only, |
-   |          |       |         | function by | see Helper functions  |
-   |          |       |         | BTF ID      | (Section 3.3.1)       |
-   +----------+-------+---------+-------------+-----------------------+
-   | BPF_EXIT | 0x9   | 0x0     | return      | BPF_JMP | BPF_K only  |
-   +----------+-------+---------+-------------+-----------------------+
-   | BPF_JLT  | 0xa   | any     | PC +=       | unsigned              |
-   |          |       |         | offset if   |                       |
-   |          |       |         | dst < src   |                       |
-   +----------+-------+---------+-------------+-----------------------+
-   | BPF_JLE  | 0xb   | any     | PC +=       | unsigned              |
-   |          |       |         | offset if   |                       |
-   |          |       |         | dst <= src  |                       |
-   +----------+-------+---------+-------------+-----------------------+
-   | BPF_JSLT | 0xc   | any     | PC +=       | signed                |
-   |          |       |         | offset if   |                       |
-   |          |       |         | dst < src   |                       |
+   | JNE  | 0x5   | any     | PC +=         |                          |
+   |      |       |         | offset if     |                          |
+   |      |       |         | dst != src    |                          |
+   +------+-------+---------+---------------+--------------------------+
+   | JSGT | 0x6   | any     | PC +=         | signed                   |
+   |      |       |         | offset if     |                          |
+   |      |       |         | dst > src     |                          |
+   +------+-------+---------+---------------+--------------------------+
+   | JSGE | 0x7   | any     | PC +=         | signed                   |
+   |      |       |         | offset if     |                          |
+   |      |       |         | dst >= src    |                          |
+   +------+-------+---------+---------------+--------------------------+
+   | CALL | 0x8   | 0x0     | call helper   | {CALL, K, JMP} only, see |
+   |      |       |         | function by   | Helper functions         |
+   |      |       |         | address       | (Section 3.3.1)          |
+   +------+-------+---------+---------------+--------------------------+
+   | CALL | 0x8   | 0x1     | call PC +=    | {CALL, K, JMP} only, see |
+   |      |       |         | imm           | Program-local functions  |
+   |      |       |         |               | (Section 3.3.2)          |
+   +------+-------+---------+---------------+--------------------------+
+   | CALL | 0x8   | 0x2     | call helper   | {CALL, K, JMP} only, see |
+   |      |       |         | function by   | Helper functions         |
+   |      |       |         | BTF ID        | (Section 3.3.1)          |
+   +------+-------+---------+---------------+--------------------------+
+   | EXIT | 0x9   | 0x0     | return        | {CALL, K, JMP} only      |
+   +------+-------+---------+---------------+--------------------------+
+   | JLT  | 0xa   | any     | PC +=         | unsigned                 |
+   |      |       |         | offset if     |                          |
+   |      |       |         | dst < src     |                          |
+   +------+-------+---------+---------------+--------------------------+
+   | JLE  | 0xb   | any     | PC +=         | unsigned                 |
+   |      |       |         | offset if     |                          |
+   |      |       |         | dst <= src    |                          |
+   +------+-------+---------+---------------+--------------------------+
+   | JSLT | 0xc   | any     | PC +=         | signed                   |
+   |      |       |         | offset if     |                          |
+   |      |       |         | dst < src     |                          |
+   +------+-------+---------+---------------+--------------------------+
+   | JSLE | 0xd   | any     | PC +=         | signed                   |
+   |      |       |         | offset if     |                          |
+   |      |       |         | dst <= src    |                          |
+   +------+-------+---------+---------------+--------------------------+
+
+                                  Table 7
+
+   The BPF program needs to store the return value into register R0
+   before doing an EXIT.
+
 
 
 
@@ -786,39 +786,27 @@ Thaler                  Expires 5 September 2024               [Page 14]
 Internet-Draft                 (e)BPF ISA                     March 2024
 
 
-   +----------+-------+---------+-------------+-----------------------+
-   | BPF_JSLE | 0xd   | any     | PC +=       | signed                |
-   |          |       |         | offset if   |                       |
-   |          |       |         | dst <= src  |                       |
-   +----------+-------+---------+-------------+-----------------------+
-
-                                 Table 8
-
-   The BPF program needs to store the return value into register R0
-   before doing a BPF_EXIT.
-
    Example:
 
-   BPF_JSGE | BPF_X | BPF_JMP32 (0x7e) means:
+   {JSGE, X, JMP32} means:
 
    if (s32)dst s>= (s32)src goto +offset
 
    where 's>=' indicates a signed '>=' comparison.
 
-   BPF_JA | BPF_K | BPF_JMP32 (0x06) means:
+   {JA, K, JMP32} means:
 
    gotol +imm
 
    where 'imm' means the branch offset comes from insn 'imm' field.
 
-   Note that there are two flavors of BPF_JA instructions.  The BPF_JMP
-   class permits a 16-bit jump offset specified by the 'offset' field,
-   whereas the BPF_JMP32 class permits a 32-bit jump offset specified by
-   the 'imm' field.  A > 16-bit conditional jump may be converted to a <
-   16-bit conditional jump plus a 32-bit unconditional jump.
+   Note that there are two flavors of JA instructions.  The JMP class
+   permits a 16-bit jump offset specified by the 'offset' field, whereas
+   the JMP32 class permits a 32-bit jump offset specified by the 'imm'
+   field.  A > 16-bit conditional jump may be converted to a < 16-bit
+   conditional jump plus a 32-bit unconditional jump.
 
-   All BPF_CALL and BPF_JA instructions belong to the base32 conformance
-   group.
+   All CALL and JA instructions belong to the base32 conformance group.
 
 3.3.1.  Helper functions
 
@@ -834,6 +822,18 @@ Internet-Draft                 (e)BPF ISA                     March 2024
    a helper function by a BTF ID encoded in the imm field, where the BTF
    ID identifies the helper name and type.
 
+3.3.2.  Program-local functions
+
+   Program-local functions are functions exposed by the same BPF program
+   as the caller, and are referenced by offset from the call
+   instruction, similar to JA.  The offset is encoded in the imm field
+   of the call instruction.  A EXIT within the program-local function
+   will return to the caller.
+
+4.  Load and store instructions
+
+   For load and store instructions (LD, LDX, ST, and STX), the 8-bit
+   'opcode' field is divided as:
 
 
 
@@ -842,54 +842,54 @@ Thaler                  Expires 5 September 2024               [Page 15]
 Internet-Draft                 (e)BPF ISA                     March 2024
 
 
-3.3.2.  Program-local functions
+   +-+-+-+-+-+-+-+-+
+   |mode |sz |class|
+   +-+-+-+-+-+-+-+-+
 
-   Program-local functions are functions exposed by the same BPF program
-   as the caller, and are referenced by offset from the call
-   instruction, similar to BPF_JA.  The offset is encoded in the imm
-   field of the call instruction.  A BPF_EXIT within the program-local
-   function will return to the caller.
+   *mode*  The mode modifier is one of:
 
-4.  Load and store instructions
+   +==========+=======+===================+============================+
+   | mode     | value | description       | reference                  |
+   | modifier |       |                   |                            |
+   +==========+=======+===================+============================+
+   | IMM      | 0     | 64-bit immediate  | 64-bit immediate           |
+   |          |       | instructions      | instructions (Section 4.4) |
+   +----------+-------+-------------------+----------------------------+
+   | ABS      | 1     | legacy BPF        | Legacy BPF Packet access   |
+   |          |       | packet access     | instructions (Section 4.5) |
+   |          |       | (absolute)        |                            |
+   +----------+-------+-------------------+----------------------------+
+   | IND      | 2     | legacy BPF        | Legacy BPF Packet access   |
+   |          |       | packet access     | instructions (Section 4.5) |
+   |          |       | (indirect)        |                            |
+   +----------+-------+-------------------+----------------------------+
+   | MEM      | 3     | regular load and  | Regular load and store     |
+   |          |       | store operations  | operations (Section 4.1)   |
+   +----------+-------+-------------------+----------------------------+
+   | MEMSX    | 4     | sign-extension    | Sign-extension load        |
+   |          |       | load operations   | operations (Section 4.2)   |
+   +----------+-------+-------------------+----------------------------+
+   | ATOMIC   | 6     | atomic            | Atomic operations          |
+   |          |       | operations        | (Section 4.3)              |
+   +----------+-------+-------------------+----------------------------+
 
-   For load and store instructions (BPF_LD, BPF_LDX, BPF_ST, and
-   BPF_STX), the 8-bit 'opcode' field is divided as:
+                                  Table 8
 
-               +==============+========+===================+
-               | 3 bits (MSB) | 2 bits | 3 bits (LSB)      |
-               +==============+========+===================+
-               | mode         | size   | instruction class |
-               +--------------+--------+-------------------+
+   *sz (size)*  The size modifier is one of:
 
-                                  Table 9
+                 +======+=======+=======================+
+                 | size | value | description           |
+                 +======+=======+=======================+
+                 | W    | 0     | word (4 bytes)        |
+                 +------+-------+-----------------------+
+                 | H    | 1     | half word (2 bytes)   |
+                 +------+-------+-----------------------+
+                 | B    | 2     | byte                  |
+                 +------+-------+-----------------------+
+                 | DW   | 3     | double word (8 bytes) |
+                 +------+-------+-----------------------+
 
-   The mode modifier is one of:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                                 Table 9
 
 
 
@@ -898,53 +898,53 @@ Thaler                  Expires 5 September 2024               [Page 16]
 Internet-Draft                 (e)BPF ISA                     March 2024
 
 
-      +============+=======+==================+=====================+
-      | mode       | value | description      | reference           |
-      | modifier   |       |                  |                     |
-      +============+=======+==================+=====================+
-      | BPF_IMM    | 0x00  | 64-bit immediate | 64-bit immediate    |
-      |            |       | instructions     | instructions        |
-      |            |       |                  | (Section 4.4)       |
-      +------------+-------+------------------+---------------------+
-      | BPF_ABS    | 0x20  | legacy BPF       | Legacy BPF Packet   |
-      |            |       | packet access    | access instructions |
-      |            |       | (absolute)       | (Section 4.5)       |
-      +------------+-------+------------------+---------------------+
-      | BPF_IND    | 0x40  | legacy BPF       | Legacy BPF Packet   |
-      |            |       | packet access    | access instructions |
-      |            |       | (indirect)       | (Section 4.5)       |
-      +------------+-------+------------------+---------------------+
-      | BPF_MEM    | 0x60  | regular load and | Regular load and    |
-      |            |       | store operations | store operations    |
-      |            |       |                  | (Section 4.1)       |
-      +------------+-------+------------------+---------------------+
-      | BPF_MEMSX  | 0x80  | sign-extension   | Sign-extension load |
-      |            |       | load operations  | operations          |
-      |            |       |                  | (Section 4.2)       |
-      +------------+-------+------------------+---------------------+
-      | BPF_ATOMIC | 0xc0  | atomic           | Atomic operations   |
-      |            |       | operations       | (Section 4.3)       |
-      +------------+-------+------------------+---------------------+
+   |  Instructions using DW belong to the base64 conformance group.
 
-                                  Table 10
+   *class*  The instruction class (see Instruction classes
+      (Section 2.3))
 
-   The size modifier is one of:
+4.1.  Regular load and store operations
 
-             +===============+=======+=======================+
-             | size modifier | value | description           |
-             +===============+=======+=======================+
-             | BPF_W         | 0x00  | word (4 bytes)        |
-             +---------------+-------+-----------------------+
-             | BPF_H         | 0x08  | half word (2 bytes)   |
-             +---------------+-------+-----------------------+
-             | BPF_B         | 0x10  | byte                  |
-             +---------------+-------+-----------------------+
-             | BPF_DW        | 0x18  | double word (8 bytes) |
-             +---------------+-------+-----------------------+
+   The MEM mode modifier is used to encode regular load and store
+   instructions that transfer data between a register and memory.
 
-                                  Table 11
+   {MEM, <size>, STX} means:
 
-   Instructions using BPF_DW belong to the base64 conformance group.
+   *(size *) (dst + offset) = src
+
+   {MEM, <size>, ST} means:
+
+   *(size *) (dst + offset) = imm
+
+   {MEM, <size>, LDX} means:
+
+   dst = *(unsigned size *) (src + offset)
+
+   Where '<size>' is one of: B, H, W, or DW, and 'unsigned size' is one
+   of: u8, u16, u32, or u64.
+
+4.2.  Sign-extension load operations
+
+   The MEMSX mode modifier is used to encode sign-extension
+   (Section 1.3) load instructions that transfer data between a register
+   and memory.
+
+   {MEMSX, <size>, LDX} means:
+
+   dst = *(signed size *) (src + offset)
+
+   Where size is one of: B, H, or W, and 'signed size' is one of: s8,
+   s16, or s32.
+
+4.3.  Atomic operations
+
+   Atomic operations are operations that operate on memory and can not
+   be interrupted or corrupted by other access to the same memory region
+   by other BPF programs or means outside of this specification.
+
+   All atomic operations supported by BPF are encoded as store
+   operations that use the ATOMIC mode modifier as follows:
+
 
 
 
@@ -954,53 +954,53 @@ Thaler                  Expires 5 September 2024               [Page 17]
 Internet-Draft                 (e)BPF ISA                     March 2024
 
 
-4.1.  Regular load and store operations
+   *  {ATOMIC, W, STX} for 32-bit operations, which are part of the
+      "atomic32" conformance group.
 
-   The BPF_MEM mode modifier is used to encode regular load and store
-   instructions that transfer data between a register and memory.
+   *  {ATOMIC, DW, STX} for 64-bit operations, which are part of the
+      "atomic64" conformance group.
 
-   BPF_MEM | <size> | BPF_STX means:
+   *  8-bit and 16-bit wide atomic operations are not supported.
 
-   *(size *) (dst + offset) = src
+   The 'imm' field is used to encode the actual atomic operation.
+   Simple atomic operation use a subset of the values defined to encode
+   arithmetic operations in the 'imm' field to encode the atomic
+   operation:
 
-   BPF_MEM | <size> | BPF_ST means:
+                       +=====+=======+=============+
+                       | imm | value | description |
+                       +=====+=======+=============+
+                       | ADD | 0x00  | atomic add  |
+                       +-----+-------+-------------+
+                       | OR  | 0x40  | atomic or   |
+                       +-----+-------+-------------+
+                       | AND | 0x50  | atomic and  |
+                       +-----+-------+-------------+
+                       | XOR | 0xa0  | atomic xor  |
+                       +-----+-------+-------------+
 
-   *(size *) (dst + offset) = imm
+                                  Table 10
 
-   BPF_MEM | <size> | BPF_LDX means:
+   {ATOMIC, W, STX} with 'imm' = ADD means:
 
-   dst = *(unsigned size *) (src + offset)
+   *(u32 *)(dst + offset) += src
 
-   Where size is one of: BPF_B, BPF_H, BPF_W, or BPF_DW and 'unsigned
-   size' is one of u8, u16, u32 or u64.
+   {ATOMIC, DW, STX} with 'imm' = ADD means:
 
-4.2.  Sign-extension load operations
+   *(u64 *)(dst + offset) += src
 
-   The BPF_MEMSX mode modifier is used to encode sign-extension
-   (Section 1.3) load instructions that transfer data between a register
-   and memory.
+   In addition to the simple atomic operations, there also is a modifier
+   and two complex atomic operations:
 
-   BPF_MEMSX | <size> | BPF_LDX means:
 
-   dst = *(signed size *) (src + offset)
 
-   Where size is one of: BPF_B, BPF_H or BPF_W, and 'signed size' is one
-   of s8, s16 or s32.
 
-4.3.  Atomic operations
 
-   Atomic operations are operations that operate on memory and can not
-   be interrupted or corrupted by other access to the same memory region
-   by other BPF programs or means outside of this specification.
 
-   All atomic operations supported by BPF are encoded as store
-   operations that use the BPF_ATOMIC mode modifier as follows:
 
-   *  BPF_ATOMIC | BPF_W | BPF_STX for 32-bit operations, which are part
-      of the "atomic32" conformance group.
 
-   *  BPF_ATOMIC | BPF_DW | BPF_STX for 64-bit operations, which are
-      part of the "atomic64" conformance group.
+
+
 
 
 
@@ -1010,54 +1010,54 @@ Thaler                  Expires 5 September 2024               [Page 18]
 Internet-Draft                 (e)BPF ISA                     March 2024
 
 
-   *  8-bit and 16-bit wide atomic operations are not supported.
+         +=========+==============+=============================+
+         | imm     | value        | description                 |
+         +=========+==============+=============================+
+         | FETCH   | 0x01         | modifier: return old value  |
+         +---------+--------------+-----------------------------+
+         | XCHG    | 0xe0 | FETCH | atomic exchange             |
+         +---------+--------------+-----------------------------+
+         | CMPXCHG | 0xf0 | FETCH | atomic compare and exchange |
+         +---------+--------------+-----------------------------+
 
-   The 'imm' field is used to encode the actual atomic operation.
-   Simple atomic operation use a subset of the values defined to encode
-   arithmetic operations in the 'imm' field to encode the atomic
-   operation:
+                                 Table 11
 
-                     +=========+=======+=============+
-                     | imm     | value | description |
-                     +=========+=======+=============+
-                     | BPF_ADD | 0x00  | atomic add  |
-                     +---------+-------+-------------+
-                     | BPF_OR  | 0x40  | atomic or   |
-                     +---------+-------+-------------+
-                     | BPF_AND | 0x50  | atomic and  |
-                     +---------+-------+-------------+
-                     | BPF_XOR | 0xa0  | atomic xor  |
-                     +---------+-------+-------------+
+   The FETCH modifier is optional for simple atomic operations, and
+   always set for the complex atomic operations.  If the FETCH flag is
+   set, then the operation also overwrites src with the value that was
+   in memory before it was modified.
 
-                                  Table 12
+   The XCHG operation atomically exchanges src with the value addressed
+   by dst + offset.
 
-   BPF_ATOMIC | BPF_W | BPF_STX with 'imm' = BPF_ADD means:
+   The CMPXCHG operation atomically compares the value addressed by dst
+   + offset with R0.  If they match, the value addressed by dst + offset
+   is replaced with src.  In either case, the value that was at dst +
+   offset before the operation is zero-extended and loaded back to R0.
 
-   *(u32 *)(dst + offset) += src
+4.4.  64-bit immediate instructions
 
-   BPF_ATOMIC | BPF_DW | BPF_STX with 'imm' = BPF_ADD means:
+   Instructions with the IMM 'mode' modifier use the wide instruction
+   encoding defined in Instruction encoding (Section 2), and use the
+   'src_reg' field of the basic instruction to hold an opcode subtype.
 
-   *(u64 *)(dst + offset) += src
+   The following table defines a set of {IMM, DW, LD} instructions with
+   opcode subtypes in the 'src_reg' field, using new terms such as "map"
+   defined further below:
 
-   In addition to the simple atomic operations, there also is a modifier
-   and two complex atomic operations:
 
-     +=============+==================+=============================+
-     | imm         | value            | description                 |
-     +=============+==================+=============================+
-     | BPF_FETCH   | 0x01             | modifier: return old value  |
-     +-------------+------------------+-----------------------------+
-     | BPF_XCHG    | 0xe0 | BPF_FETCH | atomic exchange             |
-     +-------------+------------------+-----------------------------+
-     | BPF_CMPXCHG | 0xf0 | BPF_FETCH | atomic compare and exchange |
-     +-------------+------------------+-----------------------------+
 
-                                 Table 13
 
-   The BPF_FETCH modifier is optional for simple atomic operations, and
-   always set for the complex atomic operations.  If the BPF_FETCH flag
-   is set, then the operation also overwrites src with the value that
-   was in memory before it was modified.
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1066,96 +1066,30 @@ Thaler                  Expires 5 September 2024               [Page 19]
 Internet-Draft                 (e)BPF ISA                     March 2024
 
 
-   The BPF_XCHG operation atomically exchanges src with the value
-   addressed by dst + offset.
+    +=========+================================+==========+==========+
+    | src_reg | pseudocode                     | imm type | dst type |
+    +=========+================================+==========+==========+
+    | 0x0     | dst = (next_imm << 32) | imm   | integer  | integer  |
+    +---------+--------------------------------+----------+----------+
+    | 0x1     | dst = map_by_fd(imm)           | map fd   | map      |
+    +---------+--------------------------------+----------+----------+
+    | 0x2     | dst = map_val(map_by_fd(imm))  | map fd   | data     |
+    |         | + next_imm                     |          | pointer  |
+    +---------+--------------------------------+----------+----------+
+    | 0x3     | dst = var_addr(imm)            | variable | data     |
+    |         |                                | id       | pointer  |
+    +---------+--------------------------------+----------+----------+
+    | 0x4     | dst = code_addr(imm)           | integer  | code     |
+    |         |                                |          | pointer  |
+    +---------+--------------------------------+----------+----------+
+    | 0x5     | dst = map_by_idx(imm)          | map      | map      |
+    |         |                                | index    |          |
+    +---------+--------------------------------+----------+----------+
+    | 0x6     | dst = map_val(map_by_idx(imm)) | map      | data     |
+    |         | + next_imm                     | index    | pointer  |
+    +---------+--------------------------------+----------+----------+
 
-   The BPF_CMPXCHG operation atomically compares the value addressed by
-   dst + offset with R0.  If they match, the value addressed by dst +
-   offset is replaced with src.  In either case, the value that was at
-   dst + offset before the operation is zero-extended and loaded back to
-   R0.
-
-4.4.  64-bit immediate instructions
-
-   Instructions with the BPF_IMM 'mode' modifier use the wide
-   instruction encoding defined in Instruction encoding (Section 2), and
-   use the 'src_reg' field of the basic instruction to hold an opcode
-   subtype.
-
-   The following table defines a set of BPF_IMM | BPF_DW | BPF_LD
-   instructions with opcode subtypes in the 'src_reg' field, using new
-   terms such as "map" defined further below:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Thaler                  Expires 5 September 2024               [Page 20]
-
-Internet-Draft                 (e)BPF ISA                     March 2024
-
-
-   +============+======+=======+========================+========+=======+
-   |opcode      |opcode|src_reg|pseudocode              |imm type|dst    |
-   |construction|      |       |                        |        |type   |
-   +============+======+=======+========================+========+=======+
-   |BPF_IMM |   |0x18  |0x0    |dst = (next_imm << 32) ||integer |integer|
-   |BPF_DW |    |      |       |imm                     |        |       |
-   |BPF_LD      |      |       |                        |        |       |
-   +------------+------+-------+------------------------+--------+-------+
-   |BPF_IMM |   |0x18  |0x1    |dst = map_by_fd(imm)    |map fd  |map    |
-   |BPF_DW |    |      |       |                        |        |       |
-   |BPF_LD      |      |       |                        |        |       |
-   +------------+------+-------+------------------------+--------+-------+
-   |BPF_IMM |   |0x18  |0x2    |dst =                   |map fd  |data   |
-   |BPF_DW |    |      |       |map_val(map_by_fd(imm)) |        |pointer|
-   |BPF_LD      |      |       |+ next_imm              |        |       |
-   +------------+------+-------+------------------------+--------+-------+
-   |BPF_IMM |   |0x18  |0x3    |dst = var_addr(imm)     |variable|data   |
-   |BPF_DW |    |      |       |                        |id      |pointer|
-   |BPF_LD      |      |       |                        |        |       |
-   +------------+------+-------+------------------------+--------+-------+
-   |BPF_IMM |   |0x18  |0x4    |dst = code_addr(imm)    |integer |code   |
-   |BPF_DW |    |      |       |                        |        |pointer|
-   |BPF_LD      |      |       |                        |        |       |
-   +------------+------+-------+------------------------+--------+-------+
-   |BPF_IMM |   |0x18  |0x5    |dst = map_by_idx(imm)   |map     |map    |
-   |BPF_DW |    |      |       |                        |index   |       |
-   |BPF_LD      |      |       |                        |        |       |
-   +------------+------+-------+------------------------+--------+-------+
-   |BPF_IMM |   |0x18  |0x6    |dst =                   |map     |data   |
-   |BPF_DW |    |      |       |map_val(map_by_idx(imm))|index   |pointer|
-   |BPF_LD      |      |       |+ next_imm              |        |       |
-   +------------+------+-------+------------------------+--------+-------+
-
-                                  Table 14
+                                 Table 12
 
    where
 
@@ -1170,14 +1104,6 @@ Internet-Draft                 (e)BPF ISA                     March 2024
    *  var_addr(imm) gets the address of a platform variable (see
       Platform Variables (Section 4.4.2)) with a given id
 
-
-
-
-Thaler                  Expires 5 September 2024               [Page 21]
-
-Internet-Draft                 (e)BPF ISA                     March 2024
-
-
    *  code_addr(imm) gets the address of the instruction at a specified
       relative offset in number of (64-bit) instructions
 
@@ -1185,6 +1111,16 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
    *  the 'dst type' can be used for verification and JIT compilation
       purposes
+
+
+
+
+
+
+Thaler                  Expires 5 September 2024               [Page 20]
+
+Internet-Draft                 (e)BPF ISA                     March 2024
+
 
 4.4.1.  Maps
 
@@ -1212,27 +1148,15 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
    BPF previously introduced special instructions for access to packet
    data that were carried over from classic BPF.  These instructions
-   used an instruction class of BPF_LD, a size modifier of BPF_W, BPF_H,
-   or BPF_B, and a mode modifier of BPF_ABS or BPF_IND.  The 'dst_reg'
-   and 'offset' fields were set to zero, and 'src_reg' was set to zero
-   for BPF_ABS.  However, these instructions are deprecated and should
-   no longer be used.  All legacy packet access instructions belong to
-   the "legacy" conformance group.
+   used an instruction class of LD, a size modifier of W, H, or B, and a
+   mode modifier of ABS or IND.  The 'dst_reg' and 'offset' fields were
+   set to zero, and 'src_reg' was set to zero for ABS.  However, these
+   instructions are deprecated and should no longer be used.  All legacy
+   packet access instructions belong to the "packet" conformance group.
 
 5.  IANA Considerations
 
    This document defines two sub-registries.
-
-
-
-
-
-
-
-Thaler                  Expires 5 September 2024               [Page 22]
-
-Internet-Draft                 (e)BPF ISA                     March 2024
-
 
 5.1.  BPF Instruction Conformance Group Registry
 
@@ -1245,6 +1169,14 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
    *  Required information for registrations: The values to appear in
       the entry fields.
+
+
+
+
+Thaler                  Expires 5 September 2024               [Page 21]
+
+Internet-Draft                 (e)BPF ISA                     March 2024
+
 
    *  Syntax of registry entries: Each entry has the following fields:
 
@@ -1285,7 +1217,19 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 5 September 2024               [Page 23]
+
+
+
+
+
+
+
+
+
+
+
+
+Thaler                  Expires 5 September 2024               [Page 22]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -1324,7 +1268,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
    |      |              |        |        |          | (Section 4.5) |
    +------+--------------+--------+--------+----------+---------------+
 
-                                 Table 15
+                                 Table 13
 
    NOTE TO RFC-EDITOR: Upon publication, please replace RFCXXX above
    with reference to this document.
@@ -1341,7 +1285,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 5 September 2024               [Page 24]
+Thaler                  Expires 5 September 2024               [Page 23]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -1373,7 +1317,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
    |             |instructions|        |             |          |           |
    +-------------+------------+--------+-------------+----------+-----------+
 
-                                  Table 16
+                                  Table 14
 
    The BPF Instruction Set entries for the deprecated instructions would
    then be updated to add "legacyexample" to the set of groups for those
@@ -1397,7 +1341,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 5 September 2024               [Page 25]
+Thaler                  Expires 5 September 2024               [Page 24]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -1453,7 +1397,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 5 September 2024               [Page 26]
+Thaler                  Expires 5 September 2024               [Page 25]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -1509,7 +1453,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 5 September 2024               [Page 27]
+Thaler                  Expires 5 September 2024               [Page 26]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -1565,7 +1509,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 5 September 2024               [Page 28]
+Thaler                  Expires 5 September 2024               [Page 27]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -1621,7 +1565,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 5 September 2024               [Page 29]
+Thaler                  Expires 5 September 2024               [Page 28]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -1677,7 +1621,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 5 September 2024               [Page 30]
+Thaler                  Expires 5 September 2024               [Page 29]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -1733,7 +1677,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 5 September 2024               [Page 31]
+Thaler                  Expires 5 September 2024               [Page 30]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -1789,7 +1733,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 5 September 2024               [Page 32]
+Thaler                  Expires 5 September 2024               [Page 31]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -1845,7 +1789,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 5 September 2024               [Page 33]
+Thaler                  Expires 5 September 2024               [Page 32]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -1901,7 +1845,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 5 September 2024               [Page 34]
+Thaler                  Expires 5 September 2024               [Page 33]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -1957,7 +1901,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 5 September 2024               [Page 35]
+Thaler                  Expires 5 September 2024               [Page 34]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -2013,7 +1957,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 5 September 2024               [Page 36]
+Thaler                  Expires 5 September 2024               [Page 35]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -2069,7 +2013,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 5 September 2024               [Page 37]
+Thaler                  Expires 5 September 2024               [Page 36]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -2125,7 +2069,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 5 September 2024               [Page 38]
+Thaler                  Expires 5 September 2024               [Page 37]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -2181,7 +2125,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 5 September 2024               [Page 39]
+Thaler                  Expires 5 September 2024               [Page 38]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -2237,7 +2181,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
 
 
 
-Thaler                  Expires 5 September 2024               [Page 40]
+Thaler                  Expires 5 September 2024               [Page 39]
 
 Internet-Draft                 (e)BPF ISA                     March 2024
 
@@ -2275,7 +2219,7 @@ Internet-Draft                 (e)BPF ISA                     March 2024
    |      |       |      |    |                        |        |(Section 3.3)|
    +------+-------+------+----+------------------------+--------+-------------+
 
-                                  Table 17
+                                  Table 15
 
 8.  Normative References
 
@@ -2293,4 +2237,4 @@ Author's Address
 
 
 
-Thaler                  Expires 5 September 2024               [Page 41]
+Thaler                  Expires 5 September 2024               [Page 40]

@@ -56,7 +56,7 @@ BPF Instruction Set Architecture (ISA)
      <name>Meaning of signedness notation.</name>
      <thead>
       <tr>
-       <th><em>S</em></th>
+       <th>S</th>
        <th>Meaning</th>
       </tr>
      </thead>
@@ -64,7 +64,7 @@ BPF Instruction Set Architecture (ISA)
       <tr>
        <td>
         <t>
-         <em>u</em>
+         u
         </t>
        </td>
        <td>
@@ -76,7 +76,7 @@ BPF Instruction Set Architecture (ISA)
       <tr>
        <td>
         <t>
-         <em>s</em>
+         s
         </t>
        </td>
        <td>
@@ -91,7 +91,7 @@ BPF Instruction Set Architecture (ISA)
      <name>Meaning of bit-width notation.</name>
      <thead>
       <tr>
-       <th><em>N</em></th>
+       <th>N</th>
        <th>Bit width</th>
       </tr>
      </thead>
@@ -99,7 +99,7 @@ BPF Instruction Set Architecture (ISA)
       <tr>
        <td>
         <t>
-         <em>8</em>
+         8
         </t>
        </td>
        <td>
@@ -111,7 +111,7 @@ BPF Instruction Set Architecture (ISA)
       <tr>
        <td>
         <t>
-         <em>16</em>
+         16
         </t>
        </td>
        <td>
@@ -123,7 +123,7 @@ BPF Instruction Set Architecture (ISA)
       <tr>
        <td>
         <t>
-         <em>32</em>
+         32
         </t>
        </td>
        <td>
@@ -135,7 +135,7 @@ BPF Instruction Set Architecture (ISA)
       <tr>
        <td>
         <t>
-         <em>64</em>
+         64
         </t>
        </td>
        <td>
@@ -147,7 +147,7 @@ BPF Instruction Set Architecture (ISA)
       <tr>
        <td>
         <t>
-         <em>128</em>
+         128
         </t>
        </td>
        <td>
@@ -167,47 +167,47 @@ BPF Instruction Set Architecture (ISA)
    <section anchor="functions" title="Functions">
     <ul>
      <li>
-      <em>htobe16</em>: Takes an unsigned 16-bit number in host-endian format and
+      htobe16: Takes an unsigned 16-bit number in host-endian format and
       returns the equivalent number as an unsigned 16-bit number in big-endian
       format.
      </li>
      <li>
-      <em>htobe32</em>: Takes an unsigned 32-bit number in host-endian format and
+      htobe32: Takes an unsigned 32-bit number in host-endian format and
       returns the equivalent number as an unsigned 32-bit number in big-endian
       format.
      </li>
      <li>
-      <em>htobe64</em>: Takes an unsigned 64-bit number in host-endian format and
+      htobe64: Takes an unsigned 64-bit number in host-endian format and
       returns the equivalent number as an unsigned 64-bit number in big-endian
       format.
      </li>
      <li>
-      <em>htole16</em>: Takes an unsigned 16-bit number in host-endian format and
+      htole16: Takes an unsigned 16-bit number in host-endian format and
       returns the equivalent number as an unsigned 16-bit number in little-endian
       format.
      </li>
      <li>
-      <em>htole32</em>: Takes an unsigned 32-bit number in host-endian format and
+      htole32: Takes an unsigned 32-bit number in host-endian format and
       returns the equivalent number as an unsigned 32-bit number in little-endian
       format.
      </li>
      <li>
-      <em>htole64</em>: Takes an unsigned 64-bit number in host-endian format and
+      htole64: Takes an unsigned 64-bit number in host-endian format and
       returns the equivalent number as an unsigned 64-bit number in little-endian
       format.
      </li>
      <li>
-      <em>bswap16</em>: Takes an unsigned 16-bit number in either big- or little-endian
+      bswap16: Takes an unsigned 16-bit number in either big- or little-endian
       format and returns the equivalent number with the same bit width but
       opposite endianness.
      </li>
      <li>
-      <em>bswap32</em>: Takes an unsigned 32-bit number in either big- or little-endian
+      bswap32: Takes an unsigned 32-bit number in either big- or little-endian
       format and returns the equivalent number with the same bit width but
       opposite endianness.
      </li>
      <li>
-      <em>bswap64</em>: Takes an unsigned 64-bit number in either big- or little-endian
+      bswap64: Takes an unsigned 64-bit number in either big- or little-endian
       format and returns the equivalent number with the same bit width but
       opposite endianness.
      </li>
@@ -290,7 +290,7 @@ B: 11111111 10000110
       and modulo instructions.
      </li>
      <li>
-      legacy: deprecated packet access instructions.
+      packet: deprecated packet access instructions.
      </li>
     </ul>
    </section>
@@ -304,106 +304,206 @@ B: 11111111 10000110
      the basic instruction encoding, which uses 64 bits to encode an instruction
     </li>
     <li>
-     the wide instruction encoding, which appends a second 64-bit immediate (i.e.,
-     constant) value after the basic instruction for a total of 128 bits.
+     the wide instruction encoding, which appends a second 64 bits
+     after the basic instruction for a total of 128 bits.
     </li>
    </ul>
-   <t>
-    The fields conforming an encoded basic instruction are stored in the
-    following order:
-   </t>
-   <artwork>
-opcode:8 src_reg:4 dst_reg:4 offset:16 imm:32 // In little-endian BPF.
-opcode:8 dst_reg:4 src_reg:4 offset:16 imm:32 // In big-endian BPF.
-   </artwork>
-   <dl>
-    <dt anchor="term---imm--">
-     <strong>imm</strong>
-    </dt>
-    <dd>
-     <t>
-      signed integer immediate value
-     </t>
-    </dd>
-    <dt anchor="term---offset--">
-     <strong>offset</strong>
-    </dt>
-    <dd>
-     <t>
-      signed integer offset used with pointer arithmetic
-     </t>
-    </dd>
-    <dt anchor="term---src_reg--">
-     <strong>src_reg</strong>
-    </dt>
-    <dd>
-     <t>
-      the source register number (0-10), except where otherwise specified
-      (<xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref> reuse this field for other purposes)
-     </t>
-    </dd>
-    <dt anchor="term---dst_reg--">
-     <strong>dst_reg</strong>
-    </dt>
-    <dd>
-     <t>
-      destination register number (0-10)
-     </t>
-    </dd>
-    <dt anchor="term---opcode--">
-     <strong>opcode</strong>
-    </dt>
-    <dd>
-     <t>
-      operation to perform
-     </t>
-    </dd>
-   </dl>
-   <t>
-    Note that the contents of multi-byte fields ('imm' and 'offset') are
-    stored using big-endian byte ordering in big-endian BPF and
-    little-endian byte ordering in little-endian BPF.
-   </t>
-   <t>
-    For example:
-   </t>
-   <artwork>
+   <section anchor="basic-instruction-encoding" title="Basic instruction encoding">
+    <t>
+     A basic instruction is encoded as follows:
+    </t>
+    <artwork>
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|    opcode     |     regs      |            offset             |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                              imm                              |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    </artwork>
+    <dl>
+     <dt anchor="term---opcode--">
+      <strong>opcode</strong>
+     </dt>
+     <dd>
+      <t>
+       operation to perform, encoded as follows:
+      </t>
+      <artwork>
++-+-+-+-+-+-+-+-+
+|specific |class|
++-+-+-+-+-+-+-+-+
+      </artwork>
+      <dl>
+       <dt anchor="term---specific--">
+        <strong>specific</strong>
+       </dt>
+       <dd>
+        <t>
+         The format of these bits varies by instruction class
+        </t>
+       </dd>
+       <dt anchor="term---class--">
+        <strong>class</strong>
+       </dt>
+       <dd>
+        <t>
+         The instruction class (see <xref target="instruction-classes">Instruction classes</xref>)
+        </t>
+       </dd>
+      </dl>
+     </dd>
+     <dt anchor="term---regs--">
+      <strong>regs</strong>
+     </dt>
+     <dd>
+      <t>
+       The source and destination register numbers, encoded as follows
+       on a little-endian host:
+      </t>
+      <artwork>
++-+-+-+-+-+-+-+-+
+|src_reg|dst_reg|
++-+-+-+-+-+-+-+-+
+      </artwork>
+      <t>
+       and as follows on a big-endian host:
+      </t>
+      <artwork>
++-+-+-+-+-+-+-+-+
+|dst_reg|src_reg|
++-+-+-+-+-+-+-+-+
+      </artwork>
+      <dl>
+       <dt anchor="term---src_reg--">
+        <strong>src_reg</strong>
+       </dt>
+       <dd>
+        <t>
+         the source register number (0-10), except where otherwise specified
+         (<xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref> reuse this field for other purposes)
+        </t>
+       </dd>
+       <dt anchor="term---dst_reg--">
+        <strong>dst_reg</strong>
+       </dt>
+       <dd>
+        <t>
+         destination register number (0-10)
+        </t>
+       </dd>
+      </dl>
+     </dd>
+     <dt anchor="term---offset--">
+      <strong>offset</strong>
+     </dt>
+     <dd>
+      <t>
+       signed integer offset used with pointer arithmetic
+      </t>
+     </dd>
+     <dt anchor="term---imm--">
+      <strong>imm</strong>
+     </dt>
+     <dd>
+      <t>
+       signed integer immediate value
+      </t>
+     </dd>
+    </dl>
+    <t>
+     Note that the contents of multi-byte fields ('offset' and 'imm') are
+     stored using big-endian byte ordering on big-endian hosts and
+     little-endian byte ordering on little-endian hosts.
+    </t>
+    <t>
+     For example:
+    </t>
+    <artwork>
 opcode                  offset imm          assembly
        src_reg dst_reg
 07     0       1        00 00  44 33 22 11  r1 += 0x11223344 // little
        dst_reg src_reg
 07     1       0        00 00  11 22 33 44  r1 += 0x11223344 // big
-   </artwork>
-   <t>
-    Note that most instructions do not use all of the fields.
-    Unused fields shall be cleared to zero.
-   </t>
-   <t>
-    As discussed below in <xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref>, a 64-bit immediate
-    instruction uses two 32-bit immediate values that are constructed as follows.
-    The 64 bits following the basic instruction contain a pseudo instruction
-    using the same format but with 'opcode', 'dst_reg', 'src_reg', and 'offset' all
-    set to zero, and imm containing the high 32 bits of the immediate value.
-   </t>
-   <t>
-    This is depicted in the following figure:
-   </t>
-   <artwork>
-      basic_instruction
-.------------------------------.
-|                              |
-opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
-                                 |              |
-                                 '--------------'
-                                pseudo instruction
-   </artwork>
-   <t>
-    Here, the imm value of the pseudo instruction is called 'next_imm'. The unused
-    bytes in the pseudo instruction are reserved and shall be cleared to zero.
-   </t>
+    </artwork>
+    <t>
+     Note that most instructions do not use all of the fields.
+     Unused fields shall be cleared to zero.
+    </t>
+   </section>
+   <section anchor="wide-instruction-encoding" title="Wide instruction encoding">
+    <t>
+     Some instructions are defined to use the wide instruction encoding,
+     which uses two 32-bit immediate values.  The 64 bits following
+     the basic instruction format contain a pseudo instruction
+     with 'opcode', 'dst_reg', 'src_reg', and 'offset' all set to zero.
+    </t>
+    <t>
+     This is depicted in the following figure:
+    </t>
+    <artwork>
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|    opcode     |     regs      |            offset             |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                              imm                              |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                           reserved                            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                           next_imm                            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    </artwork>
+    <dl>
+     <dt anchor="term---opcode---">
+      <strong>opcode</strong>
+     </dt>
+     <dd>
+      <t>
+       operation to perform, encoded as explained above
+      </t>
+     </dd>
+     <dt anchor="term---regs---">
+      <strong>regs</strong>
+     </dt>
+     <dd>
+      <t>
+       The source and destination register numbers, encoded as explained above
+      </t>
+     </dd>
+     <dt anchor="term---offset---">
+      <strong>offset</strong>
+     </dt>
+     <dd>
+      <t>
+       signed integer offset used with pointer arithmetic
+      </t>
+     </dd>
+     <dt anchor="term---imm---">
+      <strong>imm</strong>
+     </dt>
+     <dd>
+      <t>
+       signed integer immediate value
+      </t>
+     </dd>
+     <dt anchor="term---reserved--">
+      <strong>reserved</strong>
+     </dt>
+     <dd>
+      <t>
+       unused, set to zero
+      </t>
+     </dd>
+     <dt anchor="term---next_imm--">
+      <strong>next_imm</strong>
+     </dt>
+     <dd>
+      <t>
+       second signed integer immediate value
+      </t>
+     </dd>
+    </dl>
+   </section>
    <section anchor="instruction-classes" title="Instruction classes">
     <t>
-     The three LSB bits of the 'opcode' field store the instruction class:
+     The three least significant bits of the 'opcode' field store the instruction class:
     </t>
     <table>
      <thead>
@@ -418,12 +518,12 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
       <tr>
        <td>
         <t>
-         BPF_LD
+         LD
         </t>
        </td>
        <td>
         <t>
-         0x00
+         0x0
         </t>
        </td>
        <td>
@@ -440,12 +540,12 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
       <tr>
        <td>
         <t>
-         BPF_LDX
+         LDX
         </t>
        </td>
        <td>
         <t>
-         0x01
+         0x1
         </t>
        </td>
        <td>
@@ -462,12 +562,12 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
       <tr>
        <td>
         <t>
-         BPF_ST
+         ST
         </t>
        </td>
        <td>
         <t>
-         0x02
+         0x2
         </t>
        </td>
        <td>
@@ -484,12 +584,12 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
       <tr>
        <td>
         <t>
-         BPF_STX
+         STX
         </t>
        </td>
        <td>
         <t>
-         0x03
+         0x3
         </t>
        </td>
        <td>
@@ -506,12 +606,12 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
       <tr>
        <td>
         <t>
-         BPF_ALU
+         ALU
         </t>
        </td>
        <td>
         <t>
-         0x04
+         0x4
         </t>
        </td>
        <td>
@@ -528,12 +628,12 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
       <tr>
        <td>
         <t>
-         BPF_JMP
+         JMP
         </t>
        </td>
        <td>
         <t>
-         0x05
+         0x5
         </t>
        </td>
        <td>
@@ -550,12 +650,12 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
       <tr>
        <td>
         <t>
-         BPF_JMP32
+         JMP32
         </t>
        </td>
        <td>
         <t>
-         0x06
+         0x6
         </t>
        </td>
        <td>
@@ -572,12 +672,12 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
       <tr>
        <td>
         <t>
-         BPF_ALU64
+         ALU64
         </t>
        </td>
        <td>
         <t>
-         0x07
+         0x7
         </t>
        </td>
        <td>
@@ -597,37 +697,14 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
   </section>
   <section anchor="arithmetic-and-jump-instructions" title="Arithmetic and jump instructions">
    <t>
-    For arithmetic and jump instructions (<tt>BPF_ALU</tt>, <tt>BPF_ALU64</tt>, <tt>BPF_JMP</tt> and
-    <tt>BPF_JMP32</tt>), the 8-bit 'opcode' field is divided into three parts:
+    For arithmetic and jump instructions (<tt>ALU</tt>, <tt>ALU64</tt>, <tt>JMP</tt> and
+    <tt>JMP32</tt>), the 8-bit 'opcode' field is divided into three parts:
    </t>
-   <table>
-    <thead>
-     <tr>
-      <th>4 bits (MSB)</th>
-      <th>1 bit</th>
-      <th>3 bits (LSB)</th>
-     </tr>
-    </thead>
-    <tbody>
-     <tr>
-      <td>
-       <t>
-        code
-       </t>
-      </td>
-      <td>
-       <t>
-        source
-       </t>
-      </td>
-      <td>
-       <t>
-        instruction class
-       </t>
-      </td>
-     </tr>
-    </tbody>
-   </table>
+   <artwork>
++-+-+-+-+-+-+-+-+
+|  code |s|class|
++-+-+-+-+-+-+-+-+
+   </artwork>
    <dl>
     <dt anchor="term---code--">
      <strong>code</strong>
@@ -637,8 +714,8 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
       the operation code, whose meaning varies by instruction class
      </t>
     </dd>
-    <dt anchor="term---source--">
-     <strong>source</strong>
+    <dt anchor="term---s--source---">
+     <strong>s (source)</strong>
     </dt>
     <dd>
      <t>
@@ -658,12 +735,12 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
      <tr>
       <td>
        <t>
-        BPF_K
+        K
        </t>
       </td>
       <td>
        <t>
-        0x00
+        0
        </t>
       </td>
       <td>
@@ -675,12 +752,12 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
      <tr>
       <td>
        <t>
-        BPF_X
+        X
        </t>
       </td>
       <td>
        <t>
-        0x08
+        1
        </t>
       </td>
       <td>
@@ -703,8 +780,8 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
    </dl>
    <section anchor="arithmetic-instructions" title="Arithmetic instructions">
     <t>
-     <tt>BPF_ALU</tt> uses 32-bit wide operands while <tt>BPF_ALU64</tt> uses 64-bit wide operands for
-     otherwise identical operations. <tt>BPF_ALU64</tt> instructions belong to the
+     <tt>ALU</tt> uses 32-bit wide operands while <tt>ALU64</tt> uses 64-bit wide operands for
+     otherwise identical operations. <tt>ALU64</tt> instructions belong to the
      base64 conformance group unless noted otherwise.
      The 'code' field encodes the operation as below, where 'src' and 'dst' refer
      to the values of the source and destination registers, respectively.
@@ -712,8 +789,8 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
     <table>
      <thead>
       <tr>
+       <th>name</th>
        <th>code</th>
-       <th>value</th>
        <th>offset</th>
        <th>description</th>
       </tr>
@@ -722,12 +799,12 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
       <tr>
        <td>
         <t>
-         BPF_ADD
+         ADD
         </t>
        </td>
        <td>
         <t>
-         0x00
+         0x0
         </t>
        </td>
        <td>
@@ -744,12 +821,12 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
       <tr>
        <td>
         <t>
-         BPF_SUB
+         SUB
         </t>
        </td>
        <td>
         <t>
-         0x10
+         0x1
         </t>
        </td>
        <td>
@@ -766,12 +843,12 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
       <tr>
        <td>
         <t>
-         BPF_MUL
+         MUL
         </t>
        </td>
        <td>
         <t>
-         0x20
+         0x2
         </t>
        </td>
        <td>
@@ -788,12 +865,12 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
       <tr>
        <td>
         <t>
-         BPF_DIV
+         DIV
         </t>
        </td>
        <td>
         <t>
-         0x30
+         0x3
         </t>
        </td>
        <td>
@@ -810,12 +887,12 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
       <tr>
        <td>
         <t>
-         BPF_SDIV
+         SDIV
         </t>
        </td>
        <td>
         <t>
-         0x30
+         0x3
         </t>
        </td>
        <td>
@@ -832,12 +909,12 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
       <tr>
        <td>
         <t>
-         BPF_OR
+         OR
         </t>
        </td>
        <td>
         <t>
-         0x40
+         0x4
         </t>
        </td>
        <td>
@@ -854,12 +931,12 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
       <tr>
        <td>
         <t>
-         BPF_AND
+         AND
         </t>
        </td>
        <td>
         <t>
-         0x50
+         0x5
         </t>
        </td>
        <td>
@@ -876,12 +953,12 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
       <tr>
        <td>
         <t>
-         BPF_LSH
+         LSH
         </t>
        </td>
        <td>
         <t>
-         0x60
+         0x6
         </t>
        </td>
        <td>
@@ -898,12 +975,12 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
       <tr>
        <td>
         <t>
-         BPF_RSH
+         RSH
         </t>
        </td>
        <td>
         <t>
-         0x70
+         0x7
         </t>
        </td>
        <td>
@@ -920,12 +997,12 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
       <tr>
        <td>
         <t>
-         BPF_NEG
+         NEG
         </t>
        </td>
        <td>
         <t>
-         0x80
+         0x8
         </t>
        </td>
        <td>
@@ -942,12 +1019,12 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
       <tr>
        <td>
         <t>
-         BPF_MOD
+         MOD
         </t>
        </td>
        <td>
         <t>
-         0x90
+         0x9
         </t>
        </td>
        <td>
@@ -964,12 +1041,12 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
       <tr>
        <td>
         <t>
-         BPF_SMOD
+         SMOD
         </t>
        </td>
        <td>
         <t>
-         0x90
+         0x9
         </t>
        </td>
        <td>
@@ -986,12 +1063,12 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
       <tr>
        <td>
         <t>
-         BPF_XOR
+         XOR
         </t>
        </td>
        <td>
         <t>
-         0xa0
+         0xa
         </t>
        </td>
        <td>
@@ -1008,12 +1085,12 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
       <tr>
        <td>
         <t>
-         BPF_MOV
+         MOV
         </t>
        </td>
        <td>
         <t>
-         0xb0
+         0xb
         </t>
        </td>
        <td>
@@ -1030,12 +1107,12 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
       <tr>
        <td>
         <t>
-         BPF_MOVSX
+         MOVSX
         </t>
        </td>
        <td>
         <t>
-         0xb0
+         0xb
         </t>
        </td>
        <td>
@@ -1052,12 +1129,12 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
       <tr>
        <td>
         <t>
-         BPF_ARSH
+         ARSH
         </t>
        </td>
        <td>
         <t>
-         0xc0
+         0xc
         </t>
        </td>
        <td>
@@ -1074,12 +1151,12 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
       <tr>
        <td>
         <t>
-         BPF_END
+         END
         </t>
        </td>
        <td>
         <t>
-         0xd0
+         0xd
         </t>
        </td>
        <td>
@@ -1099,12 +1176,12 @@ opcode:8 regs:8 offset:16 imm:32 unused:32 imm:32
      Underflow and overflow are allowed during arithmetic operations, meaning
      the 64-bit or 32-bit value will wrap. If BPF program execution would
      result in division by zero, the destination register is instead set to zero.
-     If execution would result in modulo by zero, for <tt>BPF_ALU64</tt> the value of
-     the destination register is unchanged whereas for <tt>BPF_ALU</tt> the upper
+     If execution would result in modulo by zero, for <tt>ALU64</tt> the value of
+     the destination register is unchanged whereas for <tt>ALU</tt> the upper
      32 bits of the destination register are zeroed.
     </t>
     <t>
-     <tt>BPF_ADD | BPF_X | BPF_ALU</tt> means:
+     <tt>{ADD, X, ALU}</tt>, where 'code' = <tt>ADD</tt>, 'source' = <tt>X</tt>, and 'class' = <tt>ALU</tt>, means:
     </t>
     <artwork>
 dst = (u32) ((u32) dst + (u32) src)
@@ -1113,43 +1190,43 @@ dst = (u32) ((u32) dst + (u32) src)
      where '(u32)' indicates that the upper 32 bits are zeroed.
     </t>
     <t>
-     <tt>BPF_ADD | BPF_X | BPF_ALU64</tt> means:
+     <tt>{ADD, X, ALU64}</tt> means:
     </t>
     <artwork>
 dst = dst + src
     </artwork>
     <t>
-     <tt>BPF_XOR | BPF_K | BPF_ALU</tt> means:
+     <tt>{XOR, K, ALU}</tt> means:
     </t>
     <artwork>
 dst = (u32) dst ^ (u32) imm
     </artwork>
     <t>
-     <tt>BPF_XOR | BPF_K | BPF_ALU64</tt> means:
+     <tt>{XOR, K, ALU64}</tt> means:
     </t>
     <artwork>
 dst = dst ^ imm
     </artwork>
     <t>
      Note that most instructions have instruction offset of 0. Only three instructions
-     (<tt>BPF_SDIV</tt>, <tt>BPF_SMOD</tt>, <tt>BPF_MOVSX</tt>) have a non-zero offset.
+     (<tt>SDIV</tt>, <tt>SMOD</tt>, <tt>MOVSX</tt>) have a non-zero offset.
     </t>
     <t>
-     Division, multiplication, and modulo operations for <tt>BPF_ALU</tt> are part
+     Division, multiplication, and modulo operations for <tt>ALU</tt> are part
      of the "divmul32" conformance group, and division, multiplication, and
-     modulo operations for <tt>BPF_ALU64</tt> are part of the "divmul64" conformance
+     modulo operations for <tt>ALU64</tt> are part of the "divmul64" conformance
      group.
      The division and modulo operations support both unsigned and signed flavors.
     </t>
     <t>
-     For unsigned operations (<tt>BPF_DIV</tt> and <tt>BPF_MOD</tt>), for <tt>BPF_ALU</tt>,
-     'imm' is interpreted as a 32-bit unsigned value. For <tt>BPF_ALU64</tt>,
+     For unsigned operations (<tt>DIV</tt> and <tt>MOD</tt>), for <tt>ALU</tt>,
+     'imm' is interpreted as a 32-bit unsigned value. For <tt>ALU64</tt>,
      'imm' is first <xref target="term-sign-extend">sign extended</xref> from 32 to 64 bits, and then
      interpreted as a 64-bit unsigned value.
     </t>
     <t>
-     For signed operations (<tt>BPF_SDIV</tt> and <tt>BPF_SMOD</tt>), for <tt>BPF_ALU</tt>,
-     'imm' is interpreted as a 32-bit signed value. For <tt>BPF_ALU64</tt>, 'imm'
+     For signed operations (<tt>SDIV</tt> and <tt>SMOD</tt>), for <tt>ALU</tt>,
+     'imm' is interpreted as a 32-bit signed value. For <tt>ALU64</tt>, 'imm'
      is first <xref target="term-sign-extend">sign extended</xref> from 32 to 64 bits, and then
      interpreted as a 64-bit signed value.
     </t>
@@ -1164,16 +1241,16 @@ dst = dst ^ imm
      a % n = a - n * trunc(a / n)
     </blockquote>
     <t>
-     The <tt>BPF_MOVSX</tt> instruction does a move operation with sign extension.
-     <tt>BPF_ALU | BPF_MOVSX</tt> <xref target="term-sign-extend">sign extends</xref> 8-bit and 16-bit operands into 32
+     The <tt>MOVSX</tt> instruction does a move operation with sign extension.
+     <tt>{MOVSX, X, ALU}</tt> <xref target="term-sign-extend">sign extends</xref> 8-bit and 16-bit operands into 32
      bit operands, and zeroes the remaining upper 32 bits.
-     <tt>BPF_ALU64 | BPF_MOVSX</tt> <xref target="term-sign-extend">sign extends</xref> 8-bit, 16-bit, and 32-bit
+     <tt>{MOVSX, X, ALU64}</tt> <xref target="term-sign-extend">sign extends</xref> 8-bit, 16-bit, and 32-bit
      operands into 64 bit operands.  Unlike other arithmetic instructions,
-     <tt>BPF_MOVSX</tt> is only defined for register source operands (<tt>BPF_X</tt>).
+     <tt>MOVSX</tt> is only defined for register source operands (<tt>X</tt>).
     </t>
     <t>
-     The <tt>BPF_NEG</tt> instruction is only defined when the source bit is clear
-     (<tt>BPF_K</tt>).
+     The <tt>NEG</tt> instruction is only defined when the source bit is clear
+     (<tt>K</tt>).
     </t>
     <t>
      Shift operations use a mask of 0x3F (63) for 64-bit operations and 0x1F (31)
@@ -1182,17 +1259,17 @@ dst = dst ^ imm
    </section>
    <section anchor="byte-swap-instructions" title="Byte swap instructions">
     <t>
-     The byte swap instructions use instruction classes of <tt>BPF_ALU</tt> and <tt>BPF_ALU64</tt>
-     and a 4-bit 'code' field of <tt>BPF_END</tt>.
+     The byte swap instructions use instruction classes of <tt>ALU</tt> and <tt>ALU64</tt>
+     and a 4-bit 'code' field of <tt>END</tt>.
     </t>
     <t>
      The byte swap instructions operate on the destination register
      only and do not use a separate source register or immediate value.
     </t>
     <t>
-     For <tt>BPF_ALU</tt>, the 1-bit source operand field in the opcode is used to
+     For <tt>ALU</tt>, the 1-bit source operand field in the opcode is used to
      select what byte order the operation converts from or to. For
-     <tt>BPF_ALU64</tt>, the 1-bit source operand field in the opcode is reserved
+     <tt>ALU64</tt>, the 1-bit source operand field in the opcode is reserved
      and must be set to 0.
     </t>
     <table>
@@ -1208,17 +1285,17 @@ dst = dst ^ imm
       <tr>
        <td>
         <t>
-         BPF_ALU
+         ALU
         </t>
        </td>
        <td>
         <t>
-         BPF_TO_LE
+         TO_LE
         </t>
        </td>
        <td>
         <t>
-         0x00
+         0
         </t>
        </td>
        <td>
@@ -1230,17 +1307,17 @@ dst = dst ^ imm
       <tr>
        <td>
         <t>
-         BPF_ALU
+         ALU
         </t>
        </td>
        <td>
         <t>
-         BPF_TO_BE
+         TO_BE
         </t>
        </td>
        <td>
         <t>
-         0x08
+         1
         </t>
        </td>
        <td>
@@ -1252,7 +1329,7 @@ dst = dst ^ imm
       <tr>
        <td>
         <t>
-         BPF_ALU64
+         ALU64
         </t>
        </td>
        <td>
@@ -1262,7 +1339,7 @@ dst = dst ^ imm
        </td>
        <td>
         <t>
-         0x00
+         0
         </t>
        </td>
        <td>
@@ -1283,7 +1360,7 @@ dst = dst ^ imm
      Examples:
     </t>
     <t>
-     <tt>BPF_ALU | BPF_TO_LE | BPF_END</tt> with imm = 16/32/64 means:
+     <tt>{END, TO_LE, ALU}</tt> with imm = 16/32/64 means:
     </t>
     <artwork>
 dst = htole16(dst)
@@ -1291,7 +1368,7 @@ dst = htole32(dst)
 dst = htole64(dst)
     </artwork>
     <t>
-     <tt>BPF_ALU | BPF_TO_BE | BPF_END</tt> with imm = 16/32/64 means:
+     <tt>{END, TO_BE, ALU}</tt> with imm = 16/32/64 means:
     </t>
     <artwork>
 dst = htobe16(dst)
@@ -1299,7 +1376,7 @@ dst = htobe32(dst)
 dst = htobe64(dst)
     </artwork>
     <t>
-     <tt>BPF_ALU64 | BPF_TO_LE | BPF_END</tt> with imm = 16/32/64 means:
+     <tt>{END, TO_LE, ALU64}</tt> with imm = 16/32/64 means:
     </t>
     <artwork>
 dst = bswap16(dst)
@@ -1309,8 +1386,8 @@ dst = bswap64(dst)
    </section>
    <section anchor="jump-instructions" title="Jump instructions">
     <t>
-     <tt>BPF_JMP32</tt> uses 32-bit wide operands and indicates the base32
-     conformance group, while <tt>BPF_JMP</tt> uses 64-bit wide operands for
+     <tt>JMP32</tt> uses 32-bit wide operands and indicates the base32
+     conformance group, while <tt>JMP</tt> uses 64-bit wide operands for
      otherwise identical operations, and indicates the base64 conformance
      group unless otherwise specified.
      The 'code' field encodes the operation as below:
@@ -1329,7 +1406,7 @@ dst = bswap64(dst)
       <tr>
        <td>
         <t>
-         BPF_JA
+         JA
         </t>
        </td>
        <td>
@@ -1349,14 +1426,14 @@ dst = bswap64(dst)
        </td>
        <td>
         <t>
-         BPF_JMP | BPF_K only
+         {JA, K, JMP} only
         </t>
        </td>
       </tr>
       <tr>
        <td>
         <t>
-         BPF_JA
+         JA
         </t>
        </td>
        <td>
@@ -1376,14 +1453,14 @@ dst = bswap64(dst)
        </td>
        <td>
         <t>
-         BPF_JMP32 | BPF_K only
+         {JA, K, JMP32} only
         </t>
        </td>
       </tr>
       <tr>
        <td>
         <t>
-         BPF_JEQ
+         JEQ
         </t>
        </td>
        <td>
@@ -1407,7 +1484,7 @@ dst = bswap64(dst)
       <tr>
        <td>
         <t>
-         BPF_JGT
+         JGT
         </t>
        </td>
        <td>
@@ -1434,7 +1511,7 @@ dst = bswap64(dst)
       <tr>
        <td>
         <t>
-         BPF_JGE
+         JGE
         </t>
        </td>
        <td>
@@ -1461,7 +1538,7 @@ dst = bswap64(dst)
       <tr>
        <td>
         <t>
-         BPF_JSET
+         JSET
         </t>
        </td>
        <td>
@@ -1485,7 +1562,7 @@ dst = bswap64(dst)
       <tr>
        <td>
         <t>
-         BPF_JNE
+         JNE
         </t>
        </td>
        <td>
@@ -1509,7 +1586,7 @@ dst = bswap64(dst)
       <tr>
        <td>
         <t>
-         BPF_JSGT
+         JSGT
         </t>
        </td>
        <td>
@@ -1536,7 +1613,7 @@ dst = bswap64(dst)
       <tr>
        <td>
         <t>
-         BPF_JSGE
+         JSGE
         </t>
        </td>
        <td>
@@ -1563,7 +1640,7 @@ dst = bswap64(dst)
       <tr>
        <td>
         <t>
-         BPF_CALL
+         CALL
         </t>
        </td>
        <td>
@@ -1583,14 +1660,14 @@ dst = bswap64(dst)
        </td>
        <td>
         <t>
-         BPF_JMP | BPF_K only, see <xref target="helper-functions">Helper functions</xref>
+         {CALL, K, JMP} only, see <xref target="helper-functions">Helper functions</xref>
         </t>
        </td>
       </tr>
       <tr>
        <td>
         <t>
-         BPF_CALL
+         CALL
         </t>
        </td>
        <td>
@@ -1610,14 +1687,14 @@ dst = bswap64(dst)
        </td>
        <td>
         <t>
-         BPF_JMP | BPF_K only, see <xref target="program-local-functions">Program-local functions</xref>
+         {CALL, K, JMP} only, see <xref target="program-local-functions">Program-local functions</xref>
         </t>
        </td>
       </tr>
       <tr>
        <td>
         <t>
-         BPF_CALL
+         CALL
         </t>
        </td>
        <td>
@@ -1637,14 +1714,14 @@ dst = bswap64(dst)
        </td>
        <td>
         <t>
-         BPF_JMP | BPF_K only, see <xref target="helper-functions">Helper functions</xref>
+         {CALL, K, JMP} only, see <xref target="helper-functions">Helper functions</xref>
         </t>
        </td>
       </tr>
       <tr>
        <td>
         <t>
-         BPF_EXIT
+         EXIT
         </t>
        </td>
        <td>
@@ -1664,14 +1741,14 @@ dst = bswap64(dst)
        </td>
        <td>
         <t>
-         BPF_JMP | BPF_K only
+         {CALL, K, JMP} only
         </t>
        </td>
       </tr>
       <tr>
        <td>
         <t>
-         BPF_JLT
+         JLT
         </t>
        </td>
        <td>
@@ -1698,7 +1775,7 @@ dst = bswap64(dst)
       <tr>
        <td>
         <t>
-         BPF_JLE
+         JLE
         </t>
        </td>
        <td>
@@ -1725,7 +1802,7 @@ dst = bswap64(dst)
       <tr>
        <td>
         <t>
-         BPF_JSLT
+         JSLT
         </t>
        </td>
        <td>
@@ -1752,7 +1829,7 @@ dst = bswap64(dst)
       <tr>
        <td>
         <t>
-         BPF_JSLE
+         JSLE
         </t>
        </td>
        <td>
@@ -1779,14 +1856,14 @@ dst = bswap64(dst)
      </tbody>
     </table>
     <t>
-     The BPF program needs to store the return value into register R0 before doing a
-     <tt>BPF_EXIT</tt>.
+     The BPF program needs to store the return value into register R0 before doing an
+     <tt>EXIT</tt>.
     </t>
     <t>
      Example:
     </t>
     <t>
-     <tt>BPF_JSGE | BPF_X | BPF_JMP32</tt> (0x7e) means:
+     <tt>{JSGE, X, JMP32}</tt> means:
     </t>
     <artwork>
 if (s32)dst s&gt;= (s32)src goto +offset
@@ -1795,7 +1872,7 @@ if (s32)dst s&gt;= (s32)src goto +offset
      where 's&gt;=' indicates a signed '&gt;=' comparison.
     </t>
     <t>
-     <tt>BPF_JA | BPF_K | BPF_JMP32</tt> (0x06) means:
+     <tt>{JA, K, JMP32}</tt> means:
     </t>
     <artwork>
 gotol +imm
@@ -1804,15 +1881,15 @@ gotol +imm
      where 'imm' means the branch offset comes from insn 'imm' field.
     </t>
     <t>
-     Note that there are two flavors of <tt>BPF_JA</tt> instructions. The
-     <tt>BPF_JMP</tt> class permits a 16-bit jump offset specified by the 'offset'
-     field, whereas the <tt>BPF_JMP32</tt> class permits a 32-bit jump offset
+     Note that there are two flavors of <tt>JA</tt> instructions. The
+     <tt>JMP</tt> class permits a 16-bit jump offset specified by the 'offset'
+     field, whereas the <tt>JMP32</tt> class permits a 32-bit jump offset
      specified by the 'imm' field. A &gt; 16-bit conditional jump may be
      converted to a &lt; 16-bit conditional jump plus a 32-bit unconditional
      jump.
     </t>
     <t>
-     All <tt>BPF_CALL</tt> and <tt>BPF_JA</tt> instructions belong to the
+     All <tt>CALL</tt> and <tt>JA</tt> instructions belong to the
      base32 conformance group.
     </t>
     <section anchor="helper-functions" title="Helper functions">
@@ -1835,48 +1912,32 @@ gotol +imm
      <t>
       Program-local functions are functions exposed by the same BPF program as the
       caller, and are referenced by offset from the call instruction, similar to
-      <tt>BPF_JA</tt>.  The offset is encoded in the imm field of the call instruction.
-      A <tt>BPF_EXIT</tt> within the program-local function will return to the caller.
+      <tt>JA</tt>.  The offset is encoded in the imm field of the call instruction.
+      A <tt>EXIT</tt> within the program-local function will return to the caller.
      </t>
     </section>
    </section>
   </section>
   <section anchor="load-and-store-instructions" title="Load and store instructions">
    <t>
-    For load and store instructions (<tt>BPF_LD</tt>, <tt>BPF_LDX</tt>, <tt>BPF_ST</tt>, and <tt>BPF_STX</tt>), the
+    For load and store instructions (<tt>LD</tt>, <tt>LDX</tt>, <tt>ST</tt>, and <tt>STX</tt>), the
     8-bit 'opcode' field is divided as:
    </t>
-   <table>
-    <thead>
-     <tr>
-      <th>3 bits (MSB)</th>
-      <th>2 bits</th>
-      <th>3 bits (LSB)</th>
-     </tr>
-    </thead>
-    <tbody>
-     <tr>
-      <td>
-       <t>
-        mode
-       </t>
-      </td>
-      <td>
-       <t>
-        size
-       </t>
-      </td>
-      <td>
-       <t>
-        instruction class
-       </t>
-      </td>
-     </tr>
-    </tbody>
-   </table>
-   <t>
-    The mode modifier is one of:
-   </t>
+   <artwork>
++-+-+-+-+-+-+-+-+
+|mode |sz |class|
++-+-+-+-+-+-+-+-+
+   </artwork>
+   <dl>
+    <dt anchor="term---mode--">
+     <strong>mode</strong>
+    </dt>
+    <dd>
+     <t>
+      The mode modifier is one of:
+     </t>
+    </dd>
+   </dl>
    <table>
     <thead>
      <tr>
@@ -1890,12 +1951,12 @@ gotol +imm
      <tr>
       <td>
        <t>
-        BPF_IMM
+        IMM
        </t>
       </td>
       <td>
        <t>
-        0x00
+        0
        </t>
       </td>
       <td>
@@ -1912,12 +1973,12 @@ gotol +imm
      <tr>
       <td>
        <t>
-        BPF_ABS
+        ABS
        </t>
       </td>
       <td>
        <t>
-        0x20
+        1
        </t>
       </td>
       <td>
@@ -1934,12 +1995,12 @@ gotol +imm
      <tr>
       <td>
        <t>
-        BPF_IND
+        IND
        </t>
       </td>
       <td>
        <t>
-        0x40
+        2
        </t>
       </td>
       <td>
@@ -1956,12 +2017,12 @@ gotol +imm
      <tr>
       <td>
        <t>
-        BPF_MEM
+        MEM
        </t>
       </td>
       <td>
        <t>
-        0x60
+        3
        </t>
       </td>
       <td>
@@ -1978,12 +2039,12 @@ gotol +imm
      <tr>
       <td>
        <t>
-        BPF_MEMSX
+        MEMSX
        </t>
       </td>
       <td>
        <t>
-        0x80
+        4
        </t>
       </td>
       <td>
@@ -2000,12 +2061,12 @@ gotol +imm
      <tr>
       <td>
        <t>
-        BPF_ATOMIC
+        ATOMIC
        </t>
       </td>
       <td>
        <t>
-        0xc0
+        6
        </t>
       </td>
       <td>
@@ -2021,13 +2082,20 @@ gotol +imm
      </tr>
     </tbody>
    </table>
-   <t>
-    The size modifier is one of:
-   </t>
+   <dl>
+    <dt anchor="term---sz--size---">
+     <strong>sz (size)</strong>
+    </dt>
+    <dd>
+     <t>
+      The size modifier is one of:
+     </t>
+    </dd>
+   </dl>
    <table>
     <thead>
      <tr>
-      <th>size modifier</th>
+      <th>size</th>
       <th>value</th>
       <th>description</th>
      </tr>
@@ -2036,12 +2104,12 @@ gotol +imm
      <tr>
       <td>
        <t>
-        BPF_W
+        W
        </t>
       </td>
       <td>
        <t>
-        0x00
+        0
        </t>
       </td>
       <td>
@@ -2053,12 +2121,12 @@ gotol +imm
      <tr>
       <td>
        <t>
-        BPF_H
+        H
        </t>
       </td>
       <td>
        <t>
-        0x08
+        1
        </t>
       </td>
       <td>
@@ -2070,12 +2138,12 @@ gotol +imm
      <tr>
       <td>
        <t>
-        BPF_B
+        B
        </t>
       </td>
       <td>
        <t>
-        0x10
+        2
        </t>
       </td>
       <td>
@@ -2087,12 +2155,12 @@ gotol +imm
      <tr>
       <td>
        <t>
-        BPF_DW
+        DW
        </t>
       </td>
       <td>
        <t>
-        0x18
+        3
        </t>
       </td>
       <td>
@@ -2103,51 +2171,61 @@ gotol +imm
      </tr>
     </tbody>
    </table>
-   <t>
-    Instructions using <tt>BPF_DW</tt> belong to the base64 conformance group.
-   </t>
+   <blockquote>
+    Instructions using <tt>DW</tt> belong to the base64 conformance group.
+   </blockquote>
+   <dl>
+    <dt anchor="term---class---">
+     <strong>class</strong>
+    </dt>
+    <dd>
+     <t>
+      The instruction class (see <xref target="instruction-classes">Instruction classes</xref>)
+     </t>
+    </dd>
+   </dl>
    <section anchor="regular-load-and-store-operations" title="Regular load and store operations">
     <t>
-     The <tt>BPF_MEM</tt> mode modifier is used to encode regular load and store
+     The <tt>MEM</tt> mode modifier is used to encode regular load and store
      instructions that transfer data between a register and memory.
     </t>
     <t>
-     <tt>BPF_MEM | &lt;size&gt; | BPF_STX</tt> means:
+     <tt>{MEM, &lt;size&gt;, STX}</tt> means:
     </t>
     <artwork>
 *(size *) (dst + offset) = src
     </artwork>
     <t>
-     <tt>BPF_MEM | &lt;size&gt; | BPF_ST</tt> means:
+     <tt>{MEM, &lt;size&gt;, ST}</tt> means:
     </t>
     <artwork>
 *(size *) (dst + offset) = imm
     </artwork>
     <t>
-     <tt>BPF_MEM | &lt;size&gt; | BPF_LDX</tt> means:
+     <tt>{MEM, &lt;size&gt;, LDX}</tt> means:
     </t>
     <artwork>
 dst = *(unsigned size *) (src + offset)
     </artwork>
     <t>
-     Where size is one of: <tt>BPF_B</tt>, <tt>BPF_H</tt>, <tt>BPF_W</tt>, or <tt>BPF_DW</tt> and
-     'unsigned size' is one of u8, u16, u32 or u64.
+     Where '&lt;size&gt;' is one of: <tt>B</tt>, <tt>H</tt>, <tt>W</tt>, or <tt>DW</tt>, and
+     'unsigned size' is one of: u8, u16, u32, or u64.
     </t>
    </section>
    <section anchor="sign-extension-load-operations" title="Sign-extension load operations">
     <t>
-     The <tt>BPF_MEMSX</tt> mode modifier is used to encode <xref target="term-sign-extend">sign-extension</xref> load
+     The <tt>MEMSX</tt> mode modifier is used to encode <xref target="term-sign-extend">sign-extension</xref> load
      instructions that transfer data between a register and memory.
     </t>
     <t>
-     <tt>BPF_MEMSX | &lt;size&gt; | BPF_LDX</tt> means:
+     <tt>{MEMSX, &lt;size&gt;, LDX}</tt> means:
     </t>
     <artwork>
 dst = *(signed size *) (src + offset)
     </artwork>
     <t>
-     Where size is one of: <tt>BPF_B</tt>, <tt>BPF_H</tt> or <tt>BPF_W</tt>, and
-     'signed size' is one of s8, s16 or s32.
+     Where size is one of: <tt>B</tt>, <tt>H</tt>, or <tt>W</tt>, and
+     'signed size' is one of: s8, s16, or s32.
     </t>
    </section>
    <section anchor="atomic-operations" title="Atomic operations">
@@ -2158,15 +2236,15 @@ dst = *(signed size *) (src + offset)
     </t>
     <t>
      All atomic operations supported by BPF are encoded as store operations
-     that use the <tt>BPF_ATOMIC</tt> mode modifier as follows:
+     that use the <tt>ATOMIC</tt> mode modifier as follows:
     </t>
     <ul>
      <li>
-      <tt>BPF_ATOMIC | BPF_W | BPF_STX</tt> for 32-bit operations, which are
+      <tt>{ATOMIC, W, STX}</tt> for 32-bit operations, which are
       part of the "atomic32" conformance group.
      </li>
      <li>
-      <tt>BPF_ATOMIC | BPF_DW | BPF_STX</tt> for 64-bit operations, which are
+      <tt>{ATOMIC, DW, STX}</tt> for 64-bit operations, which are
       part of the "atomic64" conformance group.
      </li>
      <li>
@@ -2190,7 +2268,7 @@ dst = *(signed size *) (src + offset)
       <tr>
        <td>
         <t>
-         BPF_ADD
+         ADD
         </t>
        </td>
        <td>
@@ -2207,7 +2285,7 @@ dst = *(signed size *) (src + offset)
       <tr>
        <td>
         <t>
-         BPF_OR
+         OR
         </t>
        </td>
        <td>
@@ -2224,7 +2302,7 @@ dst = *(signed size *) (src + offset)
       <tr>
        <td>
         <t>
-         BPF_AND
+         AND
         </t>
        </td>
        <td>
@@ -2241,7 +2319,7 @@ dst = *(signed size *) (src + offset)
       <tr>
        <td>
         <t>
-         BPF_XOR
+         XOR
         </t>
        </td>
        <td>
@@ -2258,13 +2336,13 @@ dst = *(signed size *) (src + offset)
      </tbody>
     </table>
     <t>
-     <tt>BPF_ATOMIC | BPF_W  | BPF_STX</tt> with 'imm' = BPF_ADD means:
+     <tt>{ATOMIC, W, STX}</tt> with 'imm' = ADD means:
     </t>
     <artwork>
 *(u32 *)(dst + offset) += src
     </artwork>
     <t>
-     <tt>BPF_ATOMIC | BPF_DW | BPF_STX</tt> with 'imm' = BPF_ADD means:
+     <tt>{ATOMIC, DW, STX}</tt> with 'imm' = ADD means:
     </t>
     <artwork>
 *(u64 *)(dst + offset) += src
@@ -2285,7 +2363,7 @@ dst = *(signed size *) (src + offset)
       <tr>
        <td>
         <t>
-         BPF_FETCH
+         FETCH
         </t>
        </td>
        <td>
@@ -2302,12 +2380,12 @@ dst = *(signed size *) (src + offset)
       <tr>
        <td>
         <t>
-         BPF_XCHG
+         XCHG
         </t>
        </td>
        <td>
         <t>
-         0xe0 | BPF_FETCH
+         0xe0 | FETCH
         </t>
        </td>
        <td>
@@ -2319,12 +2397,12 @@ dst = *(signed size *) (src + offset)
       <tr>
        <td>
         <t>
-         BPF_CMPXCHG
+         CMPXCHG
         </t>
        </td>
        <td>
         <t>
-         0xf0 | BPF_FETCH
+         0xf0 | FETCH
         </t>
        </td>
        <td>
@@ -2336,17 +2414,17 @@ dst = *(signed size *) (src + offset)
      </tbody>
     </table>
     <t>
-     The <tt>BPF_FETCH</tt> modifier is optional for simple atomic operations, and
-     always set for the complex atomic operations.  If the <tt>BPF_FETCH</tt> flag
+     The <tt>FETCH</tt> modifier is optional for simple atomic operations, and
+     always set for the complex atomic operations.  If the <tt>FETCH</tt> flag
      is set, then the operation also overwrites <tt>src</tt> with the value that
      was in memory before it was modified.
     </t>
     <t>
-     The <tt>BPF_XCHG</tt> operation atomically exchanges <tt>src</tt> with the value
+     The <tt>XCHG</tt> operation atomically exchanges <tt>src</tt> with the value
      addressed by <tt>dst + offset</tt>.
     </t>
     <t>
-     The <tt>BPF_CMPXCHG</tt> operation atomically compares the value addressed by
+     The <tt>CMPXCHG</tt> operation atomically compares the value addressed by
      <tt>dst + offset</tt> with <tt>R0</tt>. If they match, the value addressed by
      <tt>dst + offset</tt> is replaced with <tt>src</tt>. In either case, the
      value that was at <tt>dst + offset</tt> before the operation is zero-extended
@@ -2355,20 +2433,18 @@ dst = *(signed size *) (src + offset)
    </section>
    <section anchor="-4-bit-immediate-instructions" title="64-bit immediate instructions">
     <t>
-     Instructions with the <tt>BPF_IMM</tt> 'mode' modifier use the wide instruction
+     Instructions with the <tt>IMM</tt> 'mode' modifier use the wide instruction
      encoding defined in <xref target="instruction-encoding">Instruction encoding</xref>, and use the 'src_reg' field of the
      basic instruction to hold an opcode subtype.
     </t>
     <t>
-     The following table defines a set of <tt>BPF_IMM | BPF_DW | BPF_LD</tt> instructions
+     The following table defines a set of <tt>{IMM, DW, LD}</tt> instructions
      with opcode subtypes in the 'src_reg' field, using new terms such as "map"
      defined further below:
     </t>
     <table>
      <thead>
       <tr>
-       <th>opcode construction</th>
-       <th>opcode</th>
        <th>src_reg</th>
        <th>pseudocode</th>
        <th>imm type</th>
@@ -2377,16 +2453,6 @@ dst = *(signed size *) (src + offset)
      </thead>
      <tbody>
       <tr>
-       <td>
-        <t>
-         BPF_IMM | BPF_DW | BPF_LD
-        </t>
-       </td>
-       <td>
-        <t>
-         0x18
-        </t>
-       </td>
        <td>
         <t>
          0x0
@@ -2411,16 +2477,6 @@ dst = *(signed size *) (src + offset)
       <tr>
        <td>
         <t>
-         BPF_IMM | BPF_DW | BPF_LD
-        </t>
-       </td>
-       <td>
-        <t>
-         0x18
-        </t>
-       </td>
-       <td>
-        <t>
          0x1
         </t>
        </td>
@@ -2441,16 +2497,6 @@ dst = *(signed size *) (src + offset)
        </td>
       </tr>
       <tr>
-       <td>
-        <t>
-         BPF_IMM | BPF_DW | BPF_LD
-        </t>
-       </td>
-       <td>
-        <t>
-         0x18
-        </t>
-       </td>
        <td>
         <t>
          0x2
@@ -2475,16 +2521,6 @@ dst = *(signed size *) (src + offset)
       <tr>
        <td>
         <t>
-         BPF_IMM | BPF_DW | BPF_LD
-        </t>
-       </td>
-       <td>
-        <t>
-         0x18
-        </t>
-       </td>
-       <td>
-        <t>
          0x3
         </t>
        </td>
@@ -2505,16 +2541,6 @@ dst = *(signed size *) (src + offset)
        </td>
       </tr>
       <tr>
-       <td>
-        <t>
-         BPF_IMM | BPF_DW | BPF_LD
-        </t>
-       </td>
-       <td>
-        <t>
-         0x18
-        </t>
-       </td>
        <td>
         <t>
          0x4
@@ -2539,16 +2565,6 @@ dst = *(signed size *) (src + offset)
       <tr>
        <td>
         <t>
-         BPF_IMM | BPF_DW | BPF_LD
-        </t>
-       </td>
-       <td>
-        <t>
-         0x18
-        </t>
-       </td>
-       <td>
-        <t>
          0x5
         </t>
        </td>
@@ -2569,16 +2585,6 @@ dst = *(signed size *) (src + offset)
        </td>
       </tr>
       <tr>
-       <td>
-        <t>
-         BPF_IMM | BPF_DW | BPF_LD
-        </t>
-       </td>
-       <td>
-        <t>
-         0x18
-        </t>
-       </td>
        <td>
         <t>
          0x6
@@ -2656,11 +2662,11 @@ dst = *(signed size *) (src + offset)
     <t>
      BPF previously introduced special instructions for access to packet data that were
      carried over from classic BPF. These instructions used an instruction
-     class of BPF_LD, a size modifier of BPF_W, BPF_H, or BPF_B, and a
-     mode modifier of BPF_ABS or BPF_IND.  The 'dst_reg' and 'offset' fields were
-     set to zero, and 'src_reg' was set to zero for BPF_ABS.  However, these
+     class of <tt>LD</tt>, a size modifier of <tt>W</tt>, <tt>H</tt>, or <tt>B</tt>, and a
+     mode modifier of <tt>ABS</tt> or <tt>IND</tt>.  The 'dst_reg' and 'offset' fields were
+     set to zero, and 'src_reg' was set to zero for <tt>ABS</tt>.  However, these
      instructions are deprecated and should no longer be used.  All legacy packet
-     access instructions belong to the "legacy" conformance group.
+     access instructions belong to the "packet" conformance group.
     </t>
    </section>
   </section>
