@@ -59,7 +59,7 @@ base32  32-bit base instructions    -         -         Permanent    RFCXXX
 base64  64-bit base instructions    base32    -         Permanent    RFCXXX
 div32   32-bit division and modulo  -         -         Permanent    RFCXXX `Arithmetic instructions`_
 div64   64-bit division and modulo  div32     -         Permanent    RFCXXX `Arithmetic instructions`_
-legacy  Legacy packet instructions  -         -         Historical   RFCXXX `Legacy BPF Packet access instructions`_
+packet  Legacy packet instructions  -         -         Historical   RFCXXX `Legacy BPF Packet access instructions`_
 ======  ==========================  ========  ========  ===========  ===============================================
 
 NOTE TO RFC-EDITOR: Upon publication, please replace RFCXXX above with reference to this document.
