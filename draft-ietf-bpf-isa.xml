@@ -2936,7 +2936,7 @@ dst = *(signed size *) (src + offset)
       <tr>
        <td>
         <t>
-         legacy
+         packet
         </t>
        </td>
        <td>
