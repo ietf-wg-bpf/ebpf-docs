@@ -2744,7 +2744,7 @@ dst = *(signed size *) (src + offset)
       <tr>
        <td>
         <t>
-         atom32
+         atomic32
         </t>
        </td>
        <td>
@@ -2776,7 +2776,7 @@ dst = *(signed size *) (src + offset)
       <tr>
        <td>
         <t>
-         atom64
+         atomic64
         </t>
        </td>
        <td>
@@ -2786,7 +2786,7 @@ dst = *(signed size *) (src + offset)
        </td>
        <td>
         <t>
-         atom32
+         atomic32
         </t>
        </td>
        <td>
@@ -2872,7 +2872,7 @@ dst = *(signed size *) (src + offset)
       <tr>
        <td>
         <t>
-         div32
+         divmul32
         </t>
        </td>
        <td>
@@ -2904,7 +2904,7 @@ dst = *(signed size *) (src + offset)
       <tr>
        <td>
         <t>
-         div64
+         divmul64
         </t>
        </td>
        <td>
@@ -2914,7 +2914,7 @@ dst = *(signed size *) (src + offset)
        </td>
        <td>
         <t>
-         div32
+         divmul32
         </t>
        </td>
        <td>
