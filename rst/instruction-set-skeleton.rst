@@ -50,17 +50,17 @@ This document defines a IANA sub-registry for BPF instruction conformance groups
 
 Initial entries in this sub-registry are as follows:
 
-======  ==========================  ========  ========  ===========  ===============================================
-name    description                 includes  excludes  status       reference
-======  ==========================  ========  ========  ===========  ===============================================
-atom32  32-bit atomic instructions  -         -         Permanent    RFCXXX `Atomic operations`_
-atom64  64-bit atomic instructions  atom32    -         Permanent    RFCXXX `Atomic operations`_
-base32  32-bit base instructions    -         -         Permanent    RFCXXX
-base64  64-bit base instructions    base32    -         Permanent    RFCXXX
-div32   32-bit division and modulo  -         -         Permanent    RFCXXX `Arithmetic instructions`_
-div64   64-bit division and modulo  div32     -         Permanent    RFCXXX `Arithmetic instructions`_
-legacy  Legacy packet instructions  -         -         Historical   RFCXXX `Legacy BPF Packet access instructions`_
-======  ==========================  ========  ========  ===========  ===============================================
+========  ==========================  ========  ========  ===========  ===============================================
+name      description                 includes  excludes  status       reference
+========  ==========================  ========  ========  ===========  ===============================================
+atomic32  32-bit atomic instructions  -         -         Permanent    RFCXXX `Atomic operations`_
+atomic64  64-bit atomic instructions  atomic32  -         Permanent    RFCXXX `Atomic operations`_
+base32    32-bit base instructions    -         -         Permanent    RFCXXX
+base64    64-bit base instructions    base32    -         Permanent    RFCXXX
+divmul32  32-bit division and modulo  -         -         Permanent    RFCXXX `Arithmetic instructions`_
+divmul64  64-bit division and modulo  divmul32  -         Permanent    RFCXXX `Arithmetic instructions`_
+packet    Legacy packet instructions  -         -         Historical   RFCXXX `Legacy BPF Packet access instructions`_
+========  ==========================  ========  ========  ===========  ===============================================
 
 NOTE TO RFC-EDITOR: Upon publication, please replace RFCXXX above with reference to this document.
 
