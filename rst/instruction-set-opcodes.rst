@@ -101,7 +101,7 @@ opcode  src_reg  offset  imm   description                                      
 0x85    0x0      0       any   call helper function by address                         base32    `Helper functions`_
 0x85    0x1      0       any   call PC += imm                                          base32    `Program-local functions`_
 0x85    0x2      0       any   call helper function by BTF ID                          base32    `Helper functions`_
-0x87    0x0      0       0x00  dst = -dst                                              base32    `Arithmetic instructions`_
+0x87    0x0      0       0x00  dst = -dst                                              base64    `Arithmetic instructions`_
 0x94    0x0      0       any   dst = (u32)((imm != 0)?((u32)dst % (u32)imm) : dst)     divmul32  `Arithmetic instructions`_
 0x94    0x0      1       any   dst = (u32)((imm != 0) ? ((s32)dst s% imm) : dst)       divmul32  `Arithmetic instructions`_
 0x95    0x0      0       0x00  return                                                  base32    `Jump instructions`_
