@@ -6741,7 +6741,7 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
-        base32
+        base64
        </t>
       </td>
       <td>
