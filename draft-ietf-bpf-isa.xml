@@ -2984,7 +2984,7 @@ dst = *(signed size *) (src + offset)
     <section anchor="deprecating-instructions" title="Deprecating instructions">
      <t>
       Deprecating instructions that are part of an existing conformance group can be done by defining a
-      new conformance group for the newly deprecated instructions, and the defining a new conformance group
+      new conformance group for the newly deprecated instructions, and defining a new conformance group
       to supercede the existing conformance group containing the instructions, where the new conformance
       group includes the existing one and excludes the deprecated instruction group.
      </t>
