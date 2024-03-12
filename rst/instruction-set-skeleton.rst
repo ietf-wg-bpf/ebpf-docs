@@ -77,7 +77,7 @@ of newly added instructions is done via the "groups" column of the BPF Instructi
 Deprecating instructions
 ~~~~~~~~~~~~~~~~~~~~~~~~
 Deprecating instructions that are part of an existing conformance group can be done by defining a
-new conformance group for the newly deprecated instructions, and the defining a new conformance group
+new conformance group for the newly deprecated instructions, and defining a new conformance group
 to supercede the existing conformance group containing the instructions, where the new conformance
 group includes the existing one and excludes the deprecated instruction group.
 
