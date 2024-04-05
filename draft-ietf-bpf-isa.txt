@@ -9,7 +9,7 @@ Expires: 7 October 2024
 
 
                  BPF Instruction Set Architecture (ISA)
-                         draft-ietf-bpf-isa-01
+                         draft-ietf-bpf-isa-02
 
 Abstract
 

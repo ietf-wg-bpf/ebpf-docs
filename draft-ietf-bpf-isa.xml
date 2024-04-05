@@ -16,7 +16,7 @@
 <?rfc text-list-symbols="-o*+"?>
 <?rfc docmapping="yes"?>
 
-<rfc ipr="trust200902" docName="draft-ietf-bpf-isa-01" category="std" submissionType="IETF">
+<rfc ipr="trust200902" docName="draft-ietf-bpf-isa-02" category="std" submissionType="IETF">
  <front>
   <title abbrev="BPF ISA">
 BPF Instruction Set Architecture (ISA)
