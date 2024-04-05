@@ -18,7 +18,7 @@
 
 <rfc ipr="trust200902" docName="draft-ietf-bpf-isa-01" category="std" submissionType="IETF">
  <front>
-  <title abbrev="(e)BPF ISA">
+  <title abbrev="BPF ISA">
 BPF Instruction Set Architecture (ISA)
   </title>
   <author initials="D." surname="Thaler" fullname="Dave Thaler" role="editor">
@@ -2676,7 +2676,7 @@ dst = *(signed size *) (src + offset)
    </t>
    <section anchor="bpf-instruction-conformance-group-registry" title="BPF Instruction Conformance Group Registry">
     <t>
-     This document defines a IANA sub-registry for BPF instruction conformance groups, as follows:
+     This document defines an IANA sub-registry for BPF instruction conformance groups, as follows:
     </t>
     <ul>
      <li>
@@ -2985,7 +2985,7 @@ dst = *(signed size *) (src + offset)
      <t>
       Deprecating instructions that are part of an existing conformance group can be done by defining a
       new conformance group for the newly deprecated instructions, and defining a new conformance group
-      to supercede the existing conformance group containing the instructions, where the new conformance
+      to supersede the existing conformance group containing the instructions, where the new conformance
       group includes the existing one and excludes the deprecated instruction group.
      </t>
      <t>
