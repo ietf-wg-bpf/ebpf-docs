@@ -1,7 +1,7 @@
 .. |docName| replace:: draft-ietf-bpf-isa-01
 .. |ipr| replace:: trust200902
 .. |category| replace:: std
-.. |titleAbbr| replace:: (e)BPF ISA
+.. |titleAbbr| replace:: BPF ISA
 .. |submissionType| replace:: IETF
 .. |author[0].fullname| replace:: Dave Thaler
 .. |author[0].role| replace:: editor
@@ -29,7 +29,7 @@ This document defines two sub-registries.
 BPF Instruction Conformance Group Registry
 ------------------------------------------
 
-This document defines a IANA sub-registry for BPF instruction conformance groups, as follows:
+This document defines an IANA sub-registry for BPF instruction conformance groups, as follows:
 
 * Name of the registry: BPF Instruction Conformance Groups
 * Name of the registry group: BPF Instructions
@@ -78,7 +78,7 @@ Deprecating instructions
 ~~~~~~~~~~~~~~~~~~~~~~~~
 Deprecating instructions that are part of an existing conformance group can be done by defining a
 new conformance group for the newly deprecated instructions, and defining a new conformance group
-to supercede the existing conformance group containing the instructions, where the new conformance
+to supersede the existing conformance group containing the instructions, where the new conformance
 group includes the existing one and excludes the deprecated instruction group.
 
 For example, if deprecating an instruction in an existing hypothetical group called "example", two new groups
