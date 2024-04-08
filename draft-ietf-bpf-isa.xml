@@ -2970,115 +2970,6 @@ dst = *(signed size *) (src + offset)
     <t>
      NOTE TO RFC-EDITOR: Upon publication, please replace RFCXXX above with reference to this document.
     </t>
-    <section anchor="adding-instructions" title="Adding instructions">
-     <t>
-      A specification may add additional instructions to the BPF Instruction Set registry.
-      Once a conformance group is registered with a set of instructions,
-      no further instructions can be added to that conformance group. A specification
-      should instead create a new conformance group that includes the original conformance group,
-      plus any newly added instructions.  Inclusion of the original conformance group is done
-      via the "includes" column of the BPF Instruction Conformance Group Registry, and inclusion
-      of newly added instructions is done via the "groups" column of the BPF Instruction Set Registry.
-     </t>
-    </section>
-    <section anchor="deprecating-instructions" title="Deprecating instructions">
-     <t>
-      Deprecating instructions that are part of an existing conformance group can be done by defining a
-      new conformance group for the newly deprecated instructions, and defining a new conformance group
-      to supersede the existing conformance group containing the instructions, where the new conformance
-      group includes the existing one and excludes the deprecated instruction group.
-     </t>
-     <t>
-      For example, if deprecating an instruction in an existing hypothetical group called "example", two new groups
-      might be registered:
-     </t>
-     <table>
-      <thead>
-       <tr>
-        <th>name</th>
-        <th>description</th>
-        <th>includes</th>
-        <th>excludes</th>
-        <th>status</th>
-        <th>reference</th>
-       </tr>
-      </thead>
-      <tbody>
-       <tr>
-        <td>
-         <t>
-          legacyexample
-         </t>
-        </td>
-        <td>
-         <t>
-          Legacy example instructions
-         </t>
-        </td>
-        <td>
-         <t>
-          -
-         </t>
-        </td>
-        <td>
-         <t>
-          -
-         </t>
-        </td>
-        <td>
-         <t>
-          Historical
-         </t>
-        </td>
-        <td>
-         <t>
-          (reference)
-         </t>
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <t>
-          examplev2
-         </t>
-        </td>
-        <td>
-         <t>
-          Example instructions
-         </t>
-        </td>
-        <td>
-         <t>
-          example
-         </t>
-        </td>
-        <td>
-         <t>
-          legacyexample
-         </t>
-        </td>
-        <td>
-         <t>
-          Permanent
-         </t>
-        </td>
-        <td>
-         <t>
-          (reference)
-         </t>
-        </td>
-       </tr>
-      </tbody>
-     </table>
-     <t>
-      The BPF Instruction Set entries for the deprecated instructions would then be updated
-      to add "legacyexample" to the set of groups for those instructions.
-     </t>
-     <t>
-      Finally, updated implementations that dropped support for the deprecated instructions
-      would then be able to claim conformance to "examplev2" rather than "example".
-     </t>
-    </section>
    </section>
    <section anchor="bpf-instruction-set-registry" title="BPF Instruction Set Registry">
     <t>
@@ -3129,6 +3020,410 @@ dst = *(signed size *) (src + offset)
       as deprecated are Permanent. Any listed as deprecated are Historical.
      </li>
     </ul>
+   </section>
+   <section anchor="adding-instructions" title="Adding instructions">
+    <t>
+     A specification may add additional instructions to the BPF Instruction Set registry.
+     Once a conformance group is registered with a set of instructions,
+     no further instructions can be added to that conformance group. A specification
+     should instead create a new conformance group that includes the original conformance group,
+     plus any newly added instructions.  Inclusion of the original conformance group is done
+     via the "includes" column of the BPF Instruction Conformance Group Registry, and inclusion
+     of newly added instructions is done via the "groups" column of the BPF Instruction Set Registry.
+    </t>
+    <t>
+     For example, consider an existing hypothetical group called "example" with two instructions in it.
+     One might add two more instructions by first adding an "examplev2" group to the
+     BPF Instruction Conformance Group Registry as follows:
+    </t>
+    <table>
+     <thead>
+      <tr>
+       <th>name</th>
+       <th>description</th>
+       <th>includes</th>
+       <th>excludes</th>
+       <th>status</th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td>
+        <t>
+         example
+        </t>
+       </td>
+       <td>
+        <t>
+         Original example instructions
+        </t>
+       </td>
+       <td>
+        <t>
+         -
+        </t>
+       </td>
+       <td>
+        <t>
+         -
+        </t>
+       </td>
+       <td>
+        <t>
+         Permanent
+        </t>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <t>
+         examplev2
+        </t>
+       </td>
+       <td>
+        <t>
+         Newer set of example instructions
+        </t>
+       </td>
+       <td>
+        <t>
+         example
+        </t>
+       </td>
+       <td>
+        <t>
+         -
+        </t>
+       </td>
+       <td>
+        <t>
+         Permanent
+        </t>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <t>
+     And then adding the new instructions into the BPF Instruction Set Registry as follows:
+    </t>
+    <table>
+     <thead>
+      <tr>
+       <th>opcode</th>
+       <th>...</th>
+       <th>description</th>
+       <th>groups</th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td>
+        <t>
+         aaa
+        </t>
+       </td>
+       <td>
+        <t>
+         ...
+        </t>
+       </td>
+       <td>
+        <t>
+         Original example instruction 1
+        </t>
+       </td>
+       <td>
+        <t>
+         example
+        </t>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <t>
+         bbb
+        </t>
+       </td>
+       <td>
+        <t>
+         ...
+        </t>
+       </td>
+       <td>
+        <t>
+         Original example instruction 2
+        </t>
+       </td>
+       <td>
+        <t>
+         example
+        </t>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <t>
+         ccc
+        </t>
+       </td>
+       <td>
+        <t>
+         ...
+        </t>
+       </td>
+       <td>
+        <t>
+         Added example instruction 3
+        </t>
+       </td>
+       <td>
+        <t>
+         examplev2
+        </t>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <t>
+         ddd
+        </t>
+       </td>
+       <td>
+        <t>
+         ...
+        </t>
+       </td>
+       <td>
+        <t>
+         Added example instruction 4
+        </t>
+       </td>
+       <td>
+        <t>
+         examplev2
+        </t>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <t>
+     Supporting the "examplev2" group thus requires supporting all four example instructions.
+    </t>
+   </section>
+   <section anchor="deprecating-instructions" title="Deprecating instructions">
+    <t>
+     Deprecating instructions that are part of an existing conformance group can be done by defining a
+     new conformance group for the newly deprecated instructions, and defining a new conformance group
+     that supersedes the existing conformance group containing the instructions, where the new conformance
+     group includes the existing one and excludes the deprecated instruction group.
+    </t>
+    <t>
+     For example, if deprecating an instruction in an existing hypothetical group called "example", two new groups
+     ("legacyexample" and "examplev2") might be registered in the BPF Instruction Conformance Group
+     Registry as follows:
+    </t>
+    <table>
+     <thead>
+      <tr>
+       <th>name</th>
+       <th>description</th>
+       <th>includes</th>
+       <th>excludes</th>
+       <th>status</th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td>
+        <t>
+         example
+        </t>
+       </td>
+       <td>
+        <t>
+         Original example instructions
+        </t>
+       </td>
+       <td>
+        <t>
+         -
+        </t>
+       </td>
+       <td>
+        <t>
+         -
+        </t>
+       </td>
+       <td>
+        <t>
+         Permanent
+        </t>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <t>
+         legacyexample
+        </t>
+       </td>
+       <td>
+        <t>
+         Legacy example instructions
+        </t>
+       </td>
+       <td>
+        <t>
+         -
+        </t>
+       </td>
+       <td>
+        <t>
+         -
+        </t>
+       </td>
+       <td>
+        <t>
+         Historical
+        </t>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <t>
+         examplev2
+        </t>
+       </td>
+       <td>
+        <t>
+         Example instructions
+        </t>
+       </td>
+       <td>
+        <t>
+         example
+        </t>
+       </td>
+       <td>
+        <t>
+         legacyexample
+        </t>
+       </td>
+       <td>
+        <t>
+         Permanent
+        </t>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <t>
+     The BPF Instruction Set Registry entries for the deprecated instructions would then be updated
+     to add "legacyexample" to the set of groups for those instructions, as follows:
+    </t>
+    <table>
+     <thead>
+      <tr>
+       <th>opcode</th>
+       <th>...</th>
+       <th>description</th>
+       <th>groups</th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td>
+        <t>
+         aaa
+        </t>
+       </td>
+       <td>
+        <t>
+         ...
+        </t>
+       </td>
+       <td>
+        <t>
+         Good original instruction 1
+        </t>
+       </td>
+       <td>
+        <t>
+         example
+        </t>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <t>
+         bbb
+        </t>
+       </td>
+       <td>
+        <t>
+         ...
+        </t>
+       </td>
+       <td>
+        <t>
+         Good original instruction 2
+        </t>
+       </td>
+       <td>
+        <t>
+         example
+        </t>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <t>
+         ccc
+        </t>
+       </td>
+       <td>
+        <t>
+         ...
+        </t>
+       </td>
+       <td>
+        <t>
+         Bad original instruction 3
+        </t>
+       </td>
+       <td>
+        <t>
+         example, legacyexample
+        </t>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <t>
+         ddd
+        </t>
+       </td>
+       <td>
+        <t>
+         ...
+        </t>
+       </td>
+       <td>
+        <t>
+         Bad original instruction 4
+        </t>
+       </td>
+       <td>
+        <t>
+         example, legacyexample
+        </t>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <t>
+     Finally, updated implementations that dropped support for the deprecated instructions
+     would then be able to claim conformance to "examplev2" rather than "example".
+    </t>
    </section>
   </section>
   <section anchor="acknowledgements" title="Acknowledgements">
