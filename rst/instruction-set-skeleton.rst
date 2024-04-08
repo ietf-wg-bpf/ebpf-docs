@@ -64,39 +64,6 @@ packet    Legacy packet instructions  -         -         Historical   RFCXXX `L
 
 NOTE TO RFC-EDITOR: Upon publication, please replace RFCXXX above with reference to this document.
 
-Adding instructions
-~~~~~~~~~~~~~~~~~~~
-A specification may add additional instructions to the BPF Instruction Set registry.
-Once a conformance group is registered with a set of instructions,
-no further instructions can be added to that conformance group. A specification
-should instead create a new conformance group that includes the original conformance group,
-plus any newly added instructions.  Inclusion of the original conformance group is done
-via the "includes" column of the BPF Instruction Conformance Group Registry, and inclusion
-of newly added instructions is done via the "groups" column of the BPF Instruction Set Registry.
-
-Deprecating instructions
-~~~~~~~~~~~~~~~~~~~~~~~~
-Deprecating instructions that are part of an existing conformance group can be done by defining a
-new conformance group for the newly deprecated instructions, and defining a new conformance group
-to supersede the existing conformance group containing the instructions, where the new conformance
-group includes the existing one and excludes the deprecated instruction group.
-
-For example, if deprecating an instruction in an existing hypothetical group called "example", two new groups
-might be registered:
-
-=============  ===========================  ========  =============  ===========  ===========
-name           description                  includes  excludes       status       reference
-=============  ===========================  ========  =============  ===========  ===========
-legacyexample  Legacy example instructions  -         -              Historical   (reference)
-examplev2      Example instructions         example   legacyexample  Permanent    (reference)
-=============  ===========================  ========  =============  ===========  ===========
-
-The BPF Instruction Set entries for the deprecated instructions would then be updated 
-to add "legacyexample" to the set of groups for those instructions.
-
-Finally, updated implementations that dropped support for the deprecated instructions
-would then be able to claim conformance to "examplev2" rather than "example".
-
 BPF Instruction Set Registry
 ----------------------------
 
@@ -118,6 +85,74 @@ This document proposes a new IANA registry for BPF instructions, as follows:
   sub-registry and the same registration policies apply.
 * Initial registrations: See the Appendix. Instructions other than those listed
   as deprecated are Permanent. Any listed as deprecated are Historical.
+
+Adding instructions
+-------------------
+A specification may add additional instructions to the BPF Instruction Set registry.
+Once a conformance group is registered with a set of instructions,
+no further instructions can be added to that conformance group. A specification
+should instead create a new conformance group that includes the original conformance group,
+plus any newly added instructions.  Inclusion of the original conformance group is done
+via the "includes" column of the BPF Instruction Conformance Group Registry, and inclusion
+of newly added instructions is done via the "groups" column of the BPF Instruction Set Registry.
+
+For example, consider an existing hypothetical group called "example" with two instructions in it.
+One might add two more instructions by first adding an "examplev2" group to the
+BPF Instruction Conformance Group Registry as follows:
+
+=============  =================================  ========  ========  =========
+name           description                        includes  excludes  status
+=============  =================================  ========  ========  =========
+example        Original example instructions      -         -         Permanent
+examplev2      Newer set of example instructions  example   -         Permanent
+=============  =================================  ========  ========  =========
+
+And then adding the new instructions into the BPF Instruction Set Registry as follows:
+
+======  ===  =================================  =============
+opcode  ...  description                        groups
+======  ===  =================================  =============
+aaa     ...  Original example instruction 1     example
+bbb     ...  Original example instruction 2     example
+ccc     ...  Added example instruction 3        examplev2
+ddd     ...  Added example instruction 4        examplev2
+======  ===  =================================  =============
+
+Supporting the "examplev2" group thus requires supporting all four example instructions.
+
+Deprecating instructions
+------------------------
+Deprecating instructions that are part of an existing conformance group can be done by defining a
+new conformance group for the newly deprecated instructions, and defining a new conformance group
+that supersedes the existing conformance group containing the instructions, where the new conformance
+group includes the existing one and excludes the deprecated instruction group.
+
+For example, if deprecating an instruction in an existing hypothetical group called "example", two new groups
+("legacyexample" and "examplev2") might be registered in the BPF Instruction Conformance Group
+Registry as follows:
+
+=============  =============================  ========  =============  ===========
+name           description                    includes  excludes       status
+=============  =============================  ========  =============  ===========
+example        Original example instructions  -         -              Permanent
+legacyexample  Legacy example instructions    -         -              Historical
+examplev2      Example instructions           example   legacyexample  Permanent
+=============  =============================  ========  =============  ===========
+
+The BPF Instruction Set Registry entries for the deprecated instructions would then be updated
+to add "legacyexample" to the set of groups for those instructions, as follows:
+
+======  ===  =================================  ======================
+opcode  ...  description                        groups
+======  ===  =================================  ======================
+aaa     ...  Good original instruction 1        example
+bbb     ...  Good original instruction 2        example
+ccc     ...  Bad original instruction 3         example, legacyexample
+ddd     ...  Bad original instruction 4         example, legacyexample
+======  ===  =================================  ======================
+
+Finally, updated implementations that dropped support for the deprecated instructions
+would then be able to claim conformance to "examplev2" rather than "example".
 
 Acknowledgements
 ================
