@@ -3,9 +3,9 @@
 
 
 Network Working Group                                     D. Thaler, Ed.
-Internet-Draft                                              8 April 2024
+Internet-Draft                                             19 April 2024
 Intended status: Standards Track                                        
-Expires: 10 October 2024
+Expires: 21 October 2024
 
 
                  BPF Instruction Set Architecture (ISA)
@@ -30,7 +30,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 October 2024.
+   This Internet-Draft will expire on 21 October 2024.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Table of Contents
 
 
 
-Thaler                   Expires 10 October 2024                [Page 1]
+Thaler                   Expires 21 October 2024                [Page 1]
 
 Internet-Draft                   BPF ISA                      April 2024
 
@@ -82,13 +82,17 @@ Internet-Draft                   BPF ISA                      April 2024
      4.5.  Legacy BPF Packet access instructions . . . . . . . . . .  21
    5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  21
      5.1.  BPF Instruction Conformance Group Registry  . . . . . . .  21
-     5.2.  BPF Instruction Set Registry  . . . . . . . . . . . . . .  23
-     5.3.  Adding instructions . . . . . . . . . . . . . . . . . . .  24
-     5.4.  Deprecating instructions  . . . . . . . . . . . . . . . .  25
-   6.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  27
-   7.  Appendix  . . . . . . . . . . . . . . . . . . . . . . . . . .  27
-   8.  Normative References  . . . . . . . . . . . . . . . . . . . .  42
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  42
+       5.1.1.  BPF Instruction Conformance Group Registration
+               Template  . . . . . . . . . . . . . . . . . . . . . .  23
+     5.2.  BPF Instruction Set Registry  . . . . . . . . . . . . . .  24
+       5.2.1.  BPF Instruction Registration Template . . . . . . . .  25
+     5.3.  Adding instructions . . . . . . . . . . . . . . . . . . .  25
+     5.4.  Deprecating instructions  . . . . . . . . . . . . . . . .  26
+     5.5.  Change Control  . . . . . . . . . . . . . . . . . . . . .  28
+   6.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  28
+   7.  Appendix  . . . . . . . . . . . . . . . . . . . . . . . . . .  28
+   8.  Normative References  . . . . . . . . . . . . . . . . . . . .  43
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  43
 
 1.  Documentation conventions
 
@@ -105,11 +109,7 @@ Internet-Draft                   BPF ISA                      April 2024
 
 
 
-
-
-
-
-Thaler                   Expires 10 October 2024                [Page 2]
+Thaler                   Expires 21 October 2024                [Page 2]
 
 Internet-Draft                   BPF ISA                      April 2024
 
@@ -165,7 +165,7 @@ Internet-Draft                   BPF ISA                      April 2024
 
 
 
-Thaler                   Expires 10 October 2024                [Page 3]
+Thaler                   Expires 21 October 2024                [Page 3]
 
 Internet-Draft                   BPF ISA                      April 2024
 
@@ -221,7 +221,7 @@ Internet-Draft                   BPF ISA                      April 2024
 
 
 
-Thaler                   Expires 10 October 2024                [Page 4]
+Thaler                   Expires 21 October 2024                [Page 4]
 
 Internet-Draft                   BPF ISA                      April 2024
 
@@ -277,7 +277,7 @@ Internet-Draft                   BPF ISA                      April 2024
 
 
 
-Thaler                   Expires 10 October 2024                [Page 5]
+Thaler                   Expires 21 October 2024                [Page 5]
 
 Internet-Draft                   BPF ISA                      April 2024
 
@@ -333,7 +333,7 @@ Internet-Draft                   BPF ISA                      April 2024
 
 
 
-Thaler                   Expires 10 October 2024                [Page 6]
+Thaler                   Expires 21 October 2024                [Page 6]
 
 Internet-Draft                   BPF ISA                      April 2024
 
@@ -389,7 +389,7 @@ Internet-Draft                   BPF ISA                      April 2024
 
 
 
-Thaler                   Expires 10 October 2024                [Page 7]
+Thaler                   Expires 21 October 2024                [Page 7]
 
 Internet-Draft                   BPF ISA                      April 2024
 
@@ -445,7 +445,7 @@ Internet-Draft                   BPF ISA                      April 2024
 
 
 
-Thaler                   Expires 10 October 2024                [Page 8]
+Thaler                   Expires 21 October 2024                [Page 8]
 
 Internet-Draft                   BPF ISA                      April 2024
 
@@ -501,7 +501,7 @@ Internet-Draft                   BPF ISA                      April 2024
 
 
 
-Thaler                   Expires 10 October 2024                [Page 9]
+Thaler                   Expires 21 October 2024                [Page 9]
 
 Internet-Draft                   BPF ISA                      April 2024
 
@@ -557,7 +557,7 @@ Internet-Draft                   BPF ISA                      April 2024
 
 
 
-Thaler                   Expires 10 October 2024               [Page 10]
+Thaler                   Expires 21 October 2024               [Page 10]
 
 Internet-Draft                   BPF ISA                      April 2024
 
@@ -613,7 +613,7 @@ Internet-Draft                   BPF ISA                      April 2024
 
 
 
-Thaler                   Expires 10 October 2024               [Page 11]
+Thaler                   Expires 21 October 2024               [Page 11]
 
 Internet-Draft                   BPF ISA                      April 2024
 
@@ -669,7 +669,7 @@ Internet-Draft                   BPF ISA                      April 2024
 
 
 
-Thaler                   Expires 10 October 2024               [Page 12]
+Thaler                   Expires 21 October 2024               [Page 12]
 
 Internet-Draft                   BPF ISA                      April 2024
 
@@ -725,7 +725,7 @@ Internet-Draft                   BPF ISA                      April 2024
 
 
 
-Thaler                   Expires 10 October 2024               [Page 13]
+Thaler                   Expires 21 October 2024               [Page 13]
 
 Internet-Draft                   BPF ISA                      April 2024
 
@@ -781,7 +781,7 @@ Internet-Draft                   BPF ISA                      April 2024
 
 
 
-Thaler                   Expires 10 October 2024               [Page 14]
+Thaler                   Expires 21 October 2024               [Page 14]
 
 Internet-Draft                   BPF ISA                      April 2024
 
@@ -837,7 +837,7 @@ Internet-Draft                   BPF ISA                      April 2024
 
 
 
-Thaler                   Expires 10 October 2024               [Page 15]
+Thaler                   Expires 21 October 2024               [Page 15]
 
 Internet-Draft                   BPF ISA                      April 2024
 
@@ -893,7 +893,7 @@ Internet-Draft                   BPF ISA                      April 2024
 
 
 
-Thaler                   Expires 10 October 2024               [Page 16]
+Thaler                   Expires 21 October 2024               [Page 16]
 
 Internet-Draft                   BPF ISA                      April 2024
 
@@ -949,7 +949,7 @@ Internet-Draft                   BPF ISA                      April 2024
 
 
 
-Thaler                   Expires 10 October 2024               [Page 17]
+Thaler                   Expires 21 October 2024               [Page 17]
 
 Internet-Draft                   BPF ISA                      April 2024
 
@@ -1005,7 +1005,7 @@ Internet-Draft                   BPF ISA                      April 2024
 
 
 
-Thaler                   Expires 10 October 2024               [Page 18]
+Thaler                   Expires 21 October 2024               [Page 18]
 
 Internet-Draft                   BPF ISA                      April 2024
 
@@ -1061,7 +1061,7 @@ Internet-Draft                   BPF ISA                      April 2024
 
 
 
-Thaler                   Expires 10 October 2024               [Page 19]
+Thaler                   Expires 21 October 2024               [Page 19]
 
 Internet-Draft                   BPF ISA                      April 2024
 
@@ -1117,7 +1117,7 @@ Internet-Draft                   BPF ISA                      April 2024
 
 
 
-Thaler                   Expires 10 October 2024               [Page 20]
+Thaler                   Expires 21 October 2024               [Page 20]
 
 Internet-Draft                   BPF ISA                      April 2024
 
@@ -1167,37 +1167,25 @@ Internet-Draft                   BPF ISA                      April 2024
 
    *  Name of the registry group: BPF Instructions
 
-   *  Required information for registrations: The values to appear in
-      the entry fields.
+   *  Required information for registrations: See BPF Instruction
+      Conformance Group Registration Template (Section 5.1.1)
 
 
 
 
-Thaler                   Expires 10 October 2024               [Page 21]
+Thaler                   Expires 21 October 2024               [Page 21]
 
 Internet-Draft                   BPF ISA                      April 2024
 
 
    *  Syntax of registry entries: Each entry has the following fields:
-
-      -  name: alphanumeric label indicating the name of the conformance
-         group
-
-      -  description: brief description of the conformance group
-
-      -  includes: any other conformance groups that are included from
-         this group
-
-      -  excludes: any other conformance groups that are excluded from
-         this group.
-
-      -  status: Permanent, Provisional, or Historical
-
-      -  reference: a reference to the defining specification
+      name, description, includes, excludes, status, and reference.  See
+      BPF Instruction Conformance Group Registration Template
+      (Section 5.1.1) for more details.
 
    *  Registration policy (see Section 4 of [RFC8126] for details):
 
-      -  Permanent: Standards action or IESG Review
+      -  Permanent: Standards action or IESG Approval
 
       -  Provisional: Specification required
 
@@ -1229,7 +1217,19 @@ Internet-Draft                   BPF ISA                      April 2024
 
 
 
-Thaler                   Expires 10 October 2024               [Page 22]
+
+
+
+
+
+
+
+
+
+
+
+
+Thaler                   Expires 21 October 2024               [Page 22]
 
 Internet-Draft                   BPF ISA                      April 2024
 
@@ -1273,6 +1273,44 @@ Internet-Draft                   BPF ISA                      April 2024
    NOTE TO RFC-EDITOR: Upon publication, please replace RFCXXX above
    with reference to this document.
 
+5.1.1.  BPF Instruction Conformance Group Registration Template
+
+   This template describes the fields that must be supplied in a
+   registration request suitable for adding to the registry:
+
+   Name:  Alphanumeric label indicating the name of the conformance
+      group.
+
+   Description:  Brief description of the conformance group.
+
+
+
+Thaler                   Expires 21 October 2024               [Page 23]
+
+Internet-Draft                   BPF ISA                      April 2024
+
+
+   Includes:  Any other conformance groups that are included from this
+      group.
+
+   Excludes:  Any other conformance groups that are excluded from this
+      group.
+
+   Status:  This reflects the status requested and must be one of
+      'Permanent', 'Provisional', or 'Historical'.
+
+   Contact:  Person (including contact information) to contact for
+      further information.
+
+   Change controller:  Organization or person (often the author),
+      including contact information, authoried to change this.
+
+   Reference:  A reference to the defining specification.  Include full
+      citations for all referenced documents.  Registration requests for
+      'Provisional' registration can be included in an Internet-Draft;
+      when the documents expire or are approved for publication as an
+      RFC, the registration will be updated.
+
 5.2.  BPF Instruction Set Registry
 
    This document proposes a new IANA registry for BPF instructions, as
@@ -1282,38 +1320,13 @@ Internet-Draft                   BPF ISA                      April 2024
 
    *  Name of the registry group: BPF Instructions
 
-
-
-
-Thaler                   Expires 10 October 2024               [Page 23]
-
-Internet-Draft                   BPF ISA                      April 2024
-
-
-   *  Required information for registrations: The values to appear in
-      the entry fields.
+   *  Required information for registrations: See BPF Instruction
+      Registration Template (Section 5.2.1)
 
    *  Syntax of registry entries: Each entry has the following fields:
-
-      -  opcode: a 1-byte value in hex format indicating the value of
-         the opcode field
-
-      -  src: either a value indicating the value of the src field, or
-         "any"
-
-      -  imm: either a value indicating the value of the imm field, or
-         "any"
-
-      -  offset: either a value indicating the value of the offset
-         field, or "any"
-
-      -  description: description of what the instruction does,
-         typically in pseudocode
-
-      -  groups: a list of one or more comma-separated conformance
-         groups to which the instruction belongs
-
-      -  reference: a reference to the defining specification
+      opcode, src, imm, offset, description, groups, and reference.  See
+      BPF Instruction Registration Template (Section 5.2.1) for more
+      details.
 
    *  Registration policy: New instructions require a new entry in the
       conformance group sub-registry and the same registration policies
@@ -1322,6 +1335,50 @@ Internet-Draft                   BPF ISA                      April 2024
    *  Initial registrations: See the Appendix.  Instructions other than
       those listed as deprecated are Permanent.  Any listed as
       deprecated are Historical.
+
+
+
+
+
+
+Thaler                   Expires 21 October 2024               [Page 24]
+
+Internet-Draft                   BPF ISA                      April 2024
+
+
+5.2.1.  BPF Instruction Registration Template
+
+   This template describes the fields that must be supplied in a
+   registration request suitable for adding to the registry:
+
+   Opcode:  A 1-byte value in hex format indicating the value of the
+      opcode field
+
+   Src:  Either a numeric value indicating the value of the src field,
+      or "any"
+
+   Imm:  Either a value indicating the value of the imm field, or "any"
+
+   Offset:  Either a numeric value indicating the value of the offset
+      field, or "any"
+
+   Description:  Description of what the instruction does, typically in
+      pseudocode
+
+   Groups:  A list of one or more comma-separated conformance groups to
+      which the instruction belongs
+
+   Contact:  Person (including contact information) to contact for
+      further information.
+
+   Change controller:  Organization or person (often the author),
+      including contact information, authoried to change this.
+
+   Reference:  A reference to the defining specification.  Include full
+      citations for all referenced documents.  Registration requests for
+      'Provisional' registration can be included in an Internet-Draft;
+      when the documents expire or are approved for publication as an
+      RFC, the registration will be updated.
 
 5.3.  Adding instructions
 
@@ -1340,8 +1397,7 @@ Internet-Draft                   BPF ISA                      April 2024
 
 
 
-
-Thaler                   Expires 10 October 2024               [Page 24]
+Thaler                   Expires 21 October 2024               [Page 25]
 
 Internet-Draft                   BPF ISA                      April 2024
 
@@ -1397,7 +1453,7 @@ Internet-Draft                   BPF ISA                      April 2024
 
 
 
-Thaler                   Expires 10 October 2024               [Page 25]
+Thaler                   Expires 21 October 2024               [Page 26]
 
 Internet-Draft                   BPF ISA                      April 2024
 
@@ -1453,10 +1509,31 @@ Internet-Draft                   BPF ISA                      April 2024
 
 
 
-Thaler                   Expires 10 October 2024               [Page 26]
+Thaler                   Expires 21 October 2024               [Page 27]
 
 Internet-Draft                   BPF ISA                      April 2024
 
+
+5.5.  Change Control
+
+   Registrations can be updated in a registry by the same mechanism as
+   required for an initial registration.  In cases where the original
+   definition of an entry is contained in an IESG-approved document,
+   update of the specification also requires IESG approval.
+
+   'Provisional' registrations can be updated by the original registrant
+   or anyone designated by the original registrant.  In addition, the
+   IESG can reassign responsibility for a 'Provisional' registration or
+   can request specific changes to an entry.  This will enable changes
+   to be made to entries where the original registrant is out of contact
+   or unwilling or unable to make changes.
+
+   Transition from 'Provisional' to 'Permanent' status can be requested
+   and approved in the same manner as a new 'Permanent' registration.
+   Transition from 'Permanent' to 'Historical' status requires IESG
+   approval.  Transition from 'Provisional' to 'Historical' can be
+   requested by anyone authorized to update the 'Provisional'
+   registration.
 
 6.  Acknowledgements
 
@@ -1485,6 +1562,14 @@ Internet-Draft                   BPF ISA                      April 2024
    |      |       |      |    |                        |        |(Section 4.4)|
    +------+-------+------+----+------------------------+--------+-------------+
    |0x04  |0x0    |0     |any |dst = (u32)((u32)dst +  |base32  |Arithmetic   |
+
+
+
+Thaler                   Expires 21 October 2024               [Page 28]
+
+Internet-Draft                   BPF ISA                      April 2024
+
+
    |      |       |      |    |(u32)imm)               |        |instructions |
    |      |       |      |    |                        |        |(Section 3.1)|
    +------+-------+------+----+------------------------+--------+-------------+
@@ -1506,14 +1591,6 @@ Internet-Draft                   BPF ISA                      April 2024
    +------+-------+------+----+------------------------+--------+-------------+
    |0x0f  |any    |0     |0x00|dst += src              |base64  |Arithmetic   |
    |      |       |      |    |                        |        |instructions |
-
-
-
-Thaler                   Expires 10 October 2024               [Page 27]
-
-Internet-Draft                   BPF ISA                      April 2024
-
-
    |      |       |      |    |                        |        |(Section 3.1)|
    +------+-------+------+----+------------------------+--------+-------------+
    |0x14  |0x0    |0     |any |dst = (u32)((u32)dst -  |base32  |Arithmetic   |
@@ -1541,6 +1618,14 @@ Internet-Draft                   BPF ISA                      April 2024
    |      |       |      |    |                        |        |immediate    |
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 4.4)|
+
+
+
+Thaler                   Expires 21 October 2024               [Page 29]
+
+Internet-Draft                   BPF ISA                      April 2024
+
+
    +------+-------+------+----+------------------------+--------+-------------+
    |0x18  |0x2    |0     |any |dst =                   |base64  |64-bit       |
    |      |       |      |    |map_val(map_by_fd(imm)) |        |immediate    |
@@ -1562,14 +1647,6 @@ Internet-Draft                   BPF ISA                      April 2024
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 4.4)|
    +------+-------+------+----+------------------------+--------+-------------+
-
-
-
-Thaler                   Expires 10 October 2024               [Page 28]
-
-Internet-Draft                   BPF ISA                      April 2024
-
-
    |0x18  |0x6    |0     |any |dst =                   |base64  |64-bit       |
    |      |       |      |    |map_val(map_by_idx(imm))|        |immediate    |
    |      |       |      |    |+ next_imm              |        |instructions |
@@ -1597,6 +1674,14 @@ Internet-Draft                   BPF ISA                      April 2024
    |      |       |      |    |                        |        |(Section 4.5)|
    +------+-------+------+----+------------------------+--------+-------------+
    |0x24  |0x0    |0     |any |dst = (u32)(dst * imm)  |divmul32|Arithmetic   |
+
+
+
+Thaler                   Expires 21 October 2024               [Page 30]
+
+Internet-Draft                   BPF ISA                      April 2024
+
+
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 3.1)|
    +------+-------+------+----+------------------------+--------+-------------+
@@ -1618,14 +1703,6 @@ Internet-Draft                   BPF ISA                      April 2024
    |      |       |      |    |                        |        |(Section 4.5)|
    +------+-------+------+----+------------------------+--------+-------------+
    |0x2c  |any    |0     |0x00|dst = (u32)(dst * src)  |divmul32|Arithmetic   |
-
-
-
-Thaler                   Expires 10 October 2024               [Page 29]
-
-Internet-Draft                   BPF ISA                      April 2024
-
-
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 3.1)|
    +------+-------+------+----+------------------------+--------+-------------+
@@ -1653,6 +1730,14 @@ Internet-Draft                   BPF ISA                      April 2024
    |0x34  |0x0    |1     |any |dst = (u32)((imm != 0) ?|divmul32|Arithmetic   |
    |      |       |      |    |((s32)dst s/ imm) : 0)  |        |instructions |
    |      |       |      |    |                        |        |(Section 3.1)|
+
+
+
+Thaler                   Expires 21 October 2024               [Page 31]
+
+Internet-Draft                   BPF ISA                      April 2024
+
+
    +------+-------+------+----+------------------------+--------+-------------+
    |0x35  |0x0    |any   |any |if dst >= imm goto      |base64  |Jump         |
    |      |       |      |    |+offset                 |        |instructions |
@@ -1674,14 +1759,6 @@ Internet-Draft                   BPF ISA                      April 2024
    |      |       |      |    |((u32)dst / (u32)src) : |        |instructions |
    |      |       |      |    |0)                      |        |(Section 3.1)|
    +------+-------+------+----+------------------------+--------+-------------+
-
-
-
-Thaler                   Expires 10 October 2024               [Page 30]
-
-Internet-Draft                   BPF ISA                      April 2024
-
-
    |0x3c  |any    |1     |0x00|dst = (u32)((src != 0) ?|divmul32|Arithmetic   |
    |      |       |      |    |((s32)dst s/(s32)src) : |        |instructions |
    |      |       |      |    |0)                      |        |(Section 3.1)|
@@ -1709,6 +1786,14 @@ Internet-Draft                   BPF ISA                      April 2024
    +------+-------+------+----+------------------------+--------+-------------+
    |0x44  |0x0    |0     |any |dst = (u32)(dst | imm)  |base32  |Arithmetic   |
    |      |       |      |    |                        |        |instructions |
+
+
+
+Thaler                   Expires 21 October 2024               [Page 32]
+
+Internet-Draft                   BPF ISA                      April 2024
+
+
    |      |       |      |    |                        |        |(Section 3.1)|
    +------+-------+------+----+------------------------+--------+-------------+
    |0x45  |0x0    |any   |any |if dst & imm goto       |base64  |Jump         |
@@ -1730,14 +1815,6 @@ Internet-Draft                   BPF ISA                      April 2024
    +------+-------+------+----+------------------------+--------+-------------+
    |0x4c  |any    |0     |0x00|dst = (u32)(dst | src)  |base32  |Arithmetic   |
    |      |       |      |    |                        |        |instructions |
-
-
-
-Thaler                   Expires 10 October 2024               [Page 31]
-
-Internet-Draft                   BPF ISA                      April 2024
-
-
    |      |       |      |    |                        |        |(Section 3.1)|
    +------+-------+------+----+------------------------+--------+-------------+
    |0x4d  |any    |any   |0x00|if dst & src goto       |base64  |Jump         |
@@ -1765,6 +1842,14 @@ Internet-Draft                   BPF ISA                      April 2024
    |      |       |      |    |+offset                 |        |instructions |
    |      |       |      |    |                        |        |(Section 3.3)|
    +------+-------+------+----+------------------------+--------+-------------+
+
+
+
+Thaler                   Expires 21 October 2024               [Page 33]
+
+Internet-Draft                   BPF ISA                      April 2024
+
+
    |0x56  |0x0    |any   |any |if (u32)dst != imm goto |base32  |Jump         |
    |      |       |      |    |+offset                 |        |instructions |
    |      |       |      |    |                        |        |(Section 3.3)|
@@ -1786,14 +1871,6 @@ Internet-Draft                   BPF ISA                      April 2024
    |      |       |      |    |                        |        |(Section 3.3)|
    +------+-------+------+----+------------------------+--------+-------------+
    |0x5f  |any    |0     |0x00|dst &= src              |base64  |Arithmetic   |
-
-
-
-Thaler                   Expires 10 October 2024               [Page 32]
-
-Internet-Draft                   BPF ISA                      April 2024
-
-
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 3.1)|
    +------+-------+------+----+------------------------+--------+-------------+
@@ -1821,6 +1898,14 @@ Internet-Draft                   BPF ISA                      April 2024
    |      |       |      |    |                        |        |(Section 3.3)|
    +------+-------+------+----+------------------------+--------+-------------+
    |0x66  |0x0    |any   |any |if (s32)dst s> (s32)imm |base32  |Jump         |
+
+
+
+Thaler                   Expires 21 October 2024               [Page 34]
+
+Internet-Draft                   BPF ISA                      April 2024
+
+
    |      |       |      |    |goto +offset            |        |instructions |
    |      |       |      |    |                        |        |(Section 3.3)|
    +------+-------+------+----+------------------------+--------+-------------+
@@ -1842,14 +1927,6 @@ Internet-Draft                   BPF ISA                      April 2024
    |      |       |      |    |src                     |        |store        |
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 4)  |
-
-
-
-Thaler                   Expires 10 October 2024               [Page 33]
-
-Internet-Draft                   BPF ISA                      April 2024
-
-
    +------+-------+------+----+------------------------+--------+-------------+
    |0x6c  |any    |0     |0x00|dst = (u32)(dst << src) |base32  |Arithmetic   |
    |      |       |      |    |                        |        |instructions |
@@ -1877,6 +1954,14 @@ Internet-Draft                   BPF ISA                      April 2024
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 4)  |
    +------+-------+------+----+------------------------+--------+-------------+
+
+
+
+Thaler                   Expires 21 October 2024               [Page 35]
+
+Internet-Draft                   BPF ISA                      April 2024
+
+
    |0x73  |any    |any   |0x00|*(u8 *)(dst + offset) = |base32  |Load and     |
    |      |       |      |    |src                     |        |store        |
    |      |       |      |    |                        |        |instructions |
@@ -1898,14 +1983,6 @@ Internet-Draft                   BPF ISA                      April 2024
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 3.1)|
    +------+-------+------+----+------------------------+--------+-------------+
-
-
-
-Thaler                   Expires 10 October 2024               [Page 34]
-
-Internet-Draft                   BPF ISA                      April 2024
-
-
    |0x79  |any    |any   |0x00|dst = *(u64 *)(src +    |base64  |Load and     |
    |      |       |      |    |offset)                 |        |store        |
    |      |       |      |    |                        |        |instructions |
@@ -1933,6 +2010,14 @@ Internet-Draft                   BPF ISA                      April 2024
    |      |       |      |    |goto +offset            |        |instructions |
    |      |       |      |    |                        |        |(Section 3.3)|
    +------+-------+------+----+------------------------+--------+-------------+
+
+
+
+Thaler                   Expires 21 October 2024               [Page 36]
+
+Internet-Draft                   BPF ISA                      April 2024
+
+
    |0x7f  |any    |0     |0x00|dst >>= src             |base64  |Arithmetic   |
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 3.1)|
@@ -1954,14 +2039,6 @@ Internet-Draft                   BPF ISA                      April 2024
    |0x85  |0x2    |0     |any |call helper function by |base32  |Helper       |
    |      |       |      |    |BTF ID                  |        |functions    |
    |      |       |      |    |                        |        |(Section     |
-
-
-
-Thaler                   Expires 10 October 2024               [Page 35]
-
-Internet-Draft                   BPF ISA                      April 2024
-
-
    |      |       |      |    |                        |        |3.3.1)       |
    +------+-------+------+----+------------------------+--------+-------------+
    |0x87  |0x0    |0     |0x00|dst = -dst              |base64  |Arithmetic   |
@@ -1989,6 +2066,14 @@ Internet-Draft                   BPF ISA                      April 2024
    |      |       |      |    |                        |        |(Section 3.1)|
    +------+-------+------+----+------------------------+--------+-------------+
    |0x9c  |any    |0     |0x00|dst = (u32)((src !=     |divmul32|Arithmetic   |
+
+
+
+Thaler                   Expires 21 October 2024               [Page 37]
+
+Internet-Draft                   BPF ISA                      April 2024
+
+
    |      |       |      |    |0)?((u32)dst % (u32)src)|        |instructions |
    |      |       |      |    |: dst)                  |        |(Section 3.1)|
    +------+-------+------+----+------------------------+--------+-------------+
@@ -2010,14 +2095,6 @@ Internet-Draft                   BPF ISA                      April 2024
    +------+-------+------+----+------------------------+--------+-------------+
    |0xa5  |0x0    |any   |any |if dst < imm goto       |base64  |Jump         |
    |      |       |      |    |+offset                 |        |instructions |
-
-
-
-Thaler                   Expires 10 October 2024               [Page 36]
-
-Internet-Draft                   BPF ISA                      April 2024
-
-
    |      |       |      |    |                        |        |(Section 3.3)|
    +------+-------+------+----+------------------------+--------+-------------+
    |0xa6  |0x0    |any   |any |if (u32)dst < imm goto  |base32  |Jump         |
@@ -2045,6 +2122,14 @@ Internet-Draft                   BPF ISA                      April 2024
    |      |       |      |    |                        |        |(Section 3.1)|
    +------+-------+------+----+------------------------+--------+-------------+
    |0xb4  |0x0    |0     |any |dst = (u32) imm         |base32  |Arithmetic   |
+
+
+
+Thaler                   Expires 21 October 2024               [Page 38]
+
+Internet-Draft                   BPF ISA                      April 2024
+
+
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 3.1)|
    +------+-------+------+----+------------------------+--------+-------------+
@@ -2066,14 +2151,6 @@ Internet-Draft                   BPF ISA                      April 2024
    +------+-------+------+----+------------------------+--------+-------------+
    |0xbc  |any    |8     |0x00|dst = (u32) (s32) (s8)  |base32  |Arithmetic   |
    |      |       |      |    |src                     |        |instructions |
-
-
-
-Thaler                   Expires 10 October 2024               [Page 37]
-
-Internet-Draft                   BPF ISA                      April 2024
-
-
    |      |       |      |    |                        |        |(Section 3.1)|
    +------+-------+------+----+------------------------+--------+-------------+
    |0xbc  |any    |16    |0x00|dst = (u32) (s32) (s16) |base32  |Arithmetic   |
@@ -2101,6 +2178,14 @@ Internet-Draft                   BPF ISA                      April 2024
    |      |       |      |    |                        |        |(Section 3.1)|
    +------+-------+------+----+------------------------+--------+-------------+
    |0xbf  |any    |32    |0x00|dst = (s64) (s32) src   |base64  |Arithmetic   |
+
+
+
+Thaler                   Expires 21 October 2024               [Page 39]
+
+Internet-Draft                   BPF ISA                      April 2024
+
+
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 3.1)|
    +------+-------+------+----+------------------------+--------+-------------+
@@ -2122,14 +2207,6 @@ Internet-Draft                   BPF ISA                      April 2024
    +------+-------+------+----+------------------------+--------+-------------+
    |0xc3  |any    |any   |0x50|lock *(u32 *)(dst +     |atomic32|Atomic       |
    |      |       |      |    |offset) &= src          |        |operations   |
-
-
-
-Thaler                   Expires 10 October 2024               [Page 38]
-
-Internet-Draft                   BPF ISA                      April 2024
-
-
    |      |       |      |    |                        |        |(Section 4.3)|
    +------+-------+------+----+------------------------+--------+-------------+
    |0xc3  |any    |any   |0x51|src =                   |atomic32|Atomic       |
@@ -2157,6 +2234,14 @@ Internet-Draft                   BPF ISA                      April 2024
    |      |       |      |    |                        |        |(Section 3.1)|
    +------+-------+------+----+------------------------+--------+-------------+
    |0xc5  |0x0    |any   |any |if dst s< imm goto      |base64  |Jump         |
+
+
+
+Thaler                   Expires 21 October 2024               [Page 40]
+
+Internet-Draft                   BPF ISA                      April 2024
+
+
    |      |       |      |    |+offset                 |        |instructions |
    |      |       |      |    |                        |        |(Section 3.3)|
    +------+-------+------+----+------------------------+--------+-------------+
@@ -2178,14 +2263,6 @@ Internet-Draft                   BPF ISA                      April 2024
    +------+-------+------+----+------------------------+--------+-------------+
    |0xce  |any    |any   |0x00|if (s32)dst s< (s32)src |base32  |Jump         |
    |      |       |      |    |goto +offset            |        |instructions |
-
-
-
-Thaler                   Expires 10 October 2024               [Page 39]
-
-Internet-Draft                   BPF ISA                      April 2024
-
-
    |      |       |      |    |                        |        |(Section 3.3)|
    +------+-------+------+----+------------------------+--------+-------------+
    |0xcf  |any    |0     |0x00|dst s>>= src            |base64  |Arithmetic   |
@@ -2213,6 +2290,14 @@ Internet-Draft                   BPF ISA                      April 2024
    |      |       |      |    |                        |        |(Section 3.3)|
    +------+-------+------+----+------------------------+--------+-------------+
    |0xd7  |0x0    |0     |0x10|dst = bswap16(dst)      |base32  |Byte swap    |
+
+
+
+Thaler                   Expires 21 October 2024               [Page 41]
+
+Internet-Draft                   BPF ISA                      April 2024
+
+
    |      |       |      |    |                        |        |instructions |
    |      |       |      |    |                        |        |(Section 3.2)|
    +------+-------+------+----+------------------------+--------+-------------+
@@ -2234,14 +2319,6 @@ Internet-Draft                   BPF ISA                      April 2024
    +------+-------+------+----+------------------------+--------+-------------+
    |0xdb  |any    |any   |0x40|lock *(u64 *)(dst +     |atomic64|Atomic       |
    |      |       |      |    |offset) |= src          |        |operations   |
-
-
-
-Thaler                   Expires 10 October 2024               [Page 40]
-
-Internet-Draft                   BPF ISA                      April 2024
-
-
    |      |       |      |    |                        |        |(Section 4.3)|
    +------+-------+------+----+------------------------+--------+-------------+
    |0xdb  |any    |any   |0x41|src =                   |atomic64|Atomic       |
@@ -2269,6 +2346,14 @@ Internet-Draft                   BPF ISA                      April 2024
    |      |       |      |    |                        |        |(Section 4.3)|
    +------+-------+------+----+------------------------+--------+-------------+
    |0xdb  |any    |any   |0xf1|r0 = cmpxchg_64((u64    |atomic64|Atomic       |
+
+
+
+Thaler                   Expires 21 October 2024               [Page 42]
+
+Internet-Draft                   BPF ISA                      April 2024
+
+
    |      |       |      |    |*)(dst + offset), r0,   |        |operations   |
    |      |       |      |    |src)                    |        |(Section 4.3)|
    +------+-------+------+----+------------------------+--------+-------------+
@@ -2290,14 +2375,6 @@ Internet-Draft                   BPF ISA                      April 2024
    +------+-------+------+----+------------------------+--------+-------------+
    |0xde  |any    |any   |0x00|if (s32)dst s<= (s32)src|base32  |Jump         |
    |      |       |      |    |goto +offset            |        |instructions |
-
-
-
-Thaler                   Expires 10 October 2024               [Page 41]
-
-Internet-Draft                   BPF ISA                      April 2024
-
-
    |      |       |      |    |                        |        |(Section 3.3)|
    +------+-------+------+----+------------------------+--------+-------------+
 
@@ -2328,25 +2405,4 @@ Author's Address
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Thaler                   Expires 10 October 2024               [Page 42]
+Thaler                   Expires 21 October 2024               [Page 43]

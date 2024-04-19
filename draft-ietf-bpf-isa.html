@@ -11,10 +11,10 @@
     This document specifies the BPF instruction set architecture (ISA).
        
     " name="description">
-<meta content="xml2rfc 3.20.1" name="generator">
+<meta content="xml2rfc 3.21.0" name="generator">
 <meta content="draft-ietf-bpf-isa-02" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.20.1
+  xml2rfc 3.21.0
     Python 3.8.10
     ConfigArgParse 1.7
     google-i18n-address 3.1.0
@@ -312,6 +312,9 @@ cite {
   display: block;
   text-align: right;
   font-style: italic;
+}
+.xref {
+  overflow-wrap: normal;
 }
 
 /* tables */
@@ -1213,7 +1216,7 @@ li > p:last-of-type:only-child {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Thaler</td>
-<td class="center">Expires 10 October 2024</td>
+<td class="center">Expires 21 October 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1226,12 +1229,12 @@ li > p:last-of-type:only-child {
 <dd class="internet-draft">draft-ietf-bpf-isa-02</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-04-08" class="published">8 April 2024</time>
+<time datetime="2024-04-19" class="published">19 April 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-10-10">10 October 2024</time></dd>
+<dd class="expires"><time datetime="2024-10-21">21 October 2024</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1266,7 +1269,7 @@ li > p:last-of-type:only-child {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 10 October 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 21 October 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1381,15 +1384,28 @@ li > p:last-of-type:only-child {
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1">
                 <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-bpf-instruction-conformance" class="internal xref">BPF Instruction Conformance Group Registry</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.1">
+                    <p id="section-toc.1-1.5.2.1.2.1.1"><a href="#section-5.1.1" class="auto internal xref">5.1.1</a>.  <a href="#name-bpf-instruction-conformance-" class="internal xref">BPF Instruction Conformance Group Registration Template</a></p>
+</li>
+                </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2">
                 <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="auto internal xref">5.2</a>.  <a href="#name-bpf-instruction-set-registr" class="internal xref">BPF Instruction Set Registry</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.1">
+                    <p id="section-toc.1-1.5.2.2.2.1.1"><a href="#section-5.2.1" class="auto internal xref">5.2.1</a>.  <a href="#name-bpf-instruction-registratio" class="internal xref">BPF Instruction Registration Template</a></p>
+</li>
+                </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.3">
                 <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="auto internal xref">5.3</a>.  <a href="#name-adding-instructions" class="internal xref">Adding instructions</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.4">
                 <p id="section-toc.1-1.5.2.4.1"><a href="#section-5.4" class="auto internal xref">5.4</a>.  <a href="#name-deprecating-instructions" class="internal xref">Deprecating instructions</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.5">
+                <p id="section-toc.1-1.5.2.5.1"><a href="#section-5.5" class="auto internal xref">5.5</a>.  <a href="#name-change-control" class="internal xref">Change Control</a></p>
 </li>
             </ul>
 </li>
@@ -3905,38 +3921,18 @@ dst = *(signed size *) (src + offset)
       Name of the registry group: BPF Instructions<a href="#section-5.1-2.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-5.1-2.3">
-      Required information for registrations: The values to appear in the entry fields.<a href="#section-5.1-2.3" class="pilcrow">¶</a>
+      Required information for registrations: See <span><a href="#bpf-instruction-conformance-group-registration-template" class="internal xref">BPF Instruction Conformance Group Registration Template</a> (<a href="#bpf-instruction-conformance-group-registration-template" class="auto internal xref">Section 5.1.1</a>)</span><a href="#section-5.1-2.3" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-5.1-2.4">
-            <p id="section-5.1-2.4.1">
-      Syntax of registry entries: Each entry has the following fields:<a href="#section-5.1-2.4.1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-5.1-2.4.2.1">
-        name: alphanumeric label indicating the name of the conformance group<a href="#section-5.1-2.4.2.1" class="pilcrow">¶</a>
-</li>
-              <li class="normal" id="section-5.1-2.4.2.2">
-        description: brief description of the conformance group<a href="#section-5.1-2.4.2.2" class="pilcrow">¶</a>
-</li>
-              <li class="normal" id="section-5.1-2.4.2.3">
-        includes: any other conformance groups that are included from this group<a href="#section-5.1-2.4.2.3" class="pilcrow">¶</a>
-</li>
-              <li class="normal" id="section-5.1-2.4.2.4">
-        excludes: any other conformance groups that are excluded from this group.<a href="#section-5.1-2.4.2.4" class="pilcrow">¶</a>
-</li>
-              <li class="normal" id="section-5.1-2.4.2.5">
-        status: Permanent, Provisional, or Historical<a href="#section-5.1-2.4.2.5" class="pilcrow">¶</a>
-</li>
-              <li class="normal" id="section-5.1-2.4.2.6">
-        reference: a reference to the defining specification<a href="#section-5.1-2.4.2.6" class="pilcrow">¶</a>
-</li>
-            </ul>
+      Syntax of registry entries: Each entry has the following fields: name, description, includes, excludes,
+      status, and reference. See <span><a href="#bpf-instruction-conformance-group-registration-template" class="internal xref">BPF Instruction Conformance Group Registration Template</a> (<a href="#bpf-instruction-conformance-group-registration-template" class="auto internal xref">Section 5.1.1</a>)</span> for more details.<a href="#section-5.1-2.4" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-5.1-2.5">
             <p id="section-5.1-2.5.1">
       Registration policy (see <span><a href="https://rfc-editor.org/rfc/rfc8126#section-4" class="relref">Section 4</a> of [<a href="#RFC8126" class="cite xref">RFC8126</a>]</span> for details):<a href="#section-5.1-2.5.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-5.1-2.5.2.1">
-        Permanent: Standards action or IESG Review<a href="#section-5.1-2.5.2.1" class="pilcrow">¶</a>
+        Permanent: Standards action or IESG Approval<a href="#section-5.1-2.5.2.1" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-5.1-2.5.2.2">
         Provisional: Specification required<a href="#section-5.1-2.5.2.2" class="pilcrow">¶</a>
@@ -4148,6 +4144,105 @@ dst = *(signed size *) (src + offset)
         </table>
 <p id="section-5.1-5">
      NOTE TO RFC-EDITOR: Upon publication, please replace RFCXXX above with reference to this document.<a href="#section-5.1-5" class="pilcrow">¶</a></p>
+<div id="bpf-instruction-conformance-group-registration-template">
+<section id="section-5.1.1">
+          <h4 id="name-bpf-instruction-conformance-">
+<a href="#section-5.1.1" class="section-number selfRef">5.1.1. </a><a href="#name-bpf-instruction-conformance-" class="section-name selfRef">BPF Instruction Conformance Group Registration Template</a>
+          </h4>
+<p id="section-5.1.1-1">
+      This template describes the fields that must be supplied in a registration request
+      suitable for adding to the registry:<a href="#section-5.1.1-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-5.1.1-2">
+            <dt id="section-5.1.1-2.1">
+<div id="term-name_">
+       Name:
+            </div>
+            </dt>
+<dd style="margin-left: 1.5em" id="section-5.1.1-2.2">
+              <p id="section-5.1.1-2.2.1">
+        Alphanumeric label indicating the name of the conformance group.<a href="#section-5.1.1-2.2.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-5.1.1-2.3">
+<div id="term-description_">
+       Description:
+            </div>
+            </dt>
+<dd style="margin-left: 1.5em" id="section-5.1.1-2.4">
+              <p id="section-5.1.1-2.4.1">
+        Brief description of the conformance group.<a href="#section-5.1.1-2.4.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-5.1.1-2.5">
+<div id="term-includes_">
+       Includes:
+            </div>
+            </dt>
+<dd style="margin-left: 1.5em" id="section-5.1.1-2.6">
+              <p id="section-5.1.1-2.6.1">
+        Any other conformance groups that are included from this group.<a href="#section-5.1.1-2.6.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-5.1.1-2.7">
+<div id="term-excludes_">
+       Excludes:
+            </div>
+            </dt>
+<dd style="margin-left: 1.5em" id="section-5.1.1-2.8">
+              <p id="section-5.1.1-2.8.1">
+        Any other conformance groups that are excluded from this group.<a href="#section-5.1.1-2.8.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-5.1.1-2.9">
+<div id="term-status_">
+       Status:
+            </div>
+            </dt>
+<dd style="margin-left: 1.5em" id="section-5.1.1-2.10">
+              <p id="section-5.1.1-2.10.1">
+        This reflects the status requested and must be one of 'Permanent',
+        'Provisional', or 'Historical'.<a href="#section-5.1.1-2.10.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-5.1.1-2.11">
+<div id="term-contact_">
+       Contact:
+            </div>
+            </dt>
+<dd style="margin-left: 1.5em" id="section-5.1.1-2.12">
+              <p id="section-5.1.1-2.12.1">
+        Person (including contact information) to contact for further information.<a href="#section-5.1.1-2.12.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-5.1.1-2.13">
+<div id="term-change-controller_">
+       Change controller:
+            </div>
+            </dt>
+<dd style="margin-left: 1.5em" id="section-5.1.1-2.14">
+              <p id="section-5.1.1-2.14.1">
+        Organization or person (often the author), including contact information,
+        authoried to change this.<a href="#section-5.1.1-2.14.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-5.1.1-2.15">
+<div id="term-reference_">
+       Reference:
+            </div>
+            </dt>
+<dd style="margin-left: 1.5em" id="section-5.1.1-2.16">
+              <p id="section-5.1.1-2.16.1">
+        A reference to the defining specification.
+        Include full citations for all referenced documents.
+        Registration requests for 'Provisional' registration can be
+        included in an Internet-Draft; when the documents expire or are
+        approved for publication as an RFC, the registration will be
+        updated.<a href="#section-5.1.1-2.16.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+</dl>
+</section>
+</div>
 </section>
 </div>
 <div id="bpf-instruction-set-registry">
@@ -4165,34 +4260,11 @@ dst = *(signed size *) (src + offset)
       Name of the registry group: BPF Instructions<a href="#section-5.2-2.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-5.2-2.3">
-      Required information for registrations: The values to appear in the entry fields.<a href="#section-5.2-2.3" class="pilcrow">¶</a>
+      Required information for registrations: See <span><a href="#bpf-instruction-registration-template" class="internal xref">BPF Instruction Registration Template</a> (<a href="#bpf-instruction-registration-template" class="auto internal xref">Section 5.2.1</a>)</span><a href="#section-5.2-2.3" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-5.2-2.4">
-            <p id="section-5.2-2.4.1">
-      Syntax of registry entries: Each entry has the following fields:<a href="#section-5.2-2.4.1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-5.2-2.4.2.1">
-        opcode: a 1-byte value in hex format indicating the value of the opcode field<a href="#section-5.2-2.4.2.1" class="pilcrow">¶</a>
-</li>
-              <li class="normal" id="section-5.2-2.4.2.2">
-        src: either a value indicating the value of the src field, or "any"<a href="#section-5.2-2.4.2.2" class="pilcrow">¶</a>
-</li>
-              <li class="normal" id="section-5.2-2.4.2.3">
-        imm: either a value indicating the value of the imm field, or "any"<a href="#section-5.2-2.4.2.3" class="pilcrow">¶</a>
-</li>
-              <li class="normal" id="section-5.2-2.4.2.4">
-        offset: either a value indicating the value of the offset field, or "any"<a href="#section-5.2-2.4.2.4" class="pilcrow">¶</a>
-</li>
-              <li class="normal" id="section-5.2-2.4.2.5">
-        description: description of what the instruction does, typically in pseudocode<a href="#section-5.2-2.4.2.5" class="pilcrow">¶</a>
-</li>
-              <li class="normal" id="section-5.2-2.4.2.6">
-        groups: a list of one or more comma-separated conformance groups to which the instruction belongs<a href="#section-5.2-2.4.2.6" class="pilcrow">¶</a>
-</li>
-              <li class="normal" id="section-5.2-2.4.2.7">
-        reference: a reference to the defining specification<a href="#section-5.2-2.4.2.7" class="pilcrow">¶</a>
-</li>
-            </ul>
+      Syntax of registry entries: Each entry has the following fields: opcode, src, imm, offset, description,
+      groups, and reference. See <span><a href="#bpf-instruction-registration-template" class="internal xref">BPF Instruction Registration Template</a> (<a href="#bpf-instruction-registration-template" class="auto internal xref">Section 5.2.1</a>)</span> for more details.<a href="#section-5.2-2.4" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-5.2-2.5">
       Registration policy: New instructions require a new entry in the conformance group
@@ -4203,6 +4275,114 @@ dst = *(signed size *) (src + offset)
       as deprecated are Permanent. Any listed as deprecated are Historical.<a href="#section-5.2-2.6" class="pilcrow">¶</a>
 </li>
         </ul>
+<div id="bpf-instruction-registration-template">
+<section id="section-5.2.1">
+          <h4 id="name-bpf-instruction-registratio">
+<a href="#section-5.2.1" class="section-number selfRef">5.2.1. </a><a href="#name-bpf-instruction-registratio" class="section-name selfRef">BPF Instruction Registration Template</a>
+          </h4>
+<p id="section-5.2.1-1">
+      This template describes the fields that must be supplied in a registration request
+      suitable for adding to the registry:<a href="#section-5.2.1-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-5.2.1-2">
+            <dt id="section-5.2.1-2.1">
+<div id="term-opcode_">
+       Opcode:
+            </div>
+            </dt>
+<dd style="margin-left: 1.5em" id="section-5.2.1-2.2">
+              <p id="section-5.2.1-2.2.1">
+        A 1-byte value in hex format indicating the value of the opcode field<a href="#section-5.2.1-2.2.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-5.2.1-2.3">
+<div id="term-src_">
+       Src:
+            </div>
+            </dt>
+<dd style="margin-left: 1.5em" id="section-5.2.1-2.4">
+              <p id="section-5.2.1-2.4.1">
+        Either a numeric value indicating the value of the src field, or "any"<a href="#section-5.2.1-2.4.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-5.2.1-2.5">
+<div id="term-imm_">
+       Imm:
+            </div>
+            </dt>
+<dd style="margin-left: 1.5em" id="section-5.2.1-2.6">
+              <p id="section-5.2.1-2.6.1">
+        Either a value indicating the value of the imm field, or "any"<a href="#section-5.2.1-2.6.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-5.2.1-2.7">
+<div id="term-offset_">
+       Offset:
+            </div>
+            </dt>
+<dd style="margin-left: 1.5em" id="section-5.2.1-2.8">
+              <p id="section-5.2.1-2.8.1">
+        Either a numeric value indicating the value of the offset field, or "any"<a href="#section-5.2.1-2.8.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-5.2.1-2.9">
+<div id="term-description_-">
+       Description:
+            </div>
+            </dt>
+<dd style="margin-left: 1.5em" id="section-5.2.1-2.10">
+              <p id="section-5.2.1-2.10.1">
+        Description of what the instruction does, typically in pseudocode<a href="#section-5.2.1-2.10.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-5.2.1-2.11">
+<div id="term-groups_">
+       Groups:
+            </div>
+            </dt>
+<dd style="margin-left: 1.5em" id="section-5.2.1-2.12">
+              <p id="section-5.2.1-2.12.1">
+        A list of one or more comma-separated conformance groups to which the instruction belongs<a href="#section-5.2.1-2.12.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-5.2.1-2.13">
+<div id="term-contact_-">
+       Contact:
+            </div>
+            </dt>
+<dd style="margin-left: 1.5em" id="section-5.2.1-2.14">
+              <p id="section-5.2.1-2.14.1">
+        Person (including contact information) to contact for further information.<a href="#section-5.2.1-2.14.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-5.2.1-2.15">
+<div id="term-change-controller_-">
+       Change controller:
+            </div>
+            </dt>
+<dd style="margin-left: 1.5em" id="section-5.2.1-2.16">
+              <p id="section-5.2.1-2.16.1">
+        Organization or person (often the author), including contact information,
+        authoried to change this.<a href="#section-5.2.1-2.16.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-5.2.1-2.17">
+<div id="term-reference_-">
+       Reference:
+            </div>
+            </dt>
+<dd style="margin-left: 1.5em" id="section-5.2.1-2.18">
+              <p id="section-5.2.1-2.18.1">
+        A reference to the defining specification.
+        Include full citations for all referenced documents.
+        Registration requests for 'Provisional' registration can be
+        included in an Internet-Draft; when the documents expire or are
+        approved for publication as an RFC, the registration will be
+        updated.<a href="#section-5.2.1-2.18.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+</dl>
+</section>
+</div>
 </section>
 </div>
 <div id="adding-instructions">
@@ -4556,6 +4736,32 @@ dst = *(signed size *) (src + offset)
 <p id="section-5.4-6">
      Finally, updated implementations that dropped support for the deprecated instructions
      would then be able to claim conformance to "examplev2" rather than "example".<a href="#section-5.4-6" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="change-control">
+<section id="section-5.5">
+        <h3 id="name-change-control">
+<a href="#section-5.5" class="section-number selfRef">5.5. </a><a href="#name-change-control" class="section-name selfRef">Change Control</a>
+        </h3>
+<p id="section-5.5-1">
+     Registrations can be updated in a registry by the same mechanism as
+     required for an initial registration.  In cases where the original
+     definition of an entry is contained in an IESG-approved document,
+     update of the specification also requires IESG approval.<a href="#section-5.5-1" class="pilcrow">¶</a></p>
+<p id="section-5.5-2">
+     'Provisional' registrations can be updated by the original registrant
+     or anyone designated by the original registrant.  In addition, the
+     IESG can reassign responsibility for a 'Provisional' registration
+     or can request specific changes to an entry.
+     This will enable changes to be made to entries where the original
+     registrant is out of contact or unwilling or unable to make changes.<a href="#section-5.5-2" class="pilcrow">¶</a></p>
+<p id="section-5.5-3">
+     Transition from 'Provisional' to 'Permanent' status can be requested
+     and approved in the same manner as a new 'Permanent' registration.
+     Transition from 'Permanent' to 'Historical' status requires IESG
+     approval.  Transition from 'Provisional' to 'Historical' can be
+     requested by anyone authorized to update the 'Provisional'
+     registration.<a href="#section-5.5-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>

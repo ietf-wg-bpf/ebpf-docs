@@ -2686,36 +2686,17 @@ dst = *(signed size *) (src + offset)
       Name of the registry group: BPF Instructions
      </li>
      <li>
-      Required information for registrations: The values to appear in the entry fields.
+      Required information for registrations: See <xref target="bpf-instruction-conformance-group-registration-template">BPF Instruction Conformance Group Registration Template</xref>
      </li>
      <li>
-      Syntax of registry entries: Each entry has the following fields:
-      <ul>
-       <li>
-        name: alphanumeric label indicating the name of the conformance group
-       </li>
-       <li>
-        description: brief description of the conformance group
-       </li>
-       <li>
-        includes: any other conformance groups that are included from this group
-       </li>
-       <li>
-        excludes: any other conformance groups that are excluded from this group.
-       </li>
-       <li>
-        status: Permanent, Provisional, or Historical
-       </li>
-       <li>
-        reference: a reference to the defining specification
-       </li>
-      </ul>
+      Syntax of registry entries: Each entry has the following fields: name, description, includes, excludes,
+      status, and reference. See <xref target="bpf-instruction-conformance-group-registration-template">BPF Instruction Conformance Group Registration Template</xref> for more details.
      </li>
      <li>
       Registration policy (see <xref target="RFC8126" section="4"/> for details):
       <ul>
        <li>
-        Permanent: Standards action or IESG Review
+        Permanent: Standards action or IESG Approval
        </li>
        <li>
         Provisional: Specification required
@@ -2970,6 +2951,85 @@ dst = *(signed size *) (src + offset)
     <t>
      NOTE TO RFC-EDITOR: Upon publication, please replace RFCXXX above with reference to this document.
     </t>
+    <section anchor="bpf-instruction-conformance-group-registration-template" title="BPF Instruction Conformance Group Registration Template">
+     <t>
+      This template describes the fields that must be supplied in a registration request
+      suitable for adding to the registry:
+     </t>
+     <dl>
+      <dt anchor="term-name:">
+       Name:
+      </dt>
+      <dd>
+       <t>
+        Alphanumeric label indicating the name of the conformance group.
+       </t>
+      </dd>
+      <dt anchor="term-description:">
+       Description:
+      </dt>
+      <dd>
+       <t>
+        Brief description of the conformance group.
+       </t>
+      </dd>
+      <dt anchor="term-includes:">
+       Includes:
+      </dt>
+      <dd>
+       <t>
+        Any other conformance groups that are included from this group.
+       </t>
+      </dd>
+      <dt anchor="term-excludes:">
+       Excludes:
+      </dt>
+      <dd>
+       <t>
+        Any other conformance groups that are excluded from this group.
+       </t>
+      </dd>
+      <dt anchor="term-status:">
+       Status:
+      </dt>
+      <dd>
+       <t>
+        This reflects the status requested and must be one of 'Permanent',
+        'Provisional', or 'Historical'.
+       </t>
+      </dd>
+      <dt anchor="term-contact:">
+       Contact:
+      </dt>
+      <dd>
+       <t>
+        Person (including contact information) to contact for further information.
+       </t>
+      </dd>
+      <dt anchor="term-change-controller:">
+       Change controller:
+      </dt>
+      <dd>
+       <t>
+        Organization or person (often the author), including contact information,
+        authoried to change this.
+       </t>
+      </dd>
+      <dt anchor="term-reference:">
+       Reference:
+      </dt>
+      <dd>
+       <t>
+        A reference to the defining specification.
+        Include full citations for all referenced documents.
+        Registration requests for 'Provisional' registration can be
+        included in an Internet-Draft; when the documents expire or are
+        approved for publication as an RFC, the registration will be
+        updated.
+       </t>
+      </dd>
+     </dl>
+    </section>
    </section>
    <section anchor="bpf-instruction-set-registry" title="BPF Instruction Set Registry">
     <t>
@@ -2983,33 +3043,11 @@ dst = *(signed size *) (src + offset)
       Name of the registry group: BPF Instructions
      </li>
      <li>
-      Required information for registrations: The values to appear in the entry fields.
+      Required information for registrations: See <xref target="bpf-instruction-registration-template">BPF Instruction Registration Template</xref>
      </li>
      <li>
-      Syntax of registry entries: Each entry has the following fields:
-      <ul>
-       <li>
-        opcode: a 1-byte value in hex format indicating the value of the opcode field
-       </li>
-       <li>
-        src: either a value indicating the value of the src field, or "any"
-       </li>
-       <li>
-        imm: either a value indicating the value of the imm field, or "any"
-       </li>
-       <li>
-        offset: either a value indicating the value of the offset field, or "any"
-       </li>
-       <li>
-        description: description of what the instruction does, typically in pseudocode
-       </li>
-       <li>
-        groups: a list of one or more comma-separated conformance groups to which the instruction belongs
-       </li>
-       <li>
-        reference: a reference to the defining specification
-       </li>
-      </ul>
+      Syntax of registry entries: Each entry has the following fields: opcode, src, imm, offset, description,
+      groups, and reference. See <xref target="bpf-instruction-registration-template">BPF Instruction Registration Template</xref> for more details.
      </li>
      <li>
       Registration policy: New instructions require a new entry in the conformance group
@@ -3020,6 +3058,92 @@ dst = *(signed size *) (src + offset)
       as deprecated are Permanent. Any listed as deprecated are Historical.
      </li>
     </ul>
+    <section anchor="bpf-instruction-registration-template" title="BPF Instruction Registration Template">
+     <t>
+      This template describes the fields that must be supplied in a registration request
+      suitable for adding to the registry:
+     </t>
+     <dl>
+      <dt anchor="term-opcode:">
+       Opcode:
+      </dt>
+      <dd>
+       <t>
+        A 1-byte value in hex format indicating the value of the opcode field
+       </t>
+      </dd>
+      <dt anchor="term-src:">
+       Src:
+      </dt>
+      <dd>
+       <t>
+        Either a numeric value indicating the value of the src field, or "any"
+       </t>
+      </dd>
+      <dt anchor="term-imm:">
+       Imm:
+      </dt>
+      <dd>
+       <t>
+        Either a value indicating the value of the imm field, or "any"
+       </t>
+      </dd>
+      <dt anchor="term-offset:">
+       Offset:
+      </dt>
+      <dd>
+       <t>
+        Either a numeric value indicating the value of the offset field, or "any"
+       </t>
+      </dd>
+      <dt anchor="term-description:-">
+       Description:
+      </dt>
+      <dd>
+       <t>
+        Description of what the instruction does, typically in pseudocode
+       </t>
+      </dd>
+      <dt anchor="term-groups:">
+       Groups:
+      </dt>
+      <dd>
+       <t>
+        A list of one or more comma-separated conformance groups to which the instruction belongs
+       </t>
+      </dd>
+      <dt anchor="term-contact:-">
+       Contact:
+      </dt>
+      <dd>
+       <t>
+        Person (including contact information) to contact for further information.
+       </t>
+      </dd>
+      <dt anchor="term-change-controller:-">
+       Change controller:
+      </dt>
+      <dd>
+       <t>
+        Organization or person (often the author), including contact information,
+        authoried to change this.
+       </t>
+      </dd>
+      <dt anchor="term-reference:-">
+       Reference:
+      </dt>
+      <dd>
+       <t>
+        A reference to the defining specification.
+        Include full citations for all referenced documents.
+        Registration requests for 'Provisional' registration can be
+        included in an Internet-Draft; when the documents expire or are
+        approved for publication as an RFC, the registration will be
+        updated.
+       </t>
+      </dd>
+     </dl>
+    </section>
    </section>
    <section anchor="adding-instructions" title="Adding instructions">
     <t>
@@ -3423,6 +3547,30 @@ dst = *(signed size *) (src + offset)
     <t>
      Finally, updated implementations that dropped support for the deprecated instructions
      would then be able to claim conformance to "examplev2" rather than "example".
+    </t>
+   </section>
+   <section anchor="change-control" title="Change Control">
+    <t>
+     Registrations can be updated in a registry by the same mechanism as
+     required for an initial registration.  In cases where the original
+     definition of an entry is contained in an IESG-approved document,
+     update of the specification also requires IESG approval.
+    </t>
+    <t>
+     'Provisional' registrations can be updated by the original registrant
+     or anyone designated by the original registrant.  In addition, the
+     IESG can reassign responsibility for a 'Provisional' registration
+     or can request specific changes to an entry.
+     This will enable changes to be made to entries where the original
+     registrant is out of contact or unwilling or unable to make changes.
+    </t>
+    <t>
+     Transition from 'Provisional' to 'Permanent' status can be requested
+     and approved in the same manner as a new 'Permanent' registration.
+     Transition from 'Permanent' to 'Historical' status requires IESG
+     approval.  Transition from 'Provisional' to 'Historical' can be
+     requested by anyone authorized to update the 'Provisional'
+     registration.
     </t>
    </section>
   </section>
