@@ -33,18 +33,12 @@ This document defines an IANA sub-registry for BPF instruction conformance group
 
 * Name of the registry: BPF Instruction Conformance Groups
 * Name of the registry group: BPF Instructions
-* Required information for registrations: The values to appear in the entry fields.
-* Syntax of registry entries: Each entry has the following fields:
-
-  * name: alphanumeric label indicating the name of the conformance group
-  * description: brief description of the conformance group
-  * includes: any other conformance groups that are included from this group
-  * excludes: any other conformance groups that are excluded from this group.
-  * status: Permanent, Provisional, or Historical
-  * reference: a reference to the defining specification
+* Required information for registrations: See `BPF Instruction Conformance Group Registration Template`_
+* Syntax of registry entries: Each entry has the following fields: name, description, includes, excludes,
+  status, and reference. See `BPF Instruction Conformance Group Registration Template`_ for more details.
 * Registration policy (see `RFC 8126 section 4 <https://www.rfc-editor.org/rfc/rfc8126.html#section-4>`_ for details):
 
-  * Permanent: Standards action or IESG Review
+  * Permanent: Standards action or IESG Approval
   * Provisional: Specification required
   * Historical: Specification required
 
@@ -64,6 +58,43 @@ packet    Legacy packet instructions  -         -         Historical   RFCXXX `L
 
 NOTE TO RFC-EDITOR: Upon publication, please replace RFCXXX above with reference to this document.
 
+BPF Instruction Conformance Group Registration Template
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This template describes the fields that must be supplied in a registration request
+suitable for adding to the registry:
+
+Name:
+  Alphanumeric label indicating the name of the conformance group.
+
+Description:
+  Brief description of the conformance group.
+
+Includes:
+  Any other conformance groups that are included from this group.
+
+Excludes:
+  Any other conformance groups that are excluded from this group.
+
+Status:
+  This reflects the status requested and must be one of 'Permanent',
+  'Provisional', or 'Historical'.
+
+Contact:
+  Person (including contact information) to contact for further information.
+
+Change controller:
+  Organization or person (often the author), including contact information,
+  authoried to change this.
+
+Reference:
+  A reference to the defining specification.
+  Include full citations for all referenced documents.
+  Registration requests for 'Provisional' registration can be
+  included in an Internet-Draft; when the documents expire or are
+  approved for publication as an RFC, the registration will be
+  updated.
+
 BPF Instruction Set Registry
 ----------------------------
 
@@ -71,20 +102,52 @@ This document proposes a new IANA registry for BPF instructions, as follows:
 
 * Name of the registry: BPF Instruction Set
 * Name of the registry group: BPF Instructions
-* Required information for registrations: The values to appear in the entry fields.
-* Syntax of registry entries: Each entry has the following fields:
-
-  * opcode: a 1-byte value in hex format indicating the value of the opcode field
-  * src: either a value indicating the value of the src field, or "any"
-  * imm: either a value indicating the value of the imm field, or "any"
-  * offset: either a value indicating the value of the offset field, or "any"
-  * description: description of what the instruction does, typically in pseudocode
-  * groups: a list of one or more comma-separated conformance groups to which the instruction belongs
-  * reference: a reference to the defining specification
+* Required information for registrations: See `BPF Instruction Registration Template`_
+* Syntax of registry entries: Each entry has the following fields: opcode, src, imm, offset, description,
+  groups, and reference. See `BPF Instruction Registration Template`_ for more details.
 * Registration policy: New instructions require a new entry in the conformance group
   sub-registry and the same registration policies apply.
 * Initial registrations: See the Appendix. Instructions other than those listed
   as deprecated are Permanent. Any listed as deprecated are Historical.
+
+BPF Instruction Registration Template
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This template describes the fields that must be supplied in a registration request
+suitable for adding to the registry:
+
+Opcode:
+  A 1-byte value in hex format indicating the value of the opcode field
+
+Src:
+  Either a numeric value indicating the value of the src field, or "any"
+
+Imm:
+  Either a value indicating the value of the imm field, or "any"
+
+Offset:
+  Either a numeric value indicating the value of the offset field, or "any"
+
+Description:
+  Description of what the instruction does, typically in pseudocode
+
+Groups:
+  A list of one or more comma-separated conformance groups to which the instruction belongs
+
+Contact:
+  Person (including contact information) to contact for further information.
+
+Change controller:
+  Organization or person (often the author), including contact information,
+  authoried to change this.
+
+Reference:
+  A reference to the defining specification.
+  Include full citations for all referenced documents.
+  Registration requests for 'Provisional' registration can be
+  included in an Internet-Draft; when the documents expire or are
+  approved for publication as an RFC, the registration will be
+  updated.
 
 Adding instructions
 -------------------
@@ -153,6 +216,28 @@ ddd     ...  Bad original instruction 4         example, legacyexample
 
 Finally, updated implementations that dropped support for the deprecated instructions
 would then be able to claim conformance to "examplev2" rather than "example".
+
+Change Control
+--------------
+
+Registrations can be updated in a registry by the same mechanism as
+required for an initial registration.  In cases where the original
+definition of an entry is contained in an IESG-approved document,
+update of the specification also requires IESG approval.
+
+'Provisional' registrations can be updated by the original registrant
+or anyone designated by the original registrant.  In addition, the
+IESG can reassign responsibility for a 'Provisional' registration
+or can request specific changes to an entry.
+This will enable changes to be made to entries where the original
+registrant is out of contact or unwilling or unable to make changes.
+
+Transition from 'Provisional' to 'Permanent' status can be requested
+and approved in the same manner as a new 'Permanent' registration.
+Transition from 'Permanent' to 'Historical' status requires IESG
+approval.  Transition from 'Provisional' to 'Historical' can be
+requested by anyone authorized to update the 'Provisional'
+registration.
 
 Acknowledgements
 ================
