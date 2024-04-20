@@ -721,54 +721,52 @@ opcode                  offset imm          assembly
      <t>
       the source operand location, which unless otherwise specified is one of:
      </t>
+     <table>
+      <thead>
+       <tr>
+        <th>source</th>
+        <th>value</th>
+        <th>description</th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr>
+        <td>
+         <t>
+          K
+         </t>
+        </td>
+        <td>
+         <t>
+          0
+         </t>
+        </td>
+        <td>
+         <t>
+          use 32-bit 'imm' value as source operand
+         </t>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         <t>
+          X
+         </t>
+        </td>
+        <td>
+         <t>
+          1
+         </t>
+        </td>
+        <td>
+         <t>
+          use 'src_reg' register value as source operand
+         </t>
+        </td>
+       </tr>
+      </tbody>
+     </table>
     </dd>
-   </dl>
-   <table>
-    <thead>
-     <tr>
-      <th>source</th>
-      <th>value</th>
-      <th>description</th>
-     </tr>
-    </thead>
-    <tbody>
-     <tr>
-      <td>
-       <t>
-        K
-       </t>
-      </td>
-      <td>
-       <t>
-        0
-       </t>
-      </td>
-      <td>
-       <t>
-        use 32-bit 'imm' value as source operand
-       </t>
-      </td>
-     </tr>
-     <tr>
-      <td>
-       <t>
-        X
-       </t>
-      </td>
-      <td>
-       <t>
-        1
-       </t>
-      </td>
-      <td>
-       <t>
-        use 'src_reg' register value as source operand
-       </t>
-      </td>
-     </tr>
-    </tbody>
-   </table>
-   <dl>
     <dt anchor="term---instruction-class--">
      <strong>instruction class</strong>
     </dt>
@@ -1936,153 +1934,151 @@ gotol +imm
      <t>
       The mode modifier is one of:
      </t>
+     <table>
+      <thead>
+       <tr>
+        <th>mode modifier</th>
+        <th>value</th>
+        <th>description</th>
+        <th>reference</th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr>
+        <td>
+         <t>
+          IMM
+         </t>
+        </td>
+        <td>
+         <t>
+          0
+         </t>
+        </td>
+        <td>
+         <t>
+          64-bit immediate instructions
+         </t>
+        </td>
+        <td>
+         <t>
+          <xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref>
+         </t>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         <t>
+          ABS
+         </t>
+        </td>
+        <td>
+         <t>
+          1
+         </t>
+        </td>
+        <td>
+         <t>
+          legacy BPF packet access (absolute)
+         </t>
+        </td>
+        <td>
+         <t>
+          <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+         </t>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         <t>
+          IND
+         </t>
+        </td>
+        <td>
+         <t>
+          2
+         </t>
+        </td>
+        <td>
+         <t>
+          legacy BPF packet access (indirect)
+         </t>
+        </td>
+        <td>
+         <t>
+          <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
+         </t>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         <t>
+          MEM
+         </t>
+        </td>
+        <td>
+         <t>
+          3
+         </t>
+        </td>
+        <td>
+         <t>
+          regular load and store operations
+         </t>
+        </td>
+        <td>
+         <t>
+          <xref target="regular-load-and-store-operations">Regular load and store operations</xref>
+         </t>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         <t>
+          MEMSX
+         </t>
+        </td>
+        <td>
+         <t>
+          4
+         </t>
+        </td>
+        <td>
+         <t>
+          sign-extension load operations
+         </t>
+        </td>
+        <td>
+         <t>
+          <xref target="sign-extension-load-operations">Sign-extension load operations</xref>
+         </t>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         <t>
+          ATOMIC
+         </t>
+        </td>
+        <td>
+         <t>
+          6
+         </t>
+        </td>
+        <td>
+         <t>
+          atomic operations
+         </t>
+        </td>
+        <td>
+         <t>
+          <xref target="atomic-operations">Atomic operations</xref>
+         </t>
+        </td>
+       </tr>
+      </tbody>
+     </table>
     </dd>
-   </dl>
-   <table>
-    <thead>
-     <tr>
-      <th>mode modifier</th>
-      <th>value</th>
-      <th>description</th>
-      <th>reference</th>
-     </tr>
-    </thead>
-    <tbody>
-     <tr>
-      <td>
-       <t>
-        IMM
-       </t>
-      </td>
-      <td>
-       <t>
-        0
-       </t>
-      </td>
-      <td>
-       <t>
-        64-bit immediate instructions
-       </t>
-      </td>
-      <td>
-       <t>
-        <xref target="-4-bit-immediate-instructions">64-bit immediate instructions</xref>
-       </t>
-      </td>
-     </tr>
-     <tr>
-      <td>
-       <t>
-        ABS
-       </t>
-      </td>
-      <td>
-       <t>
-        1
-       </t>
-      </td>
-      <td>
-       <t>
-        legacy BPF packet access (absolute)
-       </t>
-      </td>
-      <td>
-       <t>
-        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
-       </t>
-      </td>
-     </tr>
-     <tr>
-      <td>
-       <t>
-        IND
-       </t>
-      </td>
-      <td>
-       <t>
-        2
-       </t>
-      </td>
-      <td>
-       <t>
-        legacy BPF packet access (indirect)
-       </t>
-      </td>
-      <td>
-       <t>
-        <xref target="legacy-bpf-packet-access-instructions">Legacy BPF Packet access instructions</xref>
-       </t>
-      </td>
-     </tr>
-     <tr>
-      <td>
-       <t>
-        MEM
-       </t>
-      </td>
-      <td>
-       <t>
-        3
-       </t>
-      </td>
-      <td>
-       <t>
-        regular load and store operations
-       </t>
-      </td>
-      <td>
-       <t>
-        <xref target="regular-load-and-store-operations">Regular load and store operations</xref>
-       </t>
-      </td>
-     </tr>
-     <tr>
-      <td>
-       <t>
-        MEMSX
-       </t>
-      </td>
-      <td>
-       <t>
-        4
-       </t>
-      </td>
-      <td>
-       <t>
-        sign-extension load operations
-       </t>
-      </td>
-      <td>
-       <t>
-        <xref target="sign-extension-load-operations">Sign-extension load operations</xref>
-       </t>
-      </td>
-     </tr>
-     <tr>
-      <td>
-       <t>
-        ATOMIC
-       </t>
-      </td>
-      <td>
-       <t>
-        6
-       </t>
-      </td>
-      <td>
-       <t>
-        atomic operations
-       </t>
-      </td>
-      <td>
-       <t>
-        <xref target="atomic-operations">Atomic operations</xref>
-       </t>
-      </td>
-     </tr>
-    </tbody>
-   </table>
-   <dl>
     <dt anchor="term---sz--size---">
      <strong>sz (size)</strong>
     </dt>
@@ -2090,91 +2086,89 @@ gotol +imm
      <t>
       The size modifier is one of:
      </t>
+     <table>
+      <thead>
+       <tr>
+        <th>size</th>
+        <th>value</th>
+        <th>description</th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr>
+        <td>
+         <t>
+          W
+         </t>
+        </td>
+        <td>
+         <t>
+          0
+         </t>
+        </td>
+        <td>
+         <t>
+          word        (4 bytes)
+         </t>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         <t>
+          H
+         </t>
+        </td>
+        <td>
+         <t>
+          1
+         </t>
+        </td>
+        <td>
+         <t>
+          half word   (2 bytes)
+         </t>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         <t>
+          B
+         </t>
+        </td>
+        <td>
+         <t>
+          2
+         </t>
+        </td>
+        <td>
+         <t>
+          byte
+         </t>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         <t>
+          DW
+         </t>
+        </td>
+        <td>
+         <t>
+          3
+         </t>
+        </td>
+        <td>
+         <t>
+          double word (8 bytes)
+         </t>
+        </td>
+       </tr>
+      </tbody>
+     </table>
+     <t>
+      Instructions using <tt>DW</tt> belong to the base64 conformance group.
+     </t>
     </dd>
-   </dl>
-   <table>
-    <thead>
-     <tr>
-      <th>size</th>
-      <th>value</th>
-      <th>description</th>
-     </tr>
-    </thead>
-    <tbody>
-     <tr>
-      <td>
-       <t>
-        W
-       </t>
-      </td>
-      <td>
-       <t>
-        0
-       </t>
-      </td>
-      <td>
-       <t>
-        word        (4 bytes)
-       </t>
-      </td>
-     </tr>
-     <tr>
-      <td>
-       <t>
-        H
-       </t>
-      </td>
-      <td>
-       <t>
-        1
-       </t>
-      </td>
-      <td>
-       <t>
-        half word   (2 bytes)
-       </t>
-      </td>
-     </tr>
-     <tr>
-      <td>
-       <t>
-        B
-       </t>
-      </td>
-      <td>
-       <t>
-        2
-       </t>
-      </td>
-      <td>
-       <t>
-        byte
-       </t>
-      </td>
-     </tr>
-     <tr>
-      <td>
-       <t>
-        DW
-       </t>
-      </td>
-      <td>
-       <t>
-        3
-       </t>
-      </td>
-      <td>
-       <t>
-        double word (8 bytes)
-       </t>
-      </td>
-     </tr>
-    </tbody>
-   </table>
-   <blockquote>
-    Instructions using <tt>DW</tt> belong to the base64 conformance group.
-   </blockquote>
-   <dl>
     <dt anchor="term---class---">
      <strong>class</strong>
     </dt>
