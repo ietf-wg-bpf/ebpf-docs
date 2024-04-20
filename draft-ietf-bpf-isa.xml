@@ -2664,6 +2664,28 @@ dst = *(signed size *) (src + offset)
     </t>
    </section>
   </section>
+  <section anchor="security-considerations" title="Security Considerations">
+   <t>
+    BPF programs could use BPF instructions to do malicious things with memory, CPU, networking,
+    or other system resources.  This is not fundamentally different from any other type of
+    software that may run on a device.  Execution environments should be carefully designed
+    to only run BPF programs that are trusted or verified, and sandboxing and privilege level
+    separation are key strategies for limiting security and abuse impact.  For example, BPF
+    verifiers are well-known and widely deployed and are responsible for ensuring that BPF programs
+    will terminate within a reasonable time, only interact with memory in safe ways, and adhere to
+    platform-specified API contracts. This level of verification can often provide a stronger level
+    of security assurance than for other software and operating system code.
+    While the details are out of scope of this document,
+    <xref target="LINUX">Linux</xref> and
+    <xref target="PREVAIL">PREVAIL</xref> do provide many details.
+   </t>
+   <t>
+    Executing programs using the BPF instruction set also requires either an interpreter or a JIT compiler
+    to translate them to hardware processor native instructions.  In general, interpreters are considered a
+    source of insecurity (e.g., gadgets susceptible to side-channel attacks due to speculative execution)
+    and are not recommended.
+   </t>
+  </section>
   <section anchor="iana-considerations" title="IANA Considerations">
    <t>
     This document defines two sub-registries.
@@ -9823,9 +9845,32 @@ dst = *(signed size *) (src + offset)
   <reference anchor="RFC8126">
    <front>
     <title>Guidelines for Writing an IANA Considerations Section in RFCs</title>
-    <author></author>
+    <author/>
    </front>
    <seriesInfo name='RFC' value='8126'/>
+  </reference>
+ </references>
+ <references><name>Informative References</name>
+  <reference anchor="LINUX" target="https://www.kernel.org/doc/html/latest/bpf/verifier.html">
+   <front>
+    <title>eBPF verifier</title>
+    <author/>
+   </front>
+  </reference>
+  <reference anchor="PREVAIL">
+   <front>
+    <title>Simple and Precise Static Analysis of Untrusted Linux Kernel Extensions</title>
+    <author fullname="E. Gershuni" initials="E." surname="Gershuni"/>
+    <author fullname="N. Amit" initials="N." surname="Amit"/>
+    <author fullname="A. Gurfinkel" initials="A." surname="Gurfinkel"/>
+    <author fullname="N. Narodytska" initials="N." surname="Narodytska"/>
+    <author fullname="J. Navas" initials="J." surname="Navas"/>
+    <author fullname="N. Rinetzky" initials="N." surname="Rinetzky"/>
+    <author fullname="L. Ryzhyk" initials="L." surname="Ryzhyk"/>
+    <author fullname="M. Sagiv" initials="M." surname="Sagiv"/>
+    <date month="June" year="2019"/>
+   </front>
+   <seriesInfo name='DOI' value='10.1145/3314221.3314590'/>
   </reference>
  </references>
  </back>
