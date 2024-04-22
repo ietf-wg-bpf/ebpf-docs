@@ -39,6 +39,11 @@ BPF Instruction Set Architecture (ISA)
   </abstract>
  </front>
  <middle>
+  <section anchor="introduction" title="Introduction">
+   <t>
+    This document specifies the BPF instruction set architecture (ISA).
+   </t>
+  </section>
   <section anchor="documentation-conventions" title="Documentation conventions">
    <t>
     For brevity and consistency, this document refers to families

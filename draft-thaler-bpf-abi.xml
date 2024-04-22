@@ -32,14 +32,14 @@ BPF ABI Recommended Conventions and Guidelines v1.0
     <email>dave.thaler.ietf@gmail.com</email>
    </address>
   </author>
-  <abstract>
+ </front>
+ <middle>
+  <section anchor="introduction" title="Introduction">
    <t>
     This is version 1.0 of an informational document containing recommended
     conventions and guidelines for producing portable BPF program binaries.
    </t>
-  </abstract>
- </front>
- <middle>
+  </section>
   <section anchor="registers-and-calling-convention" title="Registers and calling convention">
    <t>
     BPF has 10 general purpose registers and a read-only frame pointer register,
