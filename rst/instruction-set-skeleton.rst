@@ -17,9 +17,64 @@
 .. |ref[RFC8126].type| replace:: normative
 .. |ref[RFC8126].seriesInfo.name| replace:: RFC
 .. |ref[RFC8126].seriesInfo.value| replace:: 8126
+.. |ref[LINUX].target| replace:: https://www.kernel.org/doc/html/latest/bpf/verifier.html
+.. |ref[LINUX].title| replace:: eBPF verifier
+.. |ref[LINUX].type| replace:: informative
+.. |ref[PREVAIL].target| replace:: https://pldi19.sigplan.org/details/pldi-2019-papers/44/Simple-and-Precise-Static-Analysis-of-Untrusted-Linux-Kernel-Extensions
+.. |ref[PREVAIL].title| replace:: Simple and Precise Static Analysis of Untrusted Linux Kernel Extensions
+.. |ref[PREVAIL].type| replace:: informative
+.. |ref[PREVAIL].author[0].fullname| replace:: E. Gershuni
+.. |ref[PREVAIL].author[0].initials| replace:: E.
+.. |ref[PREVAIL].author[0].surname| replace:: Gershuni
+.. |ref[PREVAIL].author[1].fullname| replace:: N. Amit
+.. |ref[PREVAIL].author[1].initials| replace:: N.
+.. |ref[PREVAIL].author[1].surname| replace:: Amit
+.. |ref[PREVAIL].author[2].fullname| replace:: A. Gurfinkel
+.. |ref[PREVAIL].author[2].initials| replace:: A.
+.. |ref[PREVAIL].author[2].surname| replace:: Gurfinkel
+.. |ref[PREVAIL].author[3].fullname| replace:: N. Narodytska
+.. |ref[PREVAIL].author[3].initials| replace:: N.
+.. |ref[PREVAIL].author[3].surname| replace:: Narodytska
+.. |ref[PREVAIL].author[4].fullname| replace:: J. Navas
+.. |ref[PREVAIL].author[4].initials| replace:: J.
+.. |ref[PREVAIL].author[4].surname| replace:: Navas
+.. |ref[PREVAIL].author[5].fullname| replace:: N. Rinetzky
+.. |ref[PREVAIL].author[5].initials| replace:: N.
+.. |ref[PREVAIL].author[5].surname| replace:: Rinetzky
+.. |ref[PREVAIL].author[6].fullname| replace:: L. Ryzhyk
+.. |ref[PREVAIL].author[6].initials| replace:: L.
+.. |ref[PREVAIL].author[6].surname| replace:: Ryzhyk
+.. |ref[PREVAIL].author[7].fullname| replace:: M. Sagiv
+.. |ref[PREVAIL].author[7].initials| replace:: M.
+.. |ref[PREVAIL].author[7].surname| replace:: Sagiv
+.. |ref[PREVAIL].date.month| replace:: June
+.. |ref[PREVAIL].date.year| replace:: 2019
+.. |ref[PREVAIL].seriesInfo.name| replace:: DOI
+.. |ref[PREVAIL].seriesInfo.value| replace:: 10.1145/3314221.3314590
 .. header::
 
 .. include:: instruction-set.rst
+
+Security Considerations
+=======================
+
+BPF programs could use BPF instructions to do malicious things with memory, CPU, networking,
+or other system resources.  This is not fundamentally different from any other type of
+software that may run on a device.  Execution environments should be carefully designed
+to only run BPF programs that are trusted or verified, and sandboxing and privilege level
+separation are key strategies for limiting security and abuse impact.  For example, BPF
+verifiers are well-known and widely deployed and are responsible for ensuring that BPF programs
+will terminate within a reasonable time, only interact with memory in safe ways, and adhere to
+platform-specified API contracts. This level of verification can often provide a stronger level
+of security assurance than for other software and operating system code.
+While the details are out of scope of this document,
+`Linux <https://www.kernel.org/doc/html/latest/bpf/verifier.html>`_ and
+`PREVAIL <https://pldi19.sigplan.org/details/pldi-2019-papers/44/Simple-and-Precise-Static-Analysis-of-Untrusted-Linux-Kernel-Extensions>`_ do provide many details.
+
+Executing programs using the BPF instruction set also requires either an interpreter or a JIT compiler
+to translate them to hardware processor native instructions.  In general, interpreters are considered a
+source of insecurity (e.g., gadgets susceptible to side-channel attacks due to speculative execution)
+and are not recommended.
 
 IANA Considerations
 ===================
