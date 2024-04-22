@@ -7084,7 +7084,7 @@ dst = *(signed size *) (src + offset)
       </td>
       <td>
        <t>
-        call helper function by address
+        call helper function by static ID
        </t>
       </td>
       <td>
