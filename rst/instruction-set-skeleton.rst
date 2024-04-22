@@ -2,6 +2,7 @@
 .. |ipr| replace:: trust200902
 .. |category| replace:: std
 .. |titleAbbr| replace:: BPF ISA
+.. |abstract| replace:: This document specifies the BPF instruction set architecture (ISA).
 .. |submissionType| replace:: IETF
 .. |author[0].fullname| replace:: Dave Thaler
 .. |author[0].role| replace:: editor
