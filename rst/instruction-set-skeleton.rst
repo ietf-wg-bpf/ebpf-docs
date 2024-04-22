@@ -61,7 +61,7 @@ Security Considerations
 BPF programs could use BPF instructions to do malicious things with memory, CPU, networking,
 or other system resources.  This is not fundamentally different from any other type of
 software that may run on a device.  Execution environments should be carefully designed
-to only run BPF programs that are trusted or verified, and sandboxing and privilege level
+to only run BPF programs that are trusted and verified, and sandboxing and privilege level
 separation are key strategies for limiting security and abuse impact.  For example, BPF
 verifiers are well-known and widely deployed and are responsible for ensuring that BPF programs
 will terminate within a reasonable time, only interact with memory in safe ways, and adhere to
@@ -73,8 +73,11 @@ While the details are out of scope of this document,
 
 Executing programs using the BPF instruction set also requires either an interpreter or a JIT compiler
 to translate them to hardware processor native instructions.  In general, interpreters are considered a
-source of insecurity (e.g., gadgets susceptible to side-channel attacks due to speculative execution)
-and are not recommended.
+source of insecurity (e.g., gadgets susceptible to side-channel attacks due to speculative execution,
+or W^X mappings) whenever one is used in the same memory address space as data with confidentiality
+concerns.  As such, use of a JIT compiler is recommended instead.  JIT compilers should be audited
+carefully for vulnerabilities to ensure that JIT compilation of a trusted and verified BPF program
+does not introduce vulnerabilities.
 
 IANA Considerations
 ===================
