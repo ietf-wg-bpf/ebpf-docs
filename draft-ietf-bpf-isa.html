@@ -1555,7 +1555,7 @@ li > p:last-of-type:only-child {
         </table>
 <p id="section-1.1-4">
      For example, <em>u32</em> is a type whose valid values are all the 32-bit unsigned
-     numbers and <em>s16</em> is a types whose valid values are all the 16-bit signed
+     numbers and <em>s16</em> is a type whose valid values are all the 16-bit signed
      numbers.<a href="#section-1.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1666,7 +1666,7 @@ B: 11111111 10000110
      group.<a href="#section-1.4-1" class="pilcrow">¶</a></p>
 <p id="section-1.4-2">
      The use of named conformance groups enables interoperability between a runtime
-     that executes instructions, and tools as such compilers that generate
+     that executes instructions, and tools such as compilers that generate
      instructions for the runtime.  Thus, capability discovery in terms of
      conformance groups might be done manually by users or automatically by tools.<a href="#section-1.4-2" class="pilcrow">¶</a></p>
 <p id="section-1.4-3">
@@ -1821,7 +1821,8 @@ B: 11111111 10000110
               </dt>
 <dd style="margin-left: 1.5em" id="section-2.1-3.4.5.4">
                 <p id="section-2.1-3.4.5.4.1">
-         destination register number (0-10)<a href="#section-2.1-3.4.5.4.1" class="pilcrow">¶</a></p>
+         destination register number (0-10), unless otherwise specified
+         (future instructions might reuse this field for other purposes)<a href="#section-2.1-3.4.5.4.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 </dl>
@@ -1834,7 +1835,9 @@ B: 11111111 10000110
           </dt>
 <dd style="margin-left: 1.5em" id="section-2.1-3.6">
             <p id="section-2.1-3.6.1">
-       signed integer offset used with pointer arithmetic<a href="#section-2.1-3.6.1" class="pilcrow">¶</a></p>
+       signed integer offset used with pointer arithmetic, except where
+       otherwise specified (some arithmetic instructions reuse this field
+       for other purposes)<a href="#section-2.1-3.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-2.1-3.7">
@@ -1911,7 +1914,8 @@ opcode                  offset imm          assembly
           </dt>
 <dd style="margin-left: 1.5em" id="section-2.2-4.4">
             <p id="section-2.2-4.4.1">
-       The source and destination register numbers, encoded as explained above<a href="#section-2.2-4.4.1" class="pilcrow">¶</a></p>
+       The source and destination register numbers (unless otherwise
+       specified), encoded as explained above<a href="#section-2.2-4.4.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-2.2-4.5">
@@ -1921,7 +1925,8 @@ opcode                  offset imm          assembly
           </dt>
 <dd style="margin-left: 1.5em" id="section-2.2-4.6">
             <p id="section-2.2-4.6.1">
-       signed integer offset used with pointer arithmetic<a href="#section-2.2-4.6.1" class="pilcrow">¶</a></p>
+       signed integer offset used with pointer arithmetic, unless
+       otherwise specified<a href="#section-2.2-4.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-2.2-4.7">
@@ -2580,8 +2585,8 @@ dst = dst ^ imm
 </pre><a href="#section-3.1-12" class="pilcrow">¶</a>
 </div>
 <p id="section-3.1-13">
-     Note that most instructions have instruction offset of 0. Only three instructions
-     (<code>SDIV</code>, <code>SMOD</code>, <code>MOVSX</code>) have a non-zero offset.<a href="#section-3.1-13" class="pilcrow">¶</a></p>
+     Note that most arithmetic instructions have 'offset' set to 0. Only three instructions
+     (<code>SDIV</code>, <code>SMOD</code>, <code>MOVSX</code>) have a non-zero 'offset'.<a href="#section-3.1-13" class="pilcrow">¶</a></p>
 <p id="section-3.1-14">
      Division, multiplication, and modulo operations for <code>ALU</code> are part
      of the "divmul32" conformance group, and division, multiplication, and
@@ -2604,15 +2609,17 @@ dst = dst ^ imm
      vary by language such that Python, Ruby, etc.  differ from C, Go, Java,
      etc. This specification requires that signed modulo use truncated division
      (where -13 % 3 == -1) as implemented in C, Go, etc.:<a href="#section-3.1-17" class="pilcrow">¶</a></p>
-<blockquote id="section-3.1-18">
-     a % n = a - n * trunc(a / n)<a href="#section-3.1-18" class="pilcrow">¶</a>
-</blockquote>
+<div class="alignLeft art-text artwork" id="section-3.1-18">
+<pre>
+a % n = a - n * trunc(a / n)
+</pre><a href="#section-3.1-18" class="pilcrow">¶</a>
+</div>
 <p id="section-3.1-19">
      The <code>MOVSX</code> instruction does a move operation with sign extension.
-     <code>{MOVSX, X, ALU}</code> <span><a href="#term-sign-extend" class="internal xref">sign extends</a> (<a href="#term-sign-extend" class="auto internal xref">Section 1.3</a>)</span> 8-bit and 16-bit operands into 32
-     bit operands, and zeroes the remaining upper 32 bits.
+     <code>{MOVSX, X, ALU}</code> <span><a href="#term-sign-extend" class="internal xref">sign extends</a> (<a href="#term-sign-extend" class="auto internal xref">Section 1.3</a>)</span> 8-bit and 16-bit operands into
+     32-bit operands, and zeroes the remaining upper 32 bits.
      <code>{MOVSX, X, ALU64}</code> <span><a href="#term-sign-extend" class="internal xref">sign extends</a> (<a href="#term-sign-extend" class="auto internal xref">Section 1.3</a>)</span> 8-bit, 16-bit, and 32-bit
-     operands into 64 bit operands.  Unlike other arithmetic instructions,
+     operands into 64-bit operands.  Unlike other arithmetic instructions,
      <code>MOVSX</code> is only defined for register source operands (<code>X</code>).<a href="#section-3.1-19" class="pilcrow">¶</a></p>
 <p id="section-3.1-20">
      The <code>NEG</code> instruction is only defined when the source bit is clear
@@ -2713,7 +2720,7 @@ dst = dst ^ imm
 <p id="section-3.2-6">
      Examples:<a href="#section-3.2-6" class="pilcrow">¶</a></p>
 <p id="section-3.2-7">
-     <code>{END, TO_LE, ALU}</code> with imm = 16/32/64 means:<a href="#section-3.2-7" class="pilcrow">¶</a></p>
+     <code>{END, TO_LE, ALU}</code> with 'imm' = 16/32/64 means:<a href="#section-3.2-7" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-3.2-8">
 <pre>
 dst = htole16(dst)
@@ -2722,7 +2729,7 @@ dst = htole64(dst)
 </pre><a href="#section-3.2-8" class="pilcrow">¶</a>
 </div>
 <p id="section-3.2-9">
-     <code>{END, TO_BE, ALU}</code> with imm = 16/32/64 means:<a href="#section-3.2-9" class="pilcrow">¶</a></p>
+     <code>{END, TO_BE, ALU}</code> with 'imm' = 16/32/64 means:<a href="#section-3.2-9" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-3.2-10">
 <pre>
 dst = htobe16(dst)
@@ -2731,7 +2738,7 @@ dst = htobe64(dst)
 </pre><a href="#section-3.2-10" class="pilcrow">¶</a>
 </div>
 <p id="section-3.2-11">
-     <code>{END, TO_LE, ALU64}</code> with imm = 16/32/64 means:<a href="#section-3.2-11" class="pilcrow">¶</a></p>
+     <code>{END, TO_LE, ALU64}</code> with 'imm' = 16/32/64 means:<a href="#section-3.2-11" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-3.2-12">
 <pre>
 dst = bswap16(dst)
@@ -2971,7 +2978,7 @@ dst = bswap64(dst)
 </td>
               <td class="text-left" rowspan="1" colspan="1">
                 <p id="section-3.3-2.2.10.4.1">
-         call helper function by address<a href="#section-3.3-2.2.10.4.1" class="pilcrow">¶</a></p>
+         call helper function by static ID<a href="#section-3.3-2.2.10.4.1" class="pilcrow">¶</a></p>
 </td>
               <td class="text-left" rowspan="1" colspan="1">
                 <p id="section-3.3-2.2.10.5.1">
@@ -3156,7 +3163,7 @@ gotol +imm
 </pre><a href="#section-3.3-9" class="pilcrow">¶</a>
 </div>
 <p id="section-3.3-10">
-     where 'imm' means the branch offset comes from insn 'imm' field.<a href="#section-3.3-10" class="pilcrow">¶</a></p>
+     where 'imm' means the branch offset comes from the 'imm' field.<a href="#section-3.3-10" class="pilcrow">¶</a></p>
 <p id="section-3.3-11">
      Note that there are two flavors of <code>JA</code> instructions. The
      <code>JMP</code> class permits a 16-bit jump offset specified by the 'offset'
@@ -3176,12 +3183,12 @@ gotol +imm
       Helper functions are a concept whereby BPF programs can call into a
       set of function calls exposed by the underlying platform.<a href="#section-3.3.1-1" class="pilcrow">¶</a></p>
 <p id="section-3.3.1-2">
-      Historically, each helper function was identified by an address
-      encoded in the imm field.  The available helper functions may differ
-      for each program type, but address values are unique across all program types.<a href="#section-3.3.1-2" class="pilcrow">¶</a></p>
+      Historically, each helper function was identified by a static ID
+      encoded in the 'imm' field.  The available helper functions may differ
+      for each program type, but static IDs are unique across all program types.<a href="#section-3.3.1-2" class="pilcrow">¶</a></p>
 <p id="section-3.3.1-3">
       Platforms that support the BPF Type Format (BTF) support identifying
-      a helper function by a BTF ID encoded in the imm field, where the BTF ID
+      a helper function by a BTF ID encoded in the 'imm' field, where the BTF ID
       identifies the helper name and type.<a href="#section-3.3.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -3193,8 +3200,8 @@ gotol +imm
 <p id="section-3.3.2-1">
       Program-local functions are functions exposed by the same BPF program as the
       caller, and are referenced by offset from the call instruction, similar to
-      <code>JA</code>.  The offset is encoded in the imm field of the call instruction.
-      A <code>EXIT</code> within the program-local function will return to the caller.<a href="#section-3.3.2-1" class="pilcrow">¶</a></p>
+      <code>JA</code>.  The offset is encoded in the 'imm' field of the call instruction.
+      An <code>EXIT</code> within the program-local function will return to the caller.<a href="#section-3.3.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -3208,7 +3215,7 @@ gotol +imm
       </h2>
 <p id="section-4-1">
     For load and store instructions (<code>LD</code>, <code>LDX</code>, <code>ST</code>, and <code>STX</code>), the
-    8-bit 'opcode' field is divided as:<a href="#section-4-1" class="pilcrow">¶</a></p>
+    8-bit 'opcode' field is divided as follows:<a href="#section-4-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-4-2">
 <pre>
 +-+-+-+-+-+-+-+-+
@@ -3489,7 +3496,7 @@ dst = *(signed size *) (src + offset)
 </pre><a href="#section-4.2-3" class="pilcrow">¶</a>
 </div>
 <p id="section-4.2-4">
-     Where size is one of: <code>B</code>, <code>H</code>, or <code>W</code>, and
+     Where '&lt;size&gt;' is one of: <code>B</code>, <code>H</code>, or <code>W</code>, and
      'signed size' is one of: s8, s16, or s32.<a href="#section-4.2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -3752,7 +3759,7 @@ dst = *(signed size *) (src + offset)
 </td>
               <td class="text-left" rowspan="1" colspan="1">
                 <p id="section-4.4-3.2.3.4.1">
-         data pointer<a href="#section-4.4-3.2.3.4.1" class="pilcrow">¶</a></p>
+         data address<a href="#section-4.4-3.2.3.4.1" class="pilcrow">¶</a></p>
 </td>
             </tr>
             <tr>
@@ -3770,7 +3777,7 @@ dst = *(signed size *) (src + offset)
 </td>
               <td class="text-left" rowspan="1" colspan="1">
                 <p id="section-4.4-3.2.4.4.1">
-         data pointer<a href="#section-4.4-3.2.4.4.1" class="pilcrow">¶</a></p>
+         data address<a href="#section-4.4-3.2.4.4.1" class="pilcrow">¶</a></p>
 </td>
             </tr>
             <tr>
@@ -3788,7 +3795,7 @@ dst = *(signed size *) (src + offset)
 </td>
               <td class="text-left" rowspan="1" colspan="1">
                 <p id="section-4.4-3.2.5.4.1">
-         code pointer<a href="#section-4.4-3.2.5.4.1" class="pilcrow">¶</a></p>
+         code address<a href="#section-4.4-3.2.5.4.1" class="pilcrow">¶</a></p>
 </td>
             </tr>
             <tr>
@@ -3824,7 +3831,7 @@ dst = *(signed size *) (src + offset)
 </td>
               <td class="text-left" rowspan="1" colspan="1">
                 <p id="section-4.4-3.2.7.4.1">
-         data pointer<a href="#section-4.4-3.2.7.4.1" class="pilcrow">¶</a></p>
+         data address<a href="#section-4.4-3.2.7.4.1" class="pilcrow">¶</a></p>
 </td>
             </tr>
           </tbody>

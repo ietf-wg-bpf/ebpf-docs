@@ -160,7 +160,7 @@ BPF Instruction Set Architecture (ISA)
     </table>
     <t>
      For example, <em>u32</em> is a type whose valid values are all the 32-bit unsigned
-     numbers and <em>s16</em> is a types whose valid values are all the 16-bit signed
+     numbers and <em>s16</em> is a type whose valid values are all the 16-bit signed
      numbers.
     </t>
    </section>
@@ -255,7 +255,7 @@ B: 11111111 10000110
     </t>
     <t>
      The use of named conformance groups enables interoperability between a runtime
-     that executes instructions, and tools as such compilers that generate
+     that executes instructions, and tools such as compilers that generate
      instructions for the runtime.  Thus, capability discovery in terms of
      conformance groups might be done manually by users or automatically by tools.
     </t>
@@ -387,7 +387,8 @@ B: 11111111 10000110
        </dt>
        <dd>
         <t>
-         destination register number (0-10)
+         destination register number (0-10), unless otherwise specified
+         (future instructions might reuse this field for other purposes)
         </t>
        </dd>
       </dl>
@@ -397,7 +398,9 @@ B: 11111111 10000110
      </dt>
      <dd>
       <t>
-       signed integer offset used with pointer arithmetic
+       signed integer offset used with pointer arithmetic, except where
+       otherwise specified (some arithmetic instructions reuse this field
+       for other purposes)
       </t>
      </dd>
      <dt anchor="term---imm--">
@@ -464,7 +467,8 @@ opcode                  offset imm          assembly
      </dt>
      <dd>
       <t>
-       The source and destination register numbers, encoded as explained above
+       The source and destination register numbers (unless otherwise
+       specified), encoded as explained above
       </t>
      </dd>
      <dt anchor="term---offset---">
@@ -472,7 +476,8 @@ opcode                  offset imm          assembly
      </dt>
      <dd>
       <t>
-       signed integer offset used with pointer arithmetic
+       signed integer offset used with pointer arithmetic, unless
+       otherwise specified
       </t>
      </dd>
      <dt anchor="term---imm---">
@@ -1206,8 +1211,8 @@ dst = (u32) dst ^ (u32) imm
 dst = dst ^ imm
     </artwork>
     <t>
-     Note that most instructions have instruction offset of 0. Only three instructions
-     (<tt>SDIV</tt>, <tt>SMOD</tt>, <tt>MOVSX</tt>) have a non-zero offset.
+     Note that most arithmetic instructions have 'offset' set to 0. Only three instructions
+     (<tt>SDIV</tt>, <tt>SMOD</tt>, <tt>MOVSX</tt>) have a non-zero 'offset'.
     </t>
     <t>
      Division, multiplication, and modulo operations for <tt>ALU</tt> are part
@@ -1235,15 +1240,15 @@ dst = dst ^ imm
      etc. This specification requires that signed modulo use truncated division
      (where -13 % 3 == -1) as implemented in C, Go, etc.:
     </t>
-    <blockquote>
-     a % n = a - n * trunc(a / n)
-    </blockquote>
+    <artwork>
+a % n = a - n * trunc(a / n)
+    </artwork>
     <t>
      The <tt>MOVSX</tt> instruction does a move operation with sign extension.
-     <tt>{MOVSX, X, ALU}</tt> <xref target="term-sign-extend">sign extends</xref> 8-bit and 16-bit operands into 32
-     bit operands, and zeroes the remaining upper 32 bits.
+     <tt>{MOVSX, X, ALU}</tt> <xref target="term-sign-extend">sign extends</xref> 8-bit and 16-bit operands into
+     32-bit operands, and zeroes the remaining upper 32 bits.
      <tt>{MOVSX, X, ALU64}</tt> <xref target="term-sign-extend">sign extends</xref> 8-bit, 16-bit, and 32-bit
-     operands into 64 bit operands.  Unlike other arithmetic instructions,
+     operands into 64-bit operands.  Unlike other arithmetic instructions,
      <tt>MOVSX</tt> is only defined for register source operands (<tt>X</tt>).
     </t>
     <t>
@@ -1358,7 +1363,7 @@ dst = dst ^ imm
      Examples:
     </t>
     <t>
-     <tt>{END, TO_LE, ALU}</tt> with imm = 16/32/64 means:
+     <tt>{END, TO_LE, ALU}</tt> with 'imm' = 16/32/64 means:
     </t>
     <artwork>
 dst = htole16(dst)
@@ -1366,7 +1371,7 @@ dst = htole32(dst)
 dst = htole64(dst)
     </artwork>
     <t>
-     <tt>{END, TO_BE, ALU}</tt> with imm = 16/32/64 means:
+     <tt>{END, TO_BE, ALU}</tt> with 'imm' = 16/32/64 means:
     </t>
     <artwork>
 dst = htobe16(dst)
@@ -1374,7 +1379,7 @@ dst = htobe32(dst)
 dst = htobe64(dst)
     </artwork>
     <t>
-     <tt>{END, TO_LE, ALU64}</tt> with imm = 16/32/64 means:
+     <tt>{END, TO_LE, ALU64}</tt> with 'imm' = 16/32/64 means:
     </t>
     <artwork>
 dst = bswap16(dst)
@@ -1653,7 +1658,7 @@ dst = bswap64(dst)
        </td>
        <td>
         <t>
-         call helper function by address
+         call helper function by static ID
         </t>
        </td>
        <td>
@@ -1876,7 +1881,7 @@ if (s32)dst s&gt;= (s32)src goto +offset
 gotol +imm
     </artwork>
     <t>
-     where 'imm' means the branch offset comes from insn 'imm' field.
+     where 'imm' means the branch offset comes from the 'imm' field.
     </t>
     <t>
      Note that there are two flavors of <tt>JA</tt> instructions. The
@@ -1896,13 +1901,13 @@ gotol +imm
       set of function calls exposed by the underlying platform.
      </t>
      <t>
-      Historically, each helper function was identified by an address
-      encoded in the imm field.  The available helper functions may differ
-      for each program type, but address values are unique across all program types.
+      Historically, each helper function was identified by a static ID
+      encoded in the 'imm' field.  The available helper functions may differ
+      for each program type, but static IDs are unique across all program types.
      </t>
      <t>
       Platforms that support the BPF Type Format (BTF) support identifying
-      a helper function by a BTF ID encoded in the imm field, where the BTF ID
+      a helper function by a BTF ID encoded in the 'imm' field, where the BTF ID
       identifies the helper name and type.
      </t>
     </section>
@@ -1910,8 +1915,8 @@ gotol +imm
      <t>
       Program-local functions are functions exposed by the same BPF program as the
       caller, and are referenced by offset from the call instruction, similar to
-      <tt>JA</tt>.  The offset is encoded in the imm field of the call instruction.
-      A <tt>EXIT</tt> within the program-local function will return to the caller.
+      <tt>JA</tt>.  The offset is encoded in the 'imm' field of the call instruction.
+      An <tt>EXIT</tt> within the program-local function will return to the caller.
      </t>
     </section>
    </section>
@@ -1919,7 +1924,7 @@ gotol +imm
   <section anchor="load-and-store-instructions" title="Load and store instructions">
    <t>
     For load and store instructions (<tt>LD</tt>, <tt>LDX</tt>, <tt>ST</tt>, and <tt>STX</tt>), the
-    8-bit 'opcode' field is divided as:
+    8-bit 'opcode' field is divided as follows:
    </t>
    <artwork>
 +-+-+-+-+-+-+-+-+
@@ -2218,7 +2223,7 @@ dst = *(unsigned size *) (src + offset)
 dst = *(signed size *) (src + offset)
     </artwork>
     <t>
-     Where size is one of: <tt>B</tt>, <tt>H</tt>, or <tt>W</tt>, and
+     Where '&lt;size&gt;' is one of: <tt>B</tt>, <tt>H</tt>, or <tt>W</tt>, and
      'signed size' is one of: s8, s16, or s32.
     </t>
    </section>
@@ -2508,7 +2513,7 @@ dst = *(signed size *) (src + offset)
        </td>
        <td>
         <t>
-         data pointer
+         data address
         </t>
        </td>
       </tr>
@@ -2530,7 +2535,7 @@ dst = *(signed size *) (src + offset)
        </td>
        <td>
         <t>
-         data pointer
+         data address
         </t>
        </td>
       </tr>
@@ -2552,7 +2557,7 @@ dst = *(signed size *) (src + offset)
        </td>
        <td>
         <t>
-         code pointer
+         code address
         </t>
        </td>
       </tr>
@@ -2596,7 +2601,7 @@ dst = *(signed size *) (src + offset)
        </td>
        <td>
         <t>
-         data pointer
+         data address
         </t>
        </td>
       </tr>

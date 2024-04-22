@@ -148,7 +148,7 @@ Internet-Draft                   BPF ISA                      April 2024
                              bit-width notation.
 
    For example, _u32_ is a type whose valid values are all the 32-bit
-   unsigned numbers and _s16_ is a types whose valid values are all the
+   unsigned numbers and _s16_ is a type whose valid values are all the
    16-bit signed numbers.
 
 1.2.  Functions
@@ -236,7 +236,7 @@ Internet-Draft                   BPF ISA                      April 2024
    all instructions in that conformance group.
 
    The use of named conformance groups enables interoperability between
-   a runtime that executes instructions, and tools as such compilers
+   a runtime that executes instructions, and tools such as compilers
    that generate instructions for the runtime.  Thus, capability
    discovery in terms of conformance groups might be done manually by
    users or automatically by tools.
@@ -323,13 +323,13 @@ Internet-Draft                   BPF ISA                      April 2024
          otherwise specified (64-bit immediate instructions
          (Section 4.4) reuse this field for other purposes)
 
-      *dst_reg*  destination register number (0-10)
+      *dst_reg*  destination register number (0-10), unless otherwise
+         specified (future instructions might reuse this field for other
+         purposes)
 
-   *offset*  signed integer offset used with pointer arithmetic
-
-   *imm*  signed integer immediate value
-
-
+   *offset*  signed integer offset used with pointer arithmetic, except
+      where otherwise specified (some arithmetic instructions reuse this
+      field for other purposes)
 
 
 
@@ -337,6 +337,8 @@ Thaler                   Expires 24 October 2024                [Page 6]
 
 Internet-Draft                   BPF ISA                      April 2024
 
+
+   *imm*  signed integer immediate value
 
    Note that the contents of multi-byte fields ('offset' and 'imm') are
    stored using big-endian byte ordering on big-endian hosts and little-
@@ -374,17 +376,15 @@ Internet-Draft                   BPF ISA                      April 2024
 
    *opcode*  operation to perform, encoded as explained above
 
-   *regs*  The source and destination register numbers, encoded as
-      explained above
+   *regs*  The source and destination register numbers (unless otherwise
+      specified), encoded as explained above
 
-   *offset*  signed integer offset used with pointer arithmetic
+   *offset*  signed integer offset used with pointer arithmetic, unless
+      otherwise specified
 
    *imm*  signed integer immediate value
 
    *reserved*  unused, set to zero
-
-   *next_imm*  second signed integer immediate value
-
 
 
 
@@ -393,6 +393,8 @@ Thaler                   Expires 24 October 2024                [Page 7]
 
 Internet-Draft                   BPF ISA                      April 2024
 
+
+   *next_imm*  second signed integer immediate value
 
 2.3.  Instruction classes
 
@@ -440,8 +442,6 @@ Internet-Draft                   BPF ISA                      April 2024
 
    *code*  the operation code, whose meaning varies by instruction class
 
-   *s (source)*  the source operand location, which unless otherwise
-      specified is one of:
 
 
 
@@ -449,6 +449,9 @@ Thaler                   Expires 24 October 2024                [Page 8]
 
 Internet-Draft                   BPF ISA                      April 2024
 
+
+   *s (source)*  the source operand location, which unless otherwise
+      specified is one of:
 
         +========+=======+==========================================+
         | source | value | description                              |
@@ -471,9 +474,6 @@ Internet-Draft                   BPF ISA                      April 2024
    base64 conformance group unless noted otherwise.  The 'code' field
    encodes the operation as below, where 'src' and 'dst' refer to the
    values of the source and destination registers, respectively.
-
-
-
 
 
 
@@ -581,8 +581,8 @@ Internet-Draft                   BPF ISA                      April 2024
 
    dst = dst ^ imm
 
-   Note that most instructions have instruction offset of 0.  Only three
-   instructions (SDIV, SMOD, MOVSX) have a non-zero offset.
+   Note that most arithmetic instructions have 'offset' set to 0.  Only
+   three instructions (SDIV, SMOD, MOVSX) have a non-zero 'offset'.
 
    Division, multiplication, and modulo operations for ALU are part of
    the "divmul32" conformance group, and division, multiplication, and
@@ -607,7 +607,7 @@ Internet-Draft                   BPF ISA                      April 2024
    signed modulo use truncated division (where -13 % 3 == -1) as
    implemented in C, Go, etc.:
 
-   |  a % n = a - n * trunc(a / n)
+   a % n = a - n * trunc(a / n)
 
 
 
@@ -620,9 +620,9 @@ Internet-Draft                   BPF ISA                      April 2024
 
    The MOVSX instruction does a move operation with sign extension.
    {MOVSX, X, ALU} sign extends (Section 1.3) 8-bit and 16-bit operands
-   into 32 bit operands, and zeroes the remaining upper 32 bits.
+   into 32-bit operands, and zeroes the remaining upper 32 bits.
    {MOVSX, X, ALU64} sign extends (Section 1.3) 8-bit, 16-bit, and
-   32-bit operands into 64 bit operands.  Unlike other arithmetic
+   32-bit operands into 64-bit operands.  Unlike other arithmetic
    instructions, MOVSX is only defined for register source operands (X).
 
    The NEG instruction is only defined when the source bit is clear (K).
@@ -665,7 +665,7 @@ Internet-Draft                   BPF ISA                      April 2024
 
    Examples:
 
-   {END, TO_LE, ALU} with imm = 16/32/64 means:
+   {END, TO_LE, ALU} with 'imm' = 16/32/64 means:
 
 
 
@@ -678,13 +678,13 @@ Internet-Draft                   BPF ISA                      April 2024
    dst = htole32(dst)
    dst = htole64(dst)
 
-   {END, TO_BE, ALU} with imm = 16/32/64 means:
+   {END, TO_BE, ALU} with 'imm' = 16/32/64 means:
 
    dst = htobe16(dst)
    dst = htobe32(dst)
    dst = htobe64(dst)
 
-   {END, TO_LE, ALU64} with imm = 16/32/64 means:
+   {END, TO_LE, ALU64} with 'imm' = 16/32/64 means:
 
    dst = bswap16(dst)
    dst = bswap32(dst)
@@ -744,7 +744,7 @@ Internet-Draft                   BPF ISA                      April 2024
    +------+-------+---------+---------------+--------------------------+
    | CALL | 0x8   | 0x0     | call helper   | {CALL, K, JMP} only, see |
    |      |       |         | function by   | Helper functions         |
-   |      |       |         | address       | (Section 3.3.1)          |
+   |      |       |         | static ID     | (Section 3.3.1)          |
    +------+-------+---------+---------------+--------------------------+
    | CALL | 0x8   | 0x1     | call PC +=    | {CALL, K, JMP} only, see |
    |      |       |         | imm           | Program-local functions  |
@@ -798,7 +798,7 @@ Internet-Draft                   BPF ISA                      April 2024
 
    gotol +imm
 
-   where 'imm' means the branch offset comes from insn 'imm' field.
+   where 'imm' means the branch offset comes from the 'imm' field.
 
    Note that there are two flavors of JA instructions.  The JMP class
    permits a 16-bit jump offset specified by the 'offset' field, whereas
@@ -813,27 +813,27 @@ Internet-Draft                   BPF ISA                      April 2024
    Helper functions are a concept whereby BPF programs can call into a
    set of function calls exposed by the underlying platform.
 
-   Historically, each helper function was identified by an address
-   encoded in the imm field.  The available helper functions may differ
-   for each program type, but address values are unique across all
+   Historically, each helper function was identified by a static ID
+   encoded in the 'imm' field.  The available helper functions may
+   differ for each program type, but static IDs are unique across all
    program types.
 
    Platforms that support the BPF Type Format (BTF) support identifying
-   a helper function by a BTF ID encoded in the imm field, where the BTF
-   ID identifies the helper name and type.
+   a helper function by a BTF ID encoded in the 'imm' field, where the
+   BTF ID identifies the helper name and type.
 
 3.3.2.  Program-local functions
 
    Program-local functions are functions exposed by the same BPF program
    as the caller, and are referenced by offset from the call
-   instruction, similar to JA.  The offset is encoded in the imm field
-   of the call instruction.  A EXIT within the program-local function
+   instruction, similar to JA.  The offset is encoded in the 'imm' field
+   of the call instruction.  An EXIT within the program-local function
    will return to the caller.
 
 4.  Load and store instructions
 
    For load and store instructions (LD, LDX, ST, and STX), the 8-bit
-   'opcode' field is divided as:
+   'opcode' field is divided as follows:
 
 
 
@@ -954,8 +954,8 @@ Thaler                   Expires 24 October 2024               [Page 17]
 Internet-Draft                   BPF ISA                      April 2024
 
 
-   Where size is one of: B, H, or W, and 'signed size' is one of: s8,
-   s16, or s32.
+   Where '<size>' is one of: B, H, or W, and 'signed size' is one of:
+   s8, s16, or s32.
 
 4.3.  Atomic operations
 
@@ -1074,19 +1074,19 @@ Internet-Draft                   BPF ISA                      April 2024
     | 0x1     | dst = map_by_fd(imm)           | map fd   | map      |
     +---------+--------------------------------+----------+----------+
     | 0x2     | dst = map_val(map_by_fd(imm))  | map fd   | data     |
-    |         | + next_imm                     |          | pointer  |
+    |         | + next_imm                     |          | address  |
     +---------+--------------------------------+----------+----------+
     | 0x3     | dst = var_addr(imm)            | variable | data     |
-    |         |                                | id       | pointer  |
+    |         |                                | id       | address  |
     +---------+--------------------------------+----------+----------+
     | 0x4     | dst = code_addr(imm)           | integer  | code     |
-    |         |                                |          | pointer  |
+    |         |                                |          | address  |
     +---------+--------------------------------+----------+----------+
     | 0x5     | dst = map_by_idx(imm)          | map      | map      |
     |         |                                | index    |          |
     +---------+--------------------------------+----------+----------+
     | 0x6     | dst = map_val(map_by_idx(imm)) | map      | data     |
-    |         | + next_imm                     | index    | pointer  |
+    |         | + next_imm                     | index    | address  |
     +---------+--------------------------------+----------+----------+
 
                                  Table 12
