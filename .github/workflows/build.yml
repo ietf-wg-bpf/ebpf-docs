@@ -42,6 +42,7 @@ jobs:
       run: |
         rst2pdf rst/instruction-set.rst generated/instruction-set.pdf
         rst2pdf rst/abi.rst generated/abi.pdf
+        rst2pdf rst/elf.rst generated/elf.pdf
 
     - name: Build xml files
       run: |
@@ -55,6 +56,8 @@ jobs:
         xml2rfc --html draft-ietf-bpf-isa.xml
         xml2rfc draft-thaler-bpf-abi.xml
         xml2rfc --html draft-thaler-bpf-abi.xml
+        xml2rfc draft-thaler-bpf-elf.xml
+        xml2rfc --html draft-thaler-bpf-elf.xml
 
     - name: Check in generated files
       if: github.event_name == 'push'
