@@ -69,15 +69,20 @@ platform-specified API contracts. This level of verification can often provide a
 of security assurance than for other software and operating system code.
 While the details are out of scope of this document,
 `Linux <https://www.kernel.org/doc/html/latest/bpf/verifier.html>`_ and
-`PREVAIL <https://pldi19.sigplan.org/details/pldi-2019-papers/44/Simple-and-Precise-Static-Analysis-of-Untrusted-Linux-Kernel-Extensions>`_ do provide many details.
+`PREVAIL <https://pldi19.sigplan.org/details/pldi-2019-papers/44/Simple-and-Precise-Static-Analysis-of-Untrusted-Linux-Kernel-Extensions>`_ do provide many details.  Future IETF work will document verifier expectations
+and building blocks for allowing safe execution of untrusted BPF programs.
 
-Executing programs using the BPF instruction set also requires either an interpreter or a JIT compiler
-to translate them to hardware processor native instructions.  In general, interpreters are considered a
-source of insecurity (e.g., gadgets susceptible to side-channel attacks due to speculative execution,
-or W^X mappings) whenever one is used in the same memory address space as data with confidentiality
-concerns.  As such, use of a JIT compiler is recommended instead.  JIT compilers should be audited
-carefully for vulnerabilities to ensure that JIT compilation of a trusted and verified BPF program
-does not introduce vulnerabilities.
+Executing programs using the BPF instruction set also requires either an interpreter or a compiler
+to translate them to hardware processor native instructions. In general, interpreters are considered a
+source of insecurity (e.g., gadgets susceptible to side-channel attacks due to speculative execution)
+whenever one is used in the same memory address space as data with confidentiality
+concerns.  As such, use of a compiler is recommended instead.  Compilers should be audited
+carefully for vulnerabilities to ensure that compilation of a trusted and verified BPF program
+to native processor instructions does not introduce vulnerabilities.
+
+Exposing functionality via BPF extends the interface between the component executing the BPF program and the
+component submitting it. Careful consideration of what functionality is exposed and how
+that impacts the security properties desired is required.
 
 IANA Considerations
 ===================
@@ -306,7 +311,7 @@ over time, including Akhil Raj, Alexei Starovoitov, Brendan Jackman, Christoph H
 Ilya Leoshkevich, Jiong Wang, Jose E. Marchesi, Kosuke Fujimoto,
 Shahab Vahedi, Tiezhu Yang, Will Hawkins, and Zheng Yejian, with review and suggestions by many others including
 Alan Jowett, Andrii Nakryiko, David Vernet, Jim Harris,
-Quentin Monnet, Song Liu, Shung-Hsi Yu, Stanislav Fomichev, and Yonghong Song.
+Quentin Monnet, Song Liu, Shung-Hsi Yu, Stanislav Fomichev, Watson Ladd, and Yonghong Song.
 
 Appendix
 ========
