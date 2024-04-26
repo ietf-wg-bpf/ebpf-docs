@@ -41,7 +41,11 @@ BPF Instruction Set Architecture (ISA)
  <middle>
   <section anchor="introduction" title="Introduction">
    <t>
-    This document specifies the BPF instruction set architecture (ISA).
+    eBPF (which is no longer an acronym for anything), also commonly
+    referred to as BPF, is a technology with origins in the Linux kernel
+    that can run untrusted programs in a privileged context such as an
+    operating system kernel. This document specifies the BPF instruction
+    set architecture (ISA).
    </t>
   </section>
   <section anchor="documentation-conventions" title="Documentation conventions">
