@@ -98,7 +98,7 @@ opcode  src_reg  offset  imm   description                                      
 0x7e    any      any     0x00  if (s32)dst s>= (s32)src goto +offset                   base32    `Jump instructions`_
 0x7f    any      0       0x00  dst >>= src                                             base64    `Arithmetic instructions`_
 0x84    0x0      0       0x00  dst = (u32)-dst                                         base32    `Arithmetic instructions`_
-0x85    0x0      0       any   call helper function by address                         base32    `Helper functions`_
+0x85    0x0      0       any   call helper function by static ID                       base32    `Helper functions`_
 0x85    0x1      0       any   call PC += imm                                          base32    `Program-local functions`_
 0x85    0x2      0       any   call helper function by BTF ID                          base32    `Helper functions`_
 0x87    0x0      0       0x00  dst = -dst                                              base64    `Arithmetic instructions`_
