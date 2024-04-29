@@ -1216,7 +1216,7 @@ li > p:last-of-type:only-child {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Thaler</td>
-<td class="center">Expires 28 October 2024</td>
+<td class="center">Expires 31 October 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1229,12 +1229,12 @@ li > p:last-of-type:only-child {
 <dd class="internet-draft">draft-ietf-bpf-isa-02</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-04-26" class="published">26 April 2024</time>
+<time datetime="2024-04-29" class="published">29 April 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-10-28">28 October 2024</time></dd>
+<dd class="expires"><time datetime="2024-10-31">31 October 2024</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1269,7 +1269,7 @@ li > p:last-of-type:only-child {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 28 October 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 31 October 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -3158,38 +3158,44 @@ dst = bswap64(dst)
           </tbody>
         </table>
 <p id="section-4.3-3">
-     The BPF program needs to store the return value into register R0 before doing an
-     <code>EXIT</code>.<a href="#section-4.3-3" class="pilcrow">¶</a></p>
+     where 'PC' denotes the program counter, and the offset to increment by
+     is in units of 64-bit instructions relative to the instruction following
+     the jump instruction.  Thus 'PC += 1' skips execution of the next
+     instruction if it's a basic instruction or results in undefined behavior
+     if the next instruction is a 128-bit wide instruction.<a href="#section-4.3-3" class="pilcrow">¶</a></p>
 <p id="section-4.3-4">
-     Example:<a href="#section-4.3-4" class="pilcrow">¶</a></p>
+     The BPF program needs to store the return value into register R0 before doing an
+     <code>EXIT</code>.<a href="#section-4.3-4" class="pilcrow">¶</a></p>
 <p id="section-4.3-5">
-     <code>{JSGE, X, JMP32}</code> means:<a href="#section-4.3-5" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-4.3-6">
+     Example:<a href="#section-4.3-5" class="pilcrow">¶</a></p>
+<p id="section-4.3-6">
+     <code>{JSGE, X, JMP32}</code> means:<a href="#section-4.3-6" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-4.3-7">
 <pre>
 if (s32)dst s&gt;= (s32)src goto +offset
-</pre><a href="#section-4.3-6" class="pilcrow">¶</a>
+</pre><a href="#section-4.3-7" class="pilcrow">¶</a>
 </div>
-<p id="section-4.3-7">
-     where 's&gt;=' indicates a signed '&gt;=' comparison.<a href="#section-4.3-7" class="pilcrow">¶</a></p>
 <p id="section-4.3-8">
-     <code>{JA, K, JMP32}</code> means:<a href="#section-4.3-8" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-4.3-9">
+     where 's&gt;=' indicates a signed '&gt;=' comparison.<a href="#section-4.3-8" class="pilcrow">¶</a></p>
+<p id="section-4.3-9">
+     <code>{JA, K, JMP32}</code> means:<a href="#section-4.3-9" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-4.3-10">
 <pre>
 gotol +imm
-</pre><a href="#section-4.3-9" class="pilcrow">¶</a>
+</pre><a href="#section-4.3-10" class="pilcrow">¶</a>
 </div>
-<p id="section-4.3-10">
-     where 'imm' means the branch offset comes from the 'imm' field.<a href="#section-4.3-10" class="pilcrow">¶</a></p>
 <p id="section-4.3-11">
+     where 'imm' means the branch offset comes from the 'imm' field.<a href="#section-4.3-11" class="pilcrow">¶</a></p>
+<p id="section-4.3-12">
      Note that there are two flavors of <code>JA</code> instructions. The
      <code>JMP</code> class permits a 16-bit jump offset specified by the 'offset'
      field, whereas the <code>JMP32</code> class permits a 32-bit jump offset
      specified by the 'imm' field. A &gt; 16-bit conditional jump may be
      converted to a &lt; 16-bit conditional jump plus a 32-bit unconditional
-     jump.<a href="#section-4.3-11" class="pilcrow">¶</a></p>
-<p id="section-4.3-12">
+     jump.<a href="#section-4.3-12" class="pilcrow">¶</a></p>
+<p id="section-4.3-13">
      All <code>CALL</code> and <code>JA</code> instructions belong to the
-     base32 conformance group.<a href="#section-4.3-12" class="pilcrow">¶</a></p>
+     base32 conformance group.<a href="#section-4.3-13" class="pilcrow">¶</a></p>
 <div id="helper-functions">
 <section id="section-4.3.1">
           <h4 id="name-helper-functions">
