@@ -65,8 +65,9 @@ software that may run on a device.  Execution environments should be carefully d
 to only run BPF programs that are trusted and verified, and sandboxing and privilege level
 separation are key strategies for limiting security and abuse impact.  For example, BPF
 verifiers are well-known and widely deployed and are responsible for ensuring that BPF programs
-will terminate within a reasonable time, only interact with memory in safe ways, and adhere to
-platform-specified API contracts. This level of verification can often provide a stronger level
+will terminate within a reasonable time, only interact with memory in safe ways, adhere to
+platform-specified API contracts, and don't use instructions with undefined behavior.
+This level of verification can often provide a stronger level
 of security assurance than for other software and operating system code.
 While the details are out of scope of this document,
 `Linux <https://www.kernel.org/doc/html/latest/bpf/verifier.html>`_ and
