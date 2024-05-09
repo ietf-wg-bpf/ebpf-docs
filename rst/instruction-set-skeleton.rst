@@ -136,10 +136,10 @@ Description:
   Brief description of the conformance group.
 
 Includes:
-  Any other conformance groups that are included from this group.
+  Any other conformance groups that are included by this group.
 
 Excludes:
-  Any other conformance groups that are excluded from this group.
+  Any other conformance groups that are excluded by this group.
 
 Status:
   This reflects the status requested and must be one of 'Permanent',
