@@ -11,10 +11,6 @@ Expires: 10 November 2024
                  BPF Instruction Set Architecture (ISA)
                          draft-ietf-bpf-isa-02
 
-Abstract
-
-   This document specifies the BPF instruction set architecture (ISA).
-
 Status of This Memo
 
    This Internet-Draft is submitted in full conformance with the
@@ -50,6 +46,10 @@ Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
    2.  Documentation conventions . . . . . . . . . . . . . . . . . .   3
+     2.1.  Types . . . . . . . . . . . . . . . . . . . . . . . . . .   3
+     2.2.  Functions . . . . . . . . . . . . . . . . . . . . . . . .   3
+     2.3.  Definitions . . . . . . . . . . . . . . . . . . . . . . .   4
+     2.4.  Conformance groups  . . . . . . . . . . . . . . . . . . .   5
 
 
 
@@ -58,10 +58,6 @@ Thaler                  Expires 10 November 2024                [Page 1]
 Internet-Draft                   BPF ISA                        May 2024
 
 
-     2.1.  Types . . . . . . . . . . . . . . . . . . . . . . . . . .   3
-     2.2.  Functions . . . . . . . . . . . . . . . . . . . . . . . .   3
-     2.3.  Definitions . . . . . . . . . . . . . . . . . . . . . . .   4
-     2.4.  Conformance groups  . . . . . . . . . . . . . . . . . . .   5
    3.  Instruction encoding  . . . . . . . . . . . . . . . . . . . .   6
      3.1.  Basic instruction encoding  . . . . . . . . . . . . . . .   6
      3.2.  Wide instruction encoding . . . . . . . . . . . . . . . .   7
@@ -104,6 +100,10 @@ Internet-Draft                   BPF ISA                        May 2024
    that can run untrusted programs in a privileged context such as an
    operating system kernel.  This document specifies the BPF instruction
    set architecture (ISA).
+
+
+
+
 
 
 
