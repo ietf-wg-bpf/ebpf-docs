@@ -2,6 +2,7 @@
 .. |ipr| replace:: trust200902
 .. |category| replace:: std
 .. |titleAbbr| replace:: BPF ISA
+.. |abstract| replace:: eBPF (which is no longer an acronym for anything), also commonly referred to as BPF, is a technology with origins in the Linux kernel that can run untrusted programs in a privileged context such as an operating system kernel. This document specifies the BPF instruction set architecture (ISA).
 .. |submissionType| replace:: IETF
 .. |author[0].fullname| replace:: Dave Thaler
 .. |author[0].role| replace:: editor
