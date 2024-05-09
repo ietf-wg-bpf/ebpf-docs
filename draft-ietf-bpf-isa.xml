@@ -3025,7 +3025,7 @@ dst = *(signed size *) (src + offset)
       </dt>
       <dd>
        <t>
-        Any other conformance groups that are included from this group.
+        Any other conformance groups that are included by this group.
        </t>
       </dd>
       <dt anchor="term-excludes:">
@@ -3033,7 +3033,7 @@ dst = *(signed size *) (src + offset)
       </dt>
       <dd>
        <t>
-        Any other conformance groups that are excluded from this group.
+        Any other conformance groups that are excluded by this group.
        </t>
       </dd>
       <dt anchor="term-status:">
