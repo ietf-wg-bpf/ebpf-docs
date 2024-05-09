@@ -11,6 +11,14 @@ Expires: 10 November 2024
                  BPF Instruction Set Architecture (ISA)
                          draft-ietf-bpf-isa-02
 
+Abstract
+
+   eBPF (which is no longer an acronym for anything), also commonly
+   referred to as BPF, is a technology with origins in the Linux kernel
+   that can run untrusted programs in a privileged context such as an
+   operating system kernel.  This document specifies the BPF instruction
+   set architecture (ISA).
+
 Status of This Memo
 
    This Internet-Draft is submitted in full conformance with the
@@ -42,14 +50,6 @@ Copyright Notice
    described in Section 4.e of the Trust Legal Provisions and are
    provided without warranty as described in the Revised BSD License.
 
-Table of Contents
-
-   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
-   2.  Documentation conventions . . . . . . . . . . . . . . . . . .   3
-     2.1.  Types . . . . . . . . . . . . . . . . . . . . . . . . . .   3
-     2.2.  Functions . . . . . . . . . . . . . . . . . . . . . . . .   3
-     2.3.  Definitions . . . . . . . . . . . . . . . . . . . . . . .   4
-     2.4.  Conformance groups  . . . . . . . . . . . . . . . . . . .   5
 
 
 
@@ -58,11 +58,19 @@ Thaler                  Expires 10 November 2024                [Page 1]
 Internet-Draft                   BPF ISA                        May 2024
 
 
+Table of Contents
+
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
+   2.  Documentation conventions . . . . . . . . . . . . . . . . . .   3
+     2.1.  Types . . . . . . . . . . . . . . . . . . . . . . . . . .   3
+     2.2.  Functions . . . . . . . . . . . . . . . . . . . . . . . .   4
+     2.3.  Definitions . . . . . . . . . . . . . . . . . . . . . . .   4
+     2.4.  Conformance groups  . . . . . . . . . . . . . . . . . . .   5
    3.  Instruction encoding  . . . . . . . . . . . . . . . . . . . .   6
      3.1.  Basic instruction encoding  . . . . . . . . . . . . . . .   6
      3.2.  Wide instruction encoding . . . . . . . . . . . . . . . .   7
      3.3.  Instruction classes . . . . . . . . . . . . . . . . . . .   8
-   4.  Arithmetic and jump instructions  . . . . . . . . . . . . . .   8
+   4.  Arithmetic and jump instructions  . . . . . . . . . . . . . .   9
      4.1.  Arithmetic instructions . . . . . . . . . . . . . . . . .   9
      4.2.  Byte swap instructions  . . . . . . . . . . . . . . . . .  12
      4.3.  Jump instructions . . . . . . . . . . . . . . . . . . . .  13
@@ -93,14 +101,6 @@ Internet-Draft                   BPF ISA                        May 2024
      10.2.  Informative References . . . . . . . . . . . . . . . . .  43
    Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  43
 
-1.  Introduction
-
-   eBPF (which is no longer an acronym for anything), also commonly
-   referred to as BPF, is a technology with origins in the Linux kernel
-   that can run untrusted programs in a privileged context such as an
-   operating system kernel.  This document specifies the BPF instruction
-   set architecture (ISA).
-
 
 
 
@@ -113,6 +113,14 @@ Thaler                  Expires 10 November 2024                [Page 2]
 
 Internet-Draft                   BPF ISA                        May 2024
 
+
+1.  Introduction
+
+   eBPF (which is no longer an acronym for anything), also commonly
+   referred to as BPF, is a technology with origins in the Linux kernel
+   that can run untrusted programs in a privileged context such as an
+   operating system kernel.  This document specifies the BPF instruction
+   set architecture (ISA).
 
 2.  Documentation conventions
 
@@ -155,20 +163,18 @@ Internet-Draft                   BPF ISA                        May 2024
                              Table 2: Meaning of
                              bit-width notation.
 
-   For example, _u32_ is a type whose valid values are all the 32-bit
-   unsigned numbers and _s16_ is a type whose valid values are all the
-   16-bit signed numbers.
-
-2.2.  Functions
-
-
-
 
 
 Thaler                  Expires 10 November 2024                [Page 3]
 
 Internet-Draft                   BPF ISA                        May 2024
 
+
+   For example, _u32_ is a type whose valid values are all the 32-bit
+   unsigned numbers and _s16_ is a type whose valid values are all the
+   16-bit signed numbers.
+
+2.2.  Functions
 
    *  htobe16: Takes an unsigned 16-bit number in host-endian format and
       returns the equivalent number as an unsigned 16-bit number in big-
@@ -213,12 +219,6 @@ Internet-Draft                   BPF ISA                        May 2024
 
       1.  Copy all X bits from _A_ to the lower X bits of _B_.
 
-      2.  Set the value of the remaining Y - X bits of _B_ to the value
-          of the most-significant bit of _A_.
-
-      |  *Example*
-      |  
-
 
 
 Thaler                  Expires 10 November 2024                [Page 4]
@@ -226,6 +226,11 @@ Thaler                  Expires 10 November 2024                [Page 4]
 Internet-Draft                   BPF ISA                        May 2024
 
 
+      2.  Set the value of the remaining Y - X bits of _B_ to the value
+          of the most-significant bit of _A_.
+
+      |  *Example*
+      |  
       |  Sign extend an 8-bit number A to a 16-bit number B on a big-
       |  endian platform:
       |  
@@ -269,11 +274,6 @@ Internet-Draft                   BPF ISA                        May 2024
    *  divmul32: includes 32-bit division, multiplication, and modulo
       instructions.
 
-   *  divmul64: includes divmul32, plus 64-bit division, multiplication,
-      and modulo instructions.
-
-   *  packet: deprecated packet access instructions.
-
 
 
 
@@ -281,6 +281,11 @@ Thaler                  Expires 10 November 2024                [Page 5]
 
 Internet-Draft                   BPF ISA                        May 2024
 
+
+   *  divmul64: includes divmul32, plus 64-bit division, multiplication,
+      and modulo instructions.
+
+   *  packet: deprecated packet access instructions.
 
 3.  Instruction encoding
 
@@ -326,17 +331,16 @@ Internet-Draft                   BPF ISA                        May 2024
       |dst_reg|src_reg|
       +-+-+-+-+-+-+-+-+
 
-      *src_reg*  the source register number (0-10), except where
-         otherwise specified (64-bit immediate instructions
-         (Section 5.4) reuse this field for other purposes)
-
-
 
 
 Thaler                  Expires 10 November 2024                [Page 6]
 
 Internet-Draft                   BPF ISA                        May 2024
 
+
+      *src_reg*  the source register number (0-10), except where
+         otherwise specified (64-bit immediate instructions
+         (Section 5.4) reuse this field for other purposes)
 
       *dst_reg*  destination register number (0-10), unless otherwise
          specified (future instructions might reuse this field for other
@@ -382,10 +386,6 @@ Internet-Draft                   BPF ISA                        May 2024
    |                           next_imm                            |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   *opcode*  operation to perform, encoded as explained above
-
-   *regs*  The source and destination register numbers (unless otherwise
-      specified), encoded as explained above
 
 
 
@@ -393,6 +393,11 @@ Thaler                  Expires 10 November 2024                [Page 7]
 
 Internet-Draft                   BPF ISA                        May 2024
 
+
+   *opcode*  operation to perform, encoded as explained above
+
+   *regs*  The source and destination register numbers (unless otherwise
+      specified), encoded as explained above
 
    *offset*  signed integer offset used with pointer arithmetic, unless
       otherwise specified
@@ -438,17 +443,17 @@ Internet-Draft                   BPF ISA                        May 2024
 
                                   Table 3
 
-4.  Arithmetic and jump instructions
-
-   For arithmetic and jump instructions (ALU, ALU64, JMP and JMP32), the
-   8-bit 'opcode' field is divided into three parts:
-
 
 
 Thaler                  Expires 10 November 2024                [Page 8]
 
 Internet-Draft                   BPF ISA                        May 2024
 
+
+4.  Arithmetic and jump instructions
+
+   For arithmetic and jump instructions (ALU, ALU64, JMP and JMP32), the
+   8-bit 'opcode' field is divided into three parts:
 
    +-+-+-+-+-+-+-+-+
    |  code |s|class|
@@ -480,11 +485,6 @@ Internet-Draft                   BPF ISA                        May 2024
    base64 conformance group unless noted otherwise.  The 'code' field
    encodes the operation as below, where 'src' and 'dst' refer to the
    values of the source and destination registers, respectively.
-
-
-
-
-
 
 
 
