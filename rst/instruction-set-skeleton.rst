@@ -13,11 +13,40 @@
 .. |author[0].region| replace:: WA
 .. |author[0].code| replace:: 98052
 .. |author[0].country| replace:: USA
+.. |ref[RFC2119].title| replace:: Key words for use in RFCs to Indicate Requirement Levels
+.. |ref[RFC2119].author[0].fullname| replace:: S. Bradner
+.. |ref[RFC2119].author[0].initials| replace:: S.
+.. |ref[RFC2119].author[0].surname| replace:: Bradner
+.. |ref[RFC2119].type| replace:: normative
+.. |ref[RFC2119].seriesInfo.name| replace:: BCP
+.. |ref[RFC2119].seriesInfo.value| replace:: 14
+.. |ref[RFC2119].seriesInfo.name| replace:: RFC
+.. |ref[RFC2119].seriesInfo.value| replace:: 2119
+.. |ref[RFC2119].seriesInfo.name| replace:: DOI
+.. |ref[RFC2119].seriesInfo.value| replace:: 10.17487/RFC2119
+.. |ref[RFC2119].target| replace:: https://www.rfc-editor.org/info/rfc2119
+.. |ref[RFC2119].date.month| replace:: March
+.. |ref[RFC2119].date.year| replace:: 1997
 .. |ref[RFC8126].target| replace:: https://www.rfc-editor.org/rfc/rfc8126.html
 .. |ref[RFC8126].title| replace:: Guidelines for Writing an IANA Considerations Section in RFCs
+.. |ref[RFC8126].author[0].fullname| replace:: M. Cotton
+.. |ref[RFC8126].author[0].initials| replace:: M.
+.. |ref[RFC8126].author[0].surname| replace:: Cotton
+.. |ref[RFC8126].author[1].fullname| replace:: B. Leiba
+.. |ref[RFC8126].author[1].initials| replace:: B.
+.. |ref[RFC8126].author[1].surname| replace:: Leiba
+.. |ref[RFC8126].author[2].fullname| replace:: T. Narten
+.. |ref[RFC8126].author[2].initials| replace:: T.
+.. |ref[RFC8126].author[2].surname| replace:: Narten
 .. |ref[RFC8126].type| replace:: normative
+.. |ref[RFC8126].seriesInfo.name| replace:: BCP
+.. |ref[RFC8126].seriesInfo.value| replace:: 26
 .. |ref[RFC8126].seriesInfo.name| replace:: RFC
 .. |ref[RFC8126].seriesInfo.value| replace:: 8126
+.. |ref[RFC8126].seriesInfo.name| replace:: DOI
+.. |ref[RFC8126].seriesInfo.value| replace:: 10.17487/RFC8126
+.. |ref[RFC8126].date.month| replace:: June
+.. |ref[RFC8126].date.year| replace:: 2017
 .. |ref[LINUX].target| replace:: https://www.kernel.org/doc/html/latest/bpf/verifier.html
 .. |ref[LINUX].title| replace:: eBPF verifier
 .. |ref[LINUX].type| replace:: informative
