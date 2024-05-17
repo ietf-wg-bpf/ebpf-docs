@@ -9876,9 +9876,14 @@ dst = *(signed size *) (src + offset)
   <reference anchor="RFC8126">
    <front>
     <title>Guidelines for Writing an IANA Considerations Section in RFCs</title>
-    <author/>
+    <author fullname="M. Cotton" initials="M." surname="Cotton"/>
+    <author fullname="B. Leiba" initials="B." surname="Leiba"/>
+    <author fullname="T. Narten" initials="T." surname="Narten"/>
+    <date month="June" year="2017"/>
    </front>
+   <seriesInfo name='BCP' value='26'/>
    <seriesInfo name='RFC' value='8126'/>
+   <seriesInfo name='DOI' value='10.17487/RFC8126'/>
   </reference>
  </references>
  <references><name>Informative References</name>
