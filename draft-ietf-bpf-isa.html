@@ -1216,7 +1216,7 @@ li > p:last-of-type:only-child {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Thaler</td>
-<td class="center">Expires 18 November 2024</td>
+<td class="center">Expires 25 November 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1229,12 +1229,12 @@ li > p:last-of-type:only-child {
 <dd class="internet-draft">draft-ietf-bpf-isa-02</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-05-17" class="published">17 May 2024</time>
+<time datetime="2024-05-24" class="published">24 May 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-11-18">18 November 2024</time></dd>
+<dd class="expires"><time datetime="2024-11-25">25 November 2024</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1269,7 +1269,7 @@ li > p:last-of-type:only-child {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 18 November 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 25 November 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -4012,8 +4012,11 @@ dst = *(signed size *) (src + offset)
         </ul>
 <p id="section-7.1-3">
      Initial entries in this sub-registry are as follows:<a href="#section-7.1-3" class="pilcrow">¶</a></p>
-<table class="center" id="table-13">
-          <caption><a href="#table-13" class="selfRef">Table 13</a></caption>
+<span id="name-initial-conformance-groups"></span><table class="center" id="table-13">
+          <caption>
+<a href="#table-13" class="selfRef">Table 13</a>:
+<a href="#name-initial-conformance-groups" class="selfRef">Initial conformance groups</a>
+          </caption>
 <thead>
             <tr>
               <th class="text-left" rowspan="1" colspan="1">name</th>
@@ -4469,8 +4472,11 @@ dst = *(signed size *) (src + offset)
      For example, consider an existing hypothetical group called "example" with two instructions in it.
      One might add two more instructions by first adding an "examplev2" group to the
      BPF Instruction Conformance Group Registry as follows:<a href="#section-7.3-2" class="pilcrow">¶</a></p>
-<table class="center" id="table-14">
-          <caption><a href="#table-14" class="selfRef">Table 14</a></caption>
+<span id="name-conformance-group-example-f"></span><table class="center" id="table-14">
+          <caption>
+<a href="#table-14" class="selfRef">Table 14</a>:
+<a href="#name-conformance-group-example-f" class="selfRef">Conformance group example for addition</a>
+          </caption>
 <thead>
             <tr>
               <th class="text-left" rowspan="1" colspan="1">name</th>
@@ -4529,8 +4535,11 @@ dst = *(signed size *) (src + offset)
         </table>
 <p id="section-7.3-4">
      And then adding the new instructions into the BPF Instruction Set Registry as follows:<a href="#section-7.3-4" class="pilcrow">¶</a></p>
-<table class="center" id="table-15">
-          <caption><a href="#table-15" class="selfRef">Table 15</a></caption>
+<span id="name-instruction-addition-exampl"></span><table class="center" id="table-15">
+          <caption>
+<a href="#table-15" class="selfRef">Table 15</a>:
+<a href="#name-instruction-addition-exampl" class="selfRef">Instruction addition example</a>
+          </caption>
 <thead>
             <tr>
               <th class="text-left" rowspan="1" colspan="1">opcode</th>
@@ -4632,8 +4641,11 @@ dst = *(signed size *) (src + offset)
      For example, if deprecating an instruction in an existing hypothetical group called "example", two new groups
      ("legacyexample" and "examplev2") might be registered in the BPF Instruction Conformance Group
      Registry as follows:<a href="#section-7.4-2" class="pilcrow">¶</a></p>
-<table class="center" id="table-16">
-          <caption><a href="#table-16" class="selfRef">Table 16</a></caption>
+<span id="name-conformance-group-example-fo"></span><table class="center" id="table-16">
+          <caption>
+<a href="#table-16" class="selfRef">Table 16</a>:
+<a href="#name-conformance-group-example-fo" class="selfRef">Conformance group example for deprecation</a>
+          </caption>
 <thead>
             <tr>
               <th class="text-left" rowspan="1" colspan="1">name</th>
@@ -4715,8 +4727,11 @@ dst = *(signed size *) (src + offset)
 <p id="section-7.4-4">
      The BPF Instruction Set Registry entries for the deprecated instructions would then be updated
      to add "legacyexample" to the set of groups for those instructions, as follows:<a href="#section-7.4-4" class="pilcrow">¶</a></p>
-<table class="center" id="table-17">
-          <caption><a href="#table-17" class="selfRef">Table 17</a></caption>
+<span id="name-instruction-deprecation-exa"></span><table class="center" id="table-17">
+          <caption>
+<a href="#table-17" class="selfRef">Table 17</a>:
+<a href="#name-instruction-deprecation-exa" class="selfRef">Instruction deprecation example</a>
+          </caption>
 <thead>
             <tr>
               <th class="text-left" rowspan="1" colspan="1">opcode</th>
@@ -4857,8 +4872,11 @@ dst = *(signed size *) (src + offset)
     Initial values for the BPF Instruction sub-registry are given below.
     The descriptions in this table are informative. In case of any discrepancy, the reference
     is authoritative.<a href="#section-9-1" class="pilcrow">¶</a></p>
-<table class="center" id="table-18">
-        <caption><a href="#table-18" class="selfRef">Table 18</a></caption>
+<span id="name-bpf-instruction-sub-registr"></span><table class="center" id="table-18">
+        <caption>
+<a href="#table-18" class="selfRef">Table 18</a>:
+<a href="#name-bpf-instruction-sub-registr" class="selfRef">BPF Instruction sub-registry initial values</a>
+        </caption>
 <thead>
           <tr>
             <th class="text-left" rowspan="1" colspan="1">opcode</th>

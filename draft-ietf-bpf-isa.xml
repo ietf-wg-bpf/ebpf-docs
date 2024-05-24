@@ -2758,6 +2758,7 @@ dst = *(signed size *) (src + offset)
      Initial entries in this sub-registry are as follows:
     </t>
     <table>
+     <name>Initial conformance groups</name>
      <thead>
       <tr>
        <th>name</th>
@@ -3208,6 +3209,7 @@ dst = *(signed size *) (src + offset)
      BPF Instruction Conformance Group Registry as follows:
     </t>
     <table>
+     <name>Conformance group example for addition</name>
      <thead>
       <tr>
        <th>name</th>
@@ -3278,6 +3280,7 @@ dst = *(signed size *) (src + offset)
      And then adding the new instructions into the BPF Instruction Set Registry as follows:
     </t>
     <table>
+     <name>Instruction addition example</name>
      <thead>
       <tr>
        <th>opcode</th>
@@ -3394,6 +3397,7 @@ dst = *(signed size *) (src + offset)
      Registry as follows:
     </t>
     <table>
+     <name>Conformance group example for deprecation</name>
      <thead>
       <tr>
        <th>name</th>
@@ -3492,6 +3496,7 @@ dst = *(signed size *) (src + offset)
      to add "legacyexample" to the set of groups for those instructions, as follows:
     </t>
     <table>
+     <name>Instruction deprecation example</name>
      <thead>
       <tr>
        <th>opcode</th>
@@ -3639,6 +3644,7 @@ dst = *(signed size *) (src + offset)
     is authoritative.
    </t>
    <table>
+    <name>BPF Instruction sub-registry initial values</name>
     <thead>
      <tr>
       <th>opcode</th>
