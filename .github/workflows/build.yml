@@ -35,7 +35,7 @@ jobs:
       run: |
         pip install --user xml2rfc
 
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Clone docs
       run: |
