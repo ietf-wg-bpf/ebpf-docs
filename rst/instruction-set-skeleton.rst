@@ -138,17 +138,19 @@ This document defines an IANA sub-registry for BPF instruction conformance group
 
 Initial entries in this sub-registry are as follows:
 
-========  ==========================  ========  ========  ===========  ===============================================
-name      description                 includes  excludes  status       reference
-========  ==========================  ========  ========  ===========  ===============================================
-atomic32  32-bit atomic instructions  -         -         Permanent    RFCXXX `Atomic operations`_
-atomic64  64-bit atomic instructions  atomic32  -         Permanent    RFCXXX `Atomic operations`_
-base32    32-bit base instructions    -         -         Permanent    RFCXXX
-base64    64-bit base instructions    base32    -         Permanent    RFCXXX
-divmul32  32-bit division and modulo  -         -         Permanent    RFCXXX `Arithmetic instructions`_
-divmul64  64-bit division and modulo  divmul32  -         Permanent    RFCXXX `Arithmetic instructions`_
-packet    Legacy packet instructions  -         -         Historical   RFCXXX `Legacy BPF Packet access instructions`_
-========  ==========================  ========  ========  ===========  ===============================================
+.. table:: Initial conformance groups
+
+  ========  ==========================  ========  ========  ===========  ===============================================
+  name      description                 includes  excludes  status       reference
+  ========  ==========================  ========  ========  ===========  ===============================================
+  atomic32  32-bit atomic instructions  -         -         Permanent    RFCXXX `Atomic operations`_
+  atomic64  64-bit atomic instructions  atomic32  -         Permanent    RFCXXX `Atomic operations`_
+  base32    32-bit base instructions    -         -         Permanent    RFCXXX
+  base64    64-bit base instructions    base32    -         Permanent    RFCXXX
+  divmul32  32-bit division and modulo  -         -         Permanent    RFCXXX `Arithmetic instructions`_
+  divmul64  64-bit division and modulo  divmul32  -         Permanent    RFCXXX `Arithmetic instructions`_
+  packet    Legacy packet instructions  -         -         Historical   RFCXXX `Legacy BPF Packet access instructions`_
+  ========  ==========================  ========  ========  ===========  ===============================================
 
 NOTE TO RFC-EDITOR: Upon publication, please replace RFCXXX above with reference to this document.
 
@@ -257,23 +259,27 @@ For example, consider an existing hypothetical group called "example" with two i
 One might add two more instructions by first adding an "examplev2" group to the
 BPF Instruction Conformance Group Registry as follows:
 
-=============  =================================  ========  ========  =========
-name           description                        includes  excludes  status
-=============  =================================  ========  ========  =========
-example        Original example instructions      -         -         Permanent
-examplev2      Newer set of example instructions  example   -         Permanent
-=============  =================================  ========  ========  =========
+.. table:: Conformance group example for addition
+
+  =============  =================================  ========  ========  =========
+  name           description                        includes  excludes  status
+  =============  =================================  ========  ========  =========
+  example        Original example instructions      -         -         Permanent
+  examplev2      Newer set of example instructions  example   -         Permanent
+  =============  =================================  ========  ========  =========
 
 And then adding the new instructions into the BPF Instruction Set Registry as follows:
 
-======  ===  =================================  =============
-opcode  ...  description                        groups
-======  ===  =================================  =============
-aaa     ...  Original example instruction 1     example
-bbb     ...  Original example instruction 2     example
-ccc     ...  Added example instruction 3        examplev2
-ddd     ...  Added example instruction 4        examplev2
-======  ===  =================================  =============
+.. table:: Instruction addition example
+
+  ======  ===  =================================  =============
+  opcode  ...  description                        groups
+  ======  ===  =================================  =============
+  aaa     ...  Original example instruction 1     example
+  bbb     ...  Original example instruction 2     example
+  ccc     ...  Added example instruction 3        examplev2
+  ddd     ...  Added example instruction 4        examplev2
+  ======  ===  =================================  =============
 
 Supporting the "examplev2" group thus requires supporting all four example instructions.
 
@@ -288,25 +294,29 @@ For example, if deprecating an instruction in an existing hypothetical group cal
 ("legacyexample" and "examplev2") might be registered in the BPF Instruction Conformance Group
 Registry as follows:
 
-=============  =============================  ========  =============  ===========
-name           description                    includes  excludes       status
-=============  =============================  ========  =============  ===========
-example        Original example instructions  -         -              Permanent
-legacyexample  Legacy example instructions    -         -              Historical
-examplev2      Example instructions           example   legacyexample  Permanent
-=============  =============================  ========  =============  ===========
+.. table:: Conformance group example for deprecation
+
+  =============  =============================  ========  =============  ===========
+  name           description                    includes  excludes       status
+  =============  =============================  ========  =============  ===========
+  example        Original example instructions  -         -              Permanent
+  legacyexample  Legacy example instructions    -         -              Historical
+  examplev2      Example instructions           example   legacyexample  Permanent
+  =============  =============================  ========  =============  ===========
 
 The BPF Instruction Set Registry entries for the deprecated instructions would then be updated
 to add "legacyexample" to the set of groups for those instructions, as follows:
 
-======  ===  =================================  ======================
-opcode  ...  description                        groups
-======  ===  =================================  ======================
-aaa     ...  Good original instruction 1        example
-bbb     ...  Good original instruction 2        example
-ccc     ...  Bad original instruction 3         example, legacyexample
-ddd     ...  Bad original instruction 4         example, legacyexample
-======  ===  =================================  ======================
+.. table:: Instruction deprecation example
+
+  ======  ===  =================================  ======================
+  opcode  ...  description                        groups
+  ======  ===  =================================  ======================
+  aaa     ...  Good original instruction 1        example
+  bbb     ...  Good original instruction 2        example
+  ccc     ...  Bad original instruction 3         example, legacyexample
+  ddd     ...  Bad original instruction 4         example, legacyexample
+  ======  ===  =================================  ======================
 
 Finally, updated implementations that dropped support for the deprecated instructions
 would then be able to claim conformance to "examplev2" rather than "example".
