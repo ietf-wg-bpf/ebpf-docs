@@ -50,6 +50,14 @@ BPF Instruction Set Architecture (ISA)
   </section>
   <section anchor="documentation-conventions" title="Documentation conventions">
    <t>
+    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+    "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+    "OPTIONAL" in this document are to be interpreted as described in
+    BCP 14 <xref target="RFC2119"></xref>
+    <em>RFC8174 &lt;https://www.rfc-editor.org/info/rfc8174&gt;</em>_
+    when, and only when, they appear in all capitals, as shown here.
+   </t>
+   <t>
     For brevity and consistency, this document refers to families
     of types using a shorthand syntax and refers to several expository,
     mnemonic functions when describing the semantics of instructions.
@@ -62,7 +70,7 @@ BPF Instruction Set Architecture (ISA)
      a type's signedness (<em>S</em>) and bit width (<em>N</em>), respectively.
     </t>
     <table>
-     <name>Meaning of signedness notation.</name>
+     <name>Meaning of signedness notation</name>
      <thead>
       <tr>
        <th>S</th>
@@ -97,7 +105,7 @@ BPF Instruction Set Architecture (ISA)
      </tbody>
     </table>
     <table>
-     <name>Meaning of bit-width notation.</name>
+     <name>Meaning of bit-width notation</name>
      <thead>
       <tr>
        <th>N</th>
@@ -257,9 +265,9 @@ B: 11111111 10000110
     <t>
      An implementation does not need to support all instructions specified in this
      document (e.g., deprecated instructions).  Instead, a number of conformance
-     groups are specified.  An implementation must support the base32 conformance
-     group and may support additional conformance groups, where supporting a
-     conformance group means it must support all instructions in that conformance
+     groups are specified.  An implementation MUST support the base32 conformance
+     group and MAY support additional conformance groups, where supporting a
+     conformance group means it MUST support all instructions in that conformance
      group.
     </t>
     <t>
@@ -438,7 +446,7 @@ opcode                  offset imm          assembly
     </artwork>
     <t>
      Note that most instructions do not use all of the fields.
-     Unused fields shall be cleared to zero.
+     Unused fields SHALL be cleared to zero.
     </t>
    </section>
    <section anchor="wide-instruction-encoding" title="Wide instruction encoding">
@@ -520,6 +528,7 @@ opcode                  offset imm          assembly
      The three least significant bits of the 'opcode' field store the instruction class:
     </t>
     <table>
+     <name>Instruction class</name>
      <thead>
       <tr>
        <th>class</th>
@@ -736,6 +745,7 @@ opcode                  offset imm          assembly
       the source operand location, which unless otherwise specified is one of:
      </t>
      <table>
+      <name>Source operand location</name>
       <thead>
        <tr>
         <th>source</th>
@@ -795,10 +805,12 @@ opcode                  offset imm          assembly
      <tt>ALU</tt> uses 32-bit wide operands while <tt>ALU64</tt> uses 64-bit wide operands for
      otherwise identical operations. <tt>ALU64</tt> instructions belong to the
      base64 conformance group unless noted otherwise.
-     The 'code' field encodes the operation as below, where 'src' and 'dst' refer
-     to the values of the source and destination registers, respectively.
+     The 'code' field encodes the operation as below, where 'src' refers to the
+     the source operand and 'dst' refers to the value of the destination
+     register.
     </t>
     <table>
+     <name>Arithmetic instructions</name>
      <thead>
       <tr>
        <th>name</th>
@@ -1246,7 +1258,7 @@ dst = dst ^ imm
      Note that there are varying definitions of the signed modulo operation
      when the dividend or divisor are negative, where implementations often
      vary by language such that Python, Ruby, etc.  differ from C, Go, Java,
-     etc. This specification requires that signed modulo use truncated division
+     etc. This specification requires that signed modulo MUST use truncated division
      (where -13 % 3 == -1) as implemented in C, Go, etc.:
     </t>
     <artwork>
@@ -1260,6 +1272,25 @@ a % n = a - n * trunc(a / n)
      operands into 64-bit operands.  Unlike other arithmetic instructions,
      <tt>MOVSX</tt> is only defined for register source operands (<tt>X</tt>).
     </t>
+    <t>
+     <tt>{MOV, K, ALU64}</tt> means:
+    </t>
+    <artwork>
+dst = (s64)imm
+    </artwork>
+    <t>
+     <tt>{MOV, X, ALU}</tt> means:
+    </t>
+    <artwork>
+dst = (u32)src
+    </artwork>
+    <t>
+     <tt>{MOVSX, X, ALU}</tt> with 'offset' 8 means:
+    </t>
+    <artwork>
+dst = (u32)(s32)(s8)src
+
+    </artwork>
     <t>
      The <tt>NEG</tt> instruction is only defined when the source bit is clear
      (<tt>K</tt>).
@@ -1282,9 +1313,10 @@ a % n = a - n * trunc(a / n)
      For <tt>ALU</tt>, the 1-bit source operand field in the opcode is used to
      select what byte order the operation converts from or to. For
      <tt>ALU64</tt>, the 1-bit source operand field in the opcode is reserved
-     and must be set to 0.
+     and MUST be set to 0.
     </t>
     <table>
+     <name>Byte swap instructions</name>
      <thead>
       <tr>
        <th>class</th>
@@ -1405,6 +1437,7 @@ dst = bswap64(dst)
      The 'code' field encodes the operation as below:
     </t>
     <table>
+     <name>Jump instructions</name>
      <thead>
       <tr>
        <th>code</th>
@@ -1875,10 +1908,6 @@ dst = bswap64(dst)
      if the next instruction is a 128-bit wide instruction.
     </t>
     <t>
-     The BPF program needs to store the return value into register R0 before doing an
-     <tt>EXIT</tt>.
-    </t>
-    <t>
      Example:
     </t>
     <t>
@@ -1890,6 +1919,12 @@ if (s32)dst s&gt;= (s32)src goto +offset
     <t>
      where 's&gt;=' indicates a signed '&gt;=' comparison.
     </t>
+    <t>
+     <tt>{JLE, K, JMP}</tt> means:
+    </t>
+    <artwork>
+if dst &lt;= (u64)(s64)imm goto +offset
+    </artwork>
     <t>
      <tt>{JA, K, JMP32}</tt> means:
     </t>
@@ -1924,15 +1959,17 @@ gotol +imm
      <t>
       Platforms that support the BPF Type Format (BTF) support identifying
       a helper function by a BTF ID encoded in the 'imm' field, where the BTF ID
-      identifies the helper name and type.
+      identifies the helper name and type.  Further documentation of BTF
+      is outside the scope of this document and is left for future work.
      </t>
     </section>
     <section anchor="program-local-functions" title="Program-local functions">
      <t>
       Program-local functions are functions exposed by the same BPF program as the
-      caller, and are referenced by offset from the call instruction, similar to
-      <tt>JA</tt>.  The offset is encoded in the 'imm' field of the call instruction.
-      An <tt>EXIT</tt> within the program-local function will return to the caller.
+      caller, and are referenced by offset from the instruction following the call
+      instruction, similar to <tt>JA</tt>.  The offset is encoded in the 'imm' field of
+      the call instruction. An <tt>EXIT</tt> within the program-local function will
+      return to the caller.
      </t>
     </section>
    </section>
@@ -1956,6 +1993,7 @@ gotol +imm
       The mode modifier is one of:
      </t>
      <table>
+      <name>Mode modifier</name>
       <thead>
        <tr>
         <th>mode modifier</th>
@@ -2108,6 +2146,7 @@ gotol +imm
       The size modifier is one of:
      </t>
      <table>
+      <name>Size modifier</name>
       <thead>
        <tr>
         <th>size</th>
@@ -2272,6 +2311,7 @@ dst = *(signed size *) (src + offset)
      arithmetic operations in the 'imm' field to encode the atomic operation:
     </t>
     <table>
+     <name>Simple atomic operations</name>
      <thead>
       <tr>
        <th>imm</th>
@@ -2367,6 +2407,7 @@ dst = *(signed size *) (src + offset)
      two complex atomic operations:
     </t>
     <table>
+     <name>Complex atomic operations</name>
      <thead>
       <tr>
        <th>imm</th>
@@ -2458,6 +2499,7 @@ dst = *(signed size *) (src + offset)
      defined further below:
     </t>
     <table>
+     <name>64-bit immediate instructions</name>
      <thead>
       <tr>
        <th>src_reg</th>
@@ -2680,7 +2722,7 @@ dst = *(signed size *) (src + offset)
      class of <tt>LD</tt>, a size modifier of <tt>W</tt>, <tt>H</tt>, or <tt>B</tt>, and a
      mode modifier of <tt>ABS</tt> or <tt>IND</tt>.  The 'dst_reg' and 'offset' fields were
      set to zero, and 'src_reg' was set to zero for <tt>ABS</tt>.  However, these
-     instructions are deprecated and should no longer be used.  All legacy packet
+     instructions are deprecated and SHOULD no longer be used.  All legacy packet
      access instructions belong to the "packet" conformance group.
     </t>
    </section>
@@ -9879,6 +9921,16 @@ dst = *(signed size *) (src + offset)
  </middle>
  <back>
  <references><name>Normative References</name>
+  <reference anchor="RFC2119">
+   <front>
+    <title>Key words for use in RFCs to Indicate Requirement Levels</title>
+    <author fullname="S. Bradner" initials="S." surname="Bradner"/>
+    <date month="March" year="1997"/>
+   </front>
+   <seriesInfo name='BCP' value='14'/>
+   <seriesInfo name='RFC' value='2119'/>
+   <seriesInfo name='DOI' value='10.17487/RFC2119'/>
+  </reference>
   <reference anchor="RFC8126">
    <front>
     <title>Guidelines for Writing an IANA Considerations Section in RFCs</title>
