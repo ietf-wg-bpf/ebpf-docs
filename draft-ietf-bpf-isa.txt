@@ -3,13 +3,13 @@
 
 
 Network Working Group                                     D. Thaler, Ed.
-Internet-Draft                                               26 May 2024
+Internet-Draft                                               27 May 2024
 Intended status: Standards Track                                        
-Expires: 27 November 2024
+Expires: 28 November 2024
 
 
                  BPF Instruction Set Architecture (ISA)
-                         draft-ietf-bpf-isa-02
+                         draft-ietf-bpf-isa-03
 
 Abstract
 
@@ -34,7 +34,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 27 November 2024.
+   This Internet-Draft will expire on 28 November 2024.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Thaler                  Expires 27 November 2024                [Page 1]
+Thaler                  Expires 28 November 2024                [Page 1]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Thaler                  Expires 27 November 2024                [Page 2]
+Thaler                  Expires 28 November 2024                [Page 2]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -165,7 +165,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024                [Page 3]
+Thaler                  Expires 28 November 2024                [Page 3]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -221,7 +221,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024                [Page 4]
+Thaler                  Expires 28 November 2024                [Page 4]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -277,7 +277,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024                [Page 5]
+Thaler                  Expires 28 November 2024                [Page 5]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -333,7 +333,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024                [Page 6]
+Thaler                  Expires 28 November 2024                [Page 6]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -389,7 +389,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024                [Page 7]
+Thaler                  Expires 28 November 2024                [Page 7]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -445,7 +445,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024                [Page 8]
+Thaler                  Expires 28 November 2024                [Page 8]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -501,7 +501,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024                [Page 9]
+Thaler                  Expires 28 November 2024                [Page 9]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -557,7 +557,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 10]
+Thaler                  Expires 28 November 2024               [Page 10]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -613,7 +613,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 11]
+Thaler                  Expires 28 November 2024               [Page 11]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -669,7 +669,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 12]
+Thaler                  Expires 28 November 2024               [Page 12]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -725,7 +725,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 13]
+Thaler                  Expires 28 November 2024               [Page 13]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -781,7 +781,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 14]
+Thaler                  Expires 28 November 2024               [Page 14]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -837,7 +837,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 15]
+Thaler                  Expires 28 November 2024               [Page 15]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -893,7 +893,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 16]
+Thaler                  Expires 28 November 2024               [Page 16]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -949,7 +949,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 17]
+Thaler                  Expires 28 November 2024               [Page 17]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -1005,7 +1005,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 18]
+Thaler                  Expires 28 November 2024               [Page 18]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -1061,7 +1061,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 19]
+Thaler                  Expires 28 November 2024               [Page 19]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -1117,7 +1117,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 20]
+Thaler                  Expires 28 November 2024               [Page 20]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -1173,7 +1173,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 21]
+Thaler                  Expires 28 November 2024               [Page 21]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -1229,7 +1229,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 22]
+Thaler                  Expires 28 November 2024               [Page 22]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -1285,7 +1285,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 23]
+Thaler                  Expires 28 November 2024               [Page 23]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -1341,7 +1341,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 24]
+Thaler                  Expires 28 November 2024               [Page 24]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -1397,7 +1397,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 25]
+Thaler                  Expires 28 November 2024               [Page 25]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -1453,7 +1453,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 26]
+Thaler                  Expires 28 November 2024               [Page 26]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -1509,7 +1509,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 27]
+Thaler                  Expires 28 November 2024               [Page 27]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -1565,7 +1565,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 28]
+Thaler                  Expires 28 November 2024               [Page 28]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -1621,7 +1621,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 29]
+Thaler                  Expires 28 November 2024               [Page 29]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -1677,7 +1677,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 30]
+Thaler                  Expires 28 November 2024               [Page 30]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -1733,7 +1733,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 31]
+Thaler                  Expires 28 November 2024               [Page 31]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -1789,7 +1789,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 32]
+Thaler                  Expires 28 November 2024               [Page 32]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -1845,7 +1845,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 33]
+Thaler                  Expires 28 November 2024               [Page 33]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -1901,7 +1901,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 34]
+Thaler                  Expires 28 November 2024               [Page 34]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -1957,7 +1957,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 35]
+Thaler                  Expires 28 November 2024               [Page 35]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -2013,7 +2013,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 36]
+Thaler                  Expires 28 November 2024               [Page 36]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -2069,7 +2069,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 37]
+Thaler                  Expires 28 November 2024               [Page 37]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -2125,7 +2125,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 38]
+Thaler                  Expires 28 November 2024               [Page 38]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -2181,7 +2181,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 39]
+Thaler                  Expires 28 November 2024               [Page 39]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -2237,7 +2237,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 40]
+Thaler                  Expires 28 November 2024               [Page 40]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -2293,7 +2293,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 41]
+Thaler                  Expires 28 November 2024               [Page 41]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -2349,7 +2349,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 42]
+Thaler                  Expires 28 November 2024               [Page 42]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -2405,7 +2405,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 43]
+Thaler                  Expires 28 November 2024               [Page 43]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -2461,7 +2461,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 44]
+Thaler                  Expires 28 November 2024               [Page 44]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -2517,7 +2517,7 @@ Internet-Draft                   BPF ISA                        May 2024
 
 
 
-Thaler                  Expires 27 November 2024               [Page 45]
+Thaler                  Expires 28 November 2024               [Page 45]
 
 Internet-Draft                   BPF ISA                        May 2024
 
@@ -2573,4 +2573,4 @@ Author's Address
 
 
 
-Thaler                  Expires 27 November 2024               [Page 46]
+Thaler                  Expires 28 November 2024               [Page 46]
