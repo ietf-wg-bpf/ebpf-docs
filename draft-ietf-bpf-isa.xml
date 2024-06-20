@@ -2761,11 +2761,11 @@ dst = *(signed size *) (src + offset)
   </section>
   <section anchor="iana-considerations" title="IANA Considerations">
    <t>
-    This document defines two sub-registries.
+    This document defines two registries.
    </t>
    <section anchor="bpf-instruction-conformance-group-registry" title="BPF Instruction Conformance Group Registry">
     <t>
-     This document defines an IANA sub-registry for BPF instruction conformance groups, as follows:
+     This document defines an IANA registry for BPF instruction conformance groups, as follows:
     </t>
     <ul>
      <li>
@@ -2797,7 +2797,7 @@ dst = *(signed size *) (src + offset)
      </li>
     </ul>
     <t>
-     Initial entries in this sub-registry are as follows:
+     Initial entries in this registry are as follows:
     </t>
     <table>
      <name>Initial conformance groups</name>
@@ -3141,7 +3141,7 @@ dst = *(signed size *) (src + offset)
      </li>
      <li>
       Registration policy: New instructions require a new entry in the conformance group
-      sub-registry and the same registration policies apply.
+      registry and the same registration policies apply.
      </li>
      <li>
       Initial registrations: See the Appendix. Instructions other than those listed

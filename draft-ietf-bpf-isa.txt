@@ -1292,11 +1292,11 @@ Internet-Draft                   BPF ISA                       June 2024
 
 7.  IANA Considerations
 
-   This document defines two sub-registries.
+   This document defines two registries.
 
 7.1.  BPF Instruction Conformance Group Registry
 
-   This document defines an IANA sub-registry for BPF instruction
+   This document defines an IANA registry for BPF instruction
    conformance groups, as follows:
 
    *  Name of the registry: BPF Instruction Conformance Groups
@@ -1319,7 +1319,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
       -  Historical: Specification required
 
-   Initial entries in this sub-registry are as follows:
+   Initial entries in this registry are as follows:
 
 
 
@@ -1441,7 +1441,7 @@ Internet-Draft                   BPF ISA                       June 2024
       details.
 
    *  Registration policy: New instructions require a new entry in the
-      conformance group sub-registry and the same registration policies
+      conformance group registry and the same registration policies
       apply.
 
    *  Initial registrations: See the Appendix.  Instructions other than
