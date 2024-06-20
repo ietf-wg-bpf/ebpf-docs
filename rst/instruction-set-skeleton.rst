@@ -118,12 +118,12 @@ that impacts the security properties desired is required.
 IANA Considerations
 ===================
 
-This document defines two sub-registries.
+This document defines two registries.
 
 BPF Instruction Conformance Group Registry
 ------------------------------------------
 
-This document defines an IANA sub-registry for BPF instruction conformance groups, as follows:
+This document defines an IANA registry for BPF instruction conformance groups, as follows:
 
 * Name of the registry: BPF Instruction Conformance Groups
 * Name of the registry group: BPF Instructions
@@ -136,7 +136,7 @@ This document defines an IANA sub-registry for BPF instruction conformance group
   * Provisional: Specification required
   * Historical: Specification required
 
-Initial entries in this sub-registry are as follows:
+Initial entries in this registry are as follows:
 
 .. table:: Initial conformance groups
 
@@ -202,7 +202,7 @@ This document proposes a new IANA registry for BPF instructions, as follows:
 * Syntax of registry entries: Each entry has the following fields: opcode, src, imm, offset, description,
   groups, and reference. See `BPF Instruction Registration Template`_ for more details.
 * Registration policy: New instructions require a new entry in the conformance group
-  sub-registry and the same registration policies apply.
+  registry and the same registration policies apply.
 * Initial registrations: See the Appendix. Instructions other than those listed
   as deprecated are Permanent. Any listed as deprecated are Historical.
 
