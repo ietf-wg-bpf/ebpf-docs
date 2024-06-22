@@ -343,6 +343,25 @@ approval.  Transition from 'Provisional' to 'Historical' can be
 requested by anyone authorized to update the 'Provisional'
 registration.
 
+Expert Review Instructions
+--------------------------
+
+The IANA registries established by this document are informed by written
+specifications, which themselves are facilitated and approved by
+an Expert Review `RFC 8126 section 5.3<https://www.rfc-editor.org/rfc/rfc8126.html#section-5.3>`_
+process.
+
+Designated Experts are expected to consult with the active
+BPF working group (e.g., via email to the working group’s mailing list)
+if it exists, as well as other interested parties (e.g., via email to
+one or more active mailing list(s) for relevant BPF communities and
+platforms). The Designed Expert is expected to verify that the encoding
+and semantics for any new instructions are properly documented in a
+public-facing specification. In the event of future RFC documents for ISA
+extensions, experts may permit early assignment before the RFC document
+is available, as long as a specification exists which satisfies the above
+requirements.
+
 Acknowledgements
 ================
 
