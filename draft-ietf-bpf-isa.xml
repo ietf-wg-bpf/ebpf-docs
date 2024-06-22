@@ -3667,6 +3667,26 @@ dst = *(signed size *) (src + offset)
      registration.
     </t>
    </section>
+   <section anchor="expert-review-instructions" title="Expert Review Instructions">
+    <t>
+     The IANA registries established by this document are informed by written
+     specifications, which themselves are facilitated and approved by
+     an Expert Review <xref target="RFC8126" section="5.3"/>
+     process.
+    </t>
+    <t>
+     Designated Experts are expected to consult with the active
+     BPF working group (e.g., via email to the working group’s mailing list)
+     if it exists, as well as other interested parties (e.g., via email to
+     one or more active mailing list(s) for relevant BPF communities and
+     platforms). The Designed Expert is expected to verify that the encoding
+     and semantics for any new instructions are properly documented in a
+     public-facing specification. In the event of future RFC documents for ISA
+     extensions, experts may permit early assignment before the RFC document
+     is available, as long as a specification exists which satisfies the above
+     requirements.
+    </t>
+   </section>
   </section>
   <section anchor="acknowledgements" title="Acknowledgements">
    <t>
