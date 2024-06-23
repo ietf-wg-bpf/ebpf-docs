@@ -1,4 +1,4 @@
-.. |docName| replace:: draft-ietf-bpf-isa-03
+.. |docName| replace:: draft-ietf-bpf-isa-04
 .. |ipr| replace:: trust200902
 .. |category| replace:: std
 .. |titleAbbr| replace:: BPF ISA
@@ -57,7 +57,7 @@
 .. |ref[RFC8126].seriesInfo.value| replace:: 10.17487/RFC8126
 .. |ref[RFC8126].date.month| replace:: June
 .. |ref[RFC8126].date.year| replace:: 2017
-.. |ref[RFC8174].target| replace:: https://www.rfc-editor.org/rfc/rfc8174.html
+.. |ref[RFC8174].target| replace:: https://www.rfc-editor.org/info/rfc8174
 .. |ref[RFC8174].title| replace:: Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words
 .. |ref[RFC8174].author[0].fullname| replace:: B. Leiba
 .. |ref[RFC8174].author[0].initials| replace:: B.
