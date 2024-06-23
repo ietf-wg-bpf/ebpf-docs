@@ -16,7 +16,7 @@
 <?rfc text-list-symbols="-o*+"?>
 <?rfc docmapping="yes"?>
 
-<rfc ipr="trust200902" docName="draft-ietf-bpf-isa-03" category="std" submissionType="IETF">
+<rfc ipr="trust200902" docName="draft-ietf-bpf-isa-04" category="std" submissionType="IETF">
  <front>
   <title abbrev="BPF ISA">
 BPF Instruction Set Architecture (ISA)
@@ -54,7 +54,7 @@ BPF Instruction Set Architecture (ISA)
     "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
     "OPTIONAL" in this document are to be interpreted as described in
     BCP 14 <xref target="RFC2119"></xref>
-    <em>RFC8174 &lt;https://www.rfc-editor.org/info/rfc8174&gt;</em>_
+    <xref target="RFC8174">RFC8174</xref>
     when, and only when, they appear in all capitals, as shown here.
    </t>
    <t>
@@ -9962,6 +9962,16 @@ dst = *(signed size *) (src + offset)
    <seriesInfo name='BCP' value='26'/>
    <seriesInfo name='RFC' value='8126'/>
    <seriesInfo name='DOI' value='10.17487/RFC8126'/>
+  </reference>
+  <reference anchor="RFC8174">
+   <front>
+    <title>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</title>
+    <author fullname="B. Leiba" initials="B." surname="Leiba"/>
+    <date month="May" year="2017"/>
+   </front>
+   <seriesInfo name='BCP' value='14'/>
+   <seriesInfo name='RFC' value='8174'/>
+   <seriesInfo name='DOI' value='10.17487/RFC8174'/>
   </reference>
  </references>
  <references><name>Informative References</name>

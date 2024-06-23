@@ -9,7 +9,7 @@ Expires: 25 December 2024
 
 
                  BPF Instruction Set Architecture (ISA)
-                         draft-ietf-bpf-isa-03
+                         draft-ietf-bpf-isa-04
 
 Abstract
 
@@ -127,8 +127,8 @@ Internet-Draft                   BPF ISA                       June 2024
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
    "OPTIONAL" in this document are to be interpreted as described in BCP
-   14 [RFC2119] _RFC8174 <https://www.rfc-editor.org/info/rfc8174>__
-   when, and only when, they appear in all capitals, as shown here.
+   14 [RFC2119] RFC8174 [RFC8174] when, and only when, they appear in
+   all capitals, as shown here.
 
    For brevity and consistency, this document refers to families of
    types using a shorthand syntax and refers to several expository,
@@ -2532,6 +2532,10 @@ Internet-Draft                   BPF ISA                       June 2024
               RFC 8126, DOI 10.17487/RFC8126, June 2017,
               <https://www.rfc-editor.org/rfc/rfc8126>.
 
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
+
 10.2.  Informative References
 
    [LINUX]    "eBPF verifier",
@@ -2550,10 +2554,6 @@ Author's Address
    Redmond, WA 98052
    United States of America
    Email: dave.thaler.ietf@gmail.com
-
-
-
-
 
 
 
