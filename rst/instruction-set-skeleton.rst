@@ -13,6 +13,16 @@
 .. |author[0].region| replace:: WA
 .. |author[0].code| replace:: 98052
 .. |author[0].country| replace:: USA
+.. |ref[IEN137].target| replace:: https://www.rfc-editor.org/ien/ien137.txt
+.. |ref[IEN137].title| replace:: On Holy Wars and a Plea for Peace
+.. |ref[IEN137].author[0].fullname| replace:: D. Cohen
+.. |ref[IEN137].author[0].initials| replace:: D.
+.. |ref[IEN137].author[0].surname| replace:: Cohen
+.. |ref[IEN137].type| replace:: normative
+.. |ref[IEN137].seriesInfo.name| replace:: IEN
+.. |ref[IEN137].seriesInfo.value| replace:: 137
+.. |ref[IEN137].date.month| replace:: April
+.. |ref[IEN137].date.year| replace:: 1980
 .. |ref[RFC2119].title| replace:: Key words for use in RFCs to Indicate Requirement Levels
 .. |ref[RFC2119].author[0].fullname| replace:: S. Bradner
 .. |ref[RFC2119].author[0].initials| replace:: S.
@@ -47,6 +57,20 @@
 .. |ref[RFC8126].seriesInfo.value| replace:: 10.17487/RFC8126
 .. |ref[RFC8126].date.month| replace:: June
 .. |ref[RFC8126].date.year| replace:: 2017
+.. |ref[RFC8174].target| replace:: https://www.rfc-editor.org/rfc/rfc8174.html
+.. |ref[RFC8174].title| replace:: Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words
+.. |ref[RFC8174].author[0].fullname| replace:: B. Leiba
+.. |ref[RFC8174].author[0].initials| replace:: B.
+.. |ref[RFC8174].author[0].surname| replace:: Leiba
+.. |ref[RFC8174].type| replace:: normative
+.. |ref[RFC8174].seriesInfo.name| replace:: BCP
+.. |ref[RFC8174].seriesInfo.value| replace:: 14
+.. |ref[RFC8174].seriesInfo.name| replace:: RFC
+.. |ref[RFC8174].seriesInfo.value| replace:: 8174
+.. |ref[RFC8174].seriesInfo.name| replace:: DOI
+.. |ref[RFC8174].seriesInfo.value| replace:: 10.17487/RFC8174
+.. |ref[RFC8174].date.month| replace:: May
+.. |ref[RFC8174].date.year| replace:: 2017
 .. |ref[LINUX].target| replace:: https://www.kernel.org/doc/html/latest/bpf/verifier.html
 .. |ref[LINUX].title| replace:: eBPF verifier
 .. |ref[LINUX].type| replace:: informative
