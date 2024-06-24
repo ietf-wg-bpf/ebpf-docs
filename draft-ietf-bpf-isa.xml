@@ -41,11 +41,19 @@ BPF Instruction Set Architecture (ISA)
  <middle>
   <section anchor="introduction" title="Introduction">
    <t>
-    eBPF (which is no longer an acronym for anything), also commonly
+    eBPF, also commonly
     referred to as BPF, is a technology with origins in the Linux kernel
     that can run untrusted programs in a privileged context such as an
     operating system kernel. This document specifies the BPF instruction
     set architecture (ISA).
+   </t>
+   <t>
+    As a historical note, BPF originally stood for Berkeley Packet Filter,
+    but now that it can do so much more than packet filtering, the acronym
+    no longer makes sense. BPF is now considered a standalone term that
+    does not stand for anything.  The original BPF is sometimes referred to
+    as cBPF (classic BPF) to distinguish it from the now widely deployed
+    eBPF (extended BPF).
    </t>
   </section>
   <section anchor="documentation-conventions" title="Documentation conventions">
@@ -54,7 +62,7 @@ BPF Instruction Set Architecture (ISA)
     "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
     "OPTIONAL" in this document are to be interpreted as described in
     BCP 14 <xref target="RFC2119"></xref>
-    <xref target="RFC8174">RFC8174</xref>
+    <xref target="RFC8174"></xref>
     when, and only when, they appear in all capitals, as shown here.
    </t>
    <t>
@@ -182,36 +190,24 @@ BPF Instruction Set Architecture (ISA)
     </t>
    </section>
    <section anchor="functions" title="Functions">
+    <t>
+     The following byteswap functions are direction-agnostic.  That is,
+     the same function is used for conversion in either direction discussed
+     below.
+    </t>
     <ul>
      <li>
-      htobe16: Takes an unsigned 16-bit number in host-endian format and
-      returns the equivalent number as an unsigned 16-bit number in big-endian
-      format.
+      be16: Takes an unsigned 16-bit number and converts it between
+      host byte order and big-endian
+      (<xref target="IEN137">IEN137</xref>) byte order.
      </li>
      <li>
-      htobe32: Takes an unsigned 32-bit number in host-endian format and
-      returns the equivalent number as an unsigned 32-bit number in big-endian
-      format.
+      be32: Takes an unsigned 32-bit number and converts it between
+      host byte order and big-endian byte order.
      </li>
      <li>
-      htobe64: Takes an unsigned 64-bit number in host-endian format and
-      returns the equivalent number as an unsigned 64-bit number in big-endian
-      format.
-     </li>
-     <li>
-      htole16: Takes an unsigned 16-bit number in host-endian format and
-      returns the equivalent number as an unsigned 16-bit number in little-endian
-      format.
-     </li>
-     <li>
-      htole32: Takes an unsigned 32-bit number in host-endian format and
-      returns the equivalent number as an unsigned 32-bit number in little-endian
-      format.
-     </li>
-     <li>
-      htole64: Takes an unsigned 64-bit number in host-endian format and
-      returns the equivalent number as an unsigned 64-bit number in little-endian
-      format.
+      be64: Takes an unsigned 64-bit number and converts it between
+      host byte order and big-endian byte order.
      </li>
      <li>
       bswap16: Takes an unsigned 16-bit number in either big- or little-endian
@@ -227,6 +223,18 @@ BPF Instruction Set Architecture (ISA)
       bswap64: Takes an unsigned 64-bit number in either big- or little-endian
       format and returns the equivalent number with the same bit width but
       opposite endianness.
+     </li>
+     <li>
+      le16: Takes an unsigned 16-bit number and converts it between
+      host byte order and little-endian byte order.
+     </li>
+     <li>
+      le32: Takes an unsigned 32-bit number and converts it between
+      host byte order and little-endian byte order.
+     </li>
+     <li>
+      le64: Takes an unsigned 64-bit number and converts it between
+      host byte order and little-endian byte order.
      </li>
     </ul>
    </section>
@@ -1334,7 +1342,7 @@ dst = (u32)(s32)(s8)src
        </td>
        <td>
         <t>
-         TO_LE
+         LE
         </t>
        </td>
        <td>
@@ -1356,7 +1364,7 @@ dst = (u32)(s32)(s8)src
        </td>
        <td>
         <t>
-         TO_BE
+         BE
         </t>
        </td>
        <td>
@@ -1404,23 +1412,23 @@ dst = (u32)(s32)(s8)src
      Examples:
     </t>
     <t>
-     <tt>{END, TO_LE, ALU}</tt> with 'imm' = 16/32/64 means:
+     <tt>{END, LE, ALU}</tt> with 'imm' = 16/32/64 means:
     </t>
     <artwork>
-dst = htole16(dst)
-dst = htole32(dst)
-dst = htole64(dst)
+dst = le16(dst)
+dst = le32(dst)
+dst = le64(dst)
     </artwork>
     <t>
-     <tt>{END, TO_BE, ALU}</tt> with 'imm' = 16/32/64 means:
+     <tt>{END, BE, ALU}</tt> with 'imm' = 16/32/64 means:
     </t>
     <artwork>
-dst = htobe16(dst)
-dst = htobe32(dst)
-dst = htobe64(dst)
+dst = be16(dst)
+dst = be32(dst)
+dst = be64(dst)
     </artwork>
     <t>
-     <tt>{END, TO_LE, ALU64}</tt> with 'imm' = 16/32/64 means:
+     <tt>{END, TO, ALU64}</tt> with 'imm' = 16/32/64 means:
     </t>
     <artwork>
 dst = bswap16(dst)
@@ -1953,14 +1961,18 @@ gotol +imm
      </t>
      <t>
       Historically, each helper function was identified by a static ID
-      encoded in the 'imm' field.  The available helper functions may differ
-      for each program type, but static IDs are unique across all program types.
+      encoded in the 'imm' field.  Further documentation of helper functions
+      is outside the scope of this document and standardization is left for
+      future work, but use is widely deployed and more information can be
+      found in platform-specific documentation (e.g., Linux kernel documentation).
      </t>
      <t>
       Platforms that support the BPF Type Format (BTF) support identifying
       a helper function by a BTF ID encoded in the 'imm' field, where the BTF ID
       identifies the helper name and type.  Further documentation of BTF
-      is outside the scope of this document and is left for future work.
+      is outside the scope of this document and standardization is left for
+      future work, but use is widely deployed and more information can be
+      found in platform-specific documentation (e.g., Linux kernel documentation).
      </t>
     </section>
     <section anchor="program-local-functions" title="Program-local functions">
@@ -9941,6 +9953,14 @@ dst = *(signed size *) (src + offset)
  </middle>
  <back>
  <references><name>Normative References</name>
+  <reference anchor="IEN137">
+   <front>
+    <title>On Holy Wars and a Plea for Peace</title>
+    <author fullname="D. Cohen" initials="D." surname="Cohen"/>
+    <date month="April" year="1980"/>
+   </front>
+   <seriesInfo name='IEN' value='137'/>
+  </reference>
   <reference anchor="RFC2119">
    <front>
     <title>Key words for use in RFCs to Indicate Requirement Levels</title>

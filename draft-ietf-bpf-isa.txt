@@ -3,9 +3,9 @@
 
 
 Network Working Group                                     D. Thaler, Ed.
-Internet-Draft                                              23 June 2024
+Internet-Draft                                              24 June 2024
 Intended status: Standards Track                                        
-Expires: 25 December 2024
+Expires: 26 December 2024
 
 
                  BPF Instruction Set Architecture (ISA)
@@ -34,7 +34,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 December 2024.
+   This Internet-Draft will expire on 26 December 2024.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Thaler                  Expires 25 December 2024                [Page 1]
+Thaler                  Expires 26 December 2024                [Page 1]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -109,26 +109,32 @@ Table of Contents
 
 
 
-Thaler                  Expires 25 December 2024                [Page 2]
+Thaler                  Expires 26 December 2024                [Page 2]
 
 Internet-Draft                   BPF ISA                       June 2024
 
 
 1.  Introduction
 
-   eBPF (which is no longer an acronym for anything), also commonly
-   referred to as BPF, is a technology with origins in the Linux kernel
-   that can run untrusted programs in a privileged context such as an
-   operating system kernel.  This document specifies the BPF instruction
-   set architecture (ISA).
+   eBPF, also commonly referred to as BPF, is a technology with origins
+   in the Linux kernel that can run untrusted programs in a privileged
+   context such as an operating system kernel.  This document specifies
+   the BPF instruction set architecture (ISA).
+
+   As a historical note, BPF originally stood for Berkeley Packet
+   Filter, but now that it can do so much more than packet filtering,
+   the acronym no longer makes sense.  BPF is now considered a
+   standalone term that does not stand for anything.  The original BPF
+   is sometimes referred to as cBPF (classic BPF) to distinguish it from
+   the now widely deployed eBPF (extended BPF).
 
 2.  Documentation conventions
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
    "OPTIONAL" in this document are to be interpreted as described in BCP
-   14 [RFC2119] RFC8174 [RFC8174] when, and only when, they appear in
-   all capitals, as shown here.
+   14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.
 
    For brevity and consistency, this document refers to families of
    types using a shorthand syntax and refers to several expository,
@@ -159,13 +165,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-
-
-
-
-
-
-Thaler                  Expires 25 December 2024                [Page 3]
+Thaler                  Expires 26 December 2024                [Page 3]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -193,38 +193,18 @@ Internet-Draft                   BPF ISA                       June 2024
 
 2.2.  Functions
 
-   *  htobe16: Takes an unsigned 16-bit number in host-endian format and
-      returns the equivalent number as an unsigned 16-bit number in big-
-      endian format.
+   The following byteswap functions are direction-agnostic.  That is,
+   the same function is used for conversion in either direction
+   discussed below.
 
-   *  htobe32: Takes an unsigned 32-bit number in host-endian format and
-      returns the equivalent number as an unsigned 32-bit number in big-
-      endian format.
+   *  be16: Takes an unsigned 16-bit number and converts it between host
+      byte order and big-endian (IEN137 [IEN137]) byte order.
 
-   *  htobe64: Takes an unsigned 64-bit number in host-endian format and
-      returns the equivalent number as an unsigned 64-bit number in big-
-      endian format.
+   *  be32: Takes an unsigned 32-bit number and converts it between host
+      byte order and big-endian byte order.
 
-   *  htole16: Takes an unsigned 16-bit number in host-endian format and
-      returns the equivalent number as an unsigned 16-bit number in
-      little-endian format.
-
-   *  htole32: Takes an unsigned 32-bit number in host-endian format and
-      returns the equivalent number as an unsigned 32-bit number in
-      little-endian format.
-
-   *  htole64: Takes an unsigned 64-bit number in host-endian format and
-      returns the equivalent number as an unsigned 64-bit number in
-      little-endian format.
-
-
-
-
-
-Thaler                  Expires 25 December 2024                [Page 4]
-
-Internet-Draft                   BPF ISA                       June 2024
-
+   *  be64: Takes an unsigned 64-bit number and converts it between host
+      byte order and big-endian byte order.
 
    *  bswap16: Takes an unsigned 16-bit number in either big- or little-
       endian format and returns the equivalent number with the same bit
@@ -237,6 +217,23 @@ Internet-Draft                   BPF ISA                       June 2024
    *  bswap64: Takes an unsigned 64-bit number in either big- or little-
       endian format and returns the equivalent number with the same bit
       width but opposite endianness.
+
+
+
+
+Thaler                  Expires 26 December 2024                [Page 4]
+
+Internet-Draft                   BPF ISA                       June 2024
+
+
+   *  le16: Takes an unsigned 16-bit number and converts it between host
+      byte order and little-endian byte order.
+
+   *  le32: Takes an unsigned 32-bit number and converts it between host
+      byte order and little-endian byte order.
+
+   *  le64: Takes an unsigned 64-bit number and converts it between host
+      byte order and little-endian byte order.
 
 2.3.  Definitions
 
@@ -271,23 +268,19 @@ Internet-Draft                   BPF ISA                       June 2024
    discovery in terms of conformance groups might be done manually by
    users or automatically by tools.
 
-
-
-
-
-
-
-Thaler                  Expires 25 December 2024                [Page 5]
-
-Internet-Draft                   BPF ISA                       June 2024
-
-
    Each conformance group has a short ASCII label (e.g., "base32") that
    corresponds to a set of instructions that are mandatory.  That is,
    each instruction has one or more conformance groups of which it is a
    member.
 
    This document defines the following conformance groups:
+
+
+
+Thaler                  Expires 26 December 2024                [Page 5]
+
+Internet-Draft                   BPF ISA                       June 2024
+
 
    *  base32: includes all instructions defined in this specification
       unless otherwise noted.
@@ -331,18 +324,19 @@ Internet-Draft                   BPF ISA                       June 2024
 
    *opcode*  operation to perform, encoded as follows:
 
-
-
-Thaler                  Expires 25 December 2024                [Page 6]
-
-Internet-Draft                   BPF ISA                       June 2024
-
-
       +-+-+-+-+-+-+-+-+
       |specific |class|
       +-+-+-+-+-+-+-+-+
 
       *specific*  The format of these bits varies by instruction class
+
+
+
+
+Thaler                  Expires 26 December 2024                [Page 6]
+
+Internet-Draft                   BPF ISA                       June 2024
+
 
       *class*  The instruction class (see Instruction classes
          (Section 3.3))
@@ -386,16 +380,19 @@ Internet-Draft                   BPF ISA                       June 2024
          dst_reg src_reg
   07     1       0        00 00  11 22 33 44  r1 += 0x11223344 // big
 
+   Note that most instructions do not use all of the fields.  Unused
+   fields SHALL be cleared to zero.
 
 
 
-Thaler                  Expires 25 December 2024                [Page 7]
+
+
+
+
+Thaler                  Expires 26 December 2024                [Page 7]
 
 Internet-Draft                   BPF ISA                       June 2024
 
-
-   Note that most instructions do not use all of the fields.  Unused
-   fields SHALL be cleared to zero.
 
 3.2.  Wide instruction encoding
 
@@ -445,7 +442,10 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024                [Page 8]
+
+
+
+Thaler                  Expires 26 December 2024                [Page 8]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -501,7 +501,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024                [Page 9]
+Thaler                  Expires 26 December 2024                [Page 9]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -557,7 +557,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 10]
+Thaler                  Expires 26 December 2024               [Page 10]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -613,7 +613,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 11]
+Thaler                  Expires 26 December 2024               [Page 11]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -669,7 +669,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 12]
+Thaler                  Expires 26 December 2024               [Page 12]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -725,7 +725,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 13]
+Thaler                  Expires 26 December 2024               [Page 13]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -733,10 +733,10 @@ Internet-Draft                   BPF ISA                       June 2024
          +=======+==========+=======+===========================+
          | class | source   | value | description               |
          +=======+==========+=======+===========================+
-         | ALU   | TO_LE    | 0     | convert between host byte |
+         | ALU   | LE       | 0     | convert between host byte |
          |       |          |       | order and little endian   |
          +-------+----------+-------+---------------------------+
-         | ALU   | TO_BE    | 1     | convert between host byte |
+         | ALU   | BE       | 1     | convert between host byte |
          |       |          |       | order and big endian      |
          +-------+----------+-------+---------------------------+
          | ALU64 | Reserved | 0     | do byte swap              |
@@ -752,19 +752,19 @@ Internet-Draft                   BPF ISA                       June 2024
 
    Examples:
 
-   {END, TO_LE, ALU} with 'imm' = 16/32/64 means:
+   {END, LE, ALU} with 'imm' = 16/32/64 means:
 
-   dst = htole16(dst)
-   dst = htole32(dst)
-   dst = htole64(dst)
+   dst = le16(dst)
+   dst = le32(dst)
+   dst = le64(dst)
 
-   {END, TO_BE, ALU} with 'imm' = 16/32/64 means:
+   {END, BE, ALU} with 'imm' = 16/32/64 means:
 
-   dst = htobe16(dst)
-   dst = htobe32(dst)
-   dst = htobe64(dst)
+   dst = be16(dst)
+   dst = be32(dst)
+   dst = be64(dst)
 
-   {END, TO_LE, ALU64} with 'imm' = 16/32/64 means:
+   {END, TO, ALU64} with 'imm' = 16/32/64 means:
 
    dst = bswap16(dst)
    dst = bswap32(dst)
@@ -781,7 +781,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 14]
+Thaler                  Expires 26 December 2024               [Page 14]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -837,7 +837,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 15]
+Thaler                  Expires 26 December 2024               [Page 15]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -893,7 +893,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 16]
+Thaler                  Expires 26 December 2024               [Page 16]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -912,15 +912,19 @@ Internet-Draft                   BPF ISA                       June 2024
    set of function calls exposed by the underlying platform.
 
    Historically, each helper function was identified by a static ID
-   encoded in the 'imm' field.  The available helper functions may
-   differ for each program type, but static IDs are unique across all
-   program types.
+   encoded in the 'imm' field.  Further documentation of helper
+   functions is outside the scope of this document and standardization
+   is left for future work, but use is widely deployed and more
+   information can be found in platform-specific documentation (e.g.,
+   Linux kernel documentation).
 
    Platforms that support the BPF Type Format (BTF) support identifying
    a helper function by a BTF ID encoded in the 'imm' field, where the
    BTF ID identifies the helper name and type.  Further documentation of
-   BTF is outside the scope of this document and is left for future
-   work.
+   BTF is outside the scope of this document and standardization is left
+   for future work, but use is widely deployed and more information can
+   be found in platform-specific documentation (e.g., Linux kernel
+   documentation).
 
 4.3.2.  Program-local functions
 
@@ -945,11 +949,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-
-
-
-
-Thaler                  Expires 25 December 2024               [Page 17]
+Thaler                  Expires 26 December 2024               [Page 17]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -1005,7 +1005,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 18]
+Thaler                  Expires 26 December 2024               [Page 18]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -1061,7 +1061,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 19]
+Thaler                  Expires 26 December 2024               [Page 19]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -1117,7 +1117,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 20]
+Thaler                  Expires 26 December 2024               [Page 20]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -1173,7 +1173,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 21]
+Thaler                  Expires 26 December 2024               [Page 21]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -1229,7 +1229,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 22]
+Thaler                  Expires 26 December 2024               [Page 22]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -1285,7 +1285,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 23]
+Thaler                  Expires 26 December 2024               [Page 23]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -1341,7 +1341,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 24]
+Thaler                  Expires 26 December 2024               [Page 24]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -1397,7 +1397,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 25]
+Thaler                  Expires 26 December 2024               [Page 25]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -1453,7 +1453,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 26]
+Thaler                  Expires 26 December 2024               [Page 26]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -1509,7 +1509,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 27]
+Thaler                  Expires 26 December 2024               [Page 27]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -1565,7 +1565,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 28]
+Thaler                  Expires 26 December 2024               [Page 28]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -1621,7 +1621,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 29]
+Thaler                  Expires 26 December 2024               [Page 29]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -1677,7 +1677,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 30]
+Thaler                  Expires 26 December 2024               [Page 30]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -1733,7 +1733,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 31]
+Thaler                  Expires 26 December 2024               [Page 31]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -1789,7 +1789,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 32]
+Thaler                  Expires 26 December 2024               [Page 32]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -1845,7 +1845,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 33]
+Thaler                  Expires 26 December 2024               [Page 33]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -1901,7 +1901,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 34]
+Thaler                  Expires 26 December 2024               [Page 34]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -1957,7 +1957,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 35]
+Thaler                  Expires 26 December 2024               [Page 35]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -2013,7 +2013,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 36]
+Thaler                  Expires 26 December 2024               [Page 36]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -2069,7 +2069,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 37]
+Thaler                  Expires 26 December 2024               [Page 37]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -2125,7 +2125,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 38]
+Thaler                  Expires 26 December 2024               [Page 38]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -2181,7 +2181,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 39]
+Thaler                  Expires 26 December 2024               [Page 39]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -2237,7 +2237,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 40]
+Thaler                  Expires 26 December 2024               [Page 40]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -2293,7 +2293,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 41]
+Thaler                  Expires 26 December 2024               [Page 41]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -2349,7 +2349,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 42]
+Thaler                  Expires 26 December 2024               [Page 42]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -2405,7 +2405,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 43]
+Thaler                  Expires 26 December 2024               [Page 43]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -2461,7 +2461,7 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 44]
+Thaler                  Expires 26 December 2024               [Page 44]
 
 Internet-Draft                   BPF ISA                       June 2024
 
@@ -2517,10 +2517,13 @@ Internet-Draft                   BPF ISA                       June 2024
 
 
 
-Thaler                  Expires 25 December 2024               [Page 45]
+Thaler                  Expires 26 December 2024               [Page 45]
 
 Internet-Draft                   BPF ISA                       June 2024
 
+
+   [IEN137]   Cohen, D., "On Holy Wars and a Plea for Peace", IEN 137,
+              April 1980.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -2570,7 +2573,4 @@ Author's Address
 
 
 
-
-
-
-Thaler                  Expires 25 December 2024               [Page 46]
+Thaler                  Expires 26 December 2024               [Page 46]
