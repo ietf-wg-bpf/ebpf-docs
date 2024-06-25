@@ -376,7 +376,7 @@ an Expert Review `RFC 8126 section 5.3<https://www.rfc-editor.org/rfc/rfc8126.ht
 process.
 
 Designated Experts are expected to consult with the active
-BPF working group (e.g., via email to the working group’s mailing list)
+BPF working group (e.g., via email to the working group's mailing list)
 if it exists, as well as other interested parties (e.g., via email to
 one or more active mailing list(s) for relevant BPF communities and
 platforms). The Designed Expert is expected to verify that the encoding
