@@ -205,13 +205,13 @@ Contact:
 
 Change controller:
   Organization or person (often the author), including contact information,
-  authoried to change this.
+  authorized to change this.
 
 Reference:
   A reference to the defining specification.
   Include full citations for all referenced documents.
   Registration requests for 'Provisional' registration can be
-  included in an Internet-Draft; when the documents expire or are
+  included in an Internet-Draft; when the documents are
   approved for publication as an RFC, the registration will be
   updated.
 
@@ -259,13 +259,13 @@ Contact:
 
 Change controller:
   Organization or person (often the author), including contact information,
-  authoried to change this.
+  authorized to change this.
 
 Reference:
   A reference to the defining specification.
   Include full citations for all referenced documents.
   Registration requests for 'Provisional' registration can be
-  included in an Internet-Draft; when the documents expire or are
+  included in an Internet-Draft; when the documents are
   approved for publication as an RFC, the registration will be
   updated.
 
@@ -353,8 +353,8 @@ required for an initial registration.  In cases where the original
 definition of an entry is contained in an IESG-approved document,
 update of the specification also requires IESG approval.
 
-'Provisional' registrations can be updated by the original registrant
-or anyone designated by the original registrant.  In addition, the
+'Provisional' registrations can be updated by the change controller
+designated in the existing registration.  In addition, the
 IESG can reassign responsibility for a 'Provisional' registration
 or can request specific changes to an entry.
 This will enable changes to be made to entries where the original
